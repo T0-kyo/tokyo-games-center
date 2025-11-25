@@ -1,0 +1,19 @@
+cmake_minimum_required(VERSION 3.10)
+
+project(GamesAssignment)
+
+set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+
+# FIX: Add the ROOT directory to the include path.
+# This allows includes like "BoardGameFramework/File.h" to work.
+include_directories(
+    "${PROJECT_SOURCE_DIR}"
+)
+
+add_executable(Game
+    main.cpp
+    NumericalTTT/NumericalTTT_Board.cpp
+    NumericalTTT/NumericalTTT_UI.cpp
+    BoardGameFramework/XO_Classes.cpp
+)
