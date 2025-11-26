@@ -1,87 +1,121 @@
 #include <iostream>
+#include <cstdlib>
+#include <ctime>
+#include <limits> // لاستخدام numeric_limits
 #include <string>
-#include <vector>
-#include <ctime>   // For time()
-#include <cstdlib> // For srand() and rand()
 
-// Include the framework
-#include "BoardGameFramework/BoardGame_Classes.h"
+// تضمين الملفات الأساسية للـ Framework
+#include "BoardGameFramework/BoardGame_Classes.h" 
 
-// Include the headers for your game
+// تضمين ملفات لعبة SUS الجديدة
+#include "SUS/SUS_Board.h"
+#include "SUS/SUS_UI.h"
+
+// تضمين ملفات لعبة Numerical Tic-Tac-Toe (لإكمال المنيو)
 #include "NumericalTTT/NumericalTTT_Board.h"
 #include "NumericalTTT/NumericalTTT_UI.h"
 
-// You will include your other games here
-// #include "SUS/SUS_Board.h"
-// #include "SUS/SUS_UI.h"
-// ... etc.
-
 using namespace std;
 
+// تصريح الدوال (Prototypes)
+void run_sus_game();
+void run_numerical_ttt_game();
+
+/**
+ * @brief الدالة الرئيسية لإنشاء المنيو وتشغيل الألعاب.
+ */
 int main() {
-    // Seed the random number generator (for computer players)
-    // This only needs to be done once
-    srand(static_cast<unsigned int>(time(0)));
-
-    // Pointers for Game 9
-    Board<int>* numerical_board = nullptr;
-    UI<int>* numerical_ui = nullptr;
-    Player<int>** numerical_players = nullptr;
-    GameManager<int>* numerical_game = nullptr;
-
-    // Pointers for other games will go here...
-    // Board<char>* sus_board = nullptr;
-    // ...
+    // تهيئة مولد الأرقام العشوائية (للاعب الكمبيوتر)
+    srand(static_cast<unsigned int>(time(0))); 
 
     int choice;
-    while (true) {
-        cout << "\n=================================" << endl;
-        cout << "  Welcome to the Board Game Center!" << endl;
-        cout << "=================================" << endl;
-        cout << "Select a game to play:" << endl;
-        cout << "1. Numerical Tic-Tac-Toe" << endl;
-        // Add your other games here as you make them
-        // cout << "2. SUS" << endl;
-        // cout << "3. Four-in-a-Row" << endl;
-        cout << "0. Exit" << endl;
+    
+    do {
+        cout << "\n========================================\n";
+        cout << "  Welcome to the Board Game Collection!   \n";
+        cout << "========================================\n";
+        cout << "1. Play SUS Game\n";
+        cout << "2. Play Numerical Tic-Tac-Toe\n";
+        cout << "0. Exit\n";
         cout << "Enter your choice: ";
-        cin >> choice;
-
-        if (choice == 1) {
-            // --- Launch Numerical TTT ---
-            // 1. Create the UI
-            numerical_ui = new NumericalTTT_UI();
-            
-            // 2. Create the Board
-            numerical_board = new NumericalTTT_Board();
-            
-            // 3. Let the UI create the players
-            numerical_players = numerical_ui->setup_players();
-            
-            // 4. Create the Game Manager
-            numerical_game = new GameManager<int>(numerical_board, numerical_players, numerical_ui);
-            
-            // 5. Run the game
-            numerical_game->run();
-
-            // 6. Clean up memory for this game
-            delete numerical_game;
-            delete numerical_board;
-            delete numerical_ui;
-            delete numerical_players[0];
-            delete numerical_players[1];
-            delete[] numerical_players;
-
-        } 
-        // else if (choice == 2) { ... launch SUS game ... }
-        // ...
-        else if (choice == 0) {
-            cout << "Thank you for playing!" << endl;
-            break;
-        } else {
-            cout << "Invalid choice. Please try again." << endl;
+        
+        // التعامل مع مدخلات غير صحيحة (Input Validation)
+        if (!(cin >> choice)) {
+            cin.clear();
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+            cout << "Invalid input. Please enter a number.\n";
+            continue;
         }
-    }
+
+        switch (choice) {
+            case 1: 
+                run_sus_game(); 
+                break;
+            case 2: 
+                run_numerical_ttt_game(); 
+                break;
+            case 0: 
+                cout << "Thank you for playing! Goodbye.\n"; 
+                break;
+            default: 
+                cout << "Invalid choice. Please select 1, 2, or 0.\n"; 
+                break;
+        }
+    } while (choice != 0);
 
     return 0;
+}
+
+// -----------------------------------------------------------------
+
+/**
+ * @brief دالة تشغيل لعبة SUS.
+ */
+void run_sus_game() {
+    cout << "\n--- Starting SUS Game (Character based) ---\n";
+    
+    // 1. إنشاء الـ UI والبورد
+    UI<char>* ui = new SUS_UI();
+    Board<char>* board = new SUS_Board();
+    
+    // 2. إعداد اللاعبين عبر الـ UI
+    Player<char>** players = ui->setup_players();
+
+    // 3. تشغيل مدير اللعبة
+    GameManager<char> game(board, players, ui);
+    game.run();
+    
+    // 4. تنظيف الذاكرة
+    delete board;
+    delete ui;
+    for (int i = 0; i < 2; ++i) {
+        delete players[i];
+    }
+    delete[] players;
+}
+
+/**
+ * @brief دالة تشغيل لعبة Numerical Tic-Tac-Toe.
+ */
+void run_numerical_ttt_game() {
+    cout << "\n--- Starting Numerical Tic-Tac-Toe (Integer based) ---\n";
+    
+    // 1. إنشاء الـ UI والبورد (باستخدام نوع int)
+    UI<int>* ui = new NumericalTTT_UI();
+    Board<int>* board = new NumericalTTT_Board();
+    
+    // 2. إعداد اللاعبين عبر الـ UI
+    Player<int>** players = ui->setup_players();
+
+    // 3. تشغيل مدير اللعبة
+    GameManager<int> game(board, players, ui);
+    game.run();
+
+    // 4. تنظيف الذاكرة
+    delete board;
+    delete ui;
+    for (int i = 0; i < 2; ++i) {
+        delete players[i];
+    }
+    delete[] players;
 }
