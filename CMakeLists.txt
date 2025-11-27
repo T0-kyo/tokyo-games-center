@@ -15,7 +15,6 @@ add_executable(Game
     main.cpp
     NumericalTTT/NumericalTTT_Board.cpp
     NumericalTTT/NumericalTTT_UI.cpp
-    BoardGameFramework/XO_Classes.cpp
     SUS/SUS_Board.cpp
     SUS/SUS_UI.cpp
 )

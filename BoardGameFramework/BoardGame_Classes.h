@@ -87,6 +87,11 @@ public:
 
     /** @brief Get number of columns. */
     int get_columns() const { return columns; }
+
+    T get_cell(int x, int y) {
+        return board[x][y];
+    }
+
 };
 
 //-----------------------------------------------------
