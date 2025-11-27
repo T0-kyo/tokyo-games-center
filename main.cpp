@@ -11,6 +11,9 @@
 #include "SUS/SUS_Board.h"
 #include "SUS/SUS_UI.h"
 
+#include "PyramidTTT/PyramidTTT_Board.h"
+#include "PyramidTTT/PyramidTTT_UI.h"
+
 // تضمين ملفات لعبة Numerical Tic-Tac-Toe (لإكمال المنيو)
 #include "NumericalTTT/NumericalTTT_Board.h"
 #include "NumericalTTT/NumericalTTT_UI.h"
@@ -20,6 +23,7 @@ using namespace std;
 // تصريح الدوال (Prototypes)
 void run_sus_game();
 void run_numerical_ttt_game();
+void run_pyramid_ttt_game();
 
 /**
  * @brief الدالة الرئيسية لإنشاء المنيو وتشغيل الألعاب.
@@ -36,7 +40,9 @@ int main() {
         cout << "========================================\n";
         cout << "1. Play SUS Game\n";
         cout << "2. Play Numerical Tic-Tac-Toe\n";
+        cout << "3. Play Pyramid Tic-Tac-Toe\n";
         cout << "0. Exit\n";
+
         cout << "Enter your choice: ";
         
         // التعامل مع مدخلات غير صحيحة (Input Validation)
@@ -53,6 +59,9 @@ int main() {
                 break;
             case 2: 
                 run_numerical_ttt_game(); 
+                break;
+            case 3:
+                run_pyramid_ttt_game();
                 break;
             case 0: 
                 cout << "Thank you for playing! Goodbye.\n"; 
@@ -112,6 +121,29 @@ void run_numerical_ttt_game() {
     game.run();
 
     // 4. تنظيف الذاكرة
+    delete board;
+    delete ui;
+    for (int i = 0; i < 2; ++i) {
+        delete players[i];
+    }
+    delete[] players;
+    
+}
+void run_pyramid_ttt_game() {
+    cout << "\n--- Starting Pyramid Tic-Tac-Toe ---\n";
+    
+    // 1. Create UI and Board
+    UI<char>* ui = new PyramidTTT_UI();
+    Board<char>* board = new PyramidTTT_Board();
+    
+    // 2. Setup Players
+    Player<char>** players = ui->setup_players();
+
+    // 3. Run Game
+    GameManager<char> game(board, players, ui);
+    game.run();
+    
+    // 4. Cleanup
     delete board;
     delete ui;
     for (int i = 0; i < 2; ++i) {

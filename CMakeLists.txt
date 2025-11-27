@@ -18,4 +18,6 @@ add_executable(Game
     BoardGameFramework/XO_Classes.cpp
     SUS/SUS_Board.cpp
     SUS/SUS_UI.cpp
+    PyramidTTT/PyramidTTT_Board.cpp
+    PyramidTTT/PyramidTTT_UI.cpp
 )
