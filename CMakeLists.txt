@@ -19,4 +19,6 @@ add_executable(Game
     SUS/SUS_UI.cpp
     PyramidTTT/PyramidTTT_Board.cpp
     PyramidTTT/PyramidTTT_UI.cpp
+    MisereTTT/MisereTTT_Board.cpp
+    MisereTTT/MisereTTT_UI.cpp
 )
