@@ -17,4 +17,6 @@ add_executable(Game
     NumericalTTT/NumericalTTT_UI.cpp
     SUS/SUS_Board.cpp
     SUS/SUS_UI.cpp
+    PyramidTTT/PyramidTTT_Board.cpp
+    PyramidTTT/PyramidTTT_UI.cpp
 )
