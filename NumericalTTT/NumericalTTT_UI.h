@@ -1,7 +1,7 @@
 #ifndef NUMERICALTTT_UI_H
 #define NUMERICALTTT_UI_H
 
-#include "BoardGameFramework/BoardGame_Classes.h"
+#include "../BoardGameFramework/BoardGame_Classes.h"
 #include "NumericalTTT_Board.h" // Include the board to talk to it
 #include <iostream>
 #include <string>

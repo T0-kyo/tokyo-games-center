@@ -2,7 +2,7 @@
 #define NUMERICALTTT_BOARD_H
 
 // Include the framework header from the correct path
-#include "BoardGameFramework/BoardGame_Classes.h"
+#include "../BoardGameFramework/BoardGame_Classes.h"
 #include <vector>
 
 using namespace std;
@@ -36,4 +36,4 @@ public:
     vector<int>& get_p2_nums();
 };
 
-#endif // NUMERICALTTT_BOARD_H
+#endif
