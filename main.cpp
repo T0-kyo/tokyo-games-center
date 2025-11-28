@@ -80,6 +80,7 @@ int main() {
         default:
             cout << "Invalid choice. Please try again.\n";
             break;
+        }
     } while (choice != 0);
 
     return 0;
