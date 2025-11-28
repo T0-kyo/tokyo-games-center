@@ -1,8 +1,8 @@
-#ifndef SUS_UI_H
-#define SUS_UI_H
+#ifndef WordTTT_UI_H
+#define WordTTT_UI_H
 
 #include "../BoardGameFramework/BoardGame_Classes.h"
-#include "SUS_Board.h" // يجب تضمين ملف البورد الجديد
+#include "WordTTT_Board.h" // يجب تضمين ملف البورد الجديد
 #include <iostream>
 #include <string>
 #include <vector>
@@ -11,10 +11,10 @@
 using namespace std;
 
 // الكلاس يرث من UI<char>
-class SUS_UI : public UI<char> {
+class WordTTT_UI : public UI<char> {
 public:
     // الكونستركتور
-    SUS_UI();
+    WordTTT_UI();
 
     // --- دوال Overridden ---
     // تهيئة اللاعبين (يتم تعيين رموز مبدئية)
@@ -25,6 +25,8 @@ public:
     
     // طلب الحركة (يجب طلب رمز الحركة S أو U)
     virtual Move<char>* get_move(Player<char>* player) override;
+
+    void announce_winner(WordTTT_Board* board, Player<char>** players);
 };
 
-#endif // SUS_UI_H
+#endif // WordTTT_UI_H
