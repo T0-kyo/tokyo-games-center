@@ -1,22 +1,35 @@
 #include <iostream>
 #include <cstdlib>
 #include <ctime>
-#include <limits> // numeric_limits
+#include <limits>
 #include <string>
-#include "BoardGameFramework/BoardGame_Classes.h" 
-#include "SUS/SUS_Board.h" // SUS
+
+// Framework
+#include "BoardGameFramework/BoardGame_Classes.h"
+
+// SUS Game
+#include "SUS/SUS_Board.h"
 #include "SUS/SUS_UI.h"
-#include "PyramidTTT/PyramidTTT_Board.h" // Pyramid
+
+// Pyramid Tic-Tac-Toe
+#include "PyramidTTT/PyramidTTT_Board.h"
 #include "PyramidTTT/PyramidTTT_UI.h"
-#include "NumericalTTT/NumericalTTT_Board.h" // Numerical
+
+// Numerical Tic-Tac-Toe
+#include "NumericalTTT/NumericalTTT_Board.h"
 #include "NumericalTTT/NumericalTTT_UI.h"
 #include "MisereTTT/MisereTTT_Board.h" // Misere
 #include "MisereTTT/MisereTTT_UI.h"
 #include "ObstaclesTTT/ObstaclesTTT_Board.h" // Obstacles
 #include "ObstaclesTTT/ObstaclesTTT_UI.h"
 
+// Word Tic-Tac-Toe
+#include "WordTTT/WordTTT_Board.h"
+#include "WordTTT/WordTTT_UI.h"
+
 using namespace std;
 
+// Function declarations
 void run_sus_game();
 void run_four_in_a_row_game();
 void run_5x5_ttt_game();
@@ -30,14 +43,13 @@ void run_obstacles_ttt_game();
 void run_infinity_ttt_game();
 
 int main() {
-    // For random choosing
-    srand(static_cast<unsigned int>(time(0))); 
+    srand(static_cast<unsigned int>(time(0)));
 
     int choice;
-    
+
     do {
         cout << "\n========================================\n";
-        cout << "  Welcome to the Board Game Collection!   \n";
+        cout << "        Board Game Collection\n";
         cout << "========================================\n";
         cout << "1. SUS\n";
         cout << "2. Four in a Row\n";
@@ -103,7 +115,7 @@ int main() {
     } while (choice != 0);
 }
 
-// -----------------------------------------------------------------
+// ---------------------------------------------------------------
 
 void run_sus_game() {
     cout << "\n--- Starting SUS Game ---\n";
@@ -116,9 +128,8 @@ void run_sus_game() {
     
     delete board;
     delete ui;
-    for (int i = 0; i < 2; ++i) {
-        delete players[i];
-    }
+    delete players[0];
+    delete players[1];
     delete[] players;
 }
 
@@ -175,9 +186,26 @@ void run_pyramid_ttt_game() {
     
     delete board;
     delete ui;
-    for (int i = 0; i < 2; ++i) {
-        delete players[i];
-    }
+    delete players[0];
+    delete players[1];
+    delete[] players;
+}
+
+void run_word_ttt_game() {
+    cout << "\n--- Starting Word Tic-Tac-Toe ---\n";
+
+    UI<char>* ui = new WordTTT_UI();
+    Board<char>* board = new WordTTT_Board();
+
+    Player<char>** players = ui->setup_players();
+
+    GameManager<char> game(board, players, ui);
+    game.run();
+
+    delete board;
+    delete ui;
+    delete players[0];
+    delete players[1];
     delete[] players;
 }
 
