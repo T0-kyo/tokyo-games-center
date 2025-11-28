@@ -81,3 +81,26 @@ Move<char>* WordTTT_UI::get_move(Player<char>* player) {
     
     return new Move<char>(x, y, toupper(sym2)); 
 }
+
+void WordTTT_UI::announce_winner(WordTTT_Board* board, Player<char>** players)
+{
+    int p1 = board->get_p1_score();
+    int p2 = board->get_p2_score();
+
+    cout << "\n-----------------------------------------\n";
+    cout << " FINAL SCORE:\n";
+    cout << " " << players[0]->get_name() << ": " << p1 << endl;
+    cout << " " << players[1]->get_name() << ": " << p2 << endl;
+
+    if (p1 > p2) {
+        cout << "\n Winner: " << players[0]->get_name() << "!\n";
+    }
+    else if (p2 > p1) {
+        cout << "\n Winner: " << players[1]->get_name() << "!\n";
+    }
+    else {
+        cout << "\n It's a draw!\n";
+    }
+
+    cout << "-----------------------------------------\n";
+}

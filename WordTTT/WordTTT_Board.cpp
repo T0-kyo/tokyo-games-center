@@ -120,14 +120,12 @@ bool WordTTT_Board::game_is_over(Player<char>* player)
 bool WordTTT_Board::is_win(Player<char>* player)
 {
     add_point(player); // Update scores
-    if (!game_is_over(player)) return false;
-
-    return (p1_score != p2_score);
+    return false;
 }
 
 bool WordTTT_Board::is_draw(Player<char>* player)
 {
-    return (p1_score == p2_score && n_moves == 9);
+    return n_moves == 9;
 }
 
 bool WordTTT_Board::is_lose(Player<char>* player)

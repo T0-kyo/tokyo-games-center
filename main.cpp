@@ -143,6 +143,25 @@ void run_5x5_ttt_game(){
     cout << "Valid Games: 1, 3, 5, 9, 10\n";
 }
 
+void run_word_ttt_game() {
+    cout << "\n--- Starting Word Tic-Tac-Toe ---\n";
+
+    UI<char>* ui = new WordTTT_UI();
+    Board<char>* board = new WordTTT_Board();
+
+    Player<char>** players = ui->setup_players();
+
+    GameManager<char> game(board, players, ui);
+    game.run();
+    static_cast<WordTTT_UI*>(ui)->announce_winner(static_cast<WordTTT_Board*>(board),players);
+
+    delete board;
+    delete ui;
+    delete players[0];
+    delete players[1];
+    delete[] players;
+}
+
 void run_misere_ttt_game() {
     cout << "\n--- Starting Standard Tic-Tac-Toe ---\n"; 
     
@@ -179,24 +198,6 @@ void run_pyramid_ttt_game() {
     GameManager<char> game(board, players, ui);
     game.run();
     
-    delete board;
-    delete ui;
-    delete players[0];
-    delete players[1];
-    delete[] players;
-}
-
-void run_word_ttt_game() {
-    cout << "\n--- Starting Word Tic-Tac-Toe ---\n";
-
-    UI<char>* ui = new WordTTT_UI();
-    Board<char>* board = new WordTTT_Board();
-
-    Player<char>** players = ui->setup_players();
-
-    GameManager<char> game(board, players, ui);
-    game.run();
-
     delete board;
     delete ui;
     delete players[0];
