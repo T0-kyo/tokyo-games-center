@@ -25,6 +25,8 @@ public:
     
     // طلب الحركة (يجب طلب رمز الحركة S أو U)
     virtual Move<char>* get_move(Player<char>* player) override;
+
+    void show_score(SUS_Board* board);
 };
 
 #endif // SUS_UI_H

@@ -67,6 +67,7 @@ bool SUS_Board::is_win(Player<char>* player) {
         return p1_score > p2_score; // Wins if P1 score is higher
     } 
     else if (symbol == 'U') { // Player 2
+        cout << player -> get_name() << " WINS!\n";
         return p2_score > p1_score; // Wins if P2 score is higher
     }
     

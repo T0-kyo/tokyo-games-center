@@ -74,3 +74,7 @@ Move<char>* SUS_UI::get_move(Player<char>* player) {
     // إرجاع الحركة بالرمز الثابت
     return new Move<char>(x, y, symbol); 
 }
+
+void SUS_UI::show_score(SUS_Board* board){
+    cout << "Final Score: P1 (" << board->get_p1_score() << ") - P2 (" << board->get_p2_score() << ")" << endl;
+}
