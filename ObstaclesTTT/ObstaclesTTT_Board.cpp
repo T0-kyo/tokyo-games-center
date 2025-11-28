@@ -91,7 +91,7 @@ bool ObstaclesTTT_Board::is_win(Player<char>* player) {
 
 bool ObstaclesTTT_Board::is_draw(Player<char>* player) {
     // Draw if board is full (36 moves) or no moves possible and no winner
-    return (n_moves >= 36 && !is_win(player));
+    return (n_moves == 18 && !is_win(player));
 }
 
 bool ObstaclesTTT_Board::game_is_over(Player<char>* player) {
