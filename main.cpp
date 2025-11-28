@@ -125,6 +125,7 @@ void run_sus_game() {
     Player<char>** players = ui->setup_players();
     GameManager<char> game(board, players, ui);
     game.run();
+    static_cast<SUS_UI*>(ui)->show_score(static_cast<SUS_Board*>(board)); 
     
     delete board;
     delete ui;
