@@ -9,8 +9,8 @@ PyramidTTT_Board::PyramidTTT_Board() : Board<char>(3, 5) {
             board[i][j] = ' '; 
         }
     }
-    board[0][0]=' #'; board[0][1]=' #'; board[0][3]=' #'; board[0][4]=' #';
-    board[1][0]=' #'; board[1][4]=' #';
+    board[0][0]='#'; board[0][1]='#'; board[0][3]='#'; board[0][4]='#';
+    board[1][0]='#'; board[1][4]='#';
 }
 
 // Helper: Defines the shape of the pyramid

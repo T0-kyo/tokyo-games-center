@@ -23,4 +23,6 @@ add_executable(Game
     WordTTT/WordTTT_UI.cpp
     MisereTTT/MisereTTT_Board.cpp
     MisereTTT/MisereTTT_UI.cpp
+    ObstaclesTTT/ObstaclesTTT_Board.cpp
+    ObstaclesTTT/ObstaclesTTT_UI.cpp
 )
