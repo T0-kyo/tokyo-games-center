@@ -82,7 +82,7 @@ int main() {
                 run_four_in_a_row_game();
                 break;
             case 3:
-                run_pyramid_ttt_game();
+                run_5x5_ttt_game();
                 break;
             case 4:
                 run_word_ttt_game();
