@@ -135,12 +135,12 @@ void run_sus_game() {
 
 void run_four_in_a_row_game(){
     cout << "Coming Soon!\n";
-    cout << "Valid Games: 1, 3, 5, 9, 10\n";
+    cout << "Valid Games: 1, 4, 5, 8, 9, 10\n";
 }
 
 void run_5x5_ttt_game(){
     cout << "Coming Soon!\n";
-    cout << "Valid Games: 1, 3, 5, 9, 10\n";
+    cout << "Valid Games: 1, 4, 5, 8, 9, 10\n";
 }
 
 void run_word_ttt_game() {
@@ -181,12 +181,12 @@ void run_misere_ttt_game() {
 
 void run_diamond_ttt_game(){
     cout << "Coming Soon!\n";
-    cout << "Valid Games: 1, 3, 5, 9, 10\n";
+    cout << "Valid Games: 1, 4, 5, 8, 9, 10\n";
 }
 
 void run_4x4_ttt_game(){
     cout << "Coming Soon!\n";
-    cout << "Valid Games: 1, 3, 5, 9, 10\n";
+    cout << "Valid Games: 1, 4, 5, 8, 9, 10\n";
 }
 
 void run_pyramid_ttt_game() {
@@ -239,5 +239,5 @@ void run_obstacles_ttt_game(){
 
 void run_infinity_ttt_game(){
     cout << "Coming Soon!\n";
-    cout << "Valid Games: 1, 3, 5, 9, 10\n";
+    cout << "Valid Games: 1, 4, 5, 8, 9, 10\n";
 }
