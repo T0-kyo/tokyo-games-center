@@ -153,8 +153,8 @@ void run_word_ttt_game() {
 
     GameManager<char> game(board, players, ui);
     game.run();
-    static_cast<WordTTT_UI*>(ui)->announce_winner(static_cast<WordTTT_Board*>(board),players);
-
+    static_cast<WordTTT_UI*>(ui)->show_score(static_cast<WordTTT_Board*>(board));
+    
     delete board;
     delete ui;
     delete players[0];

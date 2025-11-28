@@ -113,22 +113,22 @@ bool WordTTT_Board::update_board(Move<char>* move)
 
 bool WordTTT_Board::game_is_over(Player<char>* player)
 {
-    return n_moves == 9;
+    return (n_moves == 9);
 }
 
 // Win check: ANY word gives a point — game doesn’t end immediately
 bool WordTTT_Board::is_win(Player<char>* player)
 {
     add_point(player); // Update scores
-    return false;
+    return (game_is_over(player) && p1_score > p2_score);
 }
 
 bool WordTTT_Board::is_draw(Player<char>* player)
 {
-    return n_moves == 9;
+    return (game_is_over(player) && p1_score == p2_score);
 }
 
 bool WordTTT_Board::is_lose(Player<char>* player)
 {
-    return false;
+    return (game_is_over(player) && p1_score < p2_score);
 }

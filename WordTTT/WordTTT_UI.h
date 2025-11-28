@@ -25,8 +25,9 @@ public:
     
     // طلب الحركة (يجب طلب رمز الحركة S أو U)
     virtual Move<char>* get_move(Player<char>* player) override;
-
-    void announce_winner(WordTTT_Board* board, Player<char>** players);
+    
+    //show score
+    void show_score(WordTTT_Board* board);
 };
 
 #endif // WordTTT_UI_H
