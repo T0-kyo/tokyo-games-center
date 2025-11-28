@@ -143,11 +143,6 @@ void run_5x5_ttt_game(){
     cout << "Valid Games: 1, 3, 5, 9, 10\n";
 }
 
-void run_word_ttt_game(){
-    cout << "Coming Soon!\n";
-    cout << "Valid Games: 1, 3, 5, 9, 10\n";
-}
-
 void run_misere_ttt_game() {
     cout << "\n--- Starting Standard Tic-Tac-Toe ---\n"; 
     
