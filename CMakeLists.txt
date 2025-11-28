@@ -21,4 +21,6 @@ add_executable(Game
     PyramidTTT/PyramidTTT_UI.cpp
     WordTTT/WordTTT_Board.cpp
     WordTTT/WordTTT_UI.cpp
+    MisereTTT/MisereTTT_Board.cpp
+    MisereTTT/MisereTTT_UI.cpp
 )

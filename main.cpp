@@ -18,6 +18,8 @@
 // Numerical Tic-Tac-Toe
 #include "NumericalTTT/NumericalTTT_Board.h"
 #include "NumericalTTT/NumericalTTT_UI.h"
+#include "MisereTTT/MisereTTT_Board.h"
+#include "MisereTTT/MisereTTT_UI.h"
 
 // Word Tic-Tac-Toe
 #include "WordTTT/WordTTT_Board.h"
@@ -30,6 +32,7 @@ void run_sus_game();
 void run_numerical_ttt_game();
 void run_pyramid_ttt_game();
 void run_word_ttt_game();
+void run_MisereTTT_game();
 
 int main() {
     srand(static_cast<unsigned int>(time(0)));
@@ -44,6 +47,7 @@ int main() {
         cout << "2. Play Numerical Tic-Tac-Toe\n";
         cout << "3. Play Pyramid Tic-Tac-Toe\n";
         cout << "4. Play Word Tic-Tac-Toe\n";
+        cout << "5. Play Misere Tic-Tac-Toe\n";
         cout << "0. Exit\n";
         cout << "Enter your choice: ";
 
@@ -67,13 +71,15 @@ int main() {
         case 4:
             run_word_ttt_game();
             break;
+        case 5:
+            run_MisereTTT_game();
+            break;
         case 0:
             cout << "Exiting program.\n";
             break;
         default:
             cout << "Invalid choice. Please try again.\n";
             break;
-        }
     } while (choice != 0);
 
     return 0;
@@ -151,4 +157,25 @@ void run_word_ttt_game() {
     delete players[0];
     delete players[1];
     delete[] players;
+}
+
+void run_MisereTTT_game() {
+    cout << "\n--- Starting Standard Tic-Tac-Toe ---\n"; 
+    
+    UI<char>* ui = new TTT_UI();            
+    Board<char>* board = new TTT_Board();   
+    
+   
+    Player<char>** players = ui->setup_players(); 
+
+    GameManager<char> game(board, players, ui);
+    
+    game.run();                           
+    
+    delete board;                           
+    delete ui;                              
+    for (int i = 0; i < 2; ++i) {
+        delete players[i];                 
+    }
+    delete[] players;                      
 }
