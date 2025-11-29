@@ -5,7 +5,7 @@
 #include <cctype> // لاستخدام toupper() (لم يعد ضرورياً لكن نتركه للسلامة)
 
 // Constructor
-SUS_UI::SUS_UI() : UI("Welcome to Sus! Form S-U-S sequences on the 3x3 grid.", 1) {}
+SUS_UI::SUS_UI() : UI("\nWelcome to Sus (3x3)!\nForm more S-U-S sequences to win.\n", 2) {}
 
 // Override setup_players لتثبيت الرموز ('S' و 'U')
 Player<char>** SUS_UI::setup_players() {
