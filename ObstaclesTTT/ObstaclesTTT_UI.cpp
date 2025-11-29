@@ -2,7 +2,7 @@
 #include <limits>
 #include <cstdlib>
 
-ObstaclesTTT_UI::ObstaclesTTT_UI() : UI("Welcome to Obstacles Tic-Tac-Toe (6x6)!\nConnect 4 to win. Watch out for random obstacles ('#')!", 3) {}
+ObstaclesTTT_UI::ObstaclesTTT_UI() : UI("\nWelcome to Obstacles Tic-Tac-Toe (6x6)!\nConnect 4 to win. Watch out for random obstacles ('#')!\n", 3) {}
 
 Player<char>** ObstaclesTTT_UI::setup_players() {
     Player<char>** players = new Player<char>*[2];

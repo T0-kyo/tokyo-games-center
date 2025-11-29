@@ -2,7 +2,7 @@
 #include <limits>
 #include <cstdlib>
 
-PyramidTTT_UI::PyramidTTT_UI() : UI("Welcome to Pyramid Tic-Tac-Toe! Align 3 marks to win.", 1) {}
+PyramidTTT_UI::PyramidTTT_UI() : UI("\nWelcome to Pyramid Tic-Tac-Toe (3x5)!\nAlign 3 marks to win.\n", 2) {}
 
 Player<char>** PyramidTTT_UI::setup_players() {
     Player<char>** players = new Player<char>*[2];

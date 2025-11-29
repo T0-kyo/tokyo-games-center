@@ -5,7 +5,7 @@
 #include <cctype> // لاستخدام toupper()
 
 // Constructor
-WordTTT_UI::WordTTT_UI() : UI("Welcome to Word tic tac to! Form 3-letter sequences on the 3x3 grid.", 1) {}
+WordTTT_UI::WordTTT_UI() : UI("\nWelcome to Word Tic-Tac-Toe (3x3)!\nForm more 3-letter valid sequences to win.\n", 2) {}
 
 Player<char>** WordTTT_UI::setup_players() {
     Player<char>** players = new Player<char>*[2];
