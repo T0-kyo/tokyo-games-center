@@ -26,6 +26,9 @@
 // Word Tic-Tac-Toe
 #include "WordTTT/WordTTT_Board.h"
 #include "WordTTT/WordTTT_UI.h"
+// Diamond Tic-Tac-Toe
+#include "DiamondTTT/DiamondTTT_Board.h"
+#include "DiamondTTT/DiamondTTT_UI.h"
 
 using namespace std;
 
@@ -205,8 +208,27 @@ void run_misere_ttt_game() {
 }
 
 void run_diamond_ttt_game(){
-    cout << "Coming Soon!\n";
-    cout << "Valid Games: 1, 4, 5, 8, 9, 10\n";
+    cout << "\n---- Starting Diamond Tic-Tac-Toe ----\n";
+
+    // 1. Create the UI and Board
+    UI<char>* ui = new DiamondTTT_UI();
+    Board<char>* board = new DiamondTTT_Board();
+
+    // 2. Setup Players
+    Player<char>** players = ui->setup_players();
+
+    // 3. Run the Game
+    GameManager<char> game(board, players, ui);
+    game.run();
+
+    cout << "\nThank You For Playing!\n--------------------------------\n";
+
+    // 4. Clean up memory
+    delete board;
+    delete ui;
+    delete players[0];
+    delete players[1];
+    delete[] players;
 }
 
 void run_4x4_ttt_game(){
