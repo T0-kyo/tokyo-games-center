@@ -35,6 +35,10 @@
 #include "5x5_TTT/5x5_TTT_Board.h"
 #include "5x5_TTT/5x5_TTT_UI.h"
 
+// Four In A Row
+#include "FourInARow/FourInARow_Board.h"
+#include "FourInARow/FourInARow_UI.h"
+
 using namespace std;
 
 // Function declarations
@@ -164,8 +168,20 @@ void run_sus_game() {
 }
 
 void run_four_in_a_row_game(){
-    cout << "Coming Soon!\n";
-    cout << "Valid Games: 1, 4, 5, 8, 9, 10\n";
+    cout << "\n---- Starting Four In A Row ----\n";
+    
+    UI<char>* ui = new FourInARow_UI();
+    Board<char>* board = new FourInARow_Board();
+    Player<char>** players = ui->setup_players();
+    GameManager<char> game(board, players, ui);
+    game.run();
+    cout << "\nThank You For Playing!\n--------------------------------\n"; 
+    
+    delete board;
+    delete ui;
+    delete players[0];
+    delete players[1];
+    delete[] players;
 }
 
 void run_5x5_ttt_game(){

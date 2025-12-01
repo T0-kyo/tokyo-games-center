@@ -27,4 +27,6 @@ add_executable(Game
     ObstaclesTTT/ObstaclesTTT_UI.cpp
     5x5_TTT/5x5_TTT_Board.cpp
     5x5_TTT/5x5_TTT_UI.cpp
+    FourInARow/FourInARow_Board.cpp
+    FourInARow/FourInARow_UI.cpp
 )
