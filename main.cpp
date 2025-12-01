@@ -18,9 +18,13 @@
 // Numerical Tic-Tac-Toe
 #include "NumericalTTT/NumericalTTT_Board.h"
 #include "NumericalTTT/NumericalTTT_UI.h"
-#include "MisereTTT/MisereTTT_Board.h" // Misere
+
+// Misere Tic-Tac-Toe
+#include "MisereTTT/MisereTTT_Board.h" 
 #include "MisereTTT/MisereTTT_UI.h"
-#include "ObstaclesTTT/ObstaclesTTT_Board.h" // Obstacles
+
+// Obstacles Tic-Tac-Toe
+#include "ObstaclesTTT/ObstaclesTTT_Board.h" 
 #include "ObstaclesTTT/ObstaclesTTT_UI.h"
 
 // Word Tic-Tac-Toe
@@ -29,6 +33,10 @@
 // Diamond Tic-Tac-Toe
 #include "DiamondTTT/DiamondTTT_Board.h"
 #include "DiamondTTT/DiamondTTT_UI.h"
+
+// 5x5 Tic-Tac-Toe
+#include "5x5_TTT/5x5_TTT_Board.h"
+#include "5x5_TTT/5x5_TTT_UI.h"
 
 using namespace std;
 
@@ -77,7 +85,7 @@ int main() {
         }
         switch (choice) {
             case 0: 
-                cout << "---- Exiting Game Center ----\nHave a great day!\n"; 
+                cout << "\n---- Exiting Game Center ----\nHave a great day!\n"; 
                 break;
             case 1: 
                 run_sus_game(); 
@@ -164,8 +172,21 @@ void run_four_in_a_row_game(){
 }
 
 void run_5x5_ttt_game(){
-    cout << "Coming Soon!\n";
-    cout << "Valid Games: 1, 4, 5, 8, 9, 10\n";
+    cout << "\n---- Starting 5x5 Tic-Tac-Toe ----\n";
+    
+    UI<char>* ui = new TTT5x5_UI();
+    Board<char>* board = new TTT5x5_Board();
+    Player<char>** players = ui->setup_players();
+    GameManager<char> game(board, players, ui);
+    game.run();
+    static_cast<SUS_UI*>(ui)->show_score(static_cast<SUS_Board*>(board));
+    cout << "\nThank You For Playing!\n--------------------------------\n"; 
+    
+    delete board;
+    delete ui;
+    delete players[0];
+    delete players[1];
+    delete[] players;
 }
 
 void run_word_ttt_game() {
