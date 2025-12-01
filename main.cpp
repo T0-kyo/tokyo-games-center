@@ -82,7 +82,7 @@ int main() {
         }
         switch (choice) {
             case 0: 
-                cout << "---- Exiting Game Center ----\nHave a great day!\n"; 
+                cout << "\n---- Exiting Game Center ----\nHave a great day!\n"; 
                 break;
             case 1: 
                 run_sus_game(); 
