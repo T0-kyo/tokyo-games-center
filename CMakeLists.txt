@@ -25,6 +25,8 @@ add_executable(Game
     MisereTTT/MisereTTT_UI.cpp
     ObstaclesTTT/ObstaclesTTT_Board.cpp
     ObstaclesTTT/ObstaclesTTT_UI.cpp
+    DiamondTTT/DiamondTTT_Board.cpp
+    DiamondTTT/DiamondTTT_UI.cpp
     5x5_TTT/5x5_TTT_Board.cpp
     5x5_TTT/5x5_TTT_UI.cpp
 )
