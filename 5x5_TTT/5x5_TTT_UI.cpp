@@ -78,6 +78,6 @@ Move<char>* TTT5x5_UI::get_move(Player<char>* player) {
     return new Move<char> (x, y, symbol);
 }
 
-void show_score(TTT5x5_Board* board) {
+void TTT5x5_UI::show_score(TTT5x5_Board* board) {
     cout << "Final Score: Player 1 (" << board->get_p1_score() << ") - Player 2 (" << board->get_p2_score() << ")" << endl;
 }
