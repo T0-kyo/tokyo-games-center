@@ -29,6 +29,8 @@ add_executable(Game
     DiamondTTT/DiamondTTT_UI.cpp
     5x5_TTT/5x5_TTT_Board.cpp
     5x5_TTT/5x5_TTT_UI.cpp
+    4x4_TTT/4x4_TTT_Board.cpp
+    4x4_TTT/4x4_TTT_UI.cpp
     FourInARow/FourInARow_Board.cpp
     FourInARow/FourInARow_UI.cpp
 )
