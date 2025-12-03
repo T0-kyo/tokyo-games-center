@@ -1,6 +1,6 @@
 #include "MisereTTT_UI.h"                  
 #include <limits>                     
-TTT_UI::TTT_UI() : UI("\nWelcome to Misere Tic-Tac-Toe (3x3)!\nWhere the winner losses (Try to loose) Good Luck!\n", 2) {}
+TTT_UI::TTT_UI() : UI("\nWelcome to Misere Tic-Tac-Toe (3x3)!\nWhere the loser wins (Try to lose) Good Luck!\n", 2) {}
 
 
 Player<char>** TTT_UI::setup_players() {
