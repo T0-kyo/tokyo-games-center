@@ -41,9 +41,14 @@
 // 4x4 Tic-Tac-Toe
 #include "4x4_TTT/4x4_TTT_Board.h"
 #include "4x4_TTT/4x4_TTT_UI.h"
+
 // Four In A Row
 #include "FourInARow/FourInARow_Board.h"
 #include "FourInARow/FourInARow_UI.h"
+
+// Infinity Tic-Tac-Toe
+#include "Infinity_TTT/Infinity_Board.h"
+#include "Infinity_TTT/Infinity_UI.h"
 
 using namespace std;
 
@@ -341,6 +346,18 @@ void run_obstacles_ttt_game(){
 }
 
 void run_infinity_ttt_game(){
-    cout << "Coming Soon!\n";
-    cout << "Valid Games: 1, 4, 5, 8, 9, 10\n";
+    cout << "\n---- Starting Infinity Tic-Tac-Toe ----\n";
+    
+    UI<char>* ui = new Infinity_UI();
+    Board<char>* board = new Infinity_Board();
+    Player<char>** players = ui->setup_players();
+    GameManager<char> game(board, players, ui);
+    game.run();
+    cout << "\nThank You For Playing!\n--------------------------------\n";
+    
+    delete board;
+    delete ui;
+    delete players[0];
+    delete players[1];
+    delete[] players;
 }

@@ -33,4 +33,6 @@ add_executable(Game
     4x4_TTT/4x4_TTT_UI.cpp
     FourInARow/FourInARow_Board.cpp
     FourInARow/FourInARow_UI.cpp
+    Infinity_TTT/Infinity_Board.cpp
+    Infinity_TTT/Infinity_UI.cpp
 )
