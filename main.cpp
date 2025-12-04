@@ -49,6 +49,9 @@
 // Infinity Tic-Tac-Toe
 #include "Infinity_TTT/Infinity_Board.h"
 #include "Infinity_TTT/Infinity_UI.h"
+// Memory Tic-Tac-Toe
+#include "MemoryTTT/MemoryTTT_Board.h"
+#include "MemoryTTT/MemoryTTT_UI.h"
 
 using namespace std;
 
@@ -64,6 +67,7 @@ void run_pyramid_ttt_game();
 void run_numerical_ttt_game();
 void run_obstacles_ttt_game();
 void run_infinity_ttt_game();
+void run_memory_ttt_game();
 
 int main() {
     srand(static_cast<unsigned int>(time(0)));
@@ -85,7 +89,8 @@ int main() {
         cout << "9.  Numerical Tic-Tac-Toe\n";
         cout << "10. Obstacles Tic-Tac-Toe\n";
         cout << "11. Infinity Tic-Tac-Toe\n";
-        cout << "12. Random Game\n";
+        cout << "12. Random Game\n"; 
+        cout << "13. Memory Tic-Tac-Toe\n";
         cout << "0.  Exit\n";
         cout << "Enter your choice: ";
         
@@ -151,6 +156,9 @@ int main() {
                     }
                     break;
             }
+            case 13:
+                run_memory_ttt_game();
+                break;
             default:
                 cout << "Invalid choice. Please select from menu (0-12)\n"; 
                 break;
@@ -350,6 +358,22 @@ void run_infinity_ttt_game(){
     
     UI<char>* ui = new Infinity_UI();
     Board<char>* board = new Infinity_Board();
+    Player<char>** players = ui->setup_players();
+    GameManager<char> game(board, players, ui);
+    game.run();
+    cout << "\nThank You For Playing!\n--------------------------------\n";
+    
+    delete board;
+    delete ui;
+    delete players[0];
+    delete players[1];
+    delete[] players;
+}
+void run_memory_ttt_game(){
+    cout << "\n---- Starting Memory Tic-Tac-Toe ----\n";
+    
+    UI<char>* ui = new MemoryTTT_UI();
+    Board<char>* board = new MemoryTTT_Board();
     Player<char>** players = ui->setup_players();
     GameManager<char> game(board, players, ui);
     game.run();
