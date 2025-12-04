@@ -35,4 +35,6 @@ add_executable(Game
     FourInARow/FourInARow_UI.cpp
     Infinity_TTT/Infinity_Board.cpp
     Infinity_TTT/Infinity_UI.cpp
+    MemoryTTT/MemoryTTT_Board.cpp
+    MemoryTTT/MemoryTTT_UI.cpp
 )
