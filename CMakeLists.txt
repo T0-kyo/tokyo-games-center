@@ -37,4 +37,6 @@ add_executable(Game
     Infinity_TTT/Infinity_UI.cpp
     MemoryTTT/MemoryTTT_Board.cpp
     MemoryTTT/MemoryTTT_UI.cpp
+    UltimateTTT/Ultimate_Board.cpp
+    UltimateTTT/Ultimate_UI.cpp
 )
