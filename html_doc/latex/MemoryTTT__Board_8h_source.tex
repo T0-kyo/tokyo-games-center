@@ -1,0 +1,35 @@
+\doxysection{Memory\+TTT\+\_\+\+Board.\+h}
+\hypertarget{MemoryTTT__Board_8h_source}{}\label{MemoryTTT__Board_8h_source}\index{MemoryTTT/MemoryTTT\_Board.h@{MemoryTTT/MemoryTTT\_Board.h}}
+\mbox{\hyperlink{MemoryTTT__Board_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ MEMORYTTT\_BOARD\_H}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ MEMORYTTT\_BOARD\_H}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}../BoardGameFramework/BoardGame\_Classes.h"{}}}
+\DoxyCodeLine{00005\ }
+\DoxyCodeLine{00006\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classMemoryTTT__Board}{MemoryTTT\_Board}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classBoard}{Board}}<char>\ \{}
+\DoxyCodeLine{00007\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00008\ \ \ \ \ \textcolor{comment}{//\ Hidden\ board\ to\ track\ the\ ACTUAL\ owner\ of\ the\ cells}}
+\DoxyCodeLine{00009\ \ \ \ \ \textcolor{comment}{//\ The\ public\ 'board'\ (inherited)\ will\ only\ show\ generic\ 'X'\ symbols}}
+\DoxyCodeLine{00010\ \ \ \ \ \textcolor{keywordtype}{char}\ \mbox{\hyperlink{classMemoryTTT__Board_ae29f8e3f2e8f55a6879f243cb5bf50c4}{real\_board}}[3][3];}
+\DoxyCodeLine{00011\ }
+\DoxyCodeLine{00012\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00013\ \ \ \ \ \mbox{\hyperlink{classMemoryTTT__Board_a0b5c4ee164e61f50aac3cfb558689539}{MemoryTTT\_Board}}();}
+\DoxyCodeLine{00014\ }
+\DoxyCodeLine{00015\ \ \ \ \ \textcolor{comment}{//\ Validates\ move,\ updates\ hidden\ board\ with\ real\ owner,\ }}
+\DoxyCodeLine{00016\ \ \ \ \ \textcolor{comment}{//\ and\ public\ board\ with\ generic\ 'X'}}
+\DoxyCodeLine{00017\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classMemoryTTT__Board_a15641445470e280b797ef51003150378}{update\_board}}(\mbox{\hyperlink{classMove}{Move<char>}}*\ move)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00018\ }
+\DoxyCodeLine{00019\ \ \ \ \ \textcolor{comment}{//\ Checks\ the\ hidden\ board\ for\ 3-\/in-\/a-\/row}}
+\DoxyCodeLine{00020\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classMemoryTTT__Board_a08c64fda6f8e82f8d3f1aa32ea929872}{is\_win}}(\mbox{\hyperlink{classPlayer}{Player<char>}}*\ player)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00021\ }
+\DoxyCodeLine{00022\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classMemoryTTT__Board_aaf15d475809f8b4a322a18a677bccb24}{is\_draw}}(\mbox{\hyperlink{classPlayer}{Player<char>}}*\ player)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00023\ }
+\DoxyCodeLine{00024\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classMemoryTTT__Board_a92a0116d33248b1cae621247a9227091}{game\_is\_over}}(\mbox{\hyperlink{classPlayer}{Player<char>}}*\ player)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00025\ }
+\DoxyCodeLine{00026\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classMemoryTTT__Board_a62e2ad88c5fe136f1238e1996ec02eb1}{is\_lose}}(\mbox{\hyperlink{classPlayer}{Player<char>}}*\ player)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00027\ \};}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00029\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

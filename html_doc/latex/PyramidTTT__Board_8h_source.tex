@@ -1,0 +1,31 @@
+\doxysection{Pyramid\+TTT\+\_\+\+Board.\+h}
+\hypertarget{PyramidTTT__Board_8h_source}{}\label{PyramidTTT__Board_8h_source}\index{PyramidTTT/PyramidTTT\_Board.h@{PyramidTTT/PyramidTTT\_Board.h}}
+\mbox{\hyperlink{PyramidTTT__Board_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ PYRAMIDTTT\_BOARD\_H}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ PYRAMIDTTT\_BOARD\_H}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}../BoardGameFramework/BoardGame\_Classes.h"{}}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ <iostream>}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{keyword}{using\ namespace\ }std;}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00009\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classPyramidTTT__Board}{PyramidTTT\_Board}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classBoard}{Board}}<char>\ \{}
+\DoxyCodeLine{00010\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00011\ \ \ \ \ \textcolor{comment}{//\ Constructor}}
+\DoxyCodeLine{00012\ \ \ \ \ \mbox{\hyperlink{classPyramidTTT__Board_a71da4192d7e7760f9adf0d613f825a3c}{PyramidTTT\_Board}}();}
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00014\ \ \ \ \ \textcolor{comment}{//\ Overridden\ functions\ from\ Board}}
+\DoxyCodeLine{00015\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classPyramidTTT__Board_a10a214cfac4dab44111676ce0ebd1949}{update\_board}}(\mbox{\hyperlink{classMove}{Move<char>}}*\ move)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00016\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classPyramidTTT__Board_a09564e59e432743c7f1d82f3e0346eb7}{is\_win}}(\mbox{\hyperlink{classPlayer}{Player<char>}}*\ player)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00017\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classPyramidTTT__Board_ac734c67f1cdeae346ff035419948bfef}{is\_draw}}(\mbox{\hyperlink{classPlayer}{Player<char>}}*\ player)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00018\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classPyramidTTT__Board_af20e0145e6f365664cc54a2c3183f5c3}{game\_is\_over}}(\mbox{\hyperlink{classPlayer}{Player<char>}}*\ player)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00019\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classPyramidTTT__Board_aa4c833887084b62723023111905404ee}{is\_lose}}(\mbox{\hyperlink{classPlayer}{Player<char>}}*\ player)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00020\ \ \ \ \ }
+\DoxyCodeLine{00021\ \ \ \ \ \textcolor{comment}{//\ Helper\ to\ check\ if\ a\ specific\ coordinate\ is\ part\ of\ the\ pyramid\ shape}}
+\DoxyCodeLine{00022\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classPyramidTTT__Board_a2cb266d12e43a4f0d86178f5d74f5ce8}{is\_valid\_pyramid\_cell}}(\textcolor{keywordtype}{int}\ r,\ \textcolor{keywordtype}{int}\ c);}
+\DoxyCodeLine{00023\ \};}
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00025\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ PYRAMIDTTT\_BOARD\_H}}
+
+\end{DoxyCode}
