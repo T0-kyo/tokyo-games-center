@@ -20,11 +20,11 @@
 #include "NumericalTTT/NumericalTTT_UI.h"
 
 // Misere Tic-Tac-Toe
-#include "MisereTTT/MisereTTT_Board.h" 
+#include "MisereTTT/MisereTTT_Board.h"
 #include "MisereTTT/MisereTTT_UI.h"
 
 // Obstacles Tic-Tac-Toe
-#include "ObstaclesTTT/ObstaclesTTT_Board.h" 
+#include "ObstaclesTTT/ObstaclesTTT_Board.h"
 #include "ObstaclesTTT/ObstaclesTTT_UI.h"
 
 // Word Tic-Tac-Toe
@@ -79,7 +79,6 @@ void run_ultimate_ttt_game();
 
 int main() {
     srand(static_cast<unsigned int>(time(0)));
-
     int choice;
 
     do {
@@ -97,12 +96,12 @@ int main() {
         cout << "9.  Numerical Tic-Tac-Toe\n";
         cout << "10. Obstacles Tic-Tac-Toe\n";
         cout << "11. Infinity Tic-Tac-Toe\n";
-        cout << "12. Memory Tic-Tac-Toe\n"; 
+        cout << "12. Memory Tic-Tac-Toe\n";
         cout << "13. Ultimate Tic-Tac-Toe\n";
         cout << "14. Random Game\n";
         cout << "0.  Exit\n";
         cout << "Enter your choice: ";
-        
+
         if (!(cin >> choice)) {
             cin.clear();
             cin.ignore(numeric_limits<streamsize>::max(), '\n');
@@ -111,13 +110,13 @@ int main() {
         }
         // for random game choice
         int random_game = rand() % 13 + 1; // Random number between 1 and 13
-
+        
         switch (choice) {
-            case 0: 
-                cout << "\n---- Exiting Game Center ----\nHave a great day!\n"; 
+            case 0:
+                cout << "\n---- Exiting Game Center ----\nHave a great day!\n";
                 break;
-            case 1: 
-                run_sus_game(); 
+            case 1:
+                run_sus_game();
                 break;
             case 2:
                 run_four_in_a_row_game();
@@ -141,7 +140,7 @@ int main() {
                 run_pyramid_ttt_game();
                 break;
             case 9:
-                run_numerical_ttt_game(); 
+                run_numerical_ttt_game();
                 break;
             case 10:
                 run_obstacles_ttt_game();
@@ -176,7 +175,7 @@ int main() {
                     }
                     break;
             default:
-                cout << "Invalid choice. Please select from menu (0-14)\n"; 
+                cout << "Invalid choice. Please select from menu (0-14)\n";
                 break;
         }
     } while (choice != 0);
@@ -186,15 +185,13 @@ int main() {
 
 void run_sus_game() {
     cout << "\n---- Starting SUS Game ----\n";
-    
     UI<char>* ui = new SUS_UI();
     Board<char>* board = new SUS_Board();
     Player<char>** players = ui->setup_players();
     GameManager<char> game(board, players, ui);
     game.run();
     static_cast<SUS_UI*>(ui)->show_score(static_cast<SUS_Board*>(board));
-    cout << "\nThank You For Playing!\n--------------------------------\n"; 
-    
+    cout << "\nThank You For Playing!\n--------------------------------\n";
     delete board;
     delete ui;
     delete players[0];
@@ -204,14 +201,12 @@ void run_sus_game() {
 
 void run_four_in_a_row_game(){
     cout << "\n---- Starting Four In A Row ----\n";
-    
     UI<char>* ui = new FourInARow_UI();
     Board<char>* board = new FourInARow_Board();
     Player<char>** players = ui->setup_players();
     GameManager<char> game(board, players, ui);
     game.run();
-    cout << "\nThank You For Playing!\n--------------------------------\n"; 
-    
+    cout << "\nThank You For Playing!\n--------------------------------\n";
     delete board;
     delete ui;
     delete players[0];
@@ -221,15 +216,13 @@ void run_four_in_a_row_game(){
 
 void run_5x5_ttt_game(){
     cout << "\n---- Starting 5x5 Tic-Tac-Toe ----\n";
-    
     UI<char>* ui = new TTT5x5_UI();
     Board<char>* board = new TTT5x5_Board();
     Player<char>** players = ui->setup_players();
     GameManager<char> game(board, players, ui);
     game.run();
     static_cast<TTT5x5_UI*>(ui)->show_score(static_cast<TTT5x5_Board*>(board));
-    cout << "\nThank You For Playing!\n--------------------------------\n"; 
-    
+    cout << "\nThank You For Playing!\n--------------------------------\n";
     delete board;
     delete ui;
     delete players[0];
@@ -239,18 +232,13 @@ void run_5x5_ttt_game(){
 
 void run_word_ttt_game() {
     cout << "\n---- Starting Word Tic-Tac-Toe ----\n";
-
     UI<char>* ui = new WordTTT_UI();
     Board<char>* board = new WordTTT_Board();
-
     Player<char>** players = ui->setup_players();
-
     GameManager<char> game(board, players, ui);
     game.run();
     static_cast<WordTTT_UI*>(ui)->show_score(static_cast<WordTTT_Board*>(board));
-    cout << "\nThank You For Playing!\n--------------------------------\n"; 
-
-    
+    cout << "\nThank You For Playing!\n--------------------------------\n";
     delete board;
     delete ui;
     delete players[0];
@@ -259,40 +247,28 @@ void run_word_ttt_game() {
 }
 
 void run_misere_ttt_game() {
-    cout << "\n---- Starting Standard Tic-Tac-Toe ----\n"; 
-    
-    UI<char>* ui = new TTT_UI();            
-    Board<char>* board = new TTT_Board();   
-    Player<char>** players = ui->setup_players(); 
+    cout << "\n---- Starting Standard Tic-Tac-Toe ----\n";
+    UI<char>* ui = new TTT_UI();
+    Board<char>* board = new TTT_Board();
+    Player<char>** players = ui->setup_players();
     GameManager<char> game(board, players, ui);
     game.run();
-    cout << "\nThank You For Playing!\n--------------------------------\n"; 
-
-    
-    delete board;                           
-    delete ui;                              
+    cout << "\nThank You For Playing!\n--------------------------------\n";
+    delete board;
+    delete ui;
     delete players[0];
-    delete players[1];                 
-    delete[] players;                      
+    delete players[1];
+    delete[] players;
 }
 
 void run_diamond_ttt_game(){
     cout << "\n---- Starting Diamond Tic-Tac-Toe ----\n";
-
-    // 1. Create the UI and Board
     UI<char>* ui = new DiamondTTT_UI();
     Board<char>* board = new DiamondTTT_Board();
-
-    // 2. Setup Players
     Player<char>** players = ui->setup_players();
-
-    // 3. Run the Game
     GameManager<char> game(board, players, ui);
     game.run();
-
     cout << "\nThank You For Playing!\n--------------------------------\n";
-
-    // 4. Clean up memory
     delete board;
     delete ui;
     delete players[0];
@@ -302,14 +278,13 @@ void run_diamond_ttt_game(){
 
 void run_4x4_ttt_game(){
     cout << "\n---- Starting 4x4 Tic-Tac-Toe ----\n";
-    
     UI<char>* ui = new TTT4x4_UI();
     Board<char>* board = new TTT4x4_Board();
     Player<char>** players = ui->setup_players();
     GameManager<char> game(board, players, ui);
     game.run();
-    cout << "\nThank You For Playing!\n--------------------------------\n"; 
-    
+    cout << "\nThank You For Playing!\n--------------------------------\n";
+
     delete board;
     delete ui;
     delete players[0];
@@ -319,14 +294,13 @@ void run_4x4_ttt_game(){
 
 void run_pyramid_ttt_game() {
     cout << "\n---- Starting Pyramid Tic-Tac-Toe ----\n";
-    
     UI<char>* ui = new PyramidTTT_UI();
     Board<char>* board = new PyramidTTT_Board();
     Player<char>** players = ui->setup_players();
     GameManager<char> game(board, players, ui);
     game.run();
     cout << "\nThank You For Playing!\n--------------------------------\n";
-    
+
     delete board;
     delete ui;
     delete players[0];
@@ -336,7 +310,6 @@ void run_pyramid_ttt_game() {
 
 void run_numerical_ttt_game() {
     cout << "\n---- Starting Numerical Tic-Tac-Toe ----\n";
-    
     UI<int>* ui = new NumericalTTT_UI();
     Board<int>* board = new NumericalTTT_Board();
     Player<int>** players = ui->setup_players();
@@ -346,9 +319,8 @@ void run_numerical_ttt_game() {
 
     delete board;
     delete ui;
-    for (int i = 0; i < 2; ++i) {
-        delete players[i];
-    }
+    delete players[0];
+    delete players[1];
     delete[] players;
 }
 
@@ -360,41 +332,38 @@ void run_obstacles_ttt_game(){
     GameManager<char> game(board, players, ui);
     game.run();
     cout << "\nThank You For Playing!\n--------------------------------\n";
-
-    delete board;                           
-    delete ui;                              
-    for (int i = 0; i < 2; ++i) {
-        delete players[i];                 
-    }
-    delete[] players; 
-}
-
-void run_infinity_ttt_game(){
-    cout << "\n---- Starting Infinity Tic-Tac-Toe ----\n";
-    
-    UI<char>* ui = new Infinity_UI();
-    Board<char>* board = new Infinity_Board();
-    Player<char>** players = ui->setup_players();
-    GameManager<char> game(board, players, ui);
-    game.run();
-    cout << "\nThank You For Playing!\n--------------------------------\n";
-    
     delete board;
     delete ui;
     delete players[0];
     delete players[1];
     delete[] players;
 }
+
+void run_infinity_ttt_game(){
+    cout << "\n---- Starting Infinity Tic-Tac-Toe ----\n";
+    UI<char>* ui = new Infinity_UI();
+    Board<char>* board = new Infinity_Board();
+    Player<char>** players = ui->setup_players();
+    GameManager<char> game(board, players, ui);
+    game.run();
+    cout << "\nThank You For Playing!\n--------------------------------\n";
+    delete board;
+    delete ui;
+    delete players[0];
+    delete players[1];
+    delete[] players;
+}
+
 void run_memory_ttt_game(){
     cout << "\n---- Starting Memory Tic-Tac-Toe ----\n";
-    
+
     UI<char>* ui = new MemoryTTT_UI();
     Board<char>* board = new MemoryTTT_Board();
     Player<char>** players = ui->setup_players();
     GameManager<char> game(board, players, ui);
     game.run();
     cout << "\nThank You For Playing!\n--------------------------------\n";
-    
+
     delete board;
     delete ui;
     delete players[0];
@@ -404,14 +373,12 @@ void run_memory_ttt_game(){
 
 void run_ultimate_ttt_game(){
     cout << "\n---- Starting Ultimate Tic-Tac-Toe ----\n";
-    
     UI<char>* ui = new Ultimate_UI();
     Board<char>* board = new Ultimate_Board();
     Player<char>** players = ui->setup_players();
     GameManager<char> game(board, players, ui);
     game.run();
     cout << "\nThank You For Playing!\n--------------------------------\n";
-    
     delete board;
     delete ui;
     delete players[0];
