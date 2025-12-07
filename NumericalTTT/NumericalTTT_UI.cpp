@@ -2,13 +2,19 @@
 #include <iostream>
 #include <cstdlib> // For rand()
 
-// Constructor: Call the base constructor with a welcome message
-// and a cell width (3 spaces is good for numbers)
+/**
+ * Constructor: Call the base constructor with a welcome message and a cell width
+ * Cell width is 3 spaces (good for numbers)
+ */
 NumericalTTT_UI::NumericalTTT_UI() : UI("\nWelcome to Numerical Tic-Tac-Toe (3x3)!\nForm 3 numbers sequence that add up to 15 to win.\n", 2) {
     // Constructor body is empty
 }
 
-// Override setup_players to create the correct player names
+/**
+ * @brief Declare players and initialize their valid numbers
+ * Handle the type of player (Human or Computer)
+ * @return return the list of players
+ */
 Player<int>** NumericalTTT_UI::setup_players() {
     Player<int>** players = new Player<int>*[2];
     vector<string> type_options = { "Human", "Computer" };
@@ -28,14 +34,20 @@ Player<int>** NumericalTTT_UI::setup_players() {
     return players;
 }
 
-// Override create_player to correctly instantiate Player<int>
-// The base class create_player returns Player<char>, which is a bug.
-// We MUST override it to create the correct type.
+/**
+ * @brief Override create_player to correctly instantiate Player<int>
+ * The base class create_player returns Player<char>, which is a bug.
+ * We MUST override it to create the correct type.
+ * @return return the REAL players
+ */
 Player<int>* NumericalTTT_UI::create_player(string& name, int symbol, PlayerType type) {
     return new Player<int>(name, symbol, type);
 }
 
-// Helper function to print available numbers
+/**
+ * @brief Helper function to print available numbers
+ * @param nums the numbers that player should choose from
+ */
 void NumericalTTT_UI::display_available_nums(vector<int>& nums) {
     cout << "Available numbers: ";
     for (int n : nums) {
@@ -44,21 +56,24 @@ void NumericalTTT_UI::display_available_nums(vector<int>& nums) {
     cout << endl;
 }
 
-// Override get_move to ask for coordinates AND the number
+/**
+ * @brief Override get_move to ask for coordinates and the number
+ * Check is the coordinates and the number is valid or not
+ * @param player the player that makes the move
+ * @return return the new valid move that player made 
+ */
 Move<int>* NumericalTTT_UI::get_move(Player<int>* player) {
     cout << "--------------------------------" << endl;
     cout << player->get_name() << ", it's your turn." << endl;
 
     bool is_player1 = (player->get_symbol() == 1); // Check if Player 1 (Odd)
 
-    // We need to cast the generic Board* to our specific NumericalTTT_Board*
-    // to access the lists of available numbers.
+    // Casting the generic Board* to our NumericalTTT_Board* to access the lists of available numbers.
     NumericalTTT_Board* num_board = static_cast<NumericalTTT_Board*>(player->get_board_ptr());
 
-    // --- Computer Player Logic ---
+    // --- Computer Logic ---
     if (player->get_type() != PlayerType::HUMAN) {
-        // This is a simple random player.
-        // It just picks a random cell and a random available number.
+        // It picks a random cell and a random available number.
         int x = rand() % 3;
         int y = rand() % 3;
 
