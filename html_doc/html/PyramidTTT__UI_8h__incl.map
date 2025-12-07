@@ -1,0 +1,20 @@
+<map id="PyramidTTT/PyramidTTT_UI.h" name="PyramidTTT/PyramidTTT_UI.h">
+<area shape="rect" id="Node000001" title=" " alt="" coords="41,5,255,31"/>
+<area shape="rect" id="Node000002" href="$BoardGame__Classes_8h.html" title=" " alt="" coords="121,152,305,192"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="153,30,162,64,176,103,195,139,190,141,171,105,157,65,148,32"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="5,240,64,265"/>
+<area shape="poly" id="edge10_Node000001_Node000003" title=" " alt="" coords="144,32,118,80,48,229,43,226,114,77,139,30"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="89,240,151,265"/>
+<area shape="poly" id="edge11_Node000001_Node000004" title=" " alt="" coords="146,32,128,83,112,152,112,192,117,226,112,227,107,192,107,152,123,82,141,30"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="303,240,383,265"/>
+<area shape="poly" id="edge9_Node000001_Node000005" title=" " alt="" coords="221,28,302,48,336,61,357,77,367,95,373,115,374,156,367,196,356,228,351,226,362,194,369,156,368,116,362,97,353,80,333,66,300,53,220,33"/>
+<area shape="rect" id="Node000007" href="$PyramidTTT__Board_8h.html" title=" " alt="" coords="185,79,343,104"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="168,28,235,69,232,74,165,33"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="172,194,74,237,72,232,169,190"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="192,194,146,233,143,229,189,190"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="246,190,313,231,311,235,243,194"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="176,240,251,265"/>
+<area shape="poly" id="edge5_Node000002_Node000006" title=" " alt="" coords="216,192,216,226,211,226,211,192"/>
+<area shape="poly" id="edge7_Node000007_Node000002" title=" " alt="" coords="259,106,235,142,231,139,254,103"/>
+<area shape="poly" id="edge8_Node000007_Node000005" title=" " alt="" coords="279,102,300,123,320,151,335,189,342,226,337,227,329,191,315,153,296,127,275,106"/>
+</map>

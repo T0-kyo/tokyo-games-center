@@ -1,0 +1,36 @@
+\doxysection{Ultimate\+\_\+\+UI.\+h}
+\hypertarget{Ultimate__UI_8h_source}{}\label{Ultimate__UI_8h_source}\index{UltimateTTT/Ultimate\_UI.h@{UltimateTTT/Ultimate\_UI.h}}
+\mbox{\hyperlink{Ultimate__UI_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ Ultimate\_UI\_H}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ Ultimate\_UI\_H}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}../BoardGameFramework/BoardGame\_Classes.h"{}}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{Ultimate__Board_8h}{Ultimate\_Board.h}}"{}}\ \textcolor{comment}{//\ يجب\ تضمين\ ملف\ البورد\ الجديد}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ <iostream>}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ <string>}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ <cctype>}\ \textcolor{comment}{//\ لاستخدام\ دالة\ toupper()}}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00011\ \textcolor{keyword}{using\ namespace\ }std;}
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00013\ \textcolor{comment}{//\ الكلاس\ يرث\ من\ UI<char>}}
+\DoxyCodeLine{00014\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classUltimate__UI}{Ultimate\_UI}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classUI}{UI}}<char>\ \{}
+\DoxyCodeLine{00015\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00016\ \ \ \ \ \textcolor{comment}{//\ الكونستركتور}}
+\DoxyCodeLine{00017\ \ \ \ \ \mbox{\hyperlink{classUltimate__UI_a9e3b3b9207e382ffc43d8e34bcb34ce0}{Ultimate\_UI}}();}
+\DoxyCodeLine{00018\ }
+\DoxyCodeLine{00019\ \ \ \ \ \textcolor{comment}{//\ -\/-\/-\/\ دوال\ Overridden\ -\/-\/-\/}}
+\DoxyCodeLine{00020\ \ \ \ \ \textcolor{comment}{//\ تهيئة\ اللاعبين\ (يتم\ تعيين\ رموز\ مبدئية)}}
+\DoxyCodeLine{00021\ \ \ \ \ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{classPlayer}{Player<char>}}**\ \mbox{\hyperlink{classUltimate__UI_aa5ae31f35e8f3432aa80976454c6fca9}{setup\_players}}()\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00022\ \ \ \ \ }
+\DoxyCodeLine{00023\ \ \ \ \ \textcolor{comment}{//\ إنشاء\ اللاعبين\ بالنوع\ الصحيح}}
+\DoxyCodeLine{00024\ \ \ \ \ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{classPlayer}{Player<char>}}*\ \mbox{\hyperlink{classUltimate__UI_a8b7c8b09278cdef5dc878ef89eaa83e7}{create\_player}}(\textcolor{keywordtype}{string}\&\ name,\ \textcolor{keywordtype}{char}\ symbol,\ \mbox{\hyperlink{BoardGame__Classes_8h_abe590f3c9109f404f003d5d7e4f0fccf}{PlayerType}}\ type)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00025\ \ \ \ \ }
+\DoxyCodeLine{00026\ \ \ \ \ \textcolor{comment}{//\ طلب\ الحركة\ (يجب\ طلب\ رمز\ الحركة\ S\ أو\ U)}}
+\DoxyCodeLine{00027\ \ \ \ \ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{classMove}{Move<char>}}*\ \mbox{\hyperlink{classUltimate__UI_a4c3e6b4f77e281d67a946df1620ef822}{get\_move}}(\mbox{\hyperlink{classPlayer}{Player<char>}}*\ player)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00028\ \};}
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00030\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ Ultimate\_UI\_H}}
+
+\end{DoxyCode}

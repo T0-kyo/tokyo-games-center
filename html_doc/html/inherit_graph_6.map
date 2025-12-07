@@ -1,0 +1,29 @@
+<map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
+<area shape="rect" id="Node000000" href="$classUI.html" title=" " alt="" coords="5,301,100,327"/>
+<area shape="rect" id="Node000001" href="$classDiamondTTT__UI.html" title=" " alt="" coords="150,5,277,31"/>
+<area shape="poly" id="edge15_Node000000_Node000001" title=" " alt="" coords="53,287,60,236,76,170,103,101,122,69,146,40,162,29,165,33,150,44,127,72,108,104,81,172,65,237,58,288"/>
+<area shape="rect" id="Node000002" href="$classFourInARow__UI.html" title=" " alt="" coords="153,55,273,80"/>
+<area shape="poly" id="edge16_Node000000_Node000002" title=" " alt="" coords="56,287,65,244,82,192,109,137,126,112,146,89,162,78,165,82,150,93,130,115,113,140,87,194,70,246,61,288"/>
+<area shape="rect" id="Node000003" href="$classInfinity__UI.html" title=" " alt="" coords="169,104,257,129"/>
+<area shape="poly" id="edge17_Node000000_Node000003" title=" " alt="" coords="59,287,71,254,90,214,114,174,146,139,168,126,170,130,150,143,119,177,94,217,76,256,64,289"/>
+<area shape="rect" id="Node000004" href="$classMemoryTTT__UI.html" title=" " alt="" coords="153,153,274,179"/>
+<area shape="poly" id="edge18_Node000000_Node000004" title=" " alt="" coords="65,288,98,238,120,211,146,188,167,176,169,181,150,192,124,215,102,241,69,291"/>
+<area shape="rect" id="Node000005" href="$classObstaclesTTT__UI.html" title=" " alt="" coords="148,203,279,228"/>
+<area shape="poly" id="edge19_Node000000_Node000005" title=" " alt="" coords="76,290,108,263,147,237,171,226,173,230,149,242,112,267,80,294"/>
+<area shape="rect" id="Node000006" href="$classPyramidTTT__UI.html" title=" " alt="" coords="153,252,274,277"/>
+<area shape="poly" id="edge20_Node000000_Node000006" title=" " alt="" coords="107,295,170,275,172,280,109,300"/>
+<area shape="rect" id="Node000007" href="$classSUS__UI.html" title=" " alt="" coords="179,301,248,327"/>
+<area shape="poly" id="edge21_Node000000_Node000007" title=" " alt="" coords="113,311,179,311,179,317,113,317"/>
+<area shape="rect" id="Node000008" href="$classTTT4x4__UI.html" title=" " alt="" coords="168,351,259,376"/>
+<area shape="poly" id="edge22_Node000000_Node000008" title=" " alt="" coords="109,328,172,348,170,353,107,333"/>
+<area shape="rect" id="Node000009" href="$classTTT5x5__UI.html" title=" " alt="" coords="168,400,259,425"/>
+<area shape="poly" id="edge23_Node000000_Node000009" title=" " alt="" coords="80,334,112,360,149,385,176,398,173,402,147,390,109,364,76,338"/>
+<area shape="rect" id="Node000010" href="$classTTT__UI.html" title=" " alt="" coords="180,449,247,475"/>
+<area shape="poly" id="edge24_Node000000_Node000010" title=" " alt="" coords="70,337,102,386,124,412,150,434,181,451,178,455,146,439,121,416,98,389,65,340"/>
+<area shape="rect" id="Node000011" href="$classUltimate__UI.html" title=" " alt="" coords="163,499,263,524"/>
+<area shape="poly" id="edge25_Node000000_Node000011" title=" " alt="" coords="64,339,95,410,119,450,150,484,169,496,166,501,146,488,115,453,90,413,59,341"/>
+<area shape="rect" id="Node000012" href="$classWordTTT__UI.html" title=" " alt="" coords="163,548,263,573"/>
+<area shape="poly" id="edge26_Node000000_Node000012" title=" " alt="" coords="61,340,71,382,88,433,114,487,130,511,150,533,168,546,165,550,146,537,126,515,109,489,83,435,66,383,56,341"/>
+<area shape="rect" id="Node000013" href="$classXO__UI.html" title="User Interface class for the X&#45;O (Tic&#45;Tac&#45;Toe) game." alt="" coords="183,597,244,623"/>
+<area shape="poly" id="edge27_Node000000_Node000013" title=" " alt="" coords="59,340,66,391,81,456,108,523,127,555,150,583,165,594,183,601,181,606,163,599,146,587,123,558,104,526,76,457,61,392,53,341"/>
+</map>

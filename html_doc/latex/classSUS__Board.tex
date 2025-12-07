@@ -1,0 +1,213 @@
+\doxysection{SUS\+\_\+\+Board Class Reference}
+\hypertarget{classSUS__Board}{}\label{classSUS__Board}\index{SUS\_Board@{SUS\_Board}}
+
+
+{\ttfamily \#include $<$SUS\+\_\+\+Board.\+h$>$}
+
+
+
+Inheritance diagram for SUS\+\_\+\+Board\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=169pt]{classSUS__Board__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for SUS\+\_\+\+Board\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=169pt]{classSUS__Board__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classSUS__Board_a653be0dfe8070a59361bd228c0b54f71}{SUS\+\_\+\+Board}} ()
+\item 
+bool \mbox{\hyperlink{classSUS__Board_a22679cdc9a91a17fea898c66ad821e45}{update\+\_\+board}} (\mbox{\hyperlink{classMove}{Move}}$<$ char $>$ \texorpdfstring{$\ast$}{*}move) override
+\begin{DoxyCompactList}\small\item\em Update the board with a new move. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classSUS__Board_a2230a0e70a119a14e7e7380ba9b2cb90}{is\+\_\+win}} (\mbox{\hyperlink{classPlayer}{Player}}$<$ char $>$ \texorpdfstring{$\ast$}{*}player) override
+\begin{DoxyCompactList}\small\item\em Check if a player has won. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classSUS__Board_aeb2ad5ce9bdd10ecf2d3cf06be14e6ca}{is\+\_\+draw}} (\mbox{\hyperlink{classPlayer}{Player}}$<$ char $>$ \texorpdfstring{$\ast$}{*}player) override
+\begin{DoxyCompactList}\small\item\em Check if the game ended in a draw. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classSUS__Board_acd2c39612239065da3aea67ac7c27aa4}{game\+\_\+is\+\_\+over}} (\mbox{\hyperlink{classPlayer}{Player}}$<$ char $>$ \texorpdfstring{$\ast$}{*}player) override
+\begin{DoxyCompactList}\small\item\em Check if the game is over. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classSUS__Board_a3761b3ce05e2194ff95893b494a3c933}{is\+\_\+lose}} (\mbox{\hyperlink{classPlayer}{Player}}$<$ char $>$ \texorpdfstring{$\ast$}{*}player) override
+\begin{DoxyCompactList}\small\item\em Check if a player has lost. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classSUS__Board_a75526474c11fd3575a5370d35c087ac6}{get\+\_\+p1\+\_\+score}} ()
+\item 
+int \mbox{\hyperlink{classSUS__Board_a30dd043e86d4f8b3251c93599a16ffdd}{get\+\_\+p2\+\_\+score}} ()
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classBoard}{Board$<$ char $>$}}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classBoard_ae5dfded241ee3644196e2f6074d1d0b1}{Board}} (int \mbox{\hyperlink{classBoard_a948d978e3b5fc460559b588f5dee9572}{rows}}, int \mbox{\hyperlink{classBoard_afaf8842d9d52ac724e8c2f5642ecafc7}{columns}})
+\begin{DoxyCompactList}\small\item\em Construct a board with given dimensions. \end{DoxyCompactList}\item 
+virtual \mbox{\hyperlink{classBoard_a138a6378af669dd1ce55dc11217aea48}{\texorpdfstring{$\sim$}{\string~}\+Board}} ()
+\begin{DoxyCompactList}\small\item\em Virtual destructor. Frees allocated board memory. \end{DoxyCompactList}\item 
+vector$<$ vector$<$ char $>$ $>$ \mbox{\hyperlink{classBoard_a117f2e61fdb7deccca333bbbc9c62d3a}{get\+\_\+board\+\_\+matrix}} () const
+\begin{DoxyCompactList}\small\item\em Return a copy of the current board as a 2D vector. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classBoard_a93b130eff67bd4476fab27be8341cb78}{get\+\_\+rows}} () const
+\begin{DoxyCompactList}\small\item\em Get number of rows. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classBoard_ac665e1ed1f49125fab248e2c9ddfd608}{get\+\_\+columns}} () const
+\begin{DoxyCompactList}\small\item\em Get number of columns. \end{DoxyCompactList}\item 
+char \mbox{\hyperlink{classBoard_a93558c58e60ca4291c6044828afd260b}{get\+\_\+cell}} (int x, int y)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{classSUS__Board_af3fc3e55c03aa5f3e85ad40102facd4c}{count\+\_\+sus}} (int r, int c)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{classSUS__Board_ae1fea84fbe5cc97a61078b47b0094514}{p1\+\_\+score}}
+\item 
+int \mbox{\hyperlink{classSUS__Board_a7bfe1d0e8be6171ad5308e9f7e9f4090}{p2\+\_\+score}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Protected Attributes inherited from \mbox{\hyperlink{classBoard}{Board$<$ char $>$}}}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{classBoard_a948d978e3b5fc460559b588f5dee9572}{rows}}
+\begin{DoxyCompactList}\small\item\em Number of rows. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classBoard_afaf8842d9d52ac724e8c2f5642ecafc7}{columns}}
+\begin{DoxyCompactList}\small\item\em Number of columns. \end{DoxyCompactList}\item 
+vector$<$ vector$<$ char $>$ $>$ \mbox{\hyperlink{classBoard_af00c1fc363eb640ca276b8a572040040}{board}}
+\begin{DoxyCompactList}\small\item\em 2D vector for the board \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classBoard_a5952baefabced65fecec333de638408d}{n\+\_\+moves}}
+\begin{DoxyCompactList}\small\item\em Number of moves made. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classSUS__Board_a653be0dfe8070a59361bd228c0b54f71}\label{classSUS__Board_a653be0dfe8070a59361bd228c0b54f71} 
+\index{SUS\_Board@{SUS\_Board}!SUS\_Board@{SUS\_Board}}
+\index{SUS\_Board@{SUS\_Board}!SUS\_Board@{SUS\_Board}}
+\doxysubsubsection{\texorpdfstring{SUS\_Board()}{SUS\_Board()}}
+{\footnotesize\ttfamily SUS\+\_\+\+Board\+::\+SUS\+\_\+\+Board (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classSUS__Board_af3fc3e55c03aa5f3e85ad40102facd4c}\label{classSUS__Board_af3fc3e55c03aa5f3e85ad40102facd4c} 
+\index{SUS\_Board@{SUS\_Board}!count\_sus@{count\_sus}}
+\index{count\_sus@{count\_sus}!SUS\_Board@{SUS\_Board}}
+\doxysubsubsection{\texorpdfstring{count\_sus()}{count\_sus()}}
+{\footnotesize\ttfamily int SUS\+\_\+\+Board\+::count\+\_\+sus (\begin{DoxyParamCaption}\item[{int}]{r,  }\item[{int}]{c }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{classSUS__Board_acd2c39612239065da3aea67ac7c27aa4}\label{classSUS__Board_acd2c39612239065da3aea67ac7c27aa4} 
+\index{SUS\_Board@{SUS\_Board}!game\_is\_over@{game\_is\_over}}
+\index{game\_is\_over@{game\_is\_over}!SUS\_Board@{SUS\_Board}}
+\doxysubsubsection{\texorpdfstring{game\_is\_over()}{game\_is\_over()}}
+{\footnotesize\ttfamily bool SUS\+\_\+\+Board\+::game\+\_\+is\+\_\+over (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classPlayer}{Player}}$<$ char $>$ \texorpdfstring{$\ast$}{*}}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Check if the game is over. 
+
+
+
+Implements \mbox{\hyperlink{classBoard_ae0e4575ec3cc4b6eb9f367ffb2beed13}{Board$<$ char $>$}}.
+
+\Hypertarget{classSUS__Board_a75526474c11fd3575a5370d35c087ac6}\label{classSUS__Board_a75526474c11fd3575a5370d35c087ac6} 
+\index{SUS\_Board@{SUS\_Board}!get\_p1\_score@{get\_p1\_score}}
+\index{get\_p1\_score@{get\_p1\_score}!SUS\_Board@{SUS\_Board}}
+\doxysubsubsection{\texorpdfstring{get\_p1\_score()}{get\_p1\_score()}}
+{\footnotesize\ttfamily int SUS\+\_\+\+Board\+::get\+\_\+p1\+\_\+score (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{classSUS__Board_a30dd043e86d4f8b3251c93599a16ffdd}\label{classSUS__Board_a30dd043e86d4f8b3251c93599a16ffdd} 
+\index{SUS\_Board@{SUS\_Board}!get\_p2\_score@{get\_p2\_score}}
+\index{get\_p2\_score@{get\_p2\_score}!SUS\_Board@{SUS\_Board}}
+\doxysubsubsection{\texorpdfstring{get\_p2\_score()}{get\_p2\_score()}}
+{\footnotesize\ttfamily int SUS\+\_\+\+Board\+::get\+\_\+p2\+\_\+score (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{classSUS__Board_aeb2ad5ce9bdd10ecf2d3cf06be14e6ca}\label{classSUS__Board_aeb2ad5ce9bdd10ecf2d3cf06be14e6ca} 
+\index{SUS\_Board@{SUS\_Board}!is\_draw@{is\_draw}}
+\index{is\_draw@{is\_draw}!SUS\_Board@{SUS\_Board}}
+\doxysubsubsection{\texorpdfstring{is\_draw()}{is\_draw()}}
+{\footnotesize\ttfamily bool SUS\+\_\+\+Board\+::is\+\_\+draw (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classPlayer}{Player}}$<$ char $>$ \texorpdfstring{$\ast$}{*}}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Check if the game ended in a draw. 
+
+
+
+Implements \mbox{\hyperlink{classBoard_a8dbe2a243881986f3e53b45799d377fc}{Board$<$ char $>$}}.
+
+\Hypertarget{classSUS__Board_a3761b3ce05e2194ff95893b494a3c933}\label{classSUS__Board_a3761b3ce05e2194ff95893b494a3c933} 
+\index{SUS\_Board@{SUS\_Board}!is\_lose@{is\_lose}}
+\index{is\_lose@{is\_lose}!SUS\_Board@{SUS\_Board}}
+\doxysubsubsection{\texorpdfstring{is\_lose()}{is\_lose()}}
+{\footnotesize\ttfamily bool SUS\+\_\+\+Board\+::is\+\_\+lose (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classPlayer}{Player}}$<$ char $>$ \texorpdfstring{$\ast$}{*}}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Check if a player has lost. 
+
+
+
+Implements \mbox{\hyperlink{classBoard_a207d5f6feb77f81c51d1462f0245890d}{Board$<$ char $>$}}.
+
+\Hypertarget{classSUS__Board_a2230a0e70a119a14e7e7380ba9b2cb90}\label{classSUS__Board_a2230a0e70a119a14e7e7380ba9b2cb90} 
+\index{SUS\_Board@{SUS\_Board}!is\_win@{is\_win}}
+\index{is\_win@{is\_win}!SUS\_Board@{SUS\_Board}}
+\doxysubsubsection{\texorpdfstring{is\_win()}{is\_win()}}
+{\footnotesize\ttfamily bool SUS\+\_\+\+Board\+::is\+\_\+win (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classPlayer}{Player}}$<$ char $>$ \texorpdfstring{$\ast$}{*}}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Check if a player has won. 
+
+
+
+Implements \mbox{\hyperlink{classBoard_ab316fe3e79677b4617fc3d90d6c48f33}{Board$<$ char $>$}}.
+
+\Hypertarget{classSUS__Board_a22679cdc9a91a17fea898c66ad821e45}\label{classSUS__Board_a22679cdc9a91a17fea898c66ad821e45} 
+\index{SUS\_Board@{SUS\_Board}!update\_board@{update\_board}}
+\index{update\_board@{update\_board}!SUS\_Board@{SUS\_Board}}
+\doxysubsubsection{\texorpdfstring{update\_board()}{update\_board()}}
+{\footnotesize\ttfamily bool SUS\+\_\+\+Board\+::update\+\_\+board (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classMove}{Move}}$<$ char $>$ \texorpdfstring{$\ast$}{*}}]{move }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Update the board with a new move. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em move} & The move object containing position and symbol. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if the move is valid and applied, false otherwise. 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classBoard_a93d9dec601dda58b7e206ccb47633e57}{Board$<$ char $>$}}.
+
+
+
+\doxysubsection{Member Data Documentation}
+\Hypertarget{classSUS__Board_ae1fea84fbe5cc97a61078b47b0094514}\label{classSUS__Board_ae1fea84fbe5cc97a61078b47b0094514} 
+\index{SUS\_Board@{SUS\_Board}!p1\_score@{p1\_score}}
+\index{p1\_score@{p1\_score}!SUS\_Board@{SUS\_Board}}
+\doxysubsubsection{\texorpdfstring{p1\_score}{p1\_score}}
+{\footnotesize\ttfamily int SUS\+\_\+\+Board\+::p1\+\_\+score\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{classSUS__Board_a7bfe1d0e8be6171ad5308e9f7e9f4090}\label{classSUS__Board_a7bfe1d0e8be6171ad5308e9f7e9f4090} 
+\index{SUS\_Board@{SUS\_Board}!p2\_score@{p2\_score}}
+\index{p2\_score@{p2\_score}!SUS\_Board@{SUS\_Board}}
+\doxysubsubsection{\texorpdfstring{p2\_score}{p2\_score}}
+{\footnotesize\ttfamily int SUS\+\_\+\+Board\+::p2\+\_\+score\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+SUS/\mbox{\hyperlink{SUS__Board_8h}{SUS\+\_\+\+Board.\+h}}\item 
+SUS/\mbox{\hyperlink{SUS__Board_8cpp}{SUS\+\_\+\+Board.\+cpp}}\end{DoxyCompactItemize}
