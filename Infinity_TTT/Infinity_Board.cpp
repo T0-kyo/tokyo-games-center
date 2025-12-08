@@ -1,5 +1,9 @@
 #include "Infinity_Board.h"
 
+/**
+ * @brief Constructor for the Infinity_Board.
+ * Initialize the (3x3) board.
+ */
 Infinity_Board::Infinity_Board() : Board<char>(3,3){
     for (int i=0; i<rows; i++) {
         for (int j=0; j<columns; j++){
@@ -8,6 +12,11 @@ Infinity_Board::Infinity_Board() : Board<char>(3,3){
     }
 }
 
+/**
+ * @brief Updates the board by adding a move.
+ * @param move Pointer to the Move<char> object.
+ * @return true if the move is valid, false otherwise.
+ */
 bool Infinity_Board::update_board(Move<char>* move) {
     int x = move->get_x();
     int y = move->get_y();
@@ -31,34 +40,56 @@ bool Infinity_Board::update_board(Move<char>* move) {
     return true;
 }
 
-bool Infinity_Board::game_is_over(Player<char>* player) {
-    return (is_win(player) || is_draw(player));
-}
 
+/**
+ * @brief Check if player wins
+ * Win Condition: Connect 3
+ * @param player Pointer to the current player
+ * @return true if the win condition is met
+ */
 bool Infinity_Board::is_win(Player<char>* player) {
     char sym = player->get_symbol();
-
+    
     // Check rows and columns for 3 in a row
     for (int i=0; i<3; i++){
         if ((board[i][0] == sym && board[i][1] == sym && board[i][2] == sym) ||
-            (board[0][i] == sym && board[1][i] == sym && board[2][i] == sym)) {
+        (board[0][i] == sym && board[1][i] == sym && board[2][i] == sym)) {
             return true;
         }
     }
-
+    
     // Check diagonals for 3 in a row
     if ((board[0][0] == sym && board[1][1] == sym && board[2][2] == sym) ||
-        (board[0][2] == sym && board[1][1] == sym && board[2][0] == sym)) {
+    (board[0][2] == sym && board[1][1] == sym && board[2][0] == sym)) {
         return true;
     }
-
+    
     return false;
 }
 
+/**
+ * @brief Check if it is draw
+ * @param player Pointer to the current player
+ * @return true if no one wins
+ */
 bool Infinity_Board::is_draw(Player<char>* player) {
     return false;
 }
 
+/**
+ * @brief Check is game is over
+ * @param player Pointer to the current player
+ * @return true if the player wins or it is draw
+ */
+bool Infinity_Board::game_is_over(Player<char>* player) {
+    return (is_win(player) || is_draw(player));
+}
+
+/**
+ * @brief Check is player loose
+ * @param player Pointer to the current player
+ * @return false always
+ */
 bool Infinity_Board::is_lose(Player<char>* player) {
     return false;
 }
