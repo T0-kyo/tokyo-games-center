@@ -14,8 +14,6 @@ Infinity_Board::Infinity_Board() : Board<char>(3,3){
 
 /**
  * @brief Updates the board by adding a move.
- * @param move Pointer to the Move<char> object.
- * @return true if the move is valid, false otherwise.
  */
 bool Infinity_Board::update_board(Move<char>* move) {
     int x = move->get_x();
@@ -44,8 +42,6 @@ bool Infinity_Board::update_board(Move<char>* move) {
 /**
  * @brief Check if player wins
  * Win Condition: Connect 3
- * @param player Pointer to the current player
- * @return true if the win condition is met
  */
 bool Infinity_Board::is_win(Player<char>* player) {
     char sym = player->get_symbol();
@@ -69,8 +65,6 @@ bool Infinity_Board::is_win(Player<char>* player) {
 
 /**
  * @brief Check if it is draw
- * @param player Pointer to the current player
- * @return true if no one wins
  */
 bool Infinity_Board::is_draw(Player<char>* player) {
     return false;
@@ -78,8 +72,6 @@ bool Infinity_Board::is_draw(Player<char>* player) {
 
 /**
  * @brief Check is game is over
- * @param player Pointer to the current player
- * @return true if the player wins or it is draw
  */
 bool Infinity_Board::game_is_over(Player<char>* player) {
     return (is_win(player) || is_draw(player));
@@ -87,8 +79,6 @@ bool Infinity_Board::game_is_over(Player<char>* player) {
 
 /**
  * @brief Check is player loose
- * @param player Pointer to the current player
- * @return false always
  */
 bool Infinity_Board::is_lose(Player<char>* player) {
     return false;

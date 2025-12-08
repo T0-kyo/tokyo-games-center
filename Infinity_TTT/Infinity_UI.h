@@ -28,7 +28,6 @@ public:
 
     /**
      * @brief Sets up two players for the game.
-     * Player 1 uses 'X', Player 2 uses 'O'. Prompts for name and type.
      * @return A dynamically allocated array of two Player<char>* pointers.
      */
     virtual Player<char>** setup_players() override;

@@ -25,7 +25,6 @@ public:
 
 /**
  * @brief Updates the board by adding a move.
- * The move is valid if the cell is in diamond bounders and the cell is empty.
  * @param move Pointer to the Move<char> object.
  * @return true if the move is successful, false otherwise.
  */
@@ -33,7 +32,6 @@ public:
 
 /**
  * @brief Check if player wins
- * Win Condition: Line of 3 AND Line of 4 in DIFFERENT directions
  * @param player Pointer to the current player
  * @return true if the win condition is met
  */
@@ -62,7 +60,6 @@ public:
 
 /**
  * @brief Check if coordinates fall inside the diamond shape
- * The center is (3,3). Manhattan Distance must be <= 3.
  * @param x Row number
  * @param y Column number
  * @return true if the Manhattan Distance is less than or equal 3
