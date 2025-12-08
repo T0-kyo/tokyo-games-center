@@ -3,6 +3,10 @@
 #include <cstdlib> // For rand()
 #include <ctime>   // For seeding (done in main, but good to know)
 
+/**
+ * @brief Constructor for the ObstaclesTTT_Board.
+ * Initialize the (6x6) board.
+ */
 ObstaclesTTT_Board::ObstaclesTTT_Board() : Board<char>(6, 6) {
     // Initialize board with empty spaces
     for (int i = 0; i < rows; i++) {
@@ -12,11 +16,16 @@ ObstaclesTTT_Board::ObstaclesTTT_Board() : Board<char>(6, 6) {
     }
 }
 
-// Helper to check 4 items are the same and not empty or obstacle
+/**
+ * @brief Helper to check 4 items are the same and not empty or obstacle
+ */
 bool ObstaclesTTT_Board::check_line(char a, char b, char c, char d) {
     return (a != ' ' && a != '#' && a == b && a == c && a == d);
 }
 
+/**
+ * @brief Adding the obstacles to the board
+ */
 void ObstaclesTTT_Board::add_obstacles() {
     int obstacles_added = 0;
     int attempts = 0;
@@ -35,6 +44,9 @@ void ObstaclesTTT_Board::add_obstacles() {
     }
 }
 
+/**
+ * @brief Updates the board by adding a move.
+ */
 bool ObstaclesTTT_Board::update_board(Move<char>* move) {
     int r = move->get_x();
     int c = move->get_y();
@@ -57,6 +69,10 @@ bool ObstaclesTTT_Board::update_board(Move<char>* move) {
     return true;
 }
 
+/**
+ * @brief Check if player wins
+ * Win Condition: Connect 4
+ */
 bool ObstaclesTTT_Board::is_win(Player<char>* player) {
     // Check Rows (need 4 in a row, so col index goes up to columns - 4)
     for (int i = 0; i < rows; i++) {
@@ -89,15 +105,24 @@ bool ObstaclesTTT_Board::is_win(Player<char>* player) {
     return false;
 }
 
+/**
+ * @brief Check if it is draw
+ */
 bool ObstaclesTTT_Board::is_draw(Player<char>* player) {
     // Draw if board is full (36 moves) or no moves possible and no winner
     return (n_moves == 18 && !is_win(player));
 }
 
+/**
+ * @brief Check is game is over
+ */
 bool ObstaclesTTT_Board::game_is_over(Player<char>* player) {
     return is_win(player) || is_draw(player);
 }
 
+/**
+ * @brief Check is player loose
+ */
 bool ObstaclesTTT_Board::is_lose(Player<char>* player) {
     return false;
 }
