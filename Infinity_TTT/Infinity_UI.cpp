@@ -7,7 +7,8 @@
 /**
  * @brief Constructor for the Infinity_UI.
  * Initializes the base UI class with a descriptive welcome message and cell width 2.
- */Infinity_UI::Infinity_UI() : UI("\nWelcome to Infinity Tic-Tac-Toe (3x3)!\nGet 3 in a row to win. But your last move disapears!\n", 2) {}
+ */
+Infinity_UI::Infinity_UI() : UI("\nWelcome to Infinity Tic-Tac-Toe (3x3)!\nGet 3 in a row to win. But your last move disapears!\n", 2) {}
 
 /**
  * @brief Sets up two players for the game.
