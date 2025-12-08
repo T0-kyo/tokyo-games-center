@@ -12,7 +12,6 @@ TTT5x5_UI::TTT5x5_UI() : UI("Welcome to Tic-Tac-Toe (5x5)! Get 3 in a row to ear
 
 /**
  * @brief Helper function to display the current scores.
- * @param board Pointer to the 5x5 board instance.
  */
 void TTT5x5_UI::show_score(TTT5x5_Board* board) {
     cout << "\n=======================================================" << endl;
@@ -22,7 +21,6 @@ void TTT5x5_UI::show_score(TTT5x5_Board* board) {
 
 /**
  * @brief Sets up two players for the game.
- * @return A dynamically allocated array of two Player<char> pointers.
  */
 Player<char>** TTT5x5_UI::setup_players() {
     Player<char>** players = new Player<char>*[2];
@@ -46,10 +44,6 @@ Player<char>** TTT5x5_UI::setup_players() {
 
 /**
  * @brief Creates a Player<char> object of the specified type.
- * @param name Player's name.
- * @param symbol The symbol ('X' or 'O') used by the player.
- * @param type The type of player (Human, Computer, etc.).
- * @return A dynamically allocated Player<char> pointer.
  */
 Player<char>* TTT5x5_UI::create_player(string& name, char symbol, PlayerType type) {
     // We use the generic Player<T> class as the base for all types
@@ -58,8 +52,6 @@ Player<char>* TTT5x5_UI::create_player(string& name, char symbol, PlayerType typ
 
 /**
  * @brief Gets the next move from the current player (human or computer).
- * @param player The current player whose turn it is.
- * @return A dynamically allocated Move<char> pointer.
  */
 Move<char>* TTT5x5_UI::get_move(Player<char>* player) {
     char symbol = player->get_symbol();

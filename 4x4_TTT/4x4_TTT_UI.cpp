@@ -6,14 +6,14 @@
 
 /**
  * @brief Constructor for the TTT4x4_UI.
- * Initializes the base UI class with a descriptive welcome message and cell width 2.
+ * Calls the base constructor with the game's welcome message and sets
+ * the cell width to 2 characters (default for 'X' and 'O').
  */
 TTT4x4_UI::TTT4x4_UI() : UI("Welcome to Tic-Tac-Toe (4x4)!\\nMove your pieces to get 3 in a row and win the game!\\n", 2) {}
 
 /**
  * @brief Sets up two players for the 4x4 game.
  * Player 1 uses 'X', Player 2 uses 'O'. Prompts for name and type.
- * @return A dynamically allocated array of two Player<char>* pointers.
  */
 Player<char>** TTT4x4_UI::setup_players() {
     Player<char>** players= new Player<char>*[2];
@@ -36,10 +36,6 @@ Player<char>** TTT4x4_UI::setup_players() {
 
 /**
  * @brief Creates a new Player<char> object.
- * @param name The player's name.
- * @param symbol The player's symbol ('X' or 'O').
- * @param type The type of player.
- * @return A pointer to the newly created Player<char> object.
  */
 Player<char>* TTT4x4_UI::create_player(string& name, char symbol, PlayerType type) {
     return new Player<char>(name, symbol, type);
@@ -50,8 +46,6 @@ Player<char>* TTT4x4_UI::create_player(string& name, char symbol, PlayerType typ
  * This function handles both human and simple computer moves.
  * For a human, it takes the source cell (x, y) and the direction (U, D, R, L).
  * For a computer, it attempts a simple random move.
- * @param player Pointer to the current Player<char>.
- * @return A pointer to a new Move<char> object.
  */
 Move<char>* TTT4x4_UI::get_move(Player<char>* player) {
     char sym = player->get_symbol();

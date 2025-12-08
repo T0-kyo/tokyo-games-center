@@ -25,14 +25,10 @@ class TTT4x4_UI : public UI<char> {
     public:
     /**
      * @brief Constructor for the TTT4x4_UI.
-     * Calls the base constructor with the game's welcome message and sets
-     * the cell width to 2 characters (default for 'X' and 'O').
      */
     TTT4x4_UI();
-    // --- Overridden Virtual Functions ---
     /**
      * @brief Sets up two players for the 4x4 game.
-     * Prompts for player names and types (Human/Computer). Player 1 is assigned 'X', Player 2 is assigned 'O'.
      * @return A dynamically allocated array of two Player<char>* pointers.
      */
     virtual Player<char>** setup_players() override;
@@ -48,8 +44,6 @@ class TTT4x4_UI : public UI<char> {
 
     /**
      * @brief Gets the player's move input.
-     * Prompts the player for the coordinates of the piece they want to move,
-     * and the direction (U, D, R, L) they want to move it.
      * @param player Pointer to the current Player<char>.
      * @return A pointer to a new Move<char> object.
      */

@@ -22,7 +22,6 @@ public:
 
     /**
      * @brief Updates the board by adding a move.
-     * The move is valid if the cell is in board bounders and the cell is empty.
      * @param move Pointer to the Move<char> object.
      * @return true if the move is successful, false otherwise.
      */
@@ -30,7 +29,6 @@ public:
 
     /**
      * @brief Check if player wins
-     * Win Condition: Connect 4
      * @param player Pointer to the current player
      * @return true if the win condition is met
      */

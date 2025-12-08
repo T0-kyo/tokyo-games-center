@@ -17,8 +17,6 @@ TTT5x5_Board::TTT5x5_Board() : Board<char>(5, 5) {
 
 /**
  * @brief Updates the board with a move.
- * @param move The move object containing (x, y) coordinates and the symbol ('X' or 'O').
- * @return true if the move is valid and applied, false otherwise.
  */
 bool TTT5x5_Board::update_board(Move<char>* move) {
     int x = move->get_x();
@@ -101,8 +99,6 @@ void TTT5x5_Board::calculate_final_scores() {
 /**
  * @brief Determines if the current player wins.
  * Win condition: The game is over, and the current player has a strictly higher score.
- * @param player The player to check for win.
- * @return true if the player wins, false otherwise.
  */
 bool TTT5x5_Board::is_win(Player<char>* player) {
     if (!game_is_over(player)) {
@@ -123,8 +119,6 @@ bool TTT5x5_Board::is_win(Player<char>* player) {
 /**
  * @brief Determines if the game is a draw.
  * Draw condition: The game is over, and both players have an equal score.
- * @param player Unused parameter from base class signature.
- * @return true if the game is a draw, false otherwise.
  */
 bool TTT5x5_Board::is_draw(Player<char>* player) {
     if (!game_is_over(player)) {
@@ -140,8 +134,6 @@ bool TTT5x5_Board::is_draw(Player<char>* player) {
 /**
  * @brief Determines if the game is over.
  * For this 5x5 scoring game, the game is over when the board is full.
- * @param player Unused parameter from base class signature.
- * @return true if the board is full (25 moves), false otherwise.
  */
 bool TTT5x5_Board::game_is_over(Player<char>* player) {
     return (n_moves == rows * columns);
@@ -150,8 +142,6 @@ bool TTT5x5_Board::game_is_over(Player<char>* player) {
 /**
  * @brief Determines if the current player loses.
  * Lose condition: The game is over, and the current player has a strictly lower score.
- * @param player The player to check for loss.
- * @return true if the player loses, false otherwise.
  */
 bool TTT5x5_Board::is_lose(Player<char>* player) {
     if (!game_is_over(player)) {

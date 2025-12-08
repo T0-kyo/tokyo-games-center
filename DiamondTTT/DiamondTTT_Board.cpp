@@ -26,9 +26,6 @@ DiamondTTT_Board::DiamondTTT_Board() : Board(7, 7) {
 /**
  * @brief Check if coordinates fall inside the diamond shape
  * The center is (3,3). Manhattan Distance must be <= 3.
- * @param x Row number
- * @param y Column number
- * @return true if the Manhattan Distance is less than or equal 3
  */
 bool DiamondTTT_Board::is_valid_diamond_cell(int x, int y) {
     return (abs(x - 3) + abs(y - 3)) <= 3;
@@ -37,8 +34,6 @@ bool DiamondTTT_Board::is_valid_diamond_cell(int x, int y) {
 /**
  * @brief Updates the board by adding a move.
  * The move is valid if the cell is in diamond bounders and the cell is empty.
- * @param move Pointer to the Move<char> object.
- * @return true if the move is successful, false otherwise.
  */
 bool DiamondTTT_Board::update_board(Move<char>* move) {
     int x = move->get_x();
@@ -68,10 +63,6 @@ bool DiamondTTT_Board::update_board(Move<char>* move) {
 
 /**
  * @brief Helper to find the longest line for a player in a specific direction
- * @param player Pointer to the current player
- * @param dx X-direction value
- * @param dy Y-direction value
- * @return the max number
  */
 int DiamondTTT_Board::count_consecutive(Player<char>* player, int dx, int dy) {
     char s = player->get_symbol();
@@ -101,8 +92,6 @@ int DiamondTTT_Board::count_consecutive(Player<char>* player, int dx, int dy) {
 /**
  * @brief Check if player wins
  * Win Condition: Line of 3 AND Line of 4 in DIFFERENT directions
- * @param player Pointer to the current player
- * @return true if the win condition is met
  */
 bool DiamondTTT_Board::is_win(Player<char>* player) {
     // 1. Get the MAXIMUM consecutive sequence for each distinct direction.
@@ -134,8 +123,6 @@ bool DiamondTTT_Board::is_win(Player<char>* player) {
 
 /**
  * @brief Check if it is draw
- * @param player Pointer to the current player
- * @return true if no one wins
  */
 bool DiamondTTT_Board::is_draw(Player<char>* player) {
     // Total valid cells in a 7x7 diamond is 25.
@@ -144,8 +131,6 @@ bool DiamondTTT_Board::is_draw(Player<char>* player) {
 
 /**
  * @brief Check is game is over
- * @param player Pointer to the current player
- * @return true if the player wins or it is draw
  */
 bool DiamondTTT_Board::game_is_over(Player<char>* player) {
     return is_win(player) || is_draw(player);
@@ -153,8 +138,6 @@ bool DiamondTTT_Board::game_is_over(Player<char>* player) {
 
 /**
  * @brief Check is player loose
- * @param player Pointer to the current player
- * @return false always
  */
 bool DiamondTTT_Board::is_lose(Player<char>* player) {
     return false;

@@ -38,7 +38,6 @@ class Infinity_Board : public Board<char> {
 
     /**
      * @brief Check if player wins
-     * Win Condition: Connect 3
      * @param player Pointer to the current player
      * @return true if the win condition is met
      */

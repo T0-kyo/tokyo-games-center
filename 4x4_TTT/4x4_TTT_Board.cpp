@@ -29,8 +29,6 @@ TTT4x4_Board::TTT4x4_Board() : Board<char>(4,4) {
  * @brief Updates the board by moving a piece.
  * Validates the move direction (U, D, R, L). A move is valid if the source cell
  * contains the player's symbol and the destination cell is empty.
- * @param move Pointer to the Move<char> object.
- * @return true if the move is successful, false otherwise.
  */
 bool TTT4x4_Board::update_board(Move<char>* move) {
     int x = move->get_x();
@@ -80,8 +78,6 @@ bool TTT4x4_Board::update_board(Move<char>* move) {
  * @brief Checks for a win condition (3-in-a-row).
  * Iterates through all possible 3-cell lines (rows, columns, and diagonals)
  * to see if the current player's symbol occupies them.
- * @param player Pointer to the current Player<char>.
- * @return true if 3 of the player's symbols are found in any line.
  */
 bool TTT4x4_Board::is_win(Player<char>* player) {
     char sym = player->get_symbol();
@@ -122,22 +118,11 @@ bool TTT4x4_Board::is_win(Player<char>* player) {
 }
 
 /**
- * @brief Checks if the game has concluded (win or draw).
- * @param player Pointer to the current Player<char>.
- * @return true if the game is over.
- */
-bool TTT4x4_Board::game_is_over(Player<char>* player) {
-    return (is_win(player) || is_draw(player));
-}
-
-/**
  * @brief Checks for a draw condition.
  * In this moving-piece variant, a draw should occur if no valid moves are possible
  * for either player, or if a certain number of moves is reached without a win.
  * This implementation currently checks for a full board, which may need adjustment
  * based on the full game rules.
- * @param player Pointer to the current Player<char>.
- * @return true if the board is full.
  */
 bool TTT4x4_Board::is_draw(Player<char>* player) {
     // This draw logic seems incorrect for a moving-piece game,
@@ -153,9 +138,14 @@ bool TTT4x4_Board::is_draw(Player<char>* player) {
 }
 
 /**
+ * @brief Checks if the game has concluded (win or draw).
+ */
+bool TTT4x4_Board::game_is_over(Player<char>* player) {
+    return (is_win(player) || is_draw(player));
+}
+
+/**
  * @brief Checks if the player has lost.
- * @param player Pointer to the current Player<char>.
- * @return Always returns false.
  */
 bool TTT4x4_Board::is_lose(Player<char>* player) {
     return false;
