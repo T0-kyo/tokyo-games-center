@@ -13,7 +13,7 @@ using namespace std;
 
 /**
  * @class DiamondTTT_UI
- * @brief Implements the 7x7 Tic-Tac-Toe board UI (the diamond shape)
+ * @brief Implements the 7x7 Tic-Tac-Toe UI (the diamond shape)
  * Inherits from the template base class UI<char>
  */
 class DiamondTTT_UI : public UI<char> {

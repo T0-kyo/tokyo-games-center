@@ -155,7 +155,7 @@ bool DiamondTTT_Board::game_is_over(Player<char>* player) {
  * @brief Check is player loose
  * @param player Pointer to the current player
  * @return false always
-*/
+ */
 bool DiamondTTT_Board::is_lose(Player<char>* player) {
     return false;
 }
