@@ -1,7 +1,6 @@
 /**
  * @file NumericalTTT_Board.h
  * @brief Defines the board class for the Numerical Tic-Tac-Toe game.
- *
  * This game is played on a standard 3x3 grid where players place numbers.
  * The goal is to complete a line (row, column, or diagonal) that sums exactly to 15.
  */
@@ -39,7 +38,6 @@ private:
 public:
     /**
      * @brief Constructor for the NumericalTTT_Board.
-     * * Initializes the 3x3 grid and populates the available number lists.
      */
     NumericalTTT_Board();
 
@@ -47,8 +45,6 @@ public:
     
     /**
      * @brief Updates the board with a new move (number placement).
-     *
-     * The move is valid only if the cell is empty and the number is available for the player.
      * @param move Pointer to the Move<int> object containing coordinates and the number (symbol).
      * @return true if the move was valid and applied, false otherwise.
      */
@@ -56,7 +52,6 @@ public:
     
     /**
      * @brief Checks if the current player has won the game.
-     * * A win occurs if any row, column, or diagonal sums to 15.
      * @param player Pointer to the current Player<int> object.
      * @return true if the win condition is met.
      */
@@ -64,7 +59,6 @@ public:
     
     /**
      * @brief Checks if the game is a draw.
-     * * A draw occurs when the board is full (9 moves) and no player has won.
      * @param player Pointer to the current Player<int> object.
      * @return true if the game is a draw.
      */

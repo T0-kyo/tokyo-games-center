@@ -3,7 +3,7 @@
 #include <cstdlib> // For rand()
 
 /**
- * Constructor: Call the base constructor with a welcome message and a cell width
+ * @brief The base constructor with a welcome message and a cell width
  * Cell width is 3 spaces (good for numbers)
  */
 NumericalTTT_UI::NumericalTTT_UI() : UI("\nWelcome to Numerical Tic-Tac-Toe (3x3)!\nForm 3 numbers sequence that add up to 15 to win.\n", 2) {
@@ -13,7 +13,6 @@ NumericalTTT_UI::NumericalTTT_UI() : UI("\nWelcome to Numerical Tic-Tac-Toe (3x3
 /**
  * @brief Declare players and initialize their valid numbers
  * Handle the type of player (Human or Computer)
- * @return return the list of players
  */
 Player<int>** NumericalTTT_UI::setup_players() {
     Player<int>** players = new Player<int>*[2];
@@ -38,7 +37,6 @@ Player<int>** NumericalTTT_UI::setup_players() {
  * @brief Override create_player to correctly instantiate Player<int>
  * The base class create_player returns Player<char>, which is a bug.
  * We MUST override it to create the correct type.
- * @return return the REAL players
  */
 Player<int>* NumericalTTT_UI::create_player(string& name, int symbol, PlayerType type) {
     return new Player<int>(name, symbol, type);
@@ -46,7 +44,6 @@ Player<int>* NumericalTTT_UI::create_player(string& name, int symbol, PlayerType
 
 /**
  * @brief Helper function to print available numbers
- * @param nums the numbers that player should choose from
  */
 void NumericalTTT_UI::display_available_nums(vector<int>& nums) {
     cout << "Available numbers: ";
@@ -59,8 +56,6 @@ void NumericalTTT_UI::display_available_nums(vector<int>& nums) {
 /**
  * @brief Override get_move to ask for coordinates and the number
  * Check is the coordinates and the number is valid or not
- * @param player the player that makes the move
- * @return return the new valid move that player made 
  */
 Move<int>* NumericalTTT_UI::get_move(Player<int>* player) {
     cout << "--------------------------------" << endl;
