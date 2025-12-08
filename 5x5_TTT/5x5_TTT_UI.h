@@ -16,12 +16,31 @@ using namespace std;
  */
 class TTT5x5_UI : public UI<char> {
     public:
-
+    /**
+     * @brief Constructor for the 5x5 Tic-Tac-Toe UI.
+     */
     TTT5x5_UI();
 
-    // --- Overridden Virtual Functions ---
+    /**
+     * @brief Sets up two players for the game.
+     * @return A dynamically allocated array of two Player<char> pointers.
+     */
     virtual Player<char>** setup_players() override;
+
+    /**
+     * @brief Creates a Player<char> object of the specified type.
+     * @param name Player's name.
+     * @param symbol The symbol ('X' or 'O') used by the player.
+     * @param type The type of player (Human, Computer, etc.).
+     * @return A dynamically allocated Player<char> pointer.
+     */
     virtual Player<char>* create_player(string& name, char symbol, PlayerType type) override;
+
+    /**
+     * @brief Gets the next move from the current player (human or computer).
+     * @param player The current player whose turn it is.
+     * @return A dynamically allocated Move<char> pointer.
+     */
     virtual Move<char>* get_move(Player<char>* player) override;
 
     /**

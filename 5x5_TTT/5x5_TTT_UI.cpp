@@ -6,6 +6,7 @@
 
 /**
  * @brief Constructor for the 5x5 Tic-Tac-Toe UI.
+ * Initializes the base UI class with a descriptive welcome message and cell width 3.
  */
 TTT5x5_UI::TTT5x5_UI() : UI("Welcome to Tic-Tac-Toe (5x5)! Get 3 in a row to earn points. The highest score wins after all cells are filled (25 moves).", 3) {}
 

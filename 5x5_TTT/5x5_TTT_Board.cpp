@@ -97,15 +97,6 @@ void TTT5x5_Board::calculate_final_scores() {
     }
 }
 
-/**
- * @brief Determines if the game is over.
- * For this 5x5 scoring game, the game is over when the board is full.
- * @param player Unused parameter from base class signature.
- * @return true if the board is full (25 moves), false otherwise.
- */
-bool TTT5x5_Board::game_is_over(Player<char>* player) {
-    return (n_moves == rows * columns);
-}
 
 /**
  * @brief Determines if the current player wins.
@@ -117,16 +108,43 @@ bool TTT5x5_Board::is_win(Player<char>* player) {
     if (!game_is_over(player)) {
         return false;
     }
-
+    
     // When the game is over, calculate final scores for both players
     calculate_final_scores(); 
-
+    
     char sym = player->get_symbol();
     if (sym == 'X') {
         return (p1_score > p2_score);
     } else { // sym == 'O'
         return (p2_score > p1_score);
     }
+}
+
+/**
+ * @brief Determines if the game is a draw.
+ * Draw condition: The game is over, and both players have an equal score.
+ * @param player Unused parameter from base class signature.
+ * @return true if the game is a draw, false otherwise.
+ */
+bool TTT5x5_Board::is_draw(Player<char>* player) {
+    if (!game_is_over(player)) {
+        return false;
+    }
+
+    // When the game is over, calculate final scores for both players
+    calculate_final_scores(); 
+
+    return (p1_score == p2_score);
+}
+
+/**
+ * @brief Determines if the game is over.
+ * For this 5x5 scoring game, the game is over when the board is full.
+ * @param player Unused parameter from base class signature.
+ * @return true if the board is full (25 moves), false otherwise.
+ */
+bool TTT5x5_Board::game_is_over(Player<char>* player) {
+    return (n_moves == rows * columns);
 }
 
 /**
@@ -151,22 +169,4 @@ bool TTT5x5_Board::is_lose(Player<char>* player) {
     } else { // sym == 'O'
         return (p2_score < p1_score);
     }
-}
-
-
-/**
- * @brief Determines if the game is a draw.
- * Draw condition: The game is over, and both players have an equal score.
- * @param player Unused parameter from base class signature.
- * @return true if the game is a draw, false otherwise.
- */
-bool TTT5x5_Board::is_draw(Player<char>* player) {
-    if (!game_is_over(player)) {
-        return false;
-    }
-
-    // When the game is over, calculate final scores for both players
-    calculate_final_scores(); 
-
-    return (p1_score == p2_score);
 }
