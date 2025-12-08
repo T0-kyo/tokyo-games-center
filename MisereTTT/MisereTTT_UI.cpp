@@ -1,24 +1,25 @@
 #include "MisereTTT_UI.h"                  
-#include <limits>                     
+#include <limits>    
+
+/**
+ * @brief Constructor for the Infinity_UI.
+ * Initializes the base UI class with a descriptive welcome message and cell width 2.
+ */
 TTT_UI::TTT_UI() : UI("\nWelcome to Misere Tic-Tac-Toe (3x3)!\nWhere the loser wins (Try to lose) Good Luck!\n", 2) {}
 
-
+/**
+ * @brief Sets up two players for the game.
+ * Player 1 uses 'X', Player 2 uses 'O'. Prompts for name and type.
+ */
 Player<char>** TTT_UI::setup_players() {
-    
     Player<char>** players = new Player<char>*[2];
-    
-    
     vector<string> type_options = { "Human", "Computer" };
-
-    
     cin.clear();
     cin.ignore(numeric_limits<streamsize>::max(), '\n');
-
     
     string name1 = get_player_name("Player 1 (X)");      
     PlayerType type1 = get_player_type_choice("Player 1", type_options);
     players[0] = create_player(name1, 'X', type1);        
-
     
     string name2 = get_player_name("Player 2 (O)");      
     PlayerType type2 = get_player_type_choice("Player 2", type_options); 
@@ -27,25 +28,25 @@ Player<char>** TTT_UI::setup_players() {
     return players;                   
 }
 
-
+/**
+ * @brief Creates a new Player<char> object.
+ */
 Player<char>* TTT_UI::create_player(string& name, char symbol, PlayerType type) {
     
     return new Player<char>(name, symbol, type);
 }
 
-
+/**
+ * @brief Gets the player's move input.
+ */
 Move<char>* TTT_UI::get_move(Player<char>* player) {
     int x, y;                         
     char symbol = player->get_symbol(); 
-
     cout << "\n" << player->get_name() << " (" << symbol << ") turn.\n"; 
 
-   
     if (player->get_type() == PlayerType::COMPUTER) {
-       
         Board<char>* board = player->get_board_ptr(); 
         
-       
         do {
             x = rand() % 3;          
             y = rand() % 3;          
@@ -55,7 +56,6 @@ Move<char>* TTT_UI::get_move(Player<char>* player) {
         return new Move<char>(x, y, symbol);
     }
 
-   
     while (true) {
         cout << "Enter row (0-2) and column (0-2) separated by space: "; 
         
@@ -66,9 +66,9 @@ Move<char>* TTT_UI::get_move(Player<char>* player) {
                 
                 Board<char>* board = player->get_board_ptr();
                 if (board->get_board_matrix()[x][y] == ' ') {
-                   break; 
+                    break; 
                 } else {
-                   cout << "Cell is already occupied!\n";
+                    cout << "Cell is already occupied!\n";
                 }
             } else {
                 cout << "Invalid coordinates! Use 0 to 2.\n";
