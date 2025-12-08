@@ -5,8 +5,17 @@
 
 using namespace std;
 
+/**
+ * @brief Constructor for the FourInARow_UI.
+ * Initializes the base UI class with a descriptive welcome message and cell width 3.
+ */
 FourInARow_UI::FourInARow_UI() : UI("Welcome to Four-in-a-Row!\nConnect 4 marks horizontally, vertically, or diagonally.", 3) {}
 
+/**
+ * @brief Sets up two players for the game.
+ * Player 1 uses 'X', Player 2 uses 'O'. Prompts for name and type.
+ * @return A dynamically allocated array of two Player<char>* pointers.
+ */
 Player<char>** FourInARow_UI::setup_players() {
     Player<char>** players = new Player<char>*[2];
     vector<string> type_options = { "Human", "Computer" };
@@ -26,10 +35,22 @@ Player<char>** FourInARow_UI::setup_players() {
     return players;
 }
 
+/**
+ * @brief Creates a new Player<char> object.
+ * @param name The player's name.
+ * @param symbol The player's symbol ('X' or 'O').
+ * @param type The type of player.
+ * @return A pointer to the newly created Player<char> object.
+ */
 Player<char>* FourInARow_UI::create_player(string& name, char symbol, PlayerType type) {
     return new Player<char>(name, symbol, type);
 }
 
+/**
+ * @brief Gets the player's move input.
+ * @param player Pointer to the current Player<char>.
+ * @return A pointer to a new Move<char> object.
+ */
 Move<char>* FourInARow_UI::get_move(Player<char>* player) {
     cout << "--------------------------------" << endl;
     cout << player->get_name() << " (" << player->get_symbol() << "), enter a column number (0-6)." << endl;
