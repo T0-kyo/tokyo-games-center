@@ -1,3 +1,7 @@
+/**
+ * @file NumericalTTT_UI.h
+ * @brief Defines the UI class for the Numerical Tic-Tac-Toe variant.
+ */
 #ifndef NUMERICALTTT_UI_H
 #define NUMERICALTTT_UI_H
 
@@ -23,26 +27,23 @@ private:
     void display_available_nums(vector<int>& nums);
 
 public:
-    /** @brief Constructor of the class
+    /** 
+     * @brief Constructor of the class
      */
     NumericalTTT_UI();
 
     /**
      * @brief Declare players and initialize their valid numbers
-     * Handle the type of player (Human or Computer)
      * @return return the list of players
      */
     virtual Player<int>** setup_players() override;
     /**
      * @brief Override create_player to correctly instantiate Player<int>
-     * The base class create_player returns Player<char>, which is a bug.
-     * We MUST override it to create the correct type.
      * @return return the REAL players
      */
     virtual Player<int>* create_player(string& name, int symbol, PlayerType type) override;
     /**
      * @brief Override get_move to ask for coordinates and the number
-     * Check is the coordinates and the number is valid or not
      * @param player the player that makes the move
      * @return return the new valid move that player made 
      */
