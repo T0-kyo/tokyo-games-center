@@ -2,8 +2,16 @@
 #include <limits>
 #include <cstdlib>
 
+/**
+ * @brief Constructor for the ObstaclesTTT_UI.
+ * Initializes the base UI class with a descriptive welcome message and cell width 3.
+ */
 ObstaclesTTT_UI::ObstaclesTTT_UI() : UI("\nWelcome to Obstacles Tic-Tac-Toe (6x6)!\nConnect 4 to win. Watch out for random obstacles ('#')!\n", 3) {}
 
+/**
+ * @brief Sets up two players for the game.
+ * Player 1 uses 'X', Player 2 uses 'O'. Prompts for name and type.
+ */
 Player<char>** ObstaclesTTT_UI::setup_players() {
     Player<char>** players = new Player<char>*[2];
     vector<string> type_options = { "Human", "Computer" };
@@ -22,10 +30,16 @@ Player<char>** ObstaclesTTT_UI::setup_players() {
     return players;
 }
 
+/**
+ * @brief Creates a new Player<char> object.
+ */
 Player<char>* ObstaclesTTT_UI::create_player(string& name, char symbol, PlayerType type) {
     return new Player<char>(name, symbol, type);
 }
 
+/**
+ * @brief Gets the player's move input.
+ */
 Move<char>* ObstaclesTTT_UI::get_move(Player<char>* player) {
     // Cast board to access specific methods/grid if needed, though generic board works for display
     cout << "--------------------------------" << endl;
