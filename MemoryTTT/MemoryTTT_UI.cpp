@@ -2,9 +2,17 @@
 #include <limits> // For numeric_limits
 #include <cstdlib> // For rand()
 
+/**
+ * @brief Constructor for the MemoryTTT_UI.
+ * Initializes the base UI class with a descriptive welcome message and cell width 3.
+ */
 MemoryTTT_UI::MemoryTTT_UI() : UI("Welcome to Memory Tic-Tac-Toe! (Hidden Identity)\nBoth players will appear as '#'. Remember your moves!", 3) {
 }
 
+/**
+ * @brief Sets up two players for the game.
+ * Player 1 uses 'X', Player 2 uses 'O'. Prompts for name and type.
+ */
 Player<char>** MemoryTTT_UI::setup_players() {
     Player<char>** players = new Player<char>*[2];
     vector<string> type_options = { "Human", "Computer" };
@@ -23,10 +31,16 @@ Player<char>** MemoryTTT_UI::setup_players() {
     return players;
 }
 
+/**
+ * @brief Creates a new Player<char> object.
+ */
 Player<char>* MemoryTTT_UI::create_player(string& name, char symbol, PlayerType type) {
     return new Player<char>(name, symbol, type);
 }
 
+/**
+ * @brief Gets the player's move input.
+ */
 Move<char>* MemoryTTT_UI::get_move(Player<char>* player) {
     cout << "\n" << player->get_name() << ", it's your turn. (You are hidden as '#')" << endl;
 
