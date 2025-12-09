@@ -6,7 +6,7 @@
  * @brief Constructor for the MemoryTTT_UI.
  * Initializes the base UI class with a descriptive welcome message and cell width 3.
  */
-MemoryTTT_UI::MemoryTTT_UI() : UI("Welcome to Memory Tic-Tac-Toe! (Hidden Identity)\nBoth players will appear as '#'. Remember your moves!", 3) {
+MemoryTTT_UI::MemoryTTT_UI() : UI("Welcome to Memory Tic-Tac-Toe! (Hidden Identity)\nBoth players will appear as '#'. Remember your moves!", 2) {
 }
 
 /**

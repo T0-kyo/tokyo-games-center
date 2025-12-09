@@ -114,7 +114,7 @@ int main() {
         
         switch (choice) {
             case 0:
-                cout << "\n---- Exiting Game Center ----\n     Have a great day ^^\n";
+                cout << "\n---- Exiting Game Center ----\nHave a great day!\n";
                 break;
             case 1:
                 run_sus_game();
@@ -166,7 +166,8 @@ int main() {
                     case 6: run_diamond_ttt_game(); break;
                     case 7: run_4x4_ttt_game(); break;
                     case 8: run_pyramid_ttt_game(); break;
-                    case 9: run_numerical_ttt_game(); break;                        case 10: run_obstacles_ttt_game(); break;
+                    case 9: run_numerical_ttt_game(); break;
+                    case 10: run_obstacles_ttt_game(); break;
                     case 11: run_infinity_ttt_game(); break;
                     case 12: run_memory_ttt_game(); break;
                     case 13: run_ultimate_ttt_game(); break;
@@ -193,6 +194,8 @@ void run_sus_game(){
     game.run();
     static_cast<SUS_UI*>(ui)->show_score(static_cast<SUS_Board*>(board));
     cout << "\nThank You For Playing!\n--------------------------------\n";
+    menu();
+
     delete board;
     delete ui;
     delete players[0];
@@ -208,6 +211,8 @@ void run_four_in_a_row_game(){
     GameManager<char> game(board, players, ui);
     game.run();
     cout << "\nThank You For Playing!\n--------------------------------\n";
+    menu();
+
     delete board;
     delete ui;
     delete players[0];
@@ -224,6 +229,8 @@ void run_5x5_ttt_game(){
     game.run();
     static_cast<TTT5x5_UI*>(ui)->show_score(static_cast<TTT5x5_Board*>(board));
     cout << "\nThank You For Playing!\n--------------------------------\n";
+    menu();
+
     delete board;
     delete ui;
     delete players[0];
@@ -240,6 +247,8 @@ void run_word_ttt_game(){
     game.run();
     static_cast<WordTTT_UI*>(ui)->show_score(static_cast<WordTTT_Board*>(board));
     cout << "\nThank You For Playing!\n--------------------------------\n";
+    menu();
+
     delete board;
     delete ui;
     delete players[0];
@@ -248,13 +257,15 @@ void run_word_ttt_game(){
 }
 
 void run_misere_ttt_game(){
-    cout << "\n---- Starting Standard Tic-Tac-Toe ----\n";
+    cout << "\n---- Starting Misere Tic-Tac-Toe ----\n";
     UI<char>* ui = new TTT_UI();
     Board<char>* board = new TTT_Board();
     Player<char>** players = ui->setup_players();
     GameManager<char> game(board, players, ui);
     game.run();
     cout << "\nThank You For Playing!\n--------------------------------\n";
+    menu();
+
     delete board;
     delete ui;
     delete players[0];
@@ -270,6 +281,8 @@ void run_diamond_ttt_game(){
     GameManager<char> game(board, players, ui);
     game.run();
     cout << "\nThank You For Playing!\n--------------------------------\n";
+    menu();
+
     delete board;
     delete ui;
     delete players[0];
@@ -285,6 +298,7 @@ void run_4x4_ttt_game(){
     GameManager<char> game(board, players, ui);
     game.run();
     cout << "\nThank You For Playing!\n--------------------------------\n";
+    menu();
 
     delete board;
     delete ui;
@@ -301,6 +315,7 @@ void run_pyramid_ttt_game(){
     GameManager<char> game(board, players, ui);
     game.run();
     cout << "\nThank You For Playing!\n--------------------------------\n";
+    menu();
 
     delete board;
     delete ui;
@@ -317,6 +332,7 @@ void run_numerical_ttt_game(){
     GameManager<int> game(board, players, ui);
     game.run();
     cout << "\nThank You For Playing!\n--------------------------------\n";
+    menu();
 
     delete board;
     delete ui;
@@ -333,6 +349,8 @@ void run_obstacles_ttt_game(){
     GameManager<char> game(board, players, ui);
     game.run();
     cout << "\nThank You For Playing!\n--------------------------------\n";
+    menu();
+
     delete board;
     delete ui;
     delete players[0];
@@ -348,6 +366,8 @@ void run_infinity_ttt_game(){
     GameManager<char> game(board, players, ui);
     game.run();
     cout << "\nThank You For Playing!\n--------------------------------\n";
+    menu();
+
     delete board;
     delete ui;
     delete players[0];
@@ -363,6 +383,7 @@ void run_memory_ttt_game(){
     GameManager<char> game(board, players, ui);
     game.run();
     cout << "\nThank You For Playing!\n--------------------------------\n";
+    menu();
 
     delete board;
     delete ui;
@@ -379,6 +400,8 @@ void run_ultimate_ttt_game(){
     GameManager<char> game(board, players, ui);
     game.run();
     cout << "\nThank You For Playing!\n--------------------------------\n";
+    menu();
+
     delete board;
     delete ui;
     delete players[0];

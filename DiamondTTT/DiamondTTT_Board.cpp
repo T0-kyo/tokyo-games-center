@@ -14,10 +14,10 @@ DiamondTTT_Board::DiamondTTT_Board() : Board(7, 7) {
             if (is_valid_diamond_cell(i, j)) {
                 board[i][j] = ' ';
             } 
-            // If it is OUTSIDE the diamond, fill it with a dot '.' 
+            // If it is OUTSIDE the diamond, fill it with a dot '#' 
             // so the user knows they can't play there.
             else {
-                board[i][j] = '.'; 
+                board[i][j] = '#'; 
             }
         }
     }
