@@ -58,7 +58,6 @@
 #include "UltimateTTT/Ultimate_Board.h"
 #include "UltimateTTT/Ultimate_UI.h"
 
-
 using namespace std;
 
 // Function declarations
@@ -76,32 +75,34 @@ void run_infinity_ttt_game();
 void run_memory_ttt_game();
 void run_ultimate_ttt_game();
 
-
-int main() {
-    srand(static_cast<unsigned int>(time(0)));
-    int choice;
-
-    do {
+void menu(){
         cout << "\n========================================\n";
         cout << "        Board Game Collection\n";
         cout << "========================================\n";
-        cout << "1.  SUS\n";
-        cout << "2.  Four in a Row\n";
-        cout << "3.  5 x 5 Tic-Tac-Toe\n";
-        cout << "4.  Word Tic-Tac-Toe\n";
-        cout << "5.  Misere Tic-Tac-Toe\n";
-        cout << "6.  Diamond Tic-Tac-Toe\n";
-        cout << "7.  4 x 4 Tic-Tac-Toe\n";
-        cout << "8.  Pyramid Tic-Tac-Toe\n";
-        cout << "9.  Numerical Tic-Tac-Toe\n";
+        cout << " 1. SUS\n";
+        cout << " 2. Four in a Row\n";
+        cout << " 3. 5 x 5 Tic-Tac-Toe\n";
+        cout << " 4. Word Tic-Tac-Toe\n";
+        cout << " 5. Misere Tic-Tac-Toe\n";
+        cout << " 6. Diamond Tic-Tac-Toe\n";
+        cout << " 7. 4 x 4 Tic-Tac-Toe\n";
+        cout << " 8. Pyramid Tic-Tac-Toe\n";
+        cout << " 9. Numerical Tic-Tac-Toe\n";
         cout << "10. Obstacles Tic-Tac-Toe\n";
         cout << "11. Infinity Tic-Tac-Toe\n";
         cout << "12. Memory Tic-Tac-Toe\n";
         cout << "13. Ultimate Tic-Tac-Toe\n";
         cout << "14. Random Game\n";
-        cout << "0.  Exit\n";
-        cout << "Enter your choice: ";
+        cout << "15. Show Menu\n";
+        cout << " 0. Exit\n";
+}
 
+int main() {
+    srand(static_cast<unsigned int>(time(0)));
+    int choice;
+    menu();
+    do {
+        cout << "Enter your choice: ";
         if (!(cin >> choice)) {
             cin.clear();
             cin.ignore(numeric_limits<streamsize>::max(), '\n');
@@ -113,7 +114,7 @@ int main() {
         
         switch (choice) {
             case 0:
-                cout << "\n---- Exiting Game Center ----\nHave a great day!\n";
+                cout << "\n---- Exiting Game Center ----\n     Have a great day ^^\n";
                 break;
             case 1:
                 run_sus_game();
@@ -149,31 +150,31 @@ int main() {
                 run_infinity_ttt_game();
                 break;
             case 12:
-            {
                 run_memory_ttt_game();
                 break;
-            }
             case 13:
                 run_ultimate_ttt_game();
                 break;
             case 14:
-                    cout << "Randomly selected game: " << random_game << endl;
-                    switch (random_game) {
-                        case 1: run_sus_game(); break;
-                        case 2: run_four_in_a_row_game(); break;
-                        case 3: run_5x5_ttt_game(); break;
-                        case 4: run_word_ttt_game(); break;
-                        case 5: run_misere_ttt_game(); break;
-                        case 6: run_diamond_ttt_game(); break;
-                        case 7: run_4x4_ttt_game(); break;
-                        case 8: run_pyramid_ttt_game(); break;
-                        case 9: run_numerical_ttt_game(); break;
-                        case 10: run_obstacles_ttt_game(); break;
-                        case 11: run_infinity_ttt_game(); break;
-                        case 12: run_memory_ttt_game(); break;
-                        case 13: run_ultimate_ttt_game(); break;
-                    }
-                    break;
+                cout << "Randomly selected game: " << random_game << endl;
+                switch (random_game) {
+                    case 1: run_sus_game(); break;
+                    case 2: run_four_in_a_row_game(); break;
+                    case 3: run_5x5_ttt_game(); break;
+                    case 4: run_word_ttt_game(); break;
+                    case 5: run_misere_ttt_game(); break;
+                    case 6: run_diamond_ttt_game(); break;
+                    case 7: run_4x4_ttt_game(); break;
+                    case 8: run_pyramid_ttt_game(); break;
+                    case 9: run_numerical_ttt_game(); break;                        case 10: run_obstacles_ttt_game(); break;
+                    case 11: run_infinity_ttt_game(); break;
+                    case 12: run_memory_ttt_game(); break;
+                    case 13: run_ultimate_ttt_game(); break;
+                }
+                break;
+            case 15:
+                menu();
+                break;
             default:
                 cout << "Invalid choice. Please select from menu (0-14)\n";
                 break;
@@ -183,7 +184,7 @@ int main() {
 
 // ---------------------------------------------------------------
 
-void run_sus_game() {
+void run_sus_game(){
     cout << "\n---- Starting SUS Game ----\n";
     UI<char>* ui = new SUS_UI();
     Board<char>* board = new SUS_Board();
@@ -230,7 +231,7 @@ void run_5x5_ttt_game(){
     delete[] players;
 }
 
-void run_word_ttt_game() {
+void run_word_ttt_game(){
     cout << "\n---- Starting Word Tic-Tac-Toe ----\n";
     UI<char>* ui = new WordTTT_UI();
     Board<char>* board = new WordTTT_Board();
@@ -246,7 +247,7 @@ void run_word_ttt_game() {
     delete[] players;
 }
 
-void run_misere_ttt_game() {
+void run_misere_ttt_game(){
     cout << "\n---- Starting Standard Tic-Tac-Toe ----\n";
     UI<char>* ui = new TTT_UI();
     Board<char>* board = new TTT_Board();
@@ -292,7 +293,7 @@ void run_4x4_ttt_game(){
     delete[] players;
 }
 
-void run_pyramid_ttt_game() {
+void run_pyramid_ttt_game(){
     cout << "\n---- Starting Pyramid Tic-Tac-Toe ----\n";
     UI<char>* ui = new PyramidTTT_UI();
     Board<char>* board = new PyramidTTT_Board();
@@ -308,7 +309,7 @@ void run_pyramid_ttt_game() {
     delete[] players;
 }
 
-void run_numerical_ttt_game() {
+void run_numerical_ttt_game(){
     cout << "\n---- Starting Numerical Tic-Tac-Toe ----\n";
     UI<int>* ui = new NumericalTTT_UI();
     Board<int>* board = new NumericalTTT_Board();
@@ -356,7 +357,6 @@ void run_infinity_ttt_game(){
 
 void run_memory_ttt_game(){
     cout << "\n---- Starting Memory Tic-Tac-Toe ----\n";
-
     UI<char>* ui = new MemoryTTT_UI();
     Board<char>* board = new MemoryTTT_Board();
     Player<char>** players = ui->setup_players();

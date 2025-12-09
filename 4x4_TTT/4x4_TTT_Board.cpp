@@ -33,43 +33,51 @@ TTT4x4_Board::TTT4x4_Board() : Board<char>(4,4) {
 bool TTT4x4_Board::update_board(Move<char>* move) {
     int x = move->get_x();
     int y = move->get_y();
-    char dir = toupper(move->get_symbol()); // Using symbol field to pass direction ('U', 'D', 'R', 'L')
-    // 1. Basic boundary check on source cell
+    char dir = move->get_symbol(); // Using symbol field to pass direction
+
     if (x<0 || x>3 || y<0 || y>3){
         return false;
     }
-    // 2. Check if the source cell is empty
     if(board[x][y] ==' '){
         return false;
     }
-    int new_x = x;
-    int new_y = y;
-    // 3. Determine the destination coordinates and check validity
-    if (dir == 'U') {
-        new_x = x - 1;
-    } else if (dir == 'D') {
-        new_x = x + 1;
-    } else if (dir == 'L') {
-        new_y = y - 1;
-    } else if (dir == 'R') {
-        new_y = y + 1;
-    } else {
-        // Invalid direction character
-        return false; 
-    }
-    
-    // Check if destination is out of bounds
-    if (new_x < 0 || new_x >= 4 || new_y < 0 || new_y >= 4) {
+    if (dir == 'U' && (x-1 < 0 || board[x-1][y] != ' ')){
         return false;
     }
-    // Check if destination is empty
-    if (board[new_x][new_y] != ' ') {
+    if (dir == 'D' && (x+1 > 3 || board[x+1][y] != ' ')){
         return false;
     }
-    // 4. Perform the move
-    char sym = board[x][y];
-    board[x][y] = ' ';      // Clear the old cell
-    board[new_x][new_y] = sym; // Place piece in the new cell
+    if (dir == 'L' && (y-1 < 0 || board[x][y-1] != ' ')){
+        return false;
+    }
+    if (dir == 'R' && (y+1 > 3 || board[x][y+1] != ' ')){
+        return false;
+    }
+    if (n_moves % 2 == 0 && board[x][y] !='X'){
+        return false;
+    }
+    if (n_moves % 2 == 1 && board[x][y] !='O'){
+        return false;
+    }
+
+    if (dir == 'U'){
+        if(n_moves % 2 == 0)  board[x-1][y] ='X';
+        else board[x-1][y] ='O';
+    }
+    else if (dir == 'D'){
+        if(n_moves % 2 == 0)  board[x+1][y] ='X';
+        else board[x+1][y] ='O';    
+    }
+    else if (dir == 'L'){
+        if(n_moves % 2 == 0)  board[x][y-1] ='X';
+        else board[x][y-1] ='O';    
+    }
+    else if (dir == 'R'){
+        if(n_moves % 2 == 0)  board[x][y+1] ='X';
+        else board[x][y+1] ='O';    
+    }
+
+    board[x][y] = ' ';
     n_moves++;
     return true;
 }
@@ -81,33 +89,25 @@ bool TTT4x4_Board::update_board(Move<char>* move) {
  */
 bool TTT4x4_Board::is_win(Player<char>* player) {
     char sym = player->get_symbol();
-    
-    // Check rows (3-in-a-row can start at column 0 or 1)
-    for (int r = 0; r < 4; r++) {
-        for (int c = 0; c < 2; c++) {
-            if (board[r][c] == sym && board[r][c+1] == sym && board[r][c+2] == sym) {
-                return true;
-            }
+    // Check rows
+    for (int r=0; r<4; r++){
+        if ((board[r][0] == sym && board[r][1] == sym && board[r][2] == sym) || (board[r][1] == sym && board[r][2] == sym && board[r][3] == sym)){
+            return true;
         }
     }
-    // Check columns (3-in-a-row can start at row 0 or 1)
-    for (int c = 0; c < 4; c++) {
-        for (int r = 0; r < 2; r++) {
-            if (board[r][c] == sym && board[r+1][c] == sym && board[r+2][c] == sym) {
-                return true;
-            }
+    // Check columns
+    for (int c=0; c<4; c++){
+        if ((board[0][c] == sym && board[1][c] == sym && board[2][c] == sym) || (board[1][c] == sym && board[2][c] == sym && board[3][c] == sym)){
+            return true;
         }
     }
-    // Check major diagonals (top-left to bottom-right)
+    // Check diagonals
     for (int r=0; r<2; r++){
         for (int c=0; c<2; c++){
             if (board[r][c] == sym && board[r+1][c+1] == sym && board[r+2][c+2] == sym){
                 return true;
             }
         }
-    }
-    // Check minor diagonals (top-right to bottom-left)
-    for (int r=0; r<2; r++){
         for (int c=3; c>1; c--){
             if(board[r][c] == sym && board[r+1][c-1] == sym && board[r+2][c-2] == sym){
                 return true;
@@ -118,30 +118,42 @@ bool TTT4x4_Board::is_win(Player<char>* player) {
 }
 
 /**
- * @brief Checks for a draw condition.
- * In this moving-piece variant, a draw should occur if no valid moves are possible
- * for either player, or if a certain number of moves is reached without a win.
- * This implementation currently checks for a full board, which may need adjustment
- * based on the full game rules.
- */
-bool TTT4x4_Board::is_draw(Player<char>* player) {
-    // This draw logic seems incorrect for a moving-piece game,
-    // but is included based on the original code's structure.
-    // A proper draw check would determine if the current player has any valid moves.
-    int empty_cells = 0;
-    for (int i=0; i<4; i++){
-        for (int j=0; j<4; j++){
-            if (board[i][j] == ' ') empty_cells++;
-        }
-    }
-    return (empty_cells == 0 && !is_win(player));
-}
-
-/**
  * @brief Checks if the game has concluded (win or draw).
  */
 bool TTT4x4_Board::game_is_over(Player<char>* player) {
     return (is_win(player) || is_draw(player));
+}
+
+/**
+ * @brief Check is the game is end with draw
+ * That happens when the player can't move its pieces
+ * All moves is invalid for this player
+ */
+bool TTT4x4_Board::is_draw(Player<char>* player) {
+    int cntX=0, cntO=0;
+    for (int i=0; i<4; i++){
+        for (int j=0; j<4; j++){
+            if (board[i][j] == 'X' && (i+1 > 3 || board[i+1][j] != ' ') && 
+            (i-1 < 0 || board[i-1][j] != ' ' ) && (j+1 > 3 || board[i][j+1] != ' ' ) && (j-1 < 0 || board[i][j-1] != ' ')){
+                cntX++;
+            }
+        }
+    }
+
+    for (int i=0; i<4; i++){
+        for (int j=0; j<4; j++){
+            if (board[i][j] == 'O' && (i+1 > 3 || board[i+1][j] != ' ') && 
+            (i-1 < 0 || board[i-1][j] != ' ' ) && (j+1 > 3 || board[i][j+1] != ' ' ) && (j-1 < 0 || board[i][j-1] != ' ')){
+                cntO++;
+            }
+        }
+    }
+
+    if (cntX==4 || cntO==4){
+        return true;
+    }
+
+    return false;
 }
 
 /**
