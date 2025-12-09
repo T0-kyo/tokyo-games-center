@@ -1,3 +1,7 @@
+/**
+ * @file TTT5x5_UI.h
+ * @brief Defines the user interface for the 5x5 Tic-Tac-Toe game.
+ */
 #ifndef TTT5x5_UI_H
 #define TTT5x5_UI_H
 
@@ -6,46 +10,47 @@
 #include <iostream>
 #include <string>
 #include <vector>
-#include <cctype> 
+#include <cctype> // لاستخدام دالة toupper()
 
 using namespace std;
 
 /**
- * @brief Concrete UI class for the 5x5 Scoring Tic-Tac-Toe game.
- * Inherits from UI<char> to handle character moves on a 5x5 board.
+ * @class TTT5x5_UI
+ * @brief Handles all user interaction, setup, and move input for 5x5 TTT.
+ * Inherits from the base UI<char> class.
  */
 class TTT5x5_UI : public UI<char> {
     public:
     /**
-     * @brief Constructor for the 5x5 Tic-Tac-Toe UI.
+     * @brief Constructor for the TTT4x4_UI.
      */
     TTT5x5_UI();
 
     /**
-     * @brief Sets up two players for the game.
-     * @return A dynamically allocated array of two Player<char> pointers.
+     * @brief Sets up two players for the 4x4 game.
+     * @return A dynamically allocated array of two Player<char>* pointers.
      */
     virtual Player<char>** setup_players() override;
 
     /**
-     * @brief Creates a Player<char> object of the specified type.
-     * @param name Player's name.
-     * @param symbol The symbol ('X' or 'O') used by the player.
+     * @brief Factory method to create a Player<char> object.
+     * @param name The player's name.
+     * @param symbol The player's symbol ('X' or 'O').
      * @param type The type of player (Human, Computer, etc.).
-     * @return A dynamically allocated Player<char> pointer.
+     * @return A pointer to the newly created Player<char> object.
      */
     virtual Player<char>* create_player(string& name, char symbol, PlayerType type) override;
 
     /**
-     * @brief Gets the next move from the current player (human or computer).
-     * @param player The current player whose turn it is.
-     * @return A dynamically allocated Move<char> pointer.
+     * @brief Gets the player's move input.
+     * @param player Pointer to the current Player<char>.
+     * @return A pointer to a new Move<char> object.
      */
     virtual Move<char>* get_move(Player<char>* player) override;
 
     /**
-     * @brief Displays the current score of the game.
-     * @param board Pointer to the 5x5 board instance.
+     * @brief Helper to show the player's score
+     * @param board Pointer to the board
      */
     void show_score(TTT5x5_Board* board);
 

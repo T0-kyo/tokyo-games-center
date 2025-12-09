@@ -64,5 +64,4 @@ class TTT4x4_Board : public Board<char> {
     bool is_lose(Player<char>* player) override;
 };
 
-
 #endif // TTT4x4_Board_H
