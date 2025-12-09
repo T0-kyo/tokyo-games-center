@@ -114,14 +114,14 @@ bool ObstaclesTTT_Board::is_draw(Player<char>* player) {
 }
 
 /**
- * @brief Check is game is over
+ * @brief Check if game is over
  */
 bool ObstaclesTTT_Board::game_is_over(Player<char>* player) {
     return is_win(player) || is_draw(player);
 }
 
 /**
- * @brief Check is player loose
+ * @brief Check if player loose
  */
 bool ObstaclesTTT_Board::is_lose(Player<char>* player) {
     return false;

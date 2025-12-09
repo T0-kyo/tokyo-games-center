@@ -2,8 +2,16 @@
 #include <limits>
 #include <cstdlib>
 
+/**
+ * @brief Constructor for the PyramidTTT_UI.
+ * Initializes the base UI class with a descriptive welcome message and cell width 2.
+ */
 PyramidTTT_UI::PyramidTTT_UI() : UI("\nWelcome to Pyramid Tic-Tac-Toe (3x5)!\nAlign 3 marks to win.\n", 2) {}
 
+/**
+ * @brief Sets up two players for the game.
+ * Player 1 uses 'X', Player 2 uses 'O'. Prompts for name and type.
+ */
 Player<char>** PyramidTTT_UI::setup_players() {
     Player<char>** players = new Player<char>*[2];
     vector<string> type_options = { "Human", "Computer" };
@@ -24,10 +32,16 @@ Player<char>** PyramidTTT_UI::setup_players() {
     return players;
 }
 
+/**
+ * @brief Creates a new Player<char> object.
+ */
 Player<char>* PyramidTTT_UI::create_player(string& name, char symbol, PlayerType type) {
     return new Player<char>(name, symbol, type);
 }
 
+/**
+ * @brief Gets the player's move input.
+ */
 Move<char>* PyramidTTT_UI::get_move(Player<char>* player) {
     char symbol = player->get_symbol();
     PyramidTTT_Board* board_ptr = static_cast<PyramidTTT_Board*>(player->get_board_ptr());

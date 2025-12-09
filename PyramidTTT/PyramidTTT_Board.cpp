@@ -17,7 +17,8 @@ PyramidTTT_Board::PyramidTTT_Board() : Board<char>(3, 5) {
 }
 
 /**
- * @brief Check 
+ * @brief Check if the cell is in the board bounders
+ * The shape of the board is pyramid.
  */
 bool PyramidTTT_Board::is_valid_pyramid_cell(int r, int c) {
     // Row 0: Only center (0, 2)
@@ -49,7 +50,10 @@ bool PyramidTTT_Board::update_board(Move<char>* move) {
     return true;
 }
 
-// 3. Win Condition
+/**
+ * @brief Check if player wins
+ * Win Condition: Connect 4
+ */
 bool PyramidTTT_Board::is_win(Player<char>* player) {
     // We check for 3 consecutive symbols horizontally, vertically, or diagonally.
     // We don't need to check "who" the player is, just if the board has a winning line
@@ -79,18 +83,24 @@ bool PyramidTTT_Board::is_win(Player<char>* player) {
     return false;
 }
 
-// 4. Draw Condition
+/**
+ * @brief Check if it is draw
+ */
 bool PyramidTTT_Board::is_draw(Player<char>* player) {
     // Total valid cells in pyramid = 1 (top) + 3 (mid) + 5 (bot) = 9 cells.
     return (n_moves == 9 && !is_win(player));
 }
 
-// 5. Game Over
+/**
+ * @brief Check if game is over
+ */
 bool PyramidTTT_Board::game_is_over(Player<char>* player) {
     return is_win(player) || is_draw(player);
 }
 
-// 6. Lose Condition
+/**
+ * @brief Check if player loose
+ */
 bool PyramidTTT_Board::is_lose(Player<char>* player) {
     return false; // Not needed for standard TTT logic usually
 }
