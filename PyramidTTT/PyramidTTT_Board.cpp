@@ -1,6 +1,9 @@
 #include "PyramidTTT_Board.h"
 
-// 1. Constructor: Initialize a 3x5 board (Max width is 5, height is 3)
+/**
+ * @brief Constructor for the PyramidTTT_Board.
+ * Initialize the (3x5) board.
+ */
 PyramidTTT_Board::PyramidTTT_Board() : Board<char>(3, 5) {
     n_moves = 0;
     // Initialize all cells to space
@@ -13,7 +16,9 @@ PyramidTTT_Board::PyramidTTT_Board() : Board<char>(3, 5) {
     board[1][0]='#'; board[1][4]='#';
 }
 
-// Helper: Defines the shape of the pyramid
+/**
+ * @brief Check 
+ */
 bool PyramidTTT_Board::is_valid_pyramid_cell(int r, int c) {
     // Row 0: Only center (0, 2)
     if (r == 0) return c == 2;
@@ -25,7 +30,9 @@ bool PyramidTTT_Board::is_valid_pyramid_cell(int r, int c) {
     return false;
 }
 
-// 2. Update Board
+/**
+ * @brief Updates the board by adding a move.
+ */
 bool PyramidTTT_Board::update_board(Move<char>* move) {
     int r = move->get_x();
     int c = move->get_y();
