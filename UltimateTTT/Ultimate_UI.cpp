@@ -1,35 +1,48 @@
 #include "Ultimate_UI.h"
 #include "Ultimate_Board.h"
-#include <limits> // لاستخدام cin.ignore
-#include <cstdlib> // لاستخدام rand()
-#include <cctype> // لاستخدام toupper()
+#include <limits> // cin.ignore
+#include <cstdlib> // rand()
+#include <cctype> // toupper()
 
-// Constructor
+/**
+ * @brief Constructor for the Ultimate_UI.
+ * Initializes the base UI class with a descriptive welcome message and cell width 2.
+ */
 Ultimate_UI::Ultimate_UI() : UI("\nWelcome to Ultimate Tic-Tac-Toe (9x9)!\nPlay on mini boards to be the ultimate winner!\n", 2) {}
 
+/**
+ * @brief Sets up two players for the game.
+ * Player 1 uses 'X', Player 2 uses 'O'. Prompts for name and type.
+ */
 Player<char>** Ultimate_UI::setup_players(){
     Player<char>** players = new Player<char>*[2];
     vector<string> type_options = { "Human", "Computer" };
-    // مسح دفاعي للـ input buffer
+
     cin.clear();
     cin.ignore(numeric_limits<streamsize>::max(), '\n');
 
     // --- Setup Player 1 ---
     string name1 = get_player_name("Player 1 (will use 'X')");
     PlayerType type1 = get_player_type_choice("Player 1", type_options);
-    players[0] = create_player(name1, 'X', type1); // رمز مبدئي 'X'
+    players[0] = create_player(name1, 'X', type1);
 
     // --- Setup Player 2 ---
     string name2 = get_player_name("Player 2 (will use 'O')");
     PlayerType type2 = get_player_type_choice("Player 2", type_options);
-    players[1] = create_player(name2, 'O', type2); // رمز مبدئي 'O'
+    players[1] = create_player(name2, 'O', type2);
     return players;
 }
 
+/**
+ * @brief Creates a new Player<char> object.
+ */
 Player<char>* Ultimate_UI::create_player(string& name, char symbol, PlayerType type) {
     return new Player<char>(name, symbol, type);
 }
 
+/**
+ * @brief Gets the player's move input.
+ */
 Move<char>* Ultimate_UI::get_move(Player<char>* player) {
     char sym = player->get_symbol();
     cout << "--------------------------------" << endl;

@@ -48,7 +48,8 @@ public:
      * @return true if the player wins or it is draw
      */
     bool game_is_over(Player<char>* player) override;
-    /** @brief Check is player loose
+    /**
+     * @brief Check is player loose
      * @param player Pointer to the current player
      * @return false always
      */
