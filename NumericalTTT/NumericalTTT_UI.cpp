@@ -3,8 +3,7 @@
 #include <cstdlib> // For rand()
 
 /**
- * @brief The base constructor with a welcome message and a cell width
- * Cell width is 3 spaces (good for numbers)
+ * @brief The base constructor with a welcome message and a cell width 2.
  */
 NumericalTTT_UI::NumericalTTT_UI() : UI("\nWelcome to Numerical Tic-Tac-Toe (3x3)!\nForm 3 numbers sequence that add up to 15 to win.\n", 2) {
     // Constructor body is empty

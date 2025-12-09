@@ -76,6 +76,14 @@ bool NumericalTTT_Board::update_board(Move<int>* move) {
 }
 
 /**
+ * @brief Checks if the game is over.
+ */
+bool NumericalTTT_Board::game_is_over(Player<int>* player) {
+    // The game is over if there is a win or a draw
+    return (is_win(player) || is_draw(player));
+}
+
+/**
  * @brief Checks for a win condition (any line sums to 15).
  */
 bool NumericalTTT_Board::is_win(Player<int>* player) {
@@ -100,14 +108,6 @@ bool NumericalTTT_Board::is_win(Player<int>* player) {
 bool NumericalTTT_Board::is_draw(Player<int>* player) {
     // A draw happens if the board is full (9 moves) and there is no winner
     return (n_moves == 9 && !is_win(player));
-}
-
-/**
- * @brief Checks if the game is over.
- */
-bool NumericalTTT_Board::game_is_over(Player<int>* player) {
-    // The game is over if there is a win or a draw
-    return (is_win(player) || is_draw(player));
 }
 
 /**
