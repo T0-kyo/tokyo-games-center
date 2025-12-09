@@ -1,5 +1,9 @@
 #include "SUS_Board.h"
 
+/**
+ * @brief The base constructor for the 3x3 board
+ * Initializes the 3x3 board by calling the base constructor.
+ */
 SUS_Board::SUS_Board() : Board<char>(3, 3) {
     p1_score = 0;
     p2_score = 0;
@@ -11,11 +15,14 @@ SUS_Board::SUS_Board() : Board<char>(3, 3) {
     }
 }
 
+/**
+ * @brief Helper to count SUS words that player made
+ */
 int SUS_Board::count_sus(int r, int c) {
     int points = 0;
     
-    // تعريف المتجهات للاتجاهات الأربعة (أفقي، رأسي، قطرين)
-    // dx, dy يمثلون التغير في الإحداثيات لفحص الجيران
+    // Initialize the directions (vertical, horizontal, diagonals)
+    // dx, dy are the change in the directions with respect to neighbor cells
     int dr[] = {0, 1, 1, 1}; 
     int dc[] = {1, 0, 1, -1};
     
@@ -31,6 +38,9 @@ int SUS_Board::count_sus(int r, int c) {
     return points;
 }
 
+/**
+ * @brief Updates the board with a new move.
+ */
 bool SUS_Board::update_board(Move<char>* move) {
     int r = move->get_x();
     int c = move->get_y();
@@ -52,11 +62,17 @@ bool SUS_Board::update_board(Move<char>* move) {
     return true;
 }
 
+/**
+ * @brief Checks if the game is over.
+ */
 bool SUS_Board::game_is_over(Player<char>* player) {
     return n_moves >= 9;
 }
 
-// 5. Corrected Winning Logic (Using Symbols)
+/**
+ * @brief Checks for a win condition.
+ * Win condition is to make the most SUS sequences.
+ */
 bool SUS_Board::is_win(Player<char>* player) {
     // The game is only won when the board is full
     if (!game_is_over(player)) return false;
@@ -74,10 +90,16 @@ bool SUS_Board::is_win(Player<char>* player) {
     return false;
 }
 
+/**
+ * @brief Checks for a draw condition.
+ */
 bool SUS_Board::is_draw(Player<char>* player) {
     return (game_is_over(player) && p1_score == p2_score);
 }
 
+/**
+ * @brief Checks if the player has lost.
+ */
 bool SUS_Board::is_lose(Player<char>* player) {
     // The game is only lost when the board is full
     if (!game_is_over(player)) return false;
