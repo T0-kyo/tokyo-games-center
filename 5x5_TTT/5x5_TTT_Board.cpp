@@ -91,7 +91,7 @@ bool TTT5x5_Board::game_is_over(Player<char>* player) {
  */
 bool TTT5x5_Board::is_win(Player<char>* player) {
     add_point(player);
-    return (game_is_over(player) && p1_score > p2_score);
+    return (game_is_over(player) && p1_score < p2_score);
 }
 
 /**
@@ -106,5 +106,5 @@ bool TTT5x5_Board::is_draw(Player<char>* player) {
  * @brief check of the player loose.
  */
 bool TTT5x5_Board::is_lose(Player<char>* player) {
-    return (game_is_over(player) && p1_score < p2_score);
+    return (game_is_over(player) && p1_score > p2_score);
 }

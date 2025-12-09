@@ -27,7 +27,7 @@ bool Infinity_Board::update_board(Move<char>* move) {
     }
 
     del.push({x,y});
-    if (del.size() == 7){
+    if (del.size() == 6){
         auto to_del = del.front();
         board[to_del.first][to_del.second] = ' ';
         del.pop();

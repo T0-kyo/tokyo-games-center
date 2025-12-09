@@ -5,9 +5,9 @@
 
 /**
  * @brief Constructor for the DiamondTTT_UI.
- * Initializes the base UI class with a descriptive welcome message and cell width 1.
+ * Initializes the base UI class with a descriptive welcome message and cell width 2.
  */
-DiamondTTT_UI::DiamondTTT_UI() : UI("Welcome to Diamond Tic-Tac-Toe (7x7)!", 1) {
+DiamondTTT_UI::DiamondTTT_UI() : UI("Welcome to Diamond Tic-Tac-Toe (7x7)!", 2) {
     // Empty
 }
 
