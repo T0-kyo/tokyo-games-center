@@ -42,6 +42,7 @@ add_executable(Game
     UltimateTTT/Ultimate_UI.cpp
     SFML/StateMachine.cpp
     SFML/AssetManager.cpp
+    SFML/InputManager.cpp
 )
 
 #link-SFML
