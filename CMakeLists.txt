@@ -9,7 +9,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 # This allows includes like "BoardGameFramework/File.h" to work.
 include_directories(
     "${PROJECT_SOURCE_DIR}"
-    "${PROJECT_SOURCE_DIR}/SFML/include"
+    "C:/SFML-3.0/include"
 )
 
 add_executable(Game
@@ -44,7 +44,7 @@ add_executable(Game
 
 #link-SFML
 target_link_libraries(Game
-    "${PROJECT_SOURCE_DIR}/SFML/lib/libsfml-graphics.a"
-    "${PROJECT_SOURCE_DIR}/SFML/lib/libsfml-window.a"
-    "${PROJECT_SOURCE_DIR}/SFML/lib/libsfml-system.a"
+    "C:/SFML-3.0/lib/libsfml-graphics.a"
+    "C:/SFML-3.0/lib/libsfml-window.a"
+    "C:/SFML-3.0/lib/libsfml-system.a"
 )
