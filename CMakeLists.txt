@@ -40,9 +40,10 @@ add_executable(Game
     MemoryTTT/MemoryTTT_UI.cpp
     UltimateTTT/Ultimate_Board.cpp
     UltimateTTT/Ultimate_UI.cpp
-    SFML/StateMachine.cpp
-    SFML/AssetManager.cpp
-    SFML/InputManager.cpp
+    GameManager/StateMachine.cpp
+    GameManager/AssetManager.cpp
+    GameManager/InputManager.cpp
+    GameManager/Game.cpp
 )
 
 #link-SFML
