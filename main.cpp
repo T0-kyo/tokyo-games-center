@@ -8,55 +8,55 @@
 #include "BoardGameFramework/BoardGame_Classes.h"
 
 // SUS Game
-#include "SUS/SUS_Board.h"
-#include "SUS/SUS_UI.h"
+#include "GameCenter/SUS/SUS_Board.h"
+#include "GameCenter/SUS/SUS_UI.h"
 
 // Pyramid Tic-Tac-Toe
-#include "PyramidTTT/PyramidTTT_Board.h"
-#include "PyramidTTT/PyramidTTT_UI.h"
+#include "GameCenter/PyramidTTT/PyramidTTT_Board.h"
+#include "GameCenter/PyramidTTT/PyramidTTT_UI.h"
 
 // Numerical Tic-Tac-Toe
-#include "NumericalTTT/NumericalTTT_Board.h"
-#include "NumericalTTT/NumericalTTT_UI.h"
+#include "GameCenter/NumericalTTT/NumericalTTT_Board.h"
+#include "GameCenter/NumericalTTT/NumericalTTT_UI.h"
 
 // Misere Tic-Tac-Toe
-#include "MisereTTT/MisereTTT_Board.h"
-#include "MisereTTT/MisereTTT_UI.h"
+#include "GameCenter/MisereTTT/MisereTTT_Board.h"
+#include "GameCenter/MisereTTT/MisereTTT_UI.h"
 
 // Obstacles Tic-Tac-Toe
-#include "ObstaclesTTT/ObstaclesTTT_Board.h"
-#include "ObstaclesTTT/ObstaclesTTT_UI.h"
+#include "GameCenter/ObstaclesTTT/ObstaclesTTT_Board.h"
+#include "GameCenter/ObstaclesTTT/ObstaclesTTT_UI.h"
 
 // Word Tic-Tac-Toe
-#include "WordTTT/WordTTT_Board.h"
-#include "WordTTT/WordTTT_UI.h"
+#include "GameCenter/WordTTT/WordTTT_Board.h"
+#include "GameCenter/WordTTT/WordTTT_UI.h"
 // Diamond Tic-Tac-Toe
-#include "DiamondTTT/DiamondTTT_Board.h"
-#include "DiamondTTT/DiamondTTT_UI.h"
+#include "GameCenter/DiamondTTT/DiamondTTT_Board.h"
+#include "GameCenter/DiamondTTT/DiamondTTT_UI.h"
 
 // 5x5 Tic-Tac-Toe
-#include "5x5_TTT/5x5_TTT_Board.h"
-#include "5x5_TTT/5x5_TTT_UI.h"
+#include "GameCenter/5x5_TTT/5x5_TTT_Board.h"
+#include "GameCenter/5x5_TTT/5x5_TTT_UI.h"
 
 // 4x4 Tic-Tac-Toe
-#include "4x4_TTT/4x4_TTT_Board.h"
-#include "4x4_TTT/4x4_TTT_UI.h"
+#include "GameCenter/4x4_TTT/4x4_TTT_Board.h"
+#include "GameCenter/4x4_TTT/4x4_TTT_UI.h"
 
 // Four In A Row
-#include "FourInARow/FourInARow_Board.h"
-#include "FourInARow/FourInARow_UI.h"
+#include "GameCenter/FourInARow/FourInARow_Board.h"
+#include "GameCenter/FourInARow/FourInARow_UI.h"
 
 // Infinity Tic-Tac-Toe
-#include "Infinity_TTT/Infinity_Board.h"
-#include "Infinity_TTT/Infinity_UI.h"
+#include "GameCenter/Infinity_TTT/Infinity_Board.h"
+#include "GameCenter/Infinity_TTT/Infinity_UI.h"
 
 // Memory Tic-Tac-Toe
-#include "MemoryTTT/MemoryTTT_Board.h"
-#include "MemoryTTT/MemoryTTT_UI.h"
+#include "GameCenter/MemoryTTT/MemoryTTT_Board.h"
+#include "GameCenter/MemoryTTT/MemoryTTT_UI.h"
 
 // Ultimate Tic-Tac-Toe
-#include "UltimateTTT/Ultimate_Board.h"
-#include "UltimateTTT/Ultimate_UI.h"
+#include "GameCenter/UltimateTTT/Ultimate_Board.h"
+#include "GameCenter/UltimateTTT/Ultimate_UI.h"
 
 using namespace std;
 
