@@ -14,32 +14,32 @@ include_directories(
 
 add_executable(Game
     main.cpp
-    NumericalTTT/NumericalTTT_Board.cpp
-    NumericalTTT/NumericalTTT_UI.cpp
-    SUS/SUS_Board.cpp
-    SUS/SUS_UI.cpp
-    PyramidTTT/PyramidTTT_Board.cpp
-    PyramidTTT/PyramidTTT_UI.cpp
-    WordTTT/WordTTT_Board.cpp
-    WordTTT/WordTTT_UI.cpp
-    MisereTTT/MisereTTT_Board.cpp
-    MisereTTT/MisereTTT_UI.cpp
-    ObstaclesTTT/ObstaclesTTT_Board.cpp
-    ObstaclesTTT/ObstaclesTTT_UI.cpp
-    DiamondTTT/DiamondTTT_Board.cpp
-    DiamondTTT/DiamondTTT_UI.cpp
-    5x5_TTT/5x5_TTT_Board.cpp
-    5x5_TTT/5x5_TTT_UI.cpp
-    4x4_TTT/4x4_TTT_Board.cpp
-    4x4_TTT/4x4_TTT_UI.cpp
-    FourInARow/FourInARow_Board.cpp
-    FourInARow/FourInARow_UI.cpp
-    Infinity_TTT/Infinity_Board.cpp
-    Infinity_TTT/Infinity_UI.cpp
-    MemoryTTT/MemoryTTT_Board.cpp
-    MemoryTTT/MemoryTTT_UI.cpp
-    UltimateTTT/Ultimate_Board.cpp
-    UltimateTTT/Ultimate_UI.cpp
+    GameCenter/NumericalTTT/NumericalTTT_Board.cpp
+    GameCenter/NumericalTTT/NumericalTTT_UI.cpp
+    GameCenter/SUS/SUS_Board.cpp
+    GameCenter/SUS/SUS_UI.cpp
+    GameCenter/PyramidTTT/PyramidTTT_Board.cpp
+    GameCenter/PyramidTTT/PyramidTTT_UI.cpp
+    GameCenter/WordTTT/WordTTT_Board.cpp
+    GameCenter/WordTTT/WordTTT_UI.cpp
+    GameCenter/MisereTTT/MisereTTT_Board.cpp
+    GameCenter/MisereTTT/MisereTTT_UI.cpp
+    GameCenter/ObstaclesTTT/ObstaclesTTT_Board.cpp
+    GameCenter/ObstaclesTTT/ObstaclesTTT_UI.cpp
+    GameCenter/DiamondTTT/DiamondTTT_Board.cpp
+    GameCenter/DiamondTTT/DiamondTTT_UI.cpp
+    GameCenter/5x5_TTT/5x5_TTT_Board.cpp
+    GameCenter/5x5_TTT/5x5_TTT_UI.cpp
+    GameCenter/4x4_TTT/4x4_TTT_Board.cpp
+    GameCenter/4x4_TTT/4x4_TTT_UI.cpp
+    GameCenter/FourInARow/FourInARow_Board.cpp
+    GameCenter/FourInARow/FourInARow_UI.cpp
+    GameCenter/Infinity_TTT/Infinity_Board.cpp
+    GameCenter/Infinity_TTT/Infinity_UI.cpp
+    GameCenter/MemoryTTT/MemoryTTT_Board.cpp
+    GameCenter/MemoryTTT/MemoryTTT_UI.cpp
+    GameCenter/UltimateTTT/Ultimate_Board.cpp
+    GameCenter/UltimateTTT/Ultimate_UI.cpp
     GameManager/StateMachine.cpp
     GameManager/AssetManager.cpp
     GameManager/InputManager.cpp
