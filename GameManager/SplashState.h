@@ -4,6 +4,7 @@
 #include "State.h"
 #include "Game.h"
 #include <memory>
+#include "../DEFENITIONS.h"
 
 namespace Tokyo {
 
@@ -21,5 +22,11 @@ namespace Tokyo {
         GameDataRef _data;
         sf::Clock _clock;
         std::unique_ptr<sf::Sprite> _background;
+        float _alpha = 0.f;
+
+        enum class FadeState { FadeIn, Show, FadeOut };
+        FadeState _phase = FadeState::FadeIn;
+        float StartDelay = SPLASH_STATE_DELAY;
+        float elapsed = 0.f;
     };
 }
