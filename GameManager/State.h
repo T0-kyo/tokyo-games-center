@@ -4,7 +4,7 @@ namespace Tokyo {
 
     // Abstract class for a state in the game. Each state (e.g. Main Menu, Gameplay, Pause Menu) 
     // will inherit from this class and implement its own version of the virtual functions.
-    class state {
+    class State {
         public:
         virtual void Init() = 0;    //Initialize the state
 

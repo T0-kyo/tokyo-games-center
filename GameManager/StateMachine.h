@@ -9,7 +9,7 @@ using namespace std;
 
 namespace Tokyo {
 
-    typedef unique_ptr<state> StateRef;
+    typedef unique_ptr<State> StateRef;
 
     // The StateMachine handles the currently running state and any input for the current state like the manager of the states. 
     // It also handles switching between states and adding/removing states from the stack.

@@ -44,6 +44,7 @@ add_executable(Game
     GameManager/AssetManager.cpp
     GameManager/InputManager.cpp
     GameManager/Game.cpp
+    GameManager/SplashState.cpp
 )
 
 #link-SFML
