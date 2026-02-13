@@ -1,7 +1,6 @@
 #include <iostream>
 #include <sstream>
 #include "SplashState.h"
-#include "../DEFENITIONS.h"
 
 namespace Tokyo {
 
@@ -11,6 +10,8 @@ namespace Tokyo {
         this->_data->assets.LoadTexture( "Splash State Background", SPLASH_BACKGROUND_FILEPATH );
         auto& texture = this->_data->assets.GetTexture( "Splash State Background" );
         this->_background = std::make_unique<sf::Sprite> ( texture );
+        this->_background->setPosition( { SCREEN_WIDTH*0.5f - texture.getSize().x*0.5f, SCREEN_HEIGHT*0.5f - texture.getSize().y*0.5f } );
+        this->_background->setColor( sf::Color( 255, 255, 255, 0 ) );
     }
 
     void SplashState::HandleInput() {
@@ -21,14 +22,55 @@ namespace Tokyo {
         }
     }
 
-    void SplashState::Update( float dt ) {
-        if ( this->_clock.getElapsedTime().asSeconds() > SPLASH_STATE_SHOW_TIME ) {
-            std::cout << "GO to Main Menu" << std::endl;
+    void SplashState::Update(float dt)
+{
+    float fadeSpeed = 255.f / FADE_EFFECT_DURATION;
+    elapsed += dt;
+
+    if (elapsed < StartDelay)
+    {
+        return;
+    }
+
+    if (_phase == FadeState::FadeIn)
+    {
+        _alpha += fadeSpeed * dt;
+
+        if (_alpha >= 255.f)
+        {
+            _alpha = 255.f;
+            _phase = FadeState::Show;
+            this->_clock.restart();
         }
     }
 
+    else if (_phase == FadeState::Show)
+    {
+        if (this->_clock.getElapsedTime().asSeconds()
+            >= SPLASH_STATE_SHOW_TIME)
+        {
+            _phase = FadeState::FadeOut;
+        }
+    }
+
+    else if (_phase == FadeState::FadeOut)
+    {
+        _alpha -= fadeSpeed * dt;
+
+        if (_alpha <= 0.f)
+        {
+            _alpha = 0.f;
+
+            std::cout << "Go to main menu" << std::endl;
+        }
+    }
+
+    this->_background->setColor(
+        sf::Color(255, 255, 255,static_cast<std::uint8_t>(_alpha)));
+}
+
     void SplashState::Draw( float dt ) {
-        this->_data->window.clear();
+        this->_data->window.clear(sf::Color(35, 35, 35));
         this->_data->window.draw( *this->_background );
         this->_data->window.display();
     }
