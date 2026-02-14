@@ -5,7 +5,7 @@
 using namespace Tokyo;
 int main() {
     
-    Game( SCREEN_WIDTH, SCREEN_HEIGHT, "Tokyo" );
+    Game( SCREEN_WIDTH, SCREEN_HEIGHT, "Game Center" );
 
     return 0;
 }

@@ -45,6 +45,7 @@ add_executable(Game
     GameManager/InputManager.cpp
     GameManager/Game.cpp
     GameManager/SplashState.cpp
+    GameManager/MainMenuState.cpp
 )
 
 #link-SFML
@@ -52,4 +53,5 @@ target_link_libraries(Game
     "C:/SFML-3.0/lib/libsfml-graphics.a"
     "C:/SFML-3.0/lib/libsfml-window.a"
     "C:/SFML-3.0/lib/libsfml-system.a"
+    "C:/SFML-3.0/lib/libsfml-audio.a"
 )
