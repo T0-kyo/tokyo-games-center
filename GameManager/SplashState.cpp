@@ -1,6 +1,7 @@
 #include <iostream>
 #include <sstream>
 #include "SplashState.h"
+#include "MainMenuState.h"
 
 namespace Tokyo {
 
@@ -60,8 +61,8 @@ namespace Tokyo {
         if (_alpha <= 0.f)
         {
             _alpha = 0.f;
-
-            std::cout << "Go to main menu" << std::endl;
+            
+            this->_data->machine.AddState( StateRef( new MainMenuState( this->_data ) ), true );
         }
     }
 
@@ -70,7 +71,7 @@ namespace Tokyo {
 }
 
     void SplashState::Draw( float dt ) {
-        this->_data->window.clear(sf::Color(35, 35, 35));
+        this->_data->window.clear(sf::Color(30, 30, 30));
         this->_data->window.draw( *this->_background );
         this->_data->window.display();
     }
