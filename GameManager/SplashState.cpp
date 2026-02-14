@@ -1,7 +1,7 @@
 #include <iostream>
 #include <sstream>
 #include "SplashState.h"
-#include "MainMenuState.h"
+#include "MainState.h"
 
 namespace Tokyo {
 
@@ -62,7 +62,10 @@ namespace Tokyo {
         {
             _alpha = 0.f;
             
-            this->_data->machine.AddState( StateRef( new MainMenuState( this->_data ) ), true );
+            this->_background->setColor(
+        sf::Color(255, 255, 255,static_cast<std::uint8_t>(_alpha)));
+            
+            this->_data->machine.AddState( StateRef( new MainState( this->_data ) ), true );
         }
     }
 

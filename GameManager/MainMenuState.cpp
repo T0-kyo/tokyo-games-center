@@ -22,6 +22,7 @@ namespace Tokyo {
         sf::FloatRect textRect = this->_title->getLocalBounds();
 
         this->_background->setPosition({SCREEN_WIDTH / 2 - texture1.getSize().x * 0.5f, SCREEN_HEIGHT / 2 - texture1.getSize().y * 0.5f});
+        this->_background->setColor( sf::Color( 255, 255, 255, 180 ) );
         this->_title->setFillColor( sf::Color(235, 185, 80) );
         this->_title->setPosition({ SCREEN_WIDTH /2 - textRect.size.x * 0.5f , SCREEN_HEIGHT*0.075f});
     }

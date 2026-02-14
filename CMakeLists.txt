@@ -45,6 +45,7 @@ add_executable(Game
     GameManager/InputManager.cpp
     GameManager/Game.cpp
     GameManager/SplashState.cpp
+    GameManager/MainState.cpp
     GameManager/MainMenuState.cpp
 )
 
