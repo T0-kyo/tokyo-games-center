@@ -6,7 +6,8 @@
 #ifndef OBSTACLES_TTT_BOARD_H
 #define OBSTACLES_TTT_BOARD_H
 
-#include "../BoardGameFramework/BoardGame_Classes.h"
+#include "../../DEFENITIONS.h"
+#include GAME_PLAY
 #include <vector>
 
 using namespace std;

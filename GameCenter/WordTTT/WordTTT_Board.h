@@ -6,8 +6,8 @@
  */
 #ifndef WordTTT_BOARD_H
 #define WordTTT_BOARD_H
-
-#include "../BoardGameFramework/BoardGame_Classes.h"
+#include "../../DEFENITIONS.h"
+#include GAME_PLAY
 #include <vector>
 #include <string>
 #include <iostream>

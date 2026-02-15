@@ -6,7 +6,8 @@
 #ifndef MEMORYTTT_BOARD_H
 #define MEMORYTTT_BOARD_H
 
-#include "../BoardGameFramework/BoardGame_Classes.h"
+#include "../../DEFENITIONS.h"
+#include GAME_PLAY
 
 /**
  * @class MemoryTTT_Board

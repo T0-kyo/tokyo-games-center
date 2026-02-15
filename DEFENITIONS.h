@@ -1,5 +1,7 @@
 #pragma once
 
+#define GAME_PLAY "../../GameManager/GamePlay.h"
+
 #define SCREEN_WIDTH 1489 
 #define SCREEN_HEIGHT 950
 
@@ -15,3 +17,5 @@
 
 #define MAIN_MENU_BACKGROUND_FILEPATH "../Assets/Textures/MMBackground.jpg"
 #define MAIN_MENU_TITLE_FILEPATH "../Assets/Fonts/Frijole-Regular.ttf"
+#define NUMERICAL_ICON_PATH "../Assets/Textures/Numerical.png"
+#define _4x4_ICON_PATH "../Assets/Textures/4x4.png"
