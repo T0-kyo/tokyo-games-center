@@ -21,6 +21,7 @@ namespace Tokyo {
 
         private:
         GameDataRef _data;
+        bool _isStartClicked = false;
 
         std::unique_ptr<sf::Sprite> _background;
         std::unique_ptr<sf::Text> _startButton;

@@ -15,31 +15,31 @@ include_directories(
 add_executable(Game
     main.cpp
     GameCenter/NumericalTTT/NumericalTTT_Board.cpp
-    GameCenter/NumericalTTT/NumericalTTT_UI.cpp
+    GameCenter/NumericalTTT/NumericalState.cpp
     GameCenter/SUS/SUS_Board.cpp
-    GameCenter/SUS/SUS_UI.cpp
+    GameCenter/SUS/SUSState.cpp
     GameCenter/PyramidTTT/PyramidTTT_Board.cpp
-    GameCenter/PyramidTTT/PyramidTTT_UI.cpp
+    GameCenter/PyramidTTT/PyramidState.cpp
     GameCenter/WordTTT/WordTTT_Board.cpp
-    GameCenter/WordTTT/WordTTT_UI.cpp
+    GameCenter/WordTTT/WordState.cpp
     GameCenter/MisereTTT/MisereTTT_Board.cpp
-    GameCenter/MisereTTT/MisereTTT_UI.cpp
+    GameCenter/MisereTTT/MisereState.cpp
     GameCenter/ObstaclesTTT/ObstaclesTTT_Board.cpp
-    GameCenter/ObstaclesTTT/ObstaclesTTT_UI.cpp
+    GameCenter/ObstaclesTTT/ObstaclesState.cpp
     GameCenter/DiamondTTT/DiamondTTT_Board.cpp
-    GameCenter/DiamondTTT/DiamondTTT_UI.cpp
+    GameCenter/DiamondTTT/DiamondState.cpp
     GameCenter/5x5_TTT/5x5_TTT_Board.cpp
-    GameCenter/5x5_TTT/5x5_TTT_UI.cpp
+    GameCenter/5x5_TTT/5x5State.cpp
     GameCenter/4x4_TTT/4x4_TTT_Board.cpp
-    GameCenter/4x4_TTT/4x4_TTT_UI.cpp
+    GameCenter/4x4_TTT/4x4State.cpp
     GameCenter/FourInARow/FourInARow_Board.cpp
-    GameCenter/FourInARow/FourInARow_UI.cpp
+    GameCenter/FourInARow/FourInARowState.cpp
     GameCenter/Infinity_TTT/Infinity_Board.cpp
-    GameCenter/Infinity_TTT/Infinity_UI.cpp
+    GameCenter/Infinity_TTT/InfinityState.cpp
     GameCenter/MemoryTTT/MemoryTTT_Board.cpp
-    GameCenter/MemoryTTT/MemoryTTT_UI.cpp
+    GameCenter/MemoryTTT/MemoryState.cpp
     GameCenter/UltimateTTT/Ultimate_Board.cpp
-    GameCenter/UltimateTTT/Ultimate_UI.cpp
+    GameCenter/UltimateTTT/UltimateState.cpp
     GameManager/StateMachine.cpp
     GameManager/AssetManager.cpp
     GameManager/InputManager.cpp

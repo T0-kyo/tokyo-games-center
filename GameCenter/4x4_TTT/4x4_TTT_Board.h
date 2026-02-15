@@ -7,7 +7,8 @@
 #ifndef TTT4x4_Board_H
 #define TTT4x4_Board_H
 
-#include "../BoardGameFramework/BoardGame_Classes.h"
+#include "../../DEFENITIONS.h"
+#include GAME_PLAY
 #include <vector>
 #include <string>
 #include <iostream>

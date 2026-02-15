@@ -6,7 +6,8 @@
 #ifndef FOUR_IN_A_ROW_BOARD_H
 #define FOUR_IN_A_ROW_BOARD_H
 
-#include "../BoardGameFramework/BoardGame_Classes.h"
+#include "../../DEFENITIONS.h"
+#include GAME_PLAY
 
 /**
  * @class FourInARow_Board

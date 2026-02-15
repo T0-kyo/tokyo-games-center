@@ -6,7 +6,8 @@
 #ifndef PYRAMIDTTT_BOARD_H
 #define PYRAMIDTTT_BOARD_H
 
-#include "../BoardGameFramework/BoardGame_Classes.h"
+#include "../../DEFENITIONS.h"
+#include GAME_PLAY
 #include <iostream>
 
 using namespace std;

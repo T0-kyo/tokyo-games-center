@@ -6,7 +6,8 @@
 #ifndef DIAMONDTTT_BOARD_H
 #define DIAMONDTTT_BOARD_H
 
-#include "../BoardGameFramework/BoardGame_Classes.h"
+#include "../../DEFENITIONS.h"
+#include GAME_PLAY
 #include <cmath> // For abs()
 
 using namespace std;

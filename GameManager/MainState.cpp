@@ -35,12 +35,21 @@ namespace Tokyo {
             }
 
             if ( this->_data->input.isTextClicked( *this->_startButton, sf::Mouse::Button::Left, this->_data->window ) ) {
-                this->_data->machine.AddState ( StateRef ( new MainMenuState ( this->_data ) ) );
+                this->_isStartClicked = true;
             }
         }
     }
         
     void MainState::Update ( float dt ) {
+        if (_isStartClicked) {
+            float distance = (SCREEN_HEIGHT / 0.3f) * dt; 
+            this->_background->move({ 0, -distance });
+
+            if (this->_background->getPosition().y + this->_background->getGlobalBounds().size.y < 0) {
+                this->_data->machine.AddState(StateRef(new MainMenuState(this->_data)), true);
+            }
+        }
+        
         if (this->_data->input.hoverText( *this->_startButton, this->_data->window )) {
             this->_startButton->setFillColor( sf::Color(255, 255, 255) );
         }
@@ -50,7 +59,7 @@ namespace Tokyo {
     }
         
     void MainState::Draw ( float dt ) {
-        this->_data->window.clear();
+        this->_data->window.clear(sf::Color( 87, 68, 119 ) );
 
         this->_data->window.draw( *this->_background );
         this->_data->window.draw( *this->_startButton );
