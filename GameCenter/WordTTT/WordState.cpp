@@ -3,9 +3,7 @@
 
 namespace Tokyo {
 
-    WordState::WordState ( GameDataRef data, PlayerType playerType ) : _data( data ) {
-        std::cout << "WordState Constructor" << std::endl;
-    }
+    WordState::WordState ( GameDataRef data, PlayerType playerType ) : _data( data ) {}
 
     void WordState::Init() {
         std::cout << "WordState Init" << std::endl;
@@ -21,5 +19,8 @@ namespace Tokyo {
 
     void WordState::Update( float dt ) {}
 
-    void WordState::Draw( float dt ) {}
+    void WordState::Draw( float dt ) {
+        this->_data->window.clear( sf::Color::Black );
+        this->_data->window.display();
+    }
 }

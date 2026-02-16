@@ -24,20 +24,19 @@ namespace Tokyo {
 
         std::unique_ptr<sf::Sprite> _background;
         std::unique_ptr<sf::Text> _title;
-        std::unique_ptr<sf::Text> _WordTTT;
-        
-        std::unique_ptr<sf::Sprite> _4x4TTT_Button;
-        std::unique_ptr<sf::Sprite> _5x5TTT_Button;
-        std::unique_ptr<sf::Sprite> _DaimondTTT_Button;
-        std::unique_ptr<sf::Sprite> _FourInARow_Button;
-        std::unique_ptr<sf::Sprite> _InfinityTTT_Button;
-        std::unique_ptr<sf::Sprite> _MemoryTTT_Button;
-        std::unique_ptr<sf::Sprite> _MisereTTT_Butoon;
-        std::unique_ptr<sf::Sprite> _NumericalTTT_Button;
-        std::unique_ptr<sf::Sprite> _ObstaclesTTT_Button;
-        std::unique_ptr<sf::Sprite> _PyramidTTT_Button;
-        std::unique_ptr<sf::Sprite> _SUS_Button;
-        std::unique_ptr<sf::Sprite> _UltimateTTT_Button;
-        std::unique_ptr<sf::Sprite> _WordTTT_Button;
+
+        std::unique_ptr<sf::Text> _4x4TTT_Button;
+        std::unique_ptr<sf::Text> _5x5TTT_Button;
+        std::unique_ptr<sf::Text> _DiamondTTT_Button;
+        std::unique_ptr<sf::Text> _FourInARow_Button;
+        std::unique_ptr<sf::Text> _InfinityTTT_Button;
+        std::unique_ptr<sf::Text> _MemoryTTT_Button;
+        std::unique_ptr<sf::Text> _MisereTTT_Button;
+        std::unique_ptr<sf::Text> _NumericalTTT_Button;
+        std::unique_ptr<sf::Text> _ObstaclesTTT_Button;
+        std::unique_ptr<sf::Text> _PyramidTTT_Button;
+        std::unique_ptr<sf::Text> _SUS_Button;
+        std::unique_ptr<sf::Text> _UltimateTTT_Button;
+        std::unique_ptr<sf::Text> _WordTTT_Button;
     };
 }
