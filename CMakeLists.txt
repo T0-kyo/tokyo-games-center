@@ -34,8 +34,8 @@ add_executable(Game
     GameCenter/4x4_TTT/4x4State.cpp
     GameCenter/FourInARow/FourInARow_Board.cpp
     GameCenter/FourInARow/FourInARowState.cpp
-    GameCenter/Infinity_TTT/Infinity_Board.cpp
-    GameCenter/Infinity_TTT/InfinityState.cpp
+    GameCenter/InfinityTTT/Infinity_Board.cpp
+    GameCenter/InfinityTTT/InfinityState.cpp
     GameCenter/MemoryTTT/MemoryTTT_Board.cpp
     GameCenter/MemoryTTT/MemoryState.cpp
     GameCenter/UltimateTTT/Ultimate_Board.cpp
@@ -44,9 +44,10 @@ add_executable(Game
     GameManager/AssetManager.cpp
     GameManager/InputManager.cpp
     GameManager/Game.cpp
-    GameManager/SplashState.cpp
-    GameManager/MainState.cpp
-    GameManager/MainMenuState.cpp
+    States/SplashState.cpp
+    States/MainState.cpp
+    States/MainMenuState.cpp
+    States/ModeSelectionState.cpp
 )
 
 #link-SFML

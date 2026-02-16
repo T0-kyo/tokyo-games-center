@@ -3,7 +3,7 @@
 #include "SFML/Graphics.hpp"
 #include "SFML/Audio.hpp"
 #include "State.h"
-#include "Game.h"
+#include "../GameManager/Game.h"
 #include <memory>
 #include "../DEFENITIONS.h"
 

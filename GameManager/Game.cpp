@@ -1,5 +1,5 @@
 #include "Game.h"
-#include "SplashState.h"
+#include "../States/SplashState.h"
 
 
 namespace Tokyo {
