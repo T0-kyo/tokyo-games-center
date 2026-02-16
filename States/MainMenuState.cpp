@@ -1,6 +1,7 @@
 #include <iostream>
 #include <sstream>
 #include "MainMenuState.h"
+#include "ModeSelectionState.h"
 
 
 namespace Tokyo {
@@ -39,7 +40,7 @@ namespace Tokyo {
             }
 
             if ( this->_data->input.isTextClicked( *this->_WordTTT, sf::Mouse::Button::Left, this->_data->window ) ) {
-                std::cout << "Go to Word Tic Tac Toe State" << std::endl;
+                this->_data->machine.AddState(StateRef(new ModeSelectionState(this->_data, GameID::Word)), false);
             }
         }
     }

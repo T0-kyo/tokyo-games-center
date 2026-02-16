@@ -2,7 +2,7 @@
 
 #include "SFML/Graphics.hpp"
 #include "State.h"
-#include "Game.h"
+#include "../GameManager/Game.h"
 #include <memory>
 #include "../DEFENITIONS.h"
 

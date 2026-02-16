@@ -14,7 +14,7 @@ WordTTT_Board::WordTTT_Board() : Board(3, 3), p1_score(0), p2_score(0)
             board[i][j] = ' ';
 
     // Load dictionary file
-    load_dictionary("../../dic.txt");
+    load_dictionary("../dic.txt");
 }
 
 /**
