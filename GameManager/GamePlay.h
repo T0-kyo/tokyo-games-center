@@ -127,7 +127,6 @@ public:
 template <typename T>
 class Player {
 protected:
-    string name;         ///< Player name
     PlayerType type;     ///< Player type (e.g., HUMAN or COMPUTER)
     T symbol;            ///< Player�s symbol on board
     Board<T>* boardPtr;  ///< Pointer to the game board
@@ -136,13 +135,10 @@ public:
     /**
      * @brief Construct a player with name, symbol, and type.
      */
-    Player(string n, T s, PlayerType t)
-        : name(n), symbol(s), type(t), boardPtr(nullptr) {}
+    Player(T s, PlayerType t)
+        : symbol(s), type(t), boardPtr(nullptr) {}
 
     virtual ~Player() {}
-
-    /** @brief Get the player's name. */
-    string get_name() const { return name; }
 
     /** @brief Get player type (e.g., 'H' or 'C'). */
     PlayerType get_type() const { return type; }
