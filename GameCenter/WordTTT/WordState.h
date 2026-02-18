@@ -4,11 +4,12 @@
 #include "SFML/Graphics.hpp"
 #include "SFML/Audio.hpp"
 #include "WordTTT_Board.h"
+#include <cstdlib>
 #include GAME_PLAY
 #include GAME_PATH
 #include STATE_PATH
 #include GAMEOVER_STATE
-//#include PAUSE_STATE
+#include PAUSE_STATE
 
 
 namespace Tokyo {
@@ -43,6 +44,7 @@ namespace Tokyo {
         Player<char>* _currentPlayer;
         PlayerType _playerType;
         bool _cellChosen = false;
+        
         int _row;
         int _col;
         float CellWidth=0;
