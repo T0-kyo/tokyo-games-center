@@ -21,7 +21,7 @@ namespace Tokyo {
         // Add a new state to the stack which will be the currently running state, with an option to replace the current state or not.
         void AddState( StateRef newState, bool isReplacing = true );
         // Remove the current state from the stack and return to the previous state. 
-        void RemoveState();
+        void RemoveState(int x);
 
         void ProcessStateChanges();
 
@@ -37,5 +37,6 @@ namespace Tokyo {
         bool _isRemoving;
         bool _isAdding;
         bool _isReplacing;
+        int _x;
     };
 }

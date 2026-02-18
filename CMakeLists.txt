@@ -50,6 +50,7 @@ add_executable(Game
     States/ModeSelectionState.cpp
     States/PauseState.cpp
     States/GameOverState.cpp
+    States/HomeState.cpp
 )
 
 #link-SFML

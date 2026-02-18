@@ -1,4 +1,5 @@
 #include "PauseState.h"
+#include "HomeState.h"
 
 namespace Tokyo{
 
@@ -33,11 +34,10 @@ namespace Tokyo{
                 this->_data->window.close();
             }
             if(this->_data->input.isSpriteClicekd(*this->_resume, sf::Mouse::Button::Left, this->_data->window)){
-                this->_data->machine.RemoveState();
+                this->_data->machine.RemoveState(1);
             }
             if(this->_data->input.isSpriteClicekd(*this->_home, sf::Mouse::Button::Left, this->_data->window)){
-                this->_data->machine.RemoveState();
-                this->_data->machine.RemoveState();
+                this->_data->machine.AddState(StateRef (new HomeState(this->_data)), false);
             }
         }
     }
