@@ -21,13 +21,10 @@ namespace Tokyo {
 
     void ModeSelectionState::Init() {
 
-        this->_data->assets.LoadTexture( "Mode Selection Background", MAIN_MENU_BACKGROUND_FILEPATH );
-        this->_data->assets.LoadFont( "Mode Selection Choice", MAIN_MENU_TITLE_FILEPATH );
-
-        auto& texture1 = this->_data->assets.GetTexture( "Mode Selection Background" );
+        auto& texture1 = this->_data->assets.GetTexture( "Main Background" );
         this->_background = std::make_unique<sf::Sprite> ( texture1 );
 
-        auto& texture2 = this->_data->assets.GetFont( "Mode Selection Choice" );
+        auto& texture2 = this->_data->assets.GetFont( "Main Font" );
         this->_choice1 = std::make_unique<sf::Text> ( texture2, "Player vs Player", MAIN_MENU_TITLE_SIZE/2 );
         sf::FloatRect textRect1 = this->_choice1->getLocalBounds();
         this->_choice2 = std::make_unique<sf::Text> ( texture2, "Player vs Computer", MAIN_MENU_TITLE_SIZE/2 );

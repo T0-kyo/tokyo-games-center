@@ -12,13 +12,14 @@
 #define GAME_PLAY "../../GameManager/GamePlay.h"
 #define STATE_PATH "../../States/State.h"
 #define GAME_PATH "../../GameManager/Game.h"
+#define GAMEOVER_STATE "../../States/GameOverState.h"
 
 #define SPLASH_BACKGROUND_FILEPATH "../Assets/Textures/Tokyo.jpg"
-
-#define MAIN_MENU_BACKGROUND_FILEPATH "../Assets/Textures/MMBackground.jpg"
-#define MAIN_MENU_TITLE_FILEPATH "../Assets/Fonts/Frijole-Regular.ttf"
-#define NUMERICAL_ICON_PATH "../Assets/Textures/Numerical.png"
-#define _4x4_ICON_PATH "../Assets/Textures/4x4.png"
+#define GAME_BACKGROUND "../Assets/Textures/Game Background.jpg"
+#define PAUSE_BUTTON "../Assets/Textures/Pause Button.png"
+#define GRID "../Assets/Textures/Grid.png"
+#define MAIN_BACKGROUND "../Assets/Textures/MMBackground.jpg"
+#define MAIN_FONT "../Assets/Fonts/Frijole-Regular.ttf"
 
 
 enum class GameID {
@@ -35,4 +36,10 @@ enum class GameID {
     Sus,
     Ultimate,
     Word,
+};
+
+enum class Winner{
+    _p1,
+    _p2,
+    draw,
 };

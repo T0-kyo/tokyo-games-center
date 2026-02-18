@@ -7,6 +7,8 @@
 #include GAME_PLAY
 #include GAME_PATH
 #include STATE_PATH
+#include GAMEOVER_STATE
+//#include PAUSE_STATE
 
 
 namespace Tokyo {
@@ -31,13 +33,20 @@ namespace Tokyo {
         std::unique_ptr<sf::Sprite> _letter;
         std::unique_ptr<sf::Sprite> _grid;
         std::unique_ptr<sf::Sprite> _pauseButton;
+        std::unique_ptr<sf::Sprite> _currentCell;
+
         std::unique_ptr<sf::Text> _p1Score;
         std::unique_ptr<sf::Text> _p2Score;
+        std::unique_ptr<sf::Text> _score1;
+        std::unique_ptr<sf::Text> _score2;
 
         Player<char>* _currentPlayer;
         PlayerType _playerType;
-        bool _cellChosen;
+        bool _cellChosen = false;
         int _row;
         int _col;
+        float CellWidth=0;
+        float CellHeight=0;
+        sf::Vector2f gridPos;
     };
 }
