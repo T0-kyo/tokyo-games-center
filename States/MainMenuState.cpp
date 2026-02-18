@@ -10,14 +10,11 @@ namespace Tokyo {
 
     void MainMenuState::Init() {
 
-        this->_data->assets.LoadTexture( "Main Menu Background", MAIN_MENU_BACKGROUND_FILEPATH );
-        this->_data->assets.LoadFont( "Game Title", MAIN_MENU_TITLE_FILEPATH );        
-
-        auto& texture1 = this->_data->assets.GetTexture( "Main Menu Background" );
+        auto& texture1 = this->_data->assets.GetTexture( "Main Background" );
         this->_background = std::make_unique<sf::Sprite> ( texture1 );
 
         
-        auto& texture2 = this->_data->assets.GetFont( "Game Title" );
+        auto& texture2 = this->_data->assets.GetFont( "Main Font" );
         this->_title = std::make_unique<sf::Text> ( texture2, "Game Center", MAIN_MENU_TITLE_SIZE );
         sf::FloatRect textRect = this->_title->getLocalBounds();
 

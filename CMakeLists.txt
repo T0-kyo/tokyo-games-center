@@ -49,6 +49,7 @@ add_executable(Game
     States/MainMenuState.cpp
     States/ModeSelectionState.cpp
     States/PauseState.cpp
+    States/GameOverState.cpp
 )
 
 #link-SFML

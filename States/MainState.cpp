@@ -10,21 +10,21 @@ namespace Tokyo {
 
     void MainState::Init() {
 
-        this->_data->assets.LoadTexture( "Main Menu Background", MAIN_MENU_BACKGROUND_FILEPATH );
-        this->_data->assets.LoadFont( "Start Button", MAIN_MENU_TITLE_FILEPATH );
+        this->_data->assets.LoadTexture( "Main Background", MAIN_BACKGROUND );
+        this->_data->assets.LoadFont( "Main Font", MAIN_FONT );
         
 
-        auto& texture1 = this->_data->assets.GetTexture( "Main Menu Background" );
+        auto& texture1 = this->_data->assets.GetTexture( "Main Background" );
         this->_background = std::make_unique<sf::Sprite> ( texture1 );
 
         
-        auto& texture2 = this->_data->assets.GetFont( "Start Button" );
+        auto& texture2 = this->_data->assets.GetFont( "Main Font" );
         this->_startButton = std::make_unique<sf::Text> ( texture2, "Start", MAIN_MENU_TITLE_SIZE );
         sf::FloatRect textRect = this->_startButton->getLocalBounds();
 
         this->_background->setPosition({SCREEN_WIDTH / 2 - texture1.getSize().x * 0.5f, SCREEN_HEIGHT / 2 - texture1.getSize().y * 0.5f});
         this->_background->setColor( sf::Color( 255, 255, 255, 180 ) );
-        this->_startButton->setFillColor( sf::Color(225, 165, 35) );
+        this->_startButton->setFillColor( sf::Color(225, 165, 30) );
         this->_startButton->setPosition({ SCREEN_WIDTH /2 - textRect.size.x * 0.5f , SCREEN_HEIGHT * 0.45f});
     }
 
@@ -54,12 +54,12 @@ namespace Tokyo {
             this->_startButton->setFillColor( sf::Color(255, 255, 255) );
         }
         else {
-            this->_startButton->setFillColor( sf::Color(225, 165, 35) );
+            this->_startButton->setFillColor( sf::Color(225, 165, 30) );
         }
     }
         
     void MainState::Draw ( float dt ) {
-        this->_data->window.clear(sf::Color( 87, 68, 119 ) );
+        this->_data->window.clear(sf::Color(87, 68, 119) );
 
         this->_data->window.draw( *this->_background );
         this->_data->window.draw( *this->_startButton );
