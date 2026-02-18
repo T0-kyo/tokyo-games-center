@@ -14,7 +14,7 @@
 #define GAME_PATH "../../GameManager/Game.h"
 #define GAMEOVER_STATE "../../States/GameOverState.h"
 
-#define PAUSE_STATE "../../States/PauseState"
+#define PAUSE_STATE "../../States/PauseState.h"
 
 #define SPLASH_BACKGROUND_FILEPATH "../Assets/Textures/Tokyo.jpg"
 

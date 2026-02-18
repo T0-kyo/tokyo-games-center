@@ -9,13 +9,17 @@ namespace Tokyo {
         this->_newState = move( newState );
     }
 
-    void StateMachine::RemoveState() {
+    void StateMachine::RemoveState( int x ) {
         this->_isRemoving = true;
+        this->_x = x;
     }
     
     void StateMachine::ProcessStateChanges() {
-        if ( this->_isRemoving && !this->_states.empty() ) {
-            this->_states.pop();
+        if ( this->_isRemoving ) {
+            while ( !this->_states.empty() && _x > 0 ){
+                this->_states.pop();
+                _x--;
+            }
 
             if (!this->_states.empty() ) {
                 this->_states.top()->Resume();

@@ -8,7 +8,7 @@
 #include GAME_PATH
 #include STATE_PATH
 #include GAMEOVER_STATE
-//#include PAUSE_STATE
+#include PAUSE_STATE
 
 
 namespace Tokyo {

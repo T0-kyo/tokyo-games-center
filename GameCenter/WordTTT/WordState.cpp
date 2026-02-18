@@ -104,7 +104,7 @@ namespace Tokyo {
             }
 
             if(this->_data->input.isSpriteClicekd( *this->_pauseButton, sf::Mouse::Button::Left, this->_data->window )){
-                //this->_data->machine.AddState(StateRef (new PauseState(this->_data)), false);
+                this->_data->machine.AddState(StateRef (new PauseState(this->_data)), false);
             }
 
             if(_WordBoard->is_win(_currentPlayer)){

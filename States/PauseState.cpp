@@ -1,11 +1,12 @@
 #include "PauseState.h"
+#include "HomeState.h"
 
 namespace Tokyo{
 
     PauseState::PauseState( GameDataRef data ) : _data( data ){}
 
     void PauseState::Init(){
-        this->_data->assets.LoadTexture( "PauseBG", MAIN_MENU_BACKGROUND_FILEPATH );
+        this->_data->assets.LoadTexture( "PauseBG", "../Assets/Textures/Game Background.jpg" );
         this->_data->assets.LoadTexture( "Resume", "../Assets/Textures/Resume Button.png" );
         this->_data->assets.LoadTexture( "Home", "../Assets/Textures/Home Button.png" );
 
@@ -33,11 +34,10 @@ namespace Tokyo{
                 this->_data->window.close();
             }
             if(this->_data->input.isSpriteClicekd(*this->_resume, sf::Mouse::Button::Left, this->_data->window)){
-                this->_data->machine.RemoveState();
+                this->_data->machine.RemoveState(1);
             }
             if(this->_data->input.isSpriteClicekd(*this->_home, sf::Mouse::Button::Left, this->_data->window)){
-                this->_data->machine.RemoveState();
-                this->_data->machine.RemoveState();
+                this->_data->machine.AddState(StateRef (new HomeState(this->_data)), false);
             }
         }
     }
