@@ -74,6 +74,7 @@ namespace Tokyo {
     }
 
     void WordState::HandleInput() {
+
         while ( auto event = this->_data->window.pollEvent() ) {
             if ( event->is<sf::Event::Closed>() ) {
                 this->_data->window.close();
@@ -97,6 +98,21 @@ namespace Tokyo {
                     if(letter >= 'A' && letter <= 'Z'){
                         Move move(_row, _col, letter);
                         this->_WordBoard->update_board(&move);
+
+                        if(_WordBoard->is_win(_currentPlayer)){
+                            if(_currentPlayer = _player1.get()) this->_data->machine.AddState(StateRef (new GameOverState(this->_data, GameID::Word, Winner::_p1)), true);
+                            else this->_data->machine.AddState(StateRef (new GameOverState(this->_data, GameID::Word, Winner::_p2)), true);
+                        }
+
+                        else if(_WordBoard->is_draw(_currentPlayer)){
+                            this->_data->machine.AddState(StateRef (new GameOverState(this->_data, GameID::Word, Winner::draw)), true);
+                        }
+
+                        else if(_WordBoard->is_lose(_currentPlayer)){
+                            if(_currentPlayer = _player1.get()) this->_data->machine.AddState(StateRef (new GameOverState(this->_data, GameID::Word, Winner::_p2)), true);
+                            else this->_data->machine.AddState(StateRef (new GameOverState(this->_data, GameID::Word, Winner::_p1)), true);
+                        }
+
                         _cellChosen = false;
                         _currentPlayer = (_currentPlayer == _player1.get()) ? _player2.get() : _player1.get();  
                     }
@@ -104,10 +120,25 @@ namespace Tokyo {
             }
 
             if(this->_data->input.isSpriteClicekd( *this->_pauseButton, sf::Mouse::Button::Left, this->_data->window )){
-                //this->_data->machine.AddState(StateRef (new PauseState(this->_data)), false);
+                this->_data->machine.AddState(StateRef (new PauseState(this->_data)), false);
             }
+        }
 
-            if(_WordBoard->is_win(_currentPlayer)){
+        if (_playerType == PlayerType::COMPUTER && !_WordBoard->game_is_over(_currentPlayer) && _currentPlayer == _player2.get()){
+            int x, y;
+            char sym;
+            do {
+                x = rand() % 3;
+                y = rand() % 3;
+                char letter = 'A' + (rand() % 26);
+                sym = letter;
+            } while (this->_WordBoard->get_board_matrix()[x][y] != ' ');
+
+            Move move(x, y, sym);
+            
+            this->_WordBoard->update_board(&move);
+
+            if(_WordBoard->is_win(_currentPlayer)){ 
                 if(_currentPlayer = _player1.get()) this->_data->machine.AddState(StateRef (new GameOverState(this->_data, GameID::Word, Winner::_p1)), true);
                 else this->_data->machine.AddState(StateRef (new GameOverState(this->_data, GameID::Word, Winner::_p2)), true);
             }
@@ -120,6 +151,8 @@ namespace Tokyo {
                 if(_currentPlayer = _player1.get()) this->_data->machine.AddState(StateRef (new GameOverState(this->_data, GameID::Word, Winner::_p2)), true);
                 else this->_data->machine.AddState(StateRef (new GameOverState(this->_data, GameID::Word, Winner::_p1)), true);
             }
+
+            this->_currentPlayer = _player1.get();
         }
     }
 
