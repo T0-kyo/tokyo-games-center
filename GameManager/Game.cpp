@@ -12,7 +12,7 @@ namespace Tokyo {
         this->Run();
     }
 
-    void Game::Run() { 
+    void Game::Run() {
 
         while (this->_data->window.isOpen()) {
             float frameTime = this->_clock.restart().asSeconds();
