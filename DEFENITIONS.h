@@ -13,12 +13,12 @@
 #define STATE_PATH "../../States/State.h"
 #define GAME_PATH "../../GameManager/Game.h"
 
+#define PAUSE_STATE "../../States/PauseState"
+
 #define SPLASH_BACKGROUND_FILEPATH "../Assets/Textures/Tokyo.jpg"
 
 #define MAIN_MENU_BACKGROUND_FILEPATH "../Assets/Textures/MMBackground.jpg"
 #define MAIN_MENU_TITLE_FILEPATH "../Assets/Fonts/Frijole-Regular.ttf"
-#define NUMERICAL_ICON_PATH "../Assets/Textures/Numerical.png"
-#define _4x4_ICON_PATH "../Assets/Textures/4x4.png"
 
 
 enum class GameID {
