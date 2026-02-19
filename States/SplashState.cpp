@@ -20,6 +20,10 @@ namespace Tokyo {
             if ( event->is<sf::Event::Closed>() ) {
                 this->_data->window.close();
             }
+            if(_data->input.isSpriteClicekd( *this->_background, sf::Mouse::Button::Left, _data->window )){
+                _phase = FadeState::FadeOut;
+                _alpha = 0.0f;
+            }
         }
     }
 

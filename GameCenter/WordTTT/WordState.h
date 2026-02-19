@@ -29,6 +29,7 @@ namespace Tokyo {
         std::shared_ptr<Player<char>> _player1;
         std::shared_ptr<Player<char>> _player2;
         std::shared_ptr<WordTTT_Board> _WordBoard;
+        sf::Clock _clock;
 
         std::unique_ptr<sf::Sprite> _background;
         std::unique_ptr<sf::Sprite> _letter;
