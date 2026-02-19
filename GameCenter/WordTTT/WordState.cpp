@@ -75,6 +75,10 @@ namespace Tokyo {
 
     void WordState::HandleInput() {
 
+        if(_p1) this->_data->machine.AddState(StateRef (new GameOverState(this->_data, GameID::Word, Winner::p1)), true);
+        else if(_p2) this->_data->machine.AddState(StateRef (new GameOverState(this->_data, GameID::Word, Winner::p2)), true);
+        else if(_draw) this->_data->machine.AddState(StateRef (new GameOverState(this->_data, GameID::Word, Winner::draw)), true);
+
         while ( auto event = this->_data->window.pollEvent() ) {
             if ( event->is<sf::Event::Closed>() ) {
                 this->_data->window.close();
@@ -89,6 +93,7 @@ namespace Tokyo {
                 if (_WordBoard->get_cell(_row, _col) == ' '){
                     _cellChosen = true;
                 }
+                else _cellChosen = false;
             }
 
             if(_cellChosen){
@@ -100,17 +105,17 @@ namespace Tokyo {
                         this->_WordBoard->update_board(&move);
 
                         if(_WordBoard->is_win(_currentPlayer)){
-                            if(_currentPlayer = _player1.get()) this->_data->machine.AddState(StateRef (new GameOverState(this->_data, GameID::Word, Winner::_p1)), true);
-                            else this->_data->machine.AddState(StateRef (new GameOverState(this->_data, GameID::Word, Winner::_p2)), true);
+                            if(_currentPlayer = _player1.get()) _p1 = true;
+                            else _p2 = true;
                         }
 
                         else if(_WordBoard->is_draw(_currentPlayer)){
-                            this->_data->machine.AddState(StateRef (new GameOverState(this->_data, GameID::Word, Winner::draw)), true);
+                            _draw = true;
                         }
 
                         else if(_WordBoard->is_lose(_currentPlayer)){
-                            if(_currentPlayer = _player1.get()) this->_data->machine.AddState(StateRef (new GameOverState(this->_data, GameID::Word, Winner::_p2)), true);
-                            else this->_data->machine.AddState(StateRef (new GameOverState(this->_data, GameID::Word, Winner::_p1)), true);
+                            if(_currentPlayer = _player1.get()) _p2 = true;
+                            else _p1 = true;
                         }
 
                         _cellChosen = false;
@@ -139,17 +144,17 @@ namespace Tokyo {
             this->_WordBoard->update_board(&move);
 
             if(_WordBoard->is_win(_currentPlayer)){ 
-                if(_currentPlayer = _player1.get()) this->_data->machine.AddState(StateRef (new GameOverState(this->_data, GameID::Word, Winner::_p1)), true);
-                else this->_data->machine.AddState(StateRef (new GameOverState(this->_data, GameID::Word, Winner::_p2)), true);
+                if(_currentPlayer = _player1.get()) _p1 = true;
+                else _p2 = true;
             }
 
             else if(_WordBoard->is_draw(_currentPlayer)){
-                this->_data->machine.AddState(StateRef (new GameOverState(this->_data, GameID::Word, Winner::draw)), true);
+                _draw = true;
             }
 
             else if(_WordBoard->is_lose(_currentPlayer)){
-                if(_currentPlayer = _player1.get()) this->_data->machine.AddState(StateRef (new GameOverState(this->_data, GameID::Word, Winner::_p2)), true);
-                else this->_data->machine.AddState(StateRef (new GameOverState(this->_data, GameID::Word, Winner::_p1)), true);
+                if(_currentPlayer = _player1.get()) _p2 = true;
+                else _p1 = true;
             }
 
             this->_currentPlayer = _player1.get();

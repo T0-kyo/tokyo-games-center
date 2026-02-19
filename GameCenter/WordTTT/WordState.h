@@ -40,6 +40,10 @@ namespace Tokyo {
         std::unique_ptr<sf::Text> _p2Score;
         std::unique_ptr<sf::Text> _score1;
         std::unique_ptr<sf::Text> _score2;
+        
+        bool _p1 = false;
+        bool _p2 = false;
+        bool _draw = false;
 
         Player<char>* _currentPlayer;
         PlayerType _playerType;

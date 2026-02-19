@@ -21,7 +21,14 @@ namespace Tokyo {
 
         private:
         GameDataRef _data;
+
         GameID _gameID;
         Winner _winner;
+
+        std::unique_ptr<sf::Sprite> _background;
+        std::unique_ptr<sf::Sprite> _playAgain;
+        std::unique_ptr<sf::Sprite> _home;
+        std::unique_ptr<sf::Sprite> _medal;
+        std::unique_ptr<sf::Text> _announce;
     };
 }

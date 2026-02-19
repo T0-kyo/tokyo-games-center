@@ -44,7 +44,7 @@ enum class GameID {
 };
 
 enum class Winner{
-    _p1,
-    _p2,
+    p1,
+    p2,
     draw,
 };
