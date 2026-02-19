@@ -75,11 +75,16 @@ namespace Tokyo {
 
     void WordState::HandleInput() {
 
+        if(_p1) this->_data->machine.AddState(StateRef (new GameOverState(this->_data, GameID::Word, Winner::p1)), true);
+        else if(_p2) this->_data->machine.AddState(StateRef (new GameOverState(this->_data, GameID::Word, Winner::p2)), true);
+        else if(_draw) this->_data->machine.AddState(StateRef (new GameOverState(this->_data, GameID::Word, Winner::draw)), true);
+
         while ( auto event = this->_data->window.pollEvent() ) {
             if ( event->is<sf::Event::Closed>() ) {
                 this->_data->window.close();
             }
 
+            if(_playerType != PlayerType::COMPUTER || _currentPlayer == _player1.get()){
             if(this->_data->input.isSpriteClicekd( *this->_grid, sf::Mouse::Button::Left, this->_data->window )){
                 sf::Vector2i mousePos = this->_data->input.getMousePosition(this->_data->window);
                 float localX = mousePos.x - gridPos.x;
@@ -89,6 +94,7 @@ namespace Tokyo {
                 if (_WordBoard->get_cell(_row, _col) == ' '){
                     _cellChosen = true;
                 }
+                else _cellChosen = false;
             }
 
             if(_cellChosen){
@@ -100,59 +106,31 @@ namespace Tokyo {
                         this->_WordBoard->update_board(&move);
 
                         if(_WordBoard->is_win(_currentPlayer)){
-                            if(_currentPlayer = _player1.get()) this->_data->machine.AddState(StateRef (new GameOverState(this->_data, GameID::Word, Winner::_p1)), true);
-                            else this->_data->machine.AddState(StateRef (new GameOverState(this->_data, GameID::Word, Winner::_p2)), true);
+                            if(_currentPlayer == _player1.get()) _p1 = true;
+                            else _p2 = true;
                         }
 
                         else if(_WordBoard->is_draw(_currentPlayer)){
-                            this->_data->machine.AddState(StateRef (new GameOverState(this->_data, GameID::Word, Winner::draw)), true);
+                            _draw = true;
                         }
 
                         else if(_WordBoard->is_lose(_currentPlayer)){
-                            if(_currentPlayer = _player1.get()) this->_data->machine.AddState(StateRef (new GameOverState(this->_data, GameID::Word, Winner::_p2)), true);
-                            else this->_data->machine.AddState(StateRef (new GameOverState(this->_data, GameID::Word, Winner::_p1)), true);
+                            if(_currentPlayer == _player1.get()) _p2 = true;
+                            else _p1 = true;
                         }
 
                         _cellChosen = false;
-                        _currentPlayer = (_currentPlayer == _player1.get()) ? _player2.get() : _player1.get();  
+                        if(_playerType == PlayerType::HUMAN) _currentPlayer = (_currentPlayer == _player1.get()) ? _player2.get() : _player1.get();
+                        else _currentPlayer = _player2.get();
+                        _clock.restart();  
                     }
+                }
                 }
             }
 
             if(this->_data->input.isSpriteClicekd( *this->_pauseButton, sf::Mouse::Button::Left, this->_data->window )){
                 this->_data->machine.AddState(StateRef (new PauseState(this->_data)), false);
             }
-        }
-
-        if (_playerType == PlayerType::COMPUTER && !_WordBoard->game_is_over(_currentPlayer) && _currentPlayer == _player2.get()){
-            int x, y;
-            char sym;
-            do {
-                x = rand() % 3;
-                y = rand() % 3;
-                char letter = 'A' + (rand() % 26);
-                sym = letter;
-            } while (this->_WordBoard->get_board_matrix()[x][y] != ' ');
-
-            Move move(x, y, sym);
-            
-            this->_WordBoard->update_board(&move);
-
-            if(_WordBoard->is_win(_currentPlayer)){ 
-                if(_currentPlayer = _player1.get()) this->_data->machine.AddState(StateRef (new GameOverState(this->_data, GameID::Word, Winner::_p1)), true);
-                else this->_data->machine.AddState(StateRef (new GameOverState(this->_data, GameID::Word, Winner::_p2)), true);
-            }
-
-            else if(_WordBoard->is_draw(_currentPlayer)){
-                this->_data->machine.AddState(StateRef (new GameOverState(this->_data, GameID::Word, Winner::draw)), true);
-            }
-
-            else if(_WordBoard->is_lose(_currentPlayer)){
-                if(_currentPlayer = _player1.get()) this->_data->machine.AddState(StateRef (new GameOverState(this->_data, GameID::Word, Winner::_p2)), true);
-                else this->_data->machine.AddState(StateRef (new GameOverState(this->_data, GameID::Word, Winner::_p1)), true);
-            }
-
-            this->_currentPlayer = _player1.get();
         }
     }
 
@@ -166,6 +144,37 @@ namespace Tokyo {
 
         this->_score1->setString(std::to_string(_WordBoard->get_p1_score()));
         this->_score2->setString(std::to_string(_WordBoard->get_p2_score()));
+
+        if (_playerType == PlayerType::COMPUTER && !_WordBoard->game_is_over(_currentPlayer) && _currentPlayer == _player2.get() && _clock.getElapsedTime().asSeconds() >= 1){
+            int x, y;
+            char sym;
+            do {
+                x = rand() % 3;
+                y = rand() % 3;
+                char letter = 'A' + (rand() % 26);
+                sym = letter;
+            } while (this->_WordBoard->get_board_matrix()[x][y] != ' ');
+
+            Move move(x, y, sym);
+        
+            this->_WordBoard->update_board(&move);
+
+            if(_WordBoard->is_win(_currentPlayer)){ 
+                if(_currentPlayer == _player1.get()) _p2 = true;
+                else _p1 = true;
+            }
+
+            else if(_WordBoard->is_draw(_currentPlayer)){
+                _draw = true;
+            }
+
+            else if(_WordBoard->is_lose(_currentPlayer)){
+                if(_currentPlayer == _player1.get()) _p1 = true;
+                else _p2 = true;
+            }
+
+            this->_currentPlayer = _player1.get();
+        }
     }
 
     void WordState::Draw( float dt ) {
