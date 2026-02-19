@@ -85,46 +85,46 @@ namespace Tokyo {
             }
 
             if(_playerType != PlayerType::COMPUTER || _currentPlayer == _player1.get()){
-            if(this->_data->input.isSpriteClicekd( *this->_grid, sf::Mouse::Button::Left, this->_data->window )){
-                sf::Vector2i mousePos = this->_data->input.getMousePosition(this->_data->window);
-                float localX = mousePos.x - gridPos.x;
-                float localY = mousePos.y - gridPos.y;
-                this->_row = localX / CellWidth;
-                this->_col = localY / CellHeight;
-                if (_WordBoard->get_cell(_row, _col) == ' '){
-                    _cellChosen = true;
-                }
-                else _cellChosen = false;
-            }
-
-            if(_cellChosen){
-                if (event->getIf<sf::Event::TextEntered>()){
-                    char let = static_cast<char>(event->getIf<sf::Event::TextEntered>()->unicode);
-                    char letter = std::toupper(let);
-                    if(letter >= 'A' && letter <= 'Z'){
-                        Move move(_row, _col, letter);
-                        this->_WordBoard->update_board(&move);
-
-                        if(_WordBoard->is_win(_currentPlayer)){
-                            if(_currentPlayer == _player1.get()) _p1 = true;
-                            else _p2 = true;
-                        }
-
-                        else if(_WordBoard->is_draw(_currentPlayer)){
-                            _draw = true;
-                        }
-
-                        else if(_WordBoard->is_lose(_currentPlayer)){
-                            if(_currentPlayer == _player1.get()) _p2 = true;
-                            else _p1 = true;
-                        }
-
-                        _cellChosen = false;
-                        if(_playerType == PlayerType::HUMAN) _currentPlayer = (_currentPlayer == _player1.get()) ? _player2.get() : _player1.get();
-                        else _currentPlayer = _player2.get();
-                        _clock.restart();  
+                if(this->_data->input.isSpriteClicekd( *this->_grid, sf::Mouse::Button::Left, this->_data->window )){
+                    sf::Vector2i mousePos = this->_data->input.getMousePosition(this->_data->window);
+                    float localX = mousePos.x - gridPos.x;
+                    float localY = mousePos.y - gridPos.y;
+                    this->_col = localX / CellWidth;
+                    this->_row = localY / CellHeight;
+                    if (_WordBoard->get_cell(_row, _col) == ' '){
+                        _cellChosen = true;
                     }
+                    else _cellChosen = false;
                 }
+
+                if(_cellChosen){
+                    if (event->getIf<sf::Event::TextEntered>()){
+                        char let = static_cast<char>(event->getIf<sf::Event::TextEntered>()->unicode);
+                        char letter = std::toupper(let);
+                        if(letter >= 'A' && letter <= 'Z'){
+                            Move move(_row, _col, letter);
+                            this->_WordBoard->update_board(&move);
+
+                            if(_WordBoard->is_win(_currentPlayer)){
+                                if(_currentPlayer == _player1.get()) _p1 = true;
+                                else _p2 = true;
+                            }
+
+                            else if(_WordBoard->is_draw(_currentPlayer)){
+                                _draw = true;
+                            }
+
+                            else if(_WordBoard->is_lose(_currentPlayer)){
+                                if(_currentPlayer == _player1.get()) _p2 = true;
+                                else _p1 = true;
+                            }
+
+                            _cellChosen = false;
+                            if(_playerType == PlayerType::HUMAN) _currentPlayer = (_currentPlayer == _player1.get()) ? _player2.get() : _player1.get();
+                            else _currentPlayer = _player2.get();
+                            _clock.restart();  
+                        }
+                    }
                 }
             }
 
@@ -185,7 +185,7 @@ namespace Tokyo {
         this->_data->window.draw( *this->_grid);
         
         if(_cellChosen){
-            _currentCell->setPosition({(_row*4)+_row*CellWidth+gridPos.x, (_col*6)+_col*CellHeight+gridPos.y});
+            _currentCell->setPosition({(_col*5)+_col*CellWidth+gridPos.x, (_row*6)+_row*CellHeight+gridPos.y});
             this->_data->window.draw( *this->_currentCell );
         }
         
@@ -195,7 +195,7 @@ namespace Tokyo {
                     std::string key (1,this->_WordBoard->get_cell(i,j));
                     auto letter = _data->assets.GetTexture(key);
                     _letter->setTexture(letter);
-                    _letter->setPosition({(i*4)+i*CellWidth+gridPos.x, (j*6)+j*CellHeight+gridPos.y});
+                    _letter->setPosition({(j*4)+j*CellWidth+gridPos.x, (i*6)+i*CellHeight+gridPos.y});
                     this->_data->window.draw( *this->_letter );
                 }
             }
