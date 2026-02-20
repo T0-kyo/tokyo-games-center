@@ -23,6 +23,7 @@
 #define GAME_BACKGROUND "../Assets/Textures/Game Background.jpg"
 #define PAUSE_BUTTON "../Assets/Textures/Pause Button.png"
 #define GRID "../Assets/Textures/Grid.png"
+#define CELL "../Assets/Textures/Cell.png"
 #define MAIN_BACKGROUND "../Assets/Textures/MMBackground.jpg"
 #define MAIN_FONT "../Assets/Fonts/Frijole-Regular.ttf"
 

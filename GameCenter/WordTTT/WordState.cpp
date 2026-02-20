@@ -17,7 +17,7 @@ namespace Tokyo {
         this->_data->assets.LoadTexture("Game Background", GAME_BACKGROUND);
         this->_data->assets.LoadTexture("Pause Button", PAUSE_BUTTON);
         this->_data->assets.LoadTexture("Grid", GRID);
-        this->_data->assets.LoadTexture("cell", "../Assets/Textures/Cell.png");
+        this->_data->assets.LoadTexture("cell", CELL);
 
         for (char c='A'; c<='Z'; ++c){
             std::string key(1, c);
@@ -176,7 +176,7 @@ namespace Tokyo {
             this->_WordBoard->update_board(&move);
 
             if(_WordBoard->is_win(_currentPlayer)){ 
-                if(_currentPlayer == _Player1.get()) _p2 = true;
+                if(_currentPlayer == _Player2.get()) _p2 = true;
                 else _p1 = true;
             }
 
