@@ -63,6 +63,10 @@ class Infinity_Board : public Board<char> {
      * @return false always
      */
     bool is_lose(Player<char>* player) override;
+
+    pair<int, int>  willDelete();
+
+    bool isDelFull();
 };
 
 

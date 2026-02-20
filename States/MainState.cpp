@@ -24,7 +24,7 @@ namespace Tokyo {
 
         this->_background->setPosition({SCREEN_WIDTH / 2 - texture1.getSize().x * 0.5f, SCREEN_HEIGHT / 2 - texture1.getSize().y * 0.5f});
         this->_background->setColor( sf::Color( 255, 255, 255, 180 ) );
-        this->_startButton->setFillColor( sf::Color(225, 165, 30) );
+        this->_startButton->setFillColor( sf::Color(241, 188, 63) );
         this->_startButton->setPosition({ SCREEN_WIDTH /2 - textRect.size.x * 0.5f , SCREEN_HEIGHT * 0.45f});
     }
 
