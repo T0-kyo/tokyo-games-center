@@ -8,11 +8,11 @@ namespace Tokyo {
     void State4x4::Init() {
 
         this->_4x4Board = std::make_shared<TTT4x4_Board>();
-        this->_player1 = std::make_shared<Player<char>>('X', PlayerType::HUMAN);
-        this->_player2 = std::make_shared<Player<char>>('O', _playerType);
-        this->_player1->set_board_ptr(_4x4Board.get());
-        this->_player2->set_board_ptr(_4x4Board.get());
-        this->_currentPlayer = _player1.get();
+        this->_Player1 = std::make_shared<Player<char>>('X', PlayerType::HUMAN);
+        this->_Player2 = std::make_shared<Player<char>>('O', _playerType);
+        this->_Player1->set_board_ptr(_4x4Board.get());
+        this->_Player2->set_board_ptr(_4x4Board.get());
+        this->_currentPlayer = _Player1.get();
 
         this->_data->assets.LoadTexture("Game Background", GAME_BACKGROUND);
         this->_data->assets.LoadTexture("Pause Button", PAUSE_BUTTON);
@@ -31,6 +31,7 @@ namespace Tokyo {
         auto& O = this->_data->assets.GetTexture( "O sprite" );
         auto& Xwin = this->_data->assets.GetTexture( "X win" );
         auto& Owin = this->_data->assets.GetTexture( "O win" );
+        auto& font = this->_data->assets.GetFont("Main Font");
 
         this->_background = make_unique<sf::Sprite>( bg );
         this->_pauseButton = make_unique<sf::Sprite>( pause );
@@ -50,6 +51,24 @@ namespace Tokyo {
         this->_grid->setPosition({SCREEN_WIDTH * 0.5f - grid.getSize().x * 0.5f, SCREEN_HEIGHT * 0.5f - grid.getSize().y * 0.5f});
 
         this->_currentCell->setColor( sf::Color(135, 135, 135, 100) );
+
+        this->_player1 = std::make_unique<sf::Text>(font, "Player1: ", MAIN_MENU_TITLE_SIZE / 2.5);
+        sf::FloatRect rect1 = _player1->getLocalBounds();
+        this->_player1->setFillColor(sf::Color(14, 73, 153));
+        this->_player1->setPosition({rect1.size.x * 0.3f, SCREEN_HEIGHT * 0.5f - rect1.size.y * 1.6f});
+
+        this->_player2 = std::make_unique<sf::Text>(font, "Player2: ", MAIN_MENU_TITLE_SIZE / 2.5);
+        sf::FloatRect rect2 = _player2->getLocalBounds();
+        this->_player2->setFillColor(sf::Color(163, 11, 38));
+        this->_player2->setPosition({SCREEN_WIDTH - rect2.size.x * 1.3f, SCREEN_HEIGHT * 0.5f - rect2.size.y * 1.6f});
+
+        this->_player1Turn = std::make_unique<sf::Text>(font, "Your Turn!", MAIN_MENU_TITLE_SIZE/4);
+        this->_player1Turn->setFillColor(sf::Color(240, 240, 220));
+        this->_player1Turn->setPosition({SCREEN_WIDTH * 0.06f, SCREEN_HEIGHT * 0.375f});
+
+        this->_player2Turn = std::make_unique<sf::Text>(font, "Your Turn!", MAIN_MENU_TITLE_SIZE/4);
+        this->_player2Turn->setFillColor(sf::Color(240, 240, 220, 0));
+        this->_player2Turn->setPosition({SCREEN_WIDTH - SCREEN_WIDTH * 0.2f, SCREEN_HEIGHT * 0.375f});
 
         auto gridSize = this->_grid->getTexture().getSize();
         this->gridPos = this->_grid->getPosition();
@@ -72,19 +91,7 @@ namespace Tokyo {
                 this->_data->machine.AddState(StateRef (new PauseState(this->_data)), false);
             }
 
-            if(_currentPlayer == _player1.get()){
-                if(this->_data->input.isSpriteClicekd( *this->_grid, sf::Mouse::Button::Left, this->_data->window )){
-                    sf::Vector2i mousePos = this->_data->input.getMousePosition(this->_data->window);
-                    float localX = mousePos.x - gridPos.x;
-                    float localY = mousePos.y - gridPos.y;
-                    this->_col = localX / CellWidth;
-                    this->_row = localY / CellHeight;
-                    if (_4x4Board->get_cell(_row, _col) == 'X'){
-                        _cellChosen = true;
-                    }
-                    else _cellChosen = false;
-                }
-
+            if(_currentPlayer == _Player1.get()){
                 if(_cellChosen){
                     if(event->getIf<sf::Event::KeyPressed>()){
                         auto arrow = event->getIf<sf::Event::KeyPressed>()->code;
@@ -111,27 +118,62 @@ namespace Tokyo {
                                 else if(_4x4Board->is_draw(_currentPlayer)) _draw = true;
 
                                 _cellChosen = false;
-                                _currentPlayer = _player2.get();
+                                _currentPlayer = _Player2.get();
+                                _clock.restart();
+                            }
+                        }
+                    }
+                    if(this->_data->input.isSpriteClicekd( *this->_grid, sf::Mouse::Button::Left, this->_data->window)){
+                        sf::Vector2i mousePos = this->_data->input.getMousePosition(this->_data->window);
+                        float localX = mousePos.x - gridPos.x;
+                        float localY = mousePos.y - gridPos.y;
+                        int col = localX / CellWidth;
+                        int row = localY / CellHeight;
+                        char dir;
+
+                        if(col==_col && row==_row-1){
+                            dir = 'U';
+                        }
+                        else if(col==_col && row==_row+1){
+                            dir = 'D';
+                        }
+                        else if(col==_col+1 && row==_row){
+                            dir = 'R';
+                        }
+                        else if(col==_col-1 && row==_row){
+                            dir = 'L';
+                        }
+                        else _cellChosen = false;
+
+                        if(dir=='U' || dir=='D' || dir=='L' || dir=='R'){
+                            Move move(_row, _col, dir);
+                            if(this->_4x4Board->update_board(&move)){
+
+                                if(_4x4Board->is_win(_currentPlayer)) _p1 = true;
+
+                                else if(_4x4Board->is_draw(_currentPlayer)) _draw = true;
+
+                                _cellChosen = false;
+                                _currentPlayer = _Player2.get();
                                 _clock.restart();
                             }
                         }
                     }
                 }
-            }
 
-            else if(_currentPlayer == _player2.get() && _playerType == PlayerType::HUMAN){
-                if(this->_data->input.isSpriteClicekd( *this->_grid, sf::Mouse::Button::Left, this->_data->window )){
+                if(this->_data->input.isSpriteClicekd( *this->_grid, sf::Mouse::Button::Left, this->_data->window)){
                     sf::Vector2i mousePos = this->_data->input.getMousePosition(this->_data->window);
                     float localX = mousePos.x - gridPos.x;
                     float localY = mousePos.y - gridPos.y;
                     this->_col = localX / CellWidth;
                     this->_row = localY / CellHeight;
-                    if (_4x4Board->get_cell(_row, _col) == 'O'){
+                    if (!_cellChosen && _4x4Board->get_cell(_row, _col) == 'X' && _currentPlayer == _Player1.get()){
                         _cellChosen = true;
                     }
-                    else _cellChosen = false;
                 }
+            }
 
+            else if(_currentPlayer == _Player2.get() && _playerType == PlayerType::HUMAN){
                 if(_cellChosen){
                     if(event->getIf<sf::Event::KeyPressed>()){
                         auto arrow = event->getIf<sf::Event::KeyPressed>()->code;
@@ -158,12 +200,61 @@ namespace Tokyo {
                                 else if(_4x4Board->is_draw(_currentPlayer)) _draw = true;
 
                                 _cellChosen = false;
-                                _currentPlayer = _player1.get();
+                                _currentPlayer = _Player1.get();
+                            }
+                        }
+                    }
+
+                    else if(this->_data->input.isSpriteClicekd( *this->_grid, sf::Mouse::Button::Left, this->_data->window)){
+                        sf::Vector2i mousePos = this->_data->input.getMousePosition(this->_data->window);
+                        float localX = mousePos.x - gridPos.x;
+                        float localY = mousePos.y - gridPos.y;
+                        int col = localX / CellWidth;
+                        int row = localY / CellHeight;
+                        char dir;
+
+                        if(col==_col && row==_row-1){
+                            dir = 'U';
+                        }
+                        else if(col==_col && row==_row+1){
+                             dir = 'D';
+                        }
+                        else if(col==_col+1 && row==_row){
+                            dir = 'R';
+                        }
+                        else if(col==_col-1 && row==_row){
+                            dir = 'L';
+                        }
+                        else _cellChosen = false;
+
+                        if(dir=='U' || dir=='D' || dir=='L' || dir=='R'){
+                            Move move(_row, _col, dir);
+                            if(this->_4x4Board->update_board(&move)){
+
+                                if(_4x4Board->is_win(_currentPlayer)) _p2 = true;
+
+                                else if(_4x4Board->is_draw(_currentPlayer)) _draw = true;
+
+                                _cellChosen = false;
+                                _currentPlayer = _Player1.get();
+                                _clock.restart();
                             }
                         }
                     }
                 }
+                
+                if(this->_data->input.isSpriteClicekd( *this->_grid, sf::Mouse::Button::Left, this->_data->window )){
+                    sf::Vector2i mousePos = this->_data->input.getMousePosition(this->_data->window);
+                    float localX = mousePos.x - gridPos.x;
+                    float localY = mousePos.y - gridPos.y;
+                    this->_col = localX / CellWidth;
+                    this->_row = localY / CellHeight;
+                    if (!_cellChosen && _4x4Board->get_cell(_row, _col) == 'O'){
+                        _cellChosen = true;
+                    }
+                }
             }
+            
         }
     }
         
@@ -173,7 +264,16 @@ namespace Tokyo {
         }
         else _pauseButton->setColor(sf::Color(255, 255, 255, 100));
 
-        if (_playerType == PlayerType::COMPUTER && !_4x4Board->game_is_over(_currentPlayer) && _currentPlayer == _player2.get() && _clock.getElapsedTime().asSeconds() >= 1){
+        if(_currentPlayer==_Player1.get()){
+            _player1Turn->setFillColor(sf::Color(240, 240, 220, 255));
+            _player2Turn->setFillColor(sf::Color(240, 240, 220, 0));
+        }
+        else{
+            _player2Turn->setFillColor(sf::Color(240, 240, 220, 255));
+            _player1Turn->setFillColor(sf::Color(240, 240, 220, 0));
+        }
+
+        if (_playerType == PlayerType::COMPUTER && !_4x4Board->game_is_over(_currentPlayer) && _currentPlayer == _Player2.get() && _clock.getElapsedTime().asSeconds() >= 1){
             int x, y;
             char sym;
             do {
@@ -196,7 +296,7 @@ namespace Tokyo {
                     _draw = true;
                 }
 
-                this->_currentPlayer = _player1.get();
+                this->_currentPlayer = _Player1.get();
             }
         }
     }
@@ -207,6 +307,10 @@ namespace Tokyo {
         this->_data->window.draw( *this->_background );
         this->_data->window.draw( *this->_grid );
         this->_data->window.draw( *this->_pauseButton );
+        this->_data->window.draw( *this->_player1 );
+        this->_data->window.draw( *this->_player2 );
+        this->_data->window.draw( *this->_player1Turn );
+        this->_data->window.draw( *this->_player2Turn );
 
         if(_cellChosen){
             this->_currentCell->setPosition({_col*CellWidth+gridPos.x+(_col*3), _row*CellHeight+gridPos.y+(_row*3)});

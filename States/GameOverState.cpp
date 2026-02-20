@@ -39,7 +39,7 @@ namespace Tokyo {
         this->_medal->setPosition({SCREEN_WIDTH/2 + rect.size.x * 0.5f, rect.size.y * 0.5f});
 
         this->_announce->setPosition({SCREEN_WIDTH/2 - rect.size.x * 0.5f, rect.size.y * 0.7f});
-        this->_announce->setFillColor(sf::Color(200, 110, 30));
+        this->_announce->setFillColor(sf::Color(130, 51, 142));
     }
 
     void GameOverState::HandleInput(){

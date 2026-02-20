@@ -8,11 +8,11 @@ namespace Tokyo {
     void WordState::Init() {
 
         this->_WordBoard = std::make_shared<WordTTT_Board>();
-        this->_player1 = std::make_shared<Player<char>>('X', PlayerType::HUMAN);
-        this->_player2 = std::make_shared<Player<char>>('O', _playerType);
-        this->_player1->set_board_ptr(_WordBoard.get());
-        this->_player2->set_board_ptr(_WordBoard.get());
-        this->_currentPlayer = _player1.get();
+        this->_Player1 = std::make_shared<Player<char>>('X', PlayerType::HUMAN);
+        this->_Player2 = std::make_shared<Player<char>>('O', _playerType);
+        this->_Player1->set_board_ptr(_WordBoard.get());
+        this->_Player2->set_board_ptr(_WordBoard.get());
+        this->_currentPlayer = _Player1.get();
 
         this->_data->assets.LoadTexture("Game Background", GAME_BACKGROUND);
         this->_data->assets.LoadTexture("Pause Button", PAUSE_BUTTON);
@@ -30,8 +30,7 @@ namespace Tokyo {
         auto& pause = this->_data->assets.GetTexture("Pause Button");
         auto& background = this->_data->assets.GetTexture("Game Background");
         auto& font = this->_data->assets.GetFont("Main Font");
-        std::string A(1,'A');
-        auto& let = this->_data->assets.GetTexture(A);
+        auto& let = this->_data->assets.GetTexture("A");
         
         this->_background = std::make_unique<sf::Sprite> ( background );
         this->_grid = std::make_unique<sf::Sprite> ( grid );
@@ -49,23 +48,31 @@ namespace Tokyo {
         this->_pauseButton->setPosition({pause.getSize().x * 0.3f, pause.getSize().y * 0.3f});
         this->_pauseButton->setColor( sf::Color( 255, 255, 255, 100 ) );
 
-        this->_p1Score = std::make_unique<sf::Text>(font, "Player1: ", MAIN_MENU_TITLE_SIZE / 2.5);
-        sf::FloatRect rect1 = _p1Score->getLocalBounds();
-        this->_p1Score->setFillColor(sf::Color(240, 240, 220));
-        this->_p1Score->setPosition({rect1.size.x * 0.3f, SCREEN_HEIGHT * 0.5f - rect1.size.y * 1.6f});
+        this->_player1 = std::make_unique<sf::Text>(font, "Player1: ", MAIN_MENU_TITLE_SIZE / 2.5);
+        sf::FloatRect rect1 = _player1->getLocalBounds();
+        this->_player1->setFillColor(sf::Color(14, 73, 153));
+        this->_player1->setPosition({rect1.size.x * 0.3f, SCREEN_HEIGHT * 0.5f - rect1.size.y * 1.6f});
 
         this->_score1 = std::make_unique<sf::Text>(font, std::to_string(_WordBoard->get_p1_score()), MAIN_MENU_TITLE_SIZE / 2);
         this->_score1->setPosition({rect1.size.x * 0.7f, SCREEN_HEIGHT * 0.6f - rect1.size.y * 1.6f});
         this->_score1->setFillColor(sf::Color(240, 240, 220));
 
-        this->_p2Score = std::make_unique<sf::Text>(font, "Player2: ", MAIN_MENU_TITLE_SIZE / 2.5);
-        sf::FloatRect rect2 = _p2Score->getLocalBounds();
-        this->_p2Score->setFillColor(sf::Color(240, 240, 220));
-        this->_p2Score->setPosition({SCREEN_WIDTH - rect2.size.x * 1.3f, SCREEN_HEIGHT * 0.5f - rect2.size.y * 1.6f});
+        this->_player2 = std::make_unique<sf::Text>(font, "Player2: ", MAIN_MENU_TITLE_SIZE / 2.5);
+        sf::FloatRect rect2 = _player2->getLocalBounds();
+        this->_player2->setFillColor(sf::Color(163, 11, 38));
+        this->_player2->setPosition({SCREEN_WIDTH - rect2.size.x * 1.3f, SCREEN_HEIGHT * 0.5f - rect2.size.y * 1.6f});
 
         this->_score2 = std::make_unique<sf::Text>(font, std::to_string(_WordBoard->get_p2_score()), MAIN_MENU_TITLE_SIZE / 2);
         this->_score2->setPosition({SCREEN_WIDTH - rect2.size.x * 0.9f, SCREEN_HEIGHT * 0.6f - rect2.size.y * 1.6f});
         this->_score2->setFillColor(sf::Color(240, 240, 220));
+
+        this->_player1Turn = std::make_unique<sf::Text>(font, "Your Turn!", MAIN_MENU_TITLE_SIZE/4);
+        this->_player1Turn->setFillColor(sf::Color(240, 240, 220));
+        this->_player1Turn->setPosition({SCREEN_WIDTH * 0.06f, SCREEN_HEIGHT * 0.375f});
+
+        this->_player2Turn = std::make_unique<sf::Text>(font, "Your Turn!", MAIN_MENU_TITLE_SIZE/4);
+        this->_player2Turn->setFillColor(sf::Color(240, 240, 220, 0));
+        this->_player2Turn->setPosition({SCREEN_WIDTH - SCREEN_WIDTH * 0.2f, SCREEN_HEIGHT * 0.375f});
 
         auto gridSize = this->_grid->getTexture().getSize();
         this->gridPos = this->_grid->getPosition();
@@ -84,7 +91,7 @@ namespace Tokyo {
                 this->_data->window.close();
             }
 
-            if(_playerType != PlayerType::COMPUTER || _currentPlayer == _player1.get()){
+            if(_playerType != PlayerType::COMPUTER || _currentPlayer == _Player1.get()){
                 if(this->_data->input.isSpriteClicekd( *this->_grid, sf::Mouse::Button::Left, this->_data->window )){
                     sf::Vector2i mousePos = this->_data->input.getMousePosition(this->_data->window);
                     float localX = mousePos.x - gridPos.x;
@@ -106,7 +113,7 @@ namespace Tokyo {
                             this->_WordBoard->update_board(&move);
 
                             if(_WordBoard->is_win(_currentPlayer)){
-                                if(_currentPlayer == _player1.get()) _p1 = true;
+                                if(_currentPlayer == _Player1.get()) _p1 = true;
                                 else _p2 = true;
                             }
 
@@ -115,13 +122,13 @@ namespace Tokyo {
                             }
 
                             else if(_WordBoard->is_lose(_currentPlayer)){
-                                if(_currentPlayer == _player1.get()) _p2 = true;
+                                if(_currentPlayer == _Player1.get()) _p2 = true;
                                 else _p1 = true;
                             }
 
                             _cellChosen = false;
-                            if(_playerType == PlayerType::HUMAN) _currentPlayer = (_currentPlayer == _player1.get()) ? _player2.get() : _player1.get();
-                            else _currentPlayer = _player2.get();
+                            if(_playerType == PlayerType::HUMAN) _currentPlayer = (_currentPlayer == _Player1.get()) ? _Player2.get() : _Player1.get();
+                            else _currentPlayer = _Player2.get();
                             _clock.restart();  
                         }
                     }
@@ -142,10 +149,19 @@ namespace Tokyo {
             this->_pauseButton->setColor(sf::Color(255, 255, 255, 100));
         }
 
+        if(_currentPlayer==_Player1.get()){
+            _player1Turn->setFillColor(sf::Color(240, 240, 220, 255));
+            _player2Turn->setFillColor(sf::Color(240, 240, 220, 0));
+        }
+        else{
+            _player2Turn->setFillColor(sf::Color(240, 240, 220, 255));
+            _player1Turn->setFillColor(sf::Color(240, 240, 220, 0));
+        }
+
         this->_score1->setString(std::to_string(_WordBoard->get_p1_score()));
         this->_score2->setString(std::to_string(_WordBoard->get_p2_score()));
 
-        if (_playerType == PlayerType::COMPUTER && !_WordBoard->game_is_over(_currentPlayer) && _currentPlayer == _player2.get() && _clock.getElapsedTime().asSeconds() >= 1){
+        if (_playerType == PlayerType::COMPUTER && !_WordBoard->game_is_over(_currentPlayer) && _currentPlayer == _Player2.get() && _clock.getElapsedTime().asSeconds() >= 1){
             int x, y;
             char sym;
             do {
@@ -160,7 +176,7 @@ namespace Tokyo {
             this->_WordBoard->update_board(&move);
 
             if(_WordBoard->is_win(_currentPlayer)){ 
-                if(_currentPlayer == _player1.get()) _p2 = true;
+                if(_currentPlayer == _Player1.get()) _p2 = true;
                 else _p1 = true;
             }
 
@@ -169,11 +185,11 @@ namespace Tokyo {
             }
 
             else if(_WordBoard->is_lose(_currentPlayer)){
-                if(_currentPlayer == _player1.get()) _p1 = true;
+                if(_currentPlayer == _Player1.get()) _p1 = true;
                 else _p2 = true;
             }
 
-            this->_currentPlayer = _player1.get();
+            this->_currentPlayer = _Player1.get();
         }
     }
 
@@ -201,10 +217,12 @@ namespace Tokyo {
             }
         }
 
-        this->_data->window.draw( *this->_p1Score );
-        this->_data->window.draw( *this->_p2Score );
+        this->_data->window.draw( *this->_player1 );
+        this->_data->window.draw( *this->_player2 );
         this->_data->window.draw( *this->_score1 );
         this->_data->window.draw( *this->_score2 );
+        this->_data->window.draw( *this->_player1Turn );
+        this->_data->window.draw( *this->_player2Turn );
 
         this->_data->window.display();
     }
