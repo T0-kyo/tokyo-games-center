@@ -26,8 +26,8 @@ namespace Tokyo {
         private:
         GameDataRef _data;
 
-        std::shared_ptr<Player<char>> _player1;
-        std::shared_ptr<Player<char>> _player2;
+        std::shared_ptr<Player<char>> _Player1;
+        std::shared_ptr<Player<char>> _Player2;
         std::shared_ptr<WordTTT_Board> _WordBoard;
         sf::Clock _clock;
 
@@ -37,10 +37,12 @@ namespace Tokyo {
         std::unique_ptr<sf::Sprite> _pauseButton;
         std::unique_ptr<sf::Sprite> _currentCell;
 
-        std::unique_ptr<sf::Text> _p1Score;
-        std::unique_ptr<sf::Text> _p2Score;
+        std::unique_ptr<sf::Text> _player1;
+        std::unique_ptr<sf::Text> _player2;
         std::unique_ptr<sf::Text> _score1;
         std::unique_ptr<sf::Text> _score2;
+        std::unique_ptr<sf::Text> _player1Turn;
+        std::unique_ptr<sf::Text> _player2Turn;
         
         bool _p1 = false;
         bool _p2 = false;

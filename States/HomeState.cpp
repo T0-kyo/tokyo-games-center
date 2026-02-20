@@ -15,22 +15,23 @@ namespace Tokyo{
         this->_background->setPosition({SCREEN_WIDTH / 2 - bg.getSize().x*0.5f, SCREEN_HEIGHT / 2 - bg.getSize().y*0.5f});
         this->_background->setColor(sf::Color(255, 255, 255, 70));
 
-        this->_yes = std::make_unique<sf::Text> ( text, "YES", MAIN_MENU_TITLE_SIZE / 3 );
+        this->_yes = std::make_unique<sf::Text> ( text, "YES", MAIN_MENU_TITLE_SIZE / 1.5 );
         sf::FloatRect textRect1 = this->_yes->getLocalBounds();
 
-        this->_no = std::make_unique<sf::Text> ( text, "NO", MAIN_MENU_TITLE_SIZE / 3 );
+        this->_no = std::make_unique<sf::Text> ( text, "NO", MAIN_MENU_TITLE_SIZE / 1.5 );
         sf::FloatRect textRect2 = this->_no->getLocalBounds();
 
-        this->_quest = std::make_unique<sf::Text> ( text, "ARE YOU SURE TO LEAVE THE GAME?", MAIN_MENU_TITLE_SIZE / 3 );
+        this->_quest = std::make_unique<sf::Text> ( text, "ARE YOU SURE TO LEAVE THE GAME?", MAIN_MENU_TITLE_SIZE / 2.2 );
+        sf::FloatRect textRect3 = this->_quest->getLocalBounds();
 
         this->_quest->setFillColor( sf::Color(225, 165, 35) );
-        this->_quest->setPosition({SCREEN_WIDTH / 2 - 450, SCREEN_HEIGHT / 2 - textRect1.size.y*0.5f - 300});
+        this->_quest->setPosition({SCREEN_WIDTH / 2 - textRect3.size.x*0.5f, textRect3.size.y*3.5f});
 
         this->_yes->setFillColor( sf::Color(225, 165, 35) );
-        this->_yes->setPosition({SCREEN_WIDTH / 2 + 150, SCREEN_HEIGHT / 2 - textRect1.size.y*0.5f});
+        this->_yes->setPosition({SCREEN_WIDTH / 2 + 250, SCREEN_HEIGHT / 2 - textRect1.size.y*0.5f});
 
         this->_no->setFillColor( sf::Color(225, 165, 35) );
-        this->_no->setPosition({SCREEN_WIDTH / 2 - 300, SCREEN_HEIGHT / 2 - textRect2.size.y*0.5f});
+        this->_no->setPosition({SCREEN_WIDTH / 2 - 350, SCREEN_HEIGHT / 2 - textRect2.size.y*0.5f});
     }
 
     void HomeState::HandleInput(){
