@@ -12,15 +12,6 @@ Infinity_Board::Infinity_Board() : Board<char>(3,3){
     }
 }
 
-pair<int, int> Infinity_Board::willDelete(){
-    return del.front();
-}
-
-bool Infinity_Board::isDelFull(){
-    if(del.size() == 5) return true;
-    else return false;
-}
-
 /**
  * @brief Updates the board by adding a move.
  */
