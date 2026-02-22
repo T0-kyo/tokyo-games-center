@@ -78,8 +78,8 @@ namespace Tokyo {
         this->_title->setFillColor( sf::Color(225, 165, 35) );
         this->_title->setPosition({ SCREEN_WIDTH /2 - textRect.size.x * 0.5f , SCREEN_HEIGHT * 0.075f});
 
-        this->_NumericalTTT_Button->setColor(sf::Color(255, 255, 255));
-        this->_NumericalTTT_Button->setPosition({157, 250});
+        this->_SUS_Button->setColor( sf::Color(225, 165, 35) );
+        this->_SUS_Button->setPosition({157, 250});
         
         this->_5x5TTT_Button->setColor(sf::Color(255, 255, 255));
         this->_5x5TTT_Button->setPosition({489, 250});
@@ -90,8 +90,8 @@ namespace Tokyo {
         this->_UltimateTTT_Button->setColor( sf::Color(225, 165, 35) );
         this->_UltimateTTT_Button->setPosition({1153, 250});
 
-        this->_SUS_Button->setColor( sf::Color(225, 165, 35) );
-        this->_SUS_Button->setPosition({102, 450});
+        //this->_NumericalTTT_Button->setColor(sf::Color(255, 255, 255));
+        this->_NumericalTTT_Button->setPosition({102, 450});
 
         this->_PyramidTTT_Button->setColor( sf::Color(225, 165, 35) );
         this->_PyramidTTT_Button->setPosition({379, 450});
