@@ -9,14 +9,17 @@ namespace Tokyo{
         this->_data->assets.LoadTexture( "PauseBG", "../Assets/Textures/Game Background.jpg" );
         this->_data->assets.LoadTexture( "Resume", "../Assets/Textures/Resume Button.png" );
         this->_data->assets.LoadTexture( "Home", "../Assets/Textures/Home Button.png" );
+        this->_data->assets.LoadTexture( "Book", "../Assets/Textures/book.png" );
 
         auto& bg = this->_data->assets.GetTexture("PauseBG");
         auto& res = this->_data->assets.GetTexture("Resume");
         auto& hm = this->_data->assets.GetTexture("Home");
+        auto& bk = this->_data->assets.GetTexture("Book");
 
         this->_background = std::make_unique<sf::Sprite>(bg);
         this->_resume = std::make_unique<sf::Sprite>(res);
         this->_home = std::make_unique<sf::Sprite>(hm);
+        this->_book = std::make_unique<sf::Sprite>(bk);
 
         this->_background->setPosition({SCREEN_WIDTH / 2 - bg.getSize().x*0.5f, SCREEN_HEIGHT / 2 - bg.getSize().y*0.5f});
         this->_background->setColor(sf::Color(255, 255, 255, 70));
@@ -26,6 +29,9 @@ namespace Tokyo{
 
         this->_home->setPosition({SCREEN_WIDTH / 2 - 350, SCREEN_HEIGHT / 2 - hm.getSize().y*0.5f});
         this->_home->setColor(sf::Color(255, 255, 255, 150));
+
+        this->_book->setPosition({SCREEN_WIDTH * 0.03f, SCREEN_HEIGHT * 0.04f});
+        this->_book->setColor(sf::Color(255, 255, 255, 150));
     }
 
     void PauseState::HandleInput(){
@@ -52,6 +58,11 @@ namespace Tokyo{
             this->_home->setColor(sf::Color(255, 255, 255, 255));
         }
         else this->_home->setColor(sf::Color(255, 255, 255, 150));
+
+        if(this->_data->input.hoverSprite(*this->_book, this->_data->window)){
+            this->_book->setColor(sf::Color(255, 255, 255, 255));
+        }
+        else this->_book->setColor(sf::Color(255, 255, 255, 150));
     }
 
     void PauseState::Draw(float dt){
@@ -60,6 +71,7 @@ namespace Tokyo{
         this->_data->window.draw(*this->_background);
         this->_data->window.draw(*this->_resume);
         this->_data->window.draw(*this->_home);
+        this->_data->window.draw(*this->_book);
 
         this->_data->window.display();
     }

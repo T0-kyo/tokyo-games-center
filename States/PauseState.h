@@ -24,5 +24,6 @@ namespace Tokyo{
         std::unique_ptr<sf::Sprite> _background;
         std::unique_ptr<sf::Sprite> _resume;
         std::unique_ptr<sf::Sprite> _home;
+        std::unique_ptr<sf::Sprite> _book;
     };
 }
