@@ -23,9 +23,9 @@ namespace Tokyo {
         this->_data->assets.LoadTexture("ultimate", "../Assets/Textures/ultimate.png");
         this->_data->assets.LoadTexture("memory", "../Assets/Textures/memory.png");
         this->_data->assets.LoadTexture("misere", "../Assets/Textures/misere.png");
-        this->_data->assets.LoadTexture("infinity", "../Assets/Textures/diamond.png");//
+        this->_data->assets.LoadTexture("infinity", "../Assets/Textures/infinity.png");
         this->_data->assets.LoadTexture("sus", "../Assets/Textures/sus.png");
-        this->_data->assets.LoadTexture("word", "../Assets/Textures/diamond.png");//
+        this->_data->assets.LoadTexture("word", "../Assets/Textures/word.png");
         
         auto& numerical = this->_data->assets.GetTexture( "numerical" );
         auto& fourxfour = this->_data->assets.GetTexture( "4x4" );
@@ -34,12 +34,12 @@ namespace Tokyo {
         auto& pyramid = this->_data->assets.GetTexture( "pyramid" );
         auto& connect4 = this->_data->assets.GetTexture( "connect4" );
         auto& diamond = this->_data->assets.GetTexture( "diamond" );
-        auto& memory = this->_data->assets.GetTexture( "memory" );//
-        auto& misere = this->_data->assets.GetTexture( "misere" );//
-        auto& sus = this->_data->assets.GetTexture( "sus" );//
-        auto& ultimate = this->_data->assets.GetTexture( "ultimate" );//
-        auto& word = this->_data->assets.GetTexture( "word" );//
-        auto& infinity = this->_data->assets.GetTexture( "infinity" );//
+        auto& memory = this->_data->assets.GetTexture( "memory" );
+        auto& misere = this->_data->assets.GetTexture( "misere" );
+        auto& sus = this->_data->assets.GetTexture( "sus" );
+        auto& ultimate = this->_data->assets.GetTexture( "ultimate" );
+        auto& word = this->_data->assets.GetTexture( "word" );
+        auto& infinity = this->_data->assets.GetTexture( "infinity" );
         
         this->_4x4TTT_Button = std::make_unique<sf::Sprite> ( fourxfour );
         this->_5x5TTT_Button = std::make_unique<sf::Sprite> ( fivexfive );
@@ -78,8 +78,8 @@ namespace Tokyo {
         this->_title->setFillColor( sf::Color(225, 165, 35) );
         this->_title->setPosition({ SCREEN_WIDTH /2 - textRect.size.x * 0.5f , SCREEN_HEIGHT * 0.075f});
 
-        this->_NumericalTTT_Button->setColor(sf::Color(255, 255, 255));
-        this->_NumericalTTT_Button->setPosition({157, 250});
+        this->_SUS_Button->setColor( sf::Color(225, 165, 35) );
+        this->_SUS_Button->setPosition({157, 250});
         
         this->_5x5TTT_Button->setColor(sf::Color(255, 255, 255));
         this->_5x5TTT_Button->setPosition({489, 250});
@@ -90,8 +90,8 @@ namespace Tokyo {
         this->_UltimateTTT_Button->setColor( sf::Color(225, 165, 35) );
         this->_UltimateTTT_Button->setPosition({1153, 250});
 
-        this->_SUS_Button->setColor( sf::Color(225, 165, 35) );
-        this->_SUS_Button->setPosition({102, 450});
+        //this->_NumericalTTT_Button->setColor(sf::Color(255, 255, 255));
+        this->_NumericalTTT_Button->setPosition({102, 450});
 
         this->_PyramidTTT_Button->setColor( sf::Color(225, 165, 35) );
         this->_PyramidTTT_Button->setPosition({379, 450});
