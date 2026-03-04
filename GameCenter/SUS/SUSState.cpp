@@ -3,24 +3,195 @@
 
 namespace Tokyo {
 
-    SusState::SusState ( GameDataRef data , PlayerType playerType ) : _data( data ) {}
+    SUSState::SUSState ( GameDataRef data , PlayerType playerType ) : _data( data ) , _playerType( playerType ) {}
 
-    void SusState::Init() {
-        std::cout << "SUS State Init" << std::endl;
+    void SUSState::Init() {
+        this->_susBoard = std::make_shared<SUS_Board>();
+        this->_Player1 = std::make_shared<Player<char>>('S', PlayerType::HUMAN);
+        this-> _Player2 = std::make_shared<Player<char>>('U', _playerType);
+        this->_Player1->set_board_ptr(_susBoard.get());
+        this->_Player2->set_board_ptr(_susBoard.get());
+        this->_currentPlayer = _Player1.get();
+
+        this->_data->assets.LoadTexture("Game Background", GAME_BACKGROUND);
+        this->_data->assets.LoadTexture("Pause Button", PAUSE_BUTTON);
+        this->_data->assets.LoadTexture("3x3 Grid", "../Assets/Textures/Grid.png");
+        this->_data->assets.LoadTexture("S sprite", "../Assets/Textures/SS.png");
+        this->_data->assets.LoadTexture("U sprite", "../Assets/Textures/UU.png");
+
+        auto& bg = this->_data->assets.GetTexture("Game Background");
+        auto& pause = this->_data->assets.GetTexture( "Pause Button" );
+        auto& grid = this->_data->assets.GetTexture( "3x3 Grid" );
+        auto& s = this->_data->assets.GetTexture( "S sprite" );
+        auto& u = this->_data->assets.GetTexture( "U sprite" );
+        auto& font = this->_data->assets.GetFont("Main Font");
+
+        this->_background = make_unique<sf::Sprite>( bg );
+        this->_pauseButton = make_unique<sf::Sprite>( pause );
+        this->_grid = make_unique<sf::Sprite>( grid );
+        this->_s = make_unique<sf::Sprite>( s );
+        this->_u = make_unique<sf::Sprite>( u );
+
+        this->_background->setPosition({SCREEN_WIDTH/2 - bg.getSize().x * 0.5f, SCREEN_HEIGHT/2 - bg.getSize().y * 0.5f});
+        this->_background->setColor(sf::Color(255, 255, 255, 100));
+
+        this->_pauseButton->setPosition({pause.getSize().x * 0.3f, pause.getSize().y * 0.3f});
+        this->_pauseButton->setColor( sf::Color( 255, 255, 255, 100 ) );
+
+        this->_grid->setPosition({SCREEN_WIDTH * 0.5f - grid.getSize().x * 0.5f, SCREEN_HEIGHT * 0.5f - grid.getSize().y * 0.5f});
+
+        this->_pauseButton->setPosition({pause.getSize().x * 0.3f, pause.getSize().y * 0.3f});
+        this->_pauseButton->setColor( sf::Color( 255, 255, 255, 100 ) );
+
+        this->_player1 = std::make_unique<sf::Text>(font, "Player1: ", MAIN_MENU_TITLE_SIZE / 2.5);
+        sf::FloatRect rect1 = _player1->getLocalBounds();
+        this->_player1->setFillColor(sf::Color(14, 73, 153));
+        this->_player1->setPosition({rect1.size.x * 0.3f, SCREEN_HEIGHT * 0.5f - rect1.size.y * 1.6f});
+
+        this->_score1 = std::make_unique<sf::Text>(font, std::to_string(_susBoard->get_p1_score()), MAIN_MENU_TITLE_SIZE / 2);
+        this->_score1->setPosition({rect1.size.x * 0.7f, SCREEN_HEIGHT * 0.6f - rect1.size.y * 1.6f});
+        this->_score1->setFillColor(sf::Color(240, 240, 220));
+
+        this->_player2 = std::make_unique<sf::Text>(font, "Player2: ", MAIN_MENU_TITLE_SIZE / 2.5);
+        sf::FloatRect rect2 = _player2->getLocalBounds();
+        this->_player2->setFillColor(sf::Color(163, 11, 38));
+        this->_player2->setPosition({SCREEN_WIDTH - rect2.size.x * 1.3f, SCREEN_HEIGHT * 0.5f - rect2.size.y * 1.6f});
+
+        this->_score2 = std::make_unique<sf::Text>(font, std::to_string(_susBoard->get_p2_score()), MAIN_MENU_TITLE_SIZE / 2);
+        this->_score2->setPosition({SCREEN_WIDTH - rect2.size.x * 0.9f, SCREEN_HEIGHT * 0.6f - rect2.size.y * 1.6f});
+        this->_score2->setFillColor(sf::Color(240, 240, 220));
+
+        this->_player1Turn = std::make_unique<sf::Text>(font, "Your Turn!", MAIN_MENU_TITLE_SIZE/4);
+        this->_player1Turn->setFillColor(sf::Color(240, 240, 220));
+        this->_player1Turn->setPosition({SCREEN_WIDTH * 0.06f, SCREEN_HEIGHT * 0.375f});
+
+        this->_player2Turn = std::make_unique<sf::Text>(font, "Your Turn!", MAIN_MENU_TITLE_SIZE/4);
+        this->_player2Turn->setFillColor(sf::Color(240, 240, 220, 0));
+        this->_player2Turn->setPosition({SCREEN_WIDTH - SCREEN_WIDTH * 0.2f, SCREEN_HEIGHT * 0.375f});
+
+        auto gridSize = this->_grid->getTexture().getSize();
+        this->gridPos = this->_grid->getPosition();
+        this->CellWidth = gridSize.x / 3.0f;
+        this->CellHeight = gridSize.y / 3.0f;
     }
 
-    void SusState::HandleInput() {
+    void SUSState::HandleInput() {
+        if(_gameOverClock.getElapsedTime().asSeconds() >= GAMEOVER_DELAY){
+            if(_p1) this->_data->machine.AddState(StateRef (new GameOverState(this->_data, GameID::Sus, Winner::p1)), true);
+            else if(_p2) this->_data->machine.AddState(StateRef (new GameOverState(this->_data, GameID::Sus, Winner::p2)), true);
+            else if(_draw) this->_data->machine.AddState(StateRef (new GameOverState(this->_data, GameID::Sus, Winner::draw)), true);
+        }
+        
         while ( auto event = this->_data->window.pollEvent() ) {
             if ( event->is<sf::Event::Closed>() ) {
                 this->_data->window.close();
             }
+
+            if(_data->input.isSpriteClicekd(*_pauseButton, sf::Mouse::Button::Left, _data->window)){
+                this->_data->machine.AddState(StateRef (new PauseState(this->_data)), false);
+            }
+            
+            if(_playerType != PlayerType::COMPUTER || _currentPlayer == _Player1.get()){
+                if(this->_data->input.isSpriteClicekd( *this->_grid, sf::Mouse::Button::Left, this->_data->window )){
+                    sf::Vector2i mousePos = this->_data->input.getMousePosition(this->_data->window);
+                    float localX = mousePos.x - gridPos.x;
+                    float localY = mousePos.y - gridPos.y;
+                    this->_col = localX / CellWidth;
+                    this->_row = localY / CellHeight;
+                    if(_susBoard->get_cell(_row, _col) == ' '){
+                        Move move(_row, _col, this->_currentPlayer->get_symbol());
+                        this->_susBoard->update_board(&move);
+                        if(_susBoard->is_win(_currentPlayer)) _p1 = true;
+                        else if(_susBoard->is_lose(_currentPlayer)) _p2 = true;
+                        else if(_susBoard->is_draw(_currentPlayer)) _draw = true;
+                        if(_playerType == PlayerType::HUMAN) _currentPlayer = (_currentPlayer == _Player1.get()) ? _Player2.get() : _Player1.get();
+                        else _currentPlayer = _Player2.get();
+                        _clock.restart();
+                        _gameOverClock.restart();
+                    }
+                    
+                }
+            }
         }
     }
 
-    void SusState::Update ( float dt ) {}
+    void SUSState::Update ( float dt ) {
+        if (this->_data->input.hoverSprite( *this->_pauseButton, this->_data->window)){
+            this->_pauseButton->setColor(sf::Color(255, 255, 255, 255));
+        }
+        else{
+            this->_pauseButton->setColor(sf::Color(255, 255, 255, 100));
+        }
 
-    void SusState::Draw ( float dt ) {
-        this->_data->window.clear( sf::Color::Black );
-            this->_data->window.display();
+        if(_currentPlayer==_Player1.get()){
+            _player1Turn->setFillColor(sf::Color(240, 240, 220, 255));
+            _player2Turn->setFillColor(sf::Color(240, 240, 220, 0));
+        }
+        else{
+            _player2Turn->setFillColor(sf::Color(240, 240, 220, 255));
+            _player1Turn->setFillColor(sf::Color(240, 240, 220, 0));
+        }
+
+        this->_score1->setString(std::to_string(_susBoard->get_p1_score()));
+        this->_score2->setString(std::to_string(_susBoard->get_p2_score()));
+
+        if (_playerType == PlayerType::COMPUTER && !_susBoard->game_is_over(_currentPlayer) && _currentPlayer == _Player2.get() && _clock.getElapsedTime().asSeconds() >= 1){
+            int x, y;
+            do {
+                x = rand() % 3;
+                y = rand() % 3;
+            } while (this->_susBoard->get_board_matrix()[x][y] != ' ');
+
+            Move move(x, y, _currentPlayer->get_symbol());
+
+            if(this->_susBoard->update_board(&move)){
+                if(_susBoard->is_win(_currentPlayer)){ 
+                    if(_currentPlayer == _Player2.get()) _p2 = true;
+                    else _p1 = true;
+                    _gameOverClock.restart();
+                }
+
+                else if(_susBoard->is_draw(_currentPlayer)){
+                    _draw = true;
+                    _gameOverClock.restart();
+                }
+
+                else if(_susBoard->is_lose(_currentPlayer)){
+                    if(_currentPlayer == _Player1.get()) _p1 = true;
+                    else _p2 = true;
+                    _gameOverClock.restart();
+                }
+
+                this->_currentPlayer = _Player1.get();
+            }
+
+            
+        }
+    }
+
+    void SUSState::Draw ( float dt ) {
+        this->_data->window.clear();
+        this->_data->window.draw(*_background);
+        this->_data->window.draw(*_pauseButton);
+        this->_data->window.draw(*_grid);
+        this->_data->window.draw(*_player1);
+        this->_data->window.draw(*_player2);
+        this->_data->window.draw(*_player1Turn);
+        this->_data->window.draw(*_player2Turn);
+        this->_data->window.draw(*_score1);
+        this->_data->window.draw(*_score2);
+        for(int i = 0; i < 3; i++){
+            for(int j = 0; j < 3; j++){
+                if(_susBoard->get_cell(i, j) == 'S'){
+                    _s->setPosition({(j*4) + j*CellWidth + gridPos.x, (i*6) + i*CellHeight + gridPos.y});
+                    this->_data->window.draw(*_s);
+                }
+                else if(_susBoard->get_cell(i, j) == 'U'){
+                    _u->setPosition({(j*4) + j*CellWidth + gridPos.x, (i*6) + i*CellHeight + gridPos.y});
+                    this->_data->window.draw(*_u);
+                }
+            }
+        }
+        this->_data->window.display();
     }
 }

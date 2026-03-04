@@ -57,8 +57,10 @@ namespace Tokyo {
                         break;
                     case GameID::_4x4:
                         this->_data->machine.AddState( StateRef (new ModeSelectionState(_data, _gameID)), true);
-                        case GameID::Infinity:
-                            this->_data->machine.AddState( StateRef (new ModeSelectionState(_data, _gameID)), true); 
+                    case GameID::Infinity:
+                        this->_data->machine.AddState( StateRef (new ModeSelectionState(_data, _gameID)), true);
+                    case GameID::Sus:
+                        this->_data->machine.AddState( StateRef (new ModeSelectionState(_data, _gameID)), true);
                     default:
                         break;
                 }

@@ -53,7 +53,7 @@ namespace Tokyo {
                         this->_data->machine.AddState(StateRef(new UltimateState(this->_data, PlayerType::HUMAN)), true);
                         break;
                     case GameID::Sus:
-                        this->_data->machine.AddState(StateRef(new SusState(this->_data, PlayerType::HUMAN)), true);
+                        this->_data->machine.AddState(StateRef(new SUSState(this->_data, PlayerType::HUMAN)), true);
                         break;
                     case GameID::Pyramid:
                         this->_data->machine.AddState(StateRef(new PyramidState(this->_data, PlayerType::HUMAN)), true);
@@ -99,7 +99,7 @@ namespace Tokyo {
                         this->_data->machine.AddState(StateRef(new UltimateState(this->_data, PlayerType::COMPUTER)), true);
                         break;
                     case GameID::Sus:
-                        this->_data->machine.AddState(StateRef(new SusState(this->_data, PlayerType::COMPUTER)), true);
+                        this->_data->machine.AddState(StateRef(new SUSState(this->_data, PlayerType::COMPUTER)), true);
                         break;
                     case GameID::Pyramid:
                         this->_data->machine.AddState(StateRef(new PyramidState(this->_data, PlayerType::COMPUTER)), true);

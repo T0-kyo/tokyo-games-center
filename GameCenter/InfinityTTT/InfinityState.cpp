@@ -134,7 +134,6 @@ namespace Tokyo {
             } while (this->_InfinityBoard->get_board_matrix()[x][y] != ' ');
 
             Move move(x, y, _currentPlayer->get_symbol());
-        
             this->_InfinityBoard->update_board(&move);
 
             if(_InfinityBoard->is_win(_currentPlayer)){ 
