@@ -30,6 +30,7 @@ namespace Tokyo {
         std::shared_ptr<Player<char>> _Player2;
         std::shared_ptr<Infinity_Board> _InfinityBoard;
         sf::Clock _clock;
+        sf::Clock _gameOverClock;
 
         std::unique_ptr<sf::Sprite> _background;
         std::unique_ptr<sf::Sprite> _pauseButton;

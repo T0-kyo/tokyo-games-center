@@ -14,12 +14,12 @@
  * @brief Implements the 3x3 board logic.
  * Inherits from the template base class Board<char>.
  */
-class TTT_Board : public Board<char> {
+class Misere_Board : public Board<char> {
 public:
     /**
      * @brief Constructor for the class
      */
-    TTT_Board();
+    Misere_Board();
 
     /**
      * @brief Updates the board by adding a move.

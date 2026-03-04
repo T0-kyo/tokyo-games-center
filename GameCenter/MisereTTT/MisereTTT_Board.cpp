@@ -7,7 +7,7 @@ using namespace std;
  * @brief Constructor for the MisereTTT_Board.
  * Initialize the (3x3) board.
  */
-TTT_Board::TTT_Board() : Board<char>(3, 3) {
+Misere_Board::Misere_Board() : Board<char>(3, 3) {
     for (int i = 0; i < rows; i++) {
         for (int j = 0; j < columns; j++) {
             board[i][j] = ' ';        
@@ -18,7 +18,7 @@ TTT_Board::TTT_Board() : Board<char>(3, 3) {
 /**
  * @brief Updates the board by adding a move.
  */
-bool TTT_Board::update_board(Move<char>* move) {
+bool Misere_Board::update_board(Move<char>* move) {
     int r = move->get_x();            
     int c = move->get_y();           
     char symbol = move->get_symbol();
@@ -36,14 +36,14 @@ bool TTT_Board::update_board(Move<char>* move) {
  * @brief Check if player wins
  * Win Condition: DON'T connect 3
  */
-bool TTT_Board::is_win(Player<char>* player) {
+bool Misere_Board::is_win(Player<char>* player) {
     return false;                     
 }
 
 /**
  * @brief Check if it is draw
  */
-bool TTT_Board::is_draw(Player<char>* player) {
+bool Misere_Board::is_draw(Player<char>* player) {
     
     return (n_moves == 9 && !is_win(player));
 }
@@ -51,7 +51,7 @@ bool TTT_Board::is_draw(Player<char>* player) {
 /**
  * @brief Check is game is over
  */
-bool TTT_Board::game_is_over(Player<char>* player) {
+bool Misere_Board::game_is_over(Player<char>* player) {
     return is_win(player) || is_draw(player);
 }
 
@@ -59,7 +59,7 @@ bool TTT_Board::game_is_over(Player<char>* player) {
  * @brief Check is player loose.
  * Loose if CONNECT 3
  */
-bool TTT_Board::is_lose(Player<char>* player) {
+bool Misere_Board::is_lose(Player<char>* player) {
     char sym = player->get_symbol();  
 
     for (int i = 0; i < rows; i++) {
