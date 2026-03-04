@@ -185,8 +185,8 @@ namespace Tokyo {
             }
 
             else if(_WordBoard->is_lose(_currentPlayer)){
-                if(_currentPlayer == _Player1.get()) _p1 = true;
-                else _p2 = true;
+                if(_currentPlayer == _Player1.get()) _p2 = true;
+                else _p1 = true;
             }
 
             if(!_WordBoard->game_is_over(_currentPlayer)) this->_currentPlayer = _Player1.get();
