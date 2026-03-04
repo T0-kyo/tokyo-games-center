@@ -101,8 +101,8 @@ namespace Tokyo {
                             else _p2 = true;
                         }
 
-                        if(_playerType == PlayerType::HUMAN) _currentPlayer = (_currentPlayer == _Player1.get()) ? _Player2.get() : _Player1.get();
-                        else _currentPlayer = _Player2.get();
+                        if(_playerType == PlayerType::HUMAN && !_InfinityBoard->game_is_over(_currentPlayer)) _currentPlayer = (_currentPlayer == _Player1.get()) ? _Player2.get() : _Player1.get();
+                        else if(!_InfinityBoard->game_is_over(_currentPlayer)) _currentPlayer = _Player2.get();
                         _clock.restart();
                     }
                 }
@@ -117,11 +117,11 @@ namespace Tokyo {
         }
         else _pauseButton->setColor(sf::Color(255, 255, 255, 100));
 
-        if(_currentPlayer==_Player1.get()){
+        if(_currentPlayer == _Player1.get()){
             _player1Turn->setFillColor(sf::Color(240, 240, 220, 255));
             _player2Turn->setFillColor(sf::Color(240, 240, 220, 0));
         }
-        else{
+        else if(_currentPlayer == _Player2.get()){
             _player2Turn->setFillColor(sf::Color(240, 240, 220, 255));
             _player1Turn->setFillColor(sf::Color(240, 240, 220, 0));
         }
@@ -140,7 +140,7 @@ namespace Tokyo {
                 _p2 = true;
             }
 
-            this->_currentPlayer = _Player1.get();
+            if(!_InfinityBoard->game_is_over(_currentPlayer)) this->_currentPlayer = _Player1.get();
         }
     }
         
@@ -192,16 +192,10 @@ namespace Tokyo {
                 for(int j=0; j<3; ++j){
                     if(this->_InfinityBoard->get_cell(i,j)=='X'){
                         this->_x->setPosition({(j*5)+j*CellWidth+gridPos.x, (i*3)+i*CellHeight+gridPos.y});
-                        if(this->_InfinityBoard->isDelFull() && this->_InfinityBoard->willDelete() == std::make_pair(i,j)){
-                             _x->setColor(sf::Color(255, 255, 255, 60));
-                        }
-                        else _x->setColor(sf::Color(255, 255, 255, 255));
                         this->_data->window.draw( *this->_x );
                     }
                     else if(this->_InfinityBoard->get_cell(i,j)=='O'){
                         this->_o->setPosition({(j*5)+j*CellWidth+gridPos.x, (i*3)+i*CellHeight+gridPos.y});
-                        if(this->_InfinityBoard->willDelete() == std::make_pair(i,j)) _o->setColor(sf::Color(255, 255, 255, 60));
-                        else _o->setColor(sf::Color(255, 255, 255, 255));
                         this->_data->window.draw( *this->_o );
                     }
                 }

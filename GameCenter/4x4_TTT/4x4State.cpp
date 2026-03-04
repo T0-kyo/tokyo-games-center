@@ -118,7 +118,7 @@ namespace Tokyo {
                                 else if(_4x4Board->is_draw(_currentPlayer)) _draw = true;
 
                                 _cellChosen = false;
-                                _currentPlayer = _Player2.get();
+                                if(!_4x4Board->game_is_over(_currentPlayer)) _currentPlayer = _Player2.get();
                                 _clock.restart();
                             }
                         }
@@ -154,7 +154,7 @@ namespace Tokyo {
                                 else if(_4x4Board->is_draw(_currentPlayer)) _draw = true;
 
                                 _cellChosen = false;
-                                _currentPlayer = _Player2.get();
+                                if(!_4x4Board->game_is_over(_currentPlayer)) _currentPlayer = _Player2.get();
                                 _clock.restart();
                             }
                         }
@@ -200,7 +200,7 @@ namespace Tokyo {
                                 else if(_4x4Board->is_draw(_currentPlayer)) _draw = true;
 
                                 _cellChosen = false;
-                                _currentPlayer = _Player1.get();
+                                if(!_4x4Board->game_is_over(_currentPlayer)) _currentPlayer = _Player1.get();
                             }
                         }
                     }
@@ -236,7 +236,7 @@ namespace Tokyo {
                                 else if(_4x4Board->is_draw(_currentPlayer)) _draw = true;
 
                                 _cellChosen = false;
-                                _currentPlayer = _Player1.get();
+                                if(!_4x4Board->game_is_over(_currentPlayer)) _currentPlayer = _Player1.get();
                                 _clock.restart();
                             }
                         }
@@ -264,11 +264,11 @@ namespace Tokyo {
         }
         else _pauseButton->setColor(sf::Color(255, 255, 255, 100));
 
-        if(_currentPlayer==_Player1.get()){
+        if(_currentPlayer == _Player1.get()){
             _player1Turn->setFillColor(sf::Color(240, 240, 220, 255));
             _player2Turn->setFillColor(sf::Color(240, 240, 220, 0));
         }
-        else{
+        else if(_currentPlayer == _Player2.get()){
             _player2Turn->setFillColor(sf::Color(240, 240, 220, 255));
             _player1Turn->setFillColor(sf::Color(240, 240, 220, 0));
         }
@@ -296,7 +296,7 @@ namespace Tokyo {
                     _draw = true;
                 }
 
-                this->_currentPlayer = _Player1.get();
+                if(!_4x4Board->game_is_over(_currentPlayer)) this->_currentPlayer = _Player1.get();
             }
         }
     }

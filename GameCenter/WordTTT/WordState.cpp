@@ -127,8 +127,8 @@ namespace Tokyo {
                             }
 
                             _cellChosen = false;
-                            if(_playerType == PlayerType::HUMAN) _currentPlayer = (_currentPlayer == _Player1.get()) ? _Player2.get() : _Player1.get();
-                            else _currentPlayer = _Player2.get();
+                            if(_playerType == PlayerType::HUMAN && !_WordBoard->game_is_over(_currentPlayer)) _currentPlayer = (_currentPlayer == _Player1.get()) ? _Player2.get() : _Player1.get();
+                            else if(!_WordBoard->game_is_over(_currentPlayer)) _currentPlayer = _Player2.get();
                             _clock.restart();  
                         }
                     }
@@ -149,11 +149,11 @@ namespace Tokyo {
             this->_pauseButton->setColor(sf::Color(255, 255, 255, 100));
         }
 
-        if(_currentPlayer==_Player1.get()){
+        if(_currentPlayer == _Player1.get()){
             _player1Turn->setFillColor(sf::Color(240, 240, 220, 255));
             _player2Turn->setFillColor(sf::Color(240, 240, 220, 0));
         }
-        else{
+        else if(_currentPlayer == _Player2.get()){
             _player2Turn->setFillColor(sf::Color(240, 240, 220, 255));
             _player1Turn->setFillColor(sf::Color(240, 240, 220, 0));
         }
@@ -189,7 +189,7 @@ namespace Tokyo {
                 else _p2 = true;
             }
 
-            this->_currentPlayer = _Player1.get();
+            if(!_WordBoard->game_is_over(_currentPlayer)) this->_currentPlayer = _Player1.get();
         }
     }
 
