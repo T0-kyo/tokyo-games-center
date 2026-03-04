@@ -132,6 +132,11 @@ namespace Tokyo {
             _player1Turn->setFillColor(sf::Color(240, 240, 220, 0));
         }
 
+        if(_p1 || _p2 || _draw){
+            _player1Turn->setFillColor(sf::Color(240, 240, 220, 0));
+            _player2Turn->setFillColor(sf::Color(240, 240, 220, 0));
+        }
+
         this->_score1->setString(std::to_string(_susBoard->get_p1_score()));
         this->_score2->setString(std::to_string(_susBoard->get_p2_score()));
 
@@ -148,24 +153,21 @@ namespace Tokyo {
                 if(_susBoard->is_win(_currentPlayer)){ 
                     if(_currentPlayer == _Player2.get()) _p2 = true;
                     else _p1 = true;
-                    _gameOverClock.restart();
                 }
 
                 else if(_susBoard->is_draw(_currentPlayer)){
                     _draw = true;
-                    _gameOverClock.restart();
                 }
 
                 else if(_susBoard->is_lose(_currentPlayer)){
                     if(_currentPlayer == _Player1.get()) _p1 = true;
                     else _p2 = true;
-                    _gameOverClock.restart();
                 }
 
                 this->_currentPlayer = _Player1.get();
-            }
 
-            
+                _gameOverClock.restart();
+            }
         }
     }
 

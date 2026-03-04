@@ -81,11 +81,12 @@ namespace Tokyo {
     }
 
     void WordState::HandleInput() {
-
-        if(_p1) this->_data->machine.AddState(StateRef (new GameOverState(this->_data, GameID::Word, Winner::p1)), true);
-        else if(_p2) this->_data->machine.AddState(StateRef (new GameOverState(this->_data, GameID::Word, Winner::p2)), true);
-        else if(_draw) this->_data->machine.AddState(StateRef (new GameOverState(this->_data, GameID::Word, Winner::draw)), true);
-
+        if(_gameOverClock.getElapsedTime().asSeconds() >= GAMEOVER_DELAY){
+            if(_p1) this->_data->machine.AddState(StateRef (new GameOverState(this->_data, GameID::Word, Winner::p1)), true);
+            else if(_p2) this->_data->machine.AddState(StateRef (new GameOverState(this->_data, GameID::Word, Winner::p2)), true);
+            else if(_draw) this->_data->machine.AddState(StateRef (new GameOverState(this->_data, GameID::Word, Winner::draw)), true);
+        }
+        
         while ( auto event = this->_data->window.pollEvent() ) {
             if ( event->is<sf::Event::Closed>() ) {
                 this->_data->window.close();
@@ -129,7 +130,8 @@ namespace Tokyo {
                             _cellChosen = false;
                             if(_playerType == PlayerType::HUMAN && !_WordBoard->game_is_over(_currentPlayer)) _currentPlayer = (_currentPlayer == _Player1.get()) ? _Player2.get() : _Player1.get();
                             else if(!_WordBoard->game_is_over(_currentPlayer)) _currentPlayer = _Player2.get();
-                            _clock.restart();  
+                            _clock.restart();
+                            _gameOverClock.restart();
                         }
                     }
                 }
@@ -156,6 +158,11 @@ namespace Tokyo {
         else if(_currentPlayer == _Player2.get()){
             _player2Turn->setFillColor(sf::Color(240, 240, 220, 255));
             _player1Turn->setFillColor(sf::Color(240, 240, 220, 0));
+        }
+
+        if(_p1 || _p2 || _draw){
+            _player1Turn->setFillColor(sf::Color(240, 240, 220, 0));
+            _player2Turn->setFillColor(sf::Color(240, 240, 220, 0));
         }
 
         this->_score1->setString(std::to_string(_WordBoard->get_p1_score()));
@@ -188,8 +195,7 @@ namespace Tokyo {
                 if(_currentPlayer == _Player1.get()) _p2 = true;
                 else _p1 = true;
             }
-
-            if(!_WordBoard->game_is_over(_currentPlayer)) this->_currentPlayer = _Player1.get();
+            _gameOverClock.restart();
         }
     }
 

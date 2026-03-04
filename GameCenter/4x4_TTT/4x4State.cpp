@@ -77,11 +77,12 @@ namespace Tokyo {
     }
 
     void State4x4::HandleInput() {
-
-        if(_p1) this->_data->machine.AddState(StateRef (new GameOverState(this->_data, GameID::_4x4, Winner::p1)), true);
-        else if(_p2) this->_data->machine.AddState(StateRef (new GameOverState(this->_data, GameID::_4x4, Winner::p2)), true);
-        else if(_draw) this->_data->machine.AddState(StateRef (new GameOverState(this->_data, GameID::_4x4, Winner::draw)), true);
-
+        if(_gameOverClock.getElapsedTime().asSeconds() >= GAMEOVER_DELAY){
+            if(_p1) this->_data->machine.AddState(StateRef (new GameOverState(this->_data, GameID::_4x4, Winner::p1)), true);
+            else if(_p2) this->_data->machine.AddState(StateRef (new GameOverState(this->_data, GameID::_4x4, Winner::p2)), true);
+            else if(_draw) this->_data->machine.AddState(StateRef (new GameOverState(this->_data, GameID::_4x4, Winner::draw)), true);
+        }
+        
         while ( auto event = this->_data->window.pollEvent() ) {
             if ( event->is<sf::Event::Closed>() ) {
                 this->_data->window.close();
@@ -118,8 +119,9 @@ namespace Tokyo {
                                 else if(_4x4Board->is_draw(_currentPlayer)) _draw = true;
 
                                 _cellChosen = false;
-                                if(!_4x4Board->game_is_over(_currentPlayer)) _currentPlayer = _Player2.get();
+                                _currentPlayer = _Player2.get();
                                 _clock.restart();
+                                _gameOverClock.restart();
                             }
                         }
                     }
@@ -154,8 +156,9 @@ namespace Tokyo {
                                 else if(_4x4Board->is_draw(_currentPlayer)) _draw = true;
 
                                 _cellChosen = false;
-                                if(!_4x4Board->game_is_over(_currentPlayer)) _currentPlayer = _Player2.get();
+                                _currentPlayer = _Player2.get();
                                 _clock.restart();
+                                _gameOverClock.restart();
                             }
                         }
                     }
@@ -200,7 +203,9 @@ namespace Tokyo {
                                 else if(_4x4Board->is_draw(_currentPlayer)) _draw = true;
 
                                 _cellChosen = false;
-                                if(!_4x4Board->game_is_over(_currentPlayer)) _currentPlayer = _Player1.get();
+                                _currentPlayer = _Player1.get();
+
+                                _gameOverClock.restart();
                             }
                         }
                     }
@@ -236,8 +241,9 @@ namespace Tokyo {
                                 else if(_4x4Board->is_draw(_currentPlayer)) _draw = true;
 
                                 _cellChosen = false;
-                                if(!_4x4Board->game_is_over(_currentPlayer)) _currentPlayer = _Player1.get();
-                                _clock.restart();
+                                _currentPlayer = _Player1.get();
+
+                                _gameOverClock.restart();
                             }
                         }
                     }
@@ -273,6 +279,11 @@ namespace Tokyo {
             _player1Turn->setFillColor(sf::Color(240, 240, 220, 0));
         }
 
+        if(_p1 || _p2 || _draw){
+            _player1Turn->setFillColor(sf::Color(240, 240, 220, 0));
+            _player2Turn->setFillColor(sf::Color(240, 240, 220, 0));
+        }
+
         if (_playerType == PlayerType::COMPUTER && !_4x4Board->game_is_over(_currentPlayer) && _currentPlayer == _Player2.get() && _clock.getElapsedTime().asSeconds() >= 1){
             int x, y;
             char sym;
@@ -296,7 +307,9 @@ namespace Tokyo {
                     _draw = true;
                 }
 
-                if(!_4x4Board->game_is_over(_currentPlayer)) this->_currentPlayer = _Player1.get();
+                this->_currentPlayer = _Player1.get();
+
+                _gameOverClock.restart();
             }
         }
     }
