@@ -52,13 +52,15 @@ namespace Tokyo {
             }
             if(_data->input.isSpriteClicekd(*this->_playAgain, sf::Mouse::Button::Left, _data->window)){
                 switch(_gameID){
-                    case GameID::Word :
+                    case GameID::Word:
                         this->_data->machine.AddState( StateRef (new ModeSelectionState(_data, _gameID)), true);
                         break;
                     case GameID::_4x4:
                         this->_data->machine.AddState( StateRef (new ModeSelectionState(_data, _gameID)), true);
-                        case GameID::Infinity:
-                            this->_data->machine.AddState( StateRef (new ModeSelectionState(_data, _gameID)), true); 
+                    case GameID::Infinity:
+                        this->_data->machine.AddState( StateRef (new ModeSelectionState(_data, _gameID)), true);
+                    case GameID::_5x5:
+                        this->_data->machine.AddState( StateRef (new ModeSelectionState(_data, _gameID)), true); 
                     default:
                         break;
                 }
