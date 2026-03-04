@@ -217,7 +217,7 @@ namespace Tokyo {
                             dir = 'U';
                         }
                         else if(col==_col && row==_row+1){
-                             dir = 'D';
+                            dir = 'D';
                         }
                         else if(col==_col+1 && row==_row){
                             dir = 'R';
