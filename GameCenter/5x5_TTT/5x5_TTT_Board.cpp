@@ -1,9 +1,5 @@
 #include "5x5_TTT_Board.h"
 
-/**
- * @brief Constructor for the TTT5x5_Board.
- * Initializes the 5x5 board matrix to empty spaces (' ').
- */
 TTT5x5_Board::TTT5x5_Board() : Board<char>(5,5) {
     p1_score = 0;
     p2_score = 0;
@@ -15,10 +11,6 @@ TTT5x5_Board::TTT5x5_Board() : Board<char>(5,5) {
     }
 }
 
-/**
- * @brief Updates the board by moving a piece.
- * A move is valid if the choosen cell is empty and within the bounders.
- */
 bool TTT5x5_Board::update_board(Move<char>* move) {
     int x = move->get_x();
     int y = move->get_y();
@@ -34,9 +26,6 @@ bool TTT5x5_Board::update_board(Move<char>* move) {
     return true;
 }
 
-/**
- * @brief Adds points to the player
- */
 void TTT5x5_Board::add_point(Player<char>* player){
     char sym = player->get_symbol();
     int points = 0;
@@ -85,26 +74,16 @@ bool TTT5x5_Board::game_is_over(Player<char>* player) {
     // It must have a free cell at the end of the game.
     return (n_moves == 24);
 }
-/**
- * @brief Checks the win condition.
- * Win condition is to make the most 3-in-a-row sequences.
- */
+
 bool TTT5x5_Board::is_win(Player<char>* player) {
     add_point(player);
     return (game_is_over(player) && p1_score < p2_score);
 }
 
-/**
- * @brief Check if it is a draw.
- * It happens when the game is over and both players have the same points 
- */
 bool TTT5x5_Board::is_draw(Player<char>* player) {
     return (game_is_over(player) && p1_score == p2_score); 
 }
 
-/**
- * @brief check of the player loose.
- */
 bool TTT5x5_Board::is_lose(Player<char>* player) {
     return (game_is_over(player) && p1_score > p2_score);
 }

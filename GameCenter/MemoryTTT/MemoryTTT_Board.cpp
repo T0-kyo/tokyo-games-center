@@ -3,10 +3,6 @@
 
 using namespace std;
 
-/**
- * @brief Constructor for the MemoryTTT_Board.
- * Initialize the (3x3) board.
- */
 MemoryTTT_Board::MemoryTTT_Board() : Board<char>(3, 3) {
     // Initialize both the visible board and the hidden board
     for (int i = 0; i < rows; i++) {
@@ -17,9 +13,6 @@ MemoryTTT_Board::MemoryTTT_Board() : Board<char>(3, 3) {
     }
 }
 
-/**
- * @brief Updates the board by adding a move.
- */
 bool MemoryTTT_Board::update_board(Move<char>* move) {
     int r = move->get_x();
     int c = move->get_y();
@@ -46,10 +39,6 @@ bool MemoryTTT_Board::update_board(Move<char>* move) {
     return true;
 }
 
-/**
- * @brief Check if player wins
- * Win Condition: Connect 3
- */
 bool MemoryTTT_Board::is_win(Player<char>* player) {
     char sym = player->get_symbol();
 
@@ -78,23 +67,14 @@ bool MemoryTTT_Board::is_win(Player<char>* player) {
     return false;
 }
 
-/**
- * @brief Check if it is draw
- */
 bool MemoryTTT_Board::is_draw(Player<char>* player) {
     return (n_moves == 9 && !is_win(player));
 }
 
-/**
- * @brief Check is game is over
- */
 bool MemoryTTT_Board::game_is_over(Player<char>* player) {
     return is_win(player) || is_draw(player);
 }
 
-/**
- * @brief Check is player loose
- */
 bool MemoryTTT_Board::is_lose(Player<char>* player) {
     return false;
 }

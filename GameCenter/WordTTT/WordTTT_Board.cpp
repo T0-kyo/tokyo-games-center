@@ -2,12 +2,7 @@
 #include <fstream>
 #include <algorithm>
 
-/**
- * @brief The base constructor for the 3x3 board
- * Initializes the 3x3 board by calling the base constructor.
- */
-WordTTT_Board::WordTTT_Board() : Board(3, 3), p1_score(0), p2_score(0)
-{
+WordTTT_Board::WordTTT_Board() : Board(3, 3), p1_score(0), p2_score(0){
     // Initialize board with spaces
     for (int i = 0; i < 3; i++)
         for (int j = 0; j < 3; j++)
@@ -17,18 +12,12 @@ WordTTT_Board::WordTTT_Board() : Board(3, 3), p1_score(0), p2_score(0)
     load_dictionary("../dic.txt");
 }
 
-/**
- * @brief Helper to load the dictionary of valid words.
- */
-void WordTTT_Board::load_dictionary(const string& filename)
-{
+void WordTTT_Board::load_dictionary(const string& filename){
     ifstream file(filename);
     string w;
 
-    while (file >> w)
-    {
-        if (w.size() == 3)
-        {
+    while (file >> w){
+        if (w.size() == 3){
             // upper-case normalize
             transform(w.begin(), w.end(), w.begin(), ::toupper);
             dictionary.push_back(w);
@@ -36,20 +25,12 @@ void WordTTT_Board::load_dictionary(const string& filename)
     }
 }
 
-/**
- * @brief Helper to check if the word is valid (Exist in the dictionary) or not
- */
-bool WordTTT_Board::check_word(string& word)
-{
+bool WordTTT_Board::check_word(string& word){
     transform(word.begin(), word.end(), word.begin(), ::toupper);
     return find(dictionary.begin(), dictionary.end(), word) != dictionary.end();
 }
 
-/**
- * @brief Helper to check if the word used before in the game or not
- */
-bool WordTTT_Board::is_new_word(string& w)
-{
+bool WordTTT_Board::is_new_word(string& w){
     if (find(used_words.begin(), used_words.end(), w) != used_words.end())
         return false;
 
@@ -57,16 +38,11 @@ bool WordTTT_Board::is_new_word(string& w)
     return true;
 }
 
-/**
- * @brief Helper to add the points gained to the current player
- */
-void WordTTT_Board::add_point(Player<char>* player)
-{
+void WordTTT_Board::add_point(Player<char>* player){
     vector<string> lines;
 
     // rows
-    for (int i = 0; i < 3; i++)
-    {
+    for (int i = 0; i < 3; i++){
         string w = "";
         for (int j = 0; j < 3; j++)
             w += board[i][j];
@@ -74,8 +50,7 @@ void WordTTT_Board::add_point(Player<char>* player)
     }
 
     // columns
-    for (int j = 0; j < 3; j++)
-    {
+    for (int j = 0; j < 3; j++){
         string w = "";
         for (int i = 0; i < 3; i++)
             w += board[i][j];
@@ -88,8 +63,7 @@ void WordTTT_Board::add_point(Player<char>* player)
     lines.push_back(d1);
     lines.push_back(d2);
 
-    for (string& w : lines)
-    {
+    for (string& w : lines){
         if (check_word(w) && is_new_word(w))
         {
             if (player->get_symbol() == 'X')
@@ -100,11 +74,7 @@ void WordTTT_Board::add_point(Player<char>* player)
     }
 }
 
-/**
- * @brief Updates the board with a new move.
- */
-bool WordTTT_Board::update_board(Move<char>* move)
-{
+bool WordTTT_Board::update_board(Move<char>* move){
     int x = move->get_x();
     int y = move->get_y();
     char s = move->get_symbol();
@@ -123,36 +93,19 @@ bool WordTTT_Board::update_board(Move<char>* move)
     return true;
 }
 
-/**
- * @brief Checks if the game is over.
- */
-bool WordTTT_Board::game_is_over(Player<char>* player)
-{
+bool WordTTT_Board::game_is_over(Player<char>* player){
     return (n_moves == 9);
 }
 
-/**
- * @brief Checks for a win condition.
- * Win condition is to make as words as you can (more than the other player).
- */
-bool WordTTT_Board::is_win(Player<char>* player)
-{
+bool WordTTT_Board::is_win(Player<char>* player){
     add_point(player); // Update scores
     return (game_is_over(player) && p1_score > p2_score);
 }
 
-/**
- * @brief Checks for a draw condition.
- */
-bool WordTTT_Board::is_draw(Player<char>* player)
-{
+bool WordTTT_Board::is_draw(Player<char>* player){
     return (game_is_over(player) && p1_score == p2_score);
 }
 
-/**
- * @brief Checks if the player has lost.
- */
-bool WordTTT_Board::is_lose(Player<char>* player)
-{
+bool WordTTT_Board::is_lose(Player<char>* player){
     return (game_is_over(player) && p1_score < p2_score);
 }

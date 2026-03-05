@@ -3,10 +3,6 @@
 
 using namespace std;                
 
-/**
- * @brief Constructor for the MisereTTT_Board.
- * Initialize the (3x3) board.
- */
 Misere_Board::Misere_Board() : Board<char>(3, 3) {
     for (int i = 0; i < rows; i++) {
         for (int j = 0; j < columns; j++) {
@@ -15,9 +11,6 @@ Misere_Board::Misere_Board() : Board<char>(3, 3) {
     }
 }
 
-/**
- * @brief Updates the board by adding a move.
- */
 bool Misere_Board::update_board(Move<char>* move) {
     int r = move->get_x();            
     int c = move->get_y();           
@@ -32,33 +25,19 @@ bool Misere_Board::update_board(Move<char>* move) {
     return true;                  
 }
 
-/**
- * @brief Check if player wins
- * Win Condition: DON'T connect 3
- */
 bool Misere_Board::is_win(Player<char>* player) {
     return false;                     
 }
 
-/**
- * @brief Check if it is draw
- */
 bool Misere_Board::is_draw(Player<char>* player) {
     
     return (n_moves == 9 && !is_win(player));
 }
 
-/**
- * @brief Check is game is over
- */
 bool Misere_Board::game_is_over(Player<char>* player) {
     return is_win(player) || is_draw(player);
 }
 
-/**
- * @brief Check is player loose.
- * Loose if CONNECT 3
- */
 bool Misere_Board::is_lose(Player<char>* player) {
     char sym = player->get_symbol();  
 
