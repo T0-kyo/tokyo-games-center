@@ -1,9 +1,5 @@
 #include "Infinity_Board.h"
 
-/**
- * @brief Constructor for the Infinity_Board.
- * Initialize the (3x3) board.
- */
 Infinity_Board::Infinity_Board() : Board<char>(3,3){
     for (int i=0; i<rows; i++) {
         for (int j=0; j<columns; j++){
@@ -12,9 +8,6 @@ Infinity_Board::Infinity_Board() : Board<char>(3,3){
     }
 }
 
-/**
- * @brief Updates the board by adding a move.
- */
 bool Infinity_Board::update_board(Move<char>* move) {
     int x = move->get_x();
     int y = move->get_y();
@@ -38,11 +31,6 @@ bool Infinity_Board::update_board(Move<char>* move) {
     return true;
 }
 
-
-/**
- * @brief Check if player wins
- * Win Condition: Connect 3
- */
 bool Infinity_Board::is_win(Player<char>* player) {
     char sym = player->get_symbol();
     
@@ -63,23 +51,14 @@ bool Infinity_Board::is_win(Player<char>* player) {
     return false;
 }
 
-/**
- * @brief Check if it is draw
- */
 bool Infinity_Board::is_draw(Player<char>* player) {
     return false;
 }
 
-/**
- * @brief Check is game is over
- */
 bool Infinity_Board::game_is_over(Player<char>* player) {
     return (is_win(player) || is_draw(player));
 }
 
-/**
- * @brief Check is player loose
- */
 bool Infinity_Board::is_lose(Player<char>* player) {
     return false;
 }

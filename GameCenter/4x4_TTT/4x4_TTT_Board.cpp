@@ -1,12 +1,5 @@
 #include "4x4_TTT_Board.h"
 
-/**
- * @brief Constructor for the TTT4x4_Board.
- * Initializes the 4x4 board matrix to empty spaces (' ').
- * Then, sets the initial configuration of 'X' and 'O' pieces in the corners:
- * X at (0,1), (0,3), (3,0), (3,2)
- * O at (0,0), (0,2), (3,1), (3,3)
- */
 TTT4x4_Board::TTT4x4_Board() : Board<char>(4,4) {
     for (int i=0; i<rows; i++) {
         for (int j=0; j<columns; j++){
@@ -25,11 +18,6 @@ TTT4x4_Board::TTT4x4_Board() : Board<char>(4,4) {
     board[3][3]='O';
 }
 
-/**
- * @brief Updates the board by moving a piece.
- * Validates the move direction (U, D, R, L). A move is valid if the source cell
- * contains the player's symbol and the destination cell is empty.
- */
 bool TTT4x4_Board::update_board(Move<char>* move) {
     int x = move->get_x();
     int y = move->get_y();
@@ -82,11 +70,6 @@ bool TTT4x4_Board::update_board(Move<char>* move) {
     return true;
 }
 
-/**
- * @brief Checks for a win condition (3-in-a-row).
- * Iterates through all possible 3-cell lines (rows, columns, and diagonals)
- * to see if the current player's symbol occupies them.
- */
 bool TTT4x4_Board::is_win(Player<char>* player) {
     char sym = player->get_symbol();
     // Check rows
@@ -117,18 +100,10 @@ bool TTT4x4_Board::is_win(Player<char>* player) {
     return false;
 }
 
-/**
- * @brief Checks if the game has concluded (win or draw).
- */
 bool TTT4x4_Board::game_is_over(Player<char>* player) {
     return (is_win(player) || is_draw(player));
 }
 
-/**
- * @brief Check is the game is end with draw
- * That happens when the player can't move its pieces
- * All moves is invalid for this player
- */
 bool TTT4x4_Board::is_draw(Player<char>* player) {
     int cntX=0, cntO=0;
     for (int i=0; i<4; i++){
@@ -156,9 +131,6 @@ bool TTT4x4_Board::is_draw(Player<char>* player) {
     return false;
 }
 
-/**
- * @brief Checks if the player has lost.
- */
 bool TTT4x4_Board::is_lose(Player<char>* player) {
     return false;
 }

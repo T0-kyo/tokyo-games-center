@@ -2,11 +2,6 @@
 #include <algorithm> // For std::find
 #include <numeric>   // For std::accumulate
 
-/**
- * @brief The base constructor for a 3x3 board
- * Initializes the 3x3 board by calling the base constructor and setting
- * the initial available number lists (P1: {1, 3, 5, 7, 9}, P2: {2, 4, 6, 8}).
- */
 NumericalTTT_Board::NumericalTTT_Board() : Board(3, 3) {
     // Initialize available number lists
     player1_nums = { 1, 3, 5, 7, 9 };
@@ -20,9 +15,6 @@ NumericalTTT_Board::NumericalTTT_Board() : Board(3, 3) {
     }
 }
 
-/**
- * @brief Checks if three numbers form the winning sum of 15.
- */
 bool NumericalTTT_Board::check_sum(int a, int b, int c) {
     // A line only wins if all 3 cells are filled (non-zero)
     if (a != 0 && b != 0 && c != 0) {
@@ -31,12 +23,6 @@ bool NumericalTTT_Board::check_sum(int a, int b, int c) {
     return false;
 }
 
-/**
- * @brief Updates the board with a new move.
- * Implements complex validation logic: checks coordinates, cell emptiness,
- * player parity (Odd/Even), and availability of the chosen number.
- * If valid, the number is placed, and removed from the player's available list.
- */
 bool NumericalTTT_Board::update_board(Move<int>* move) {
     int x = move->get_x();
     int y = move->get_y();
@@ -75,17 +61,11 @@ bool NumericalTTT_Board::update_board(Move<int>* move) {
     return true;
 }
 
-/**
- * @brief Checks if the game is over.
- */
 bool NumericalTTT_Board::game_is_over(Player<int>* player) {
     // The game is over if there is a win or a draw
     return (is_win(player) || is_draw(player));
 }
 
-/**
- * @brief Checks for a win condition (any line sums to 15).
- */
 bool NumericalTTT_Board::is_win(Player<int>* player) {
     // Check rows
     for (int i = 0; i < rows; ++i) {
@@ -102,33 +82,21 @@ bool NumericalTTT_Board::is_win(Player<int>* player) {
     return false;
 }
 
-/**
- * @brief Checks for a draw condition.
- */
 bool NumericalTTT_Board::is_draw(Player<int>* player) {
     // A draw happens if the board is full (9 moves) and there is no winner
     return (n_moves == 9 && !is_win(player));
 }
 
-/**
- * @brief Checks if the player has lost.
- */
 bool NumericalTTT_Board::is_lose(Player<int>* player) {
     // This game doesn't have a specific "lose" condition
     return false;
 }
 
 // --- Helper function implementations ---
-/**
- * @brief Provides access to the list of available odd numbers.
- */
 vector<int>& NumericalTTT_Board::get_p1_nums() {
     return player1_nums;
 }
 
-/**
- * @brief Provides access to the list of available even numbers.
- */
 vector<int>& NumericalTTT_Board::get_p2_nums() {
     return player2_nums;
 }

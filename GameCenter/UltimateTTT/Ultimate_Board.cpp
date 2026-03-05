@@ -1,9 +1,5 @@
 #include "Ultimate_Board.h"
 
-/**
- * @brief Constructor for the Ultimate_Board.
- * Initialize the (9x9) board.
- */
 Ultimate_Board::Ultimate_Board() : Board<char>(9,9){
     for (int i=0; i<rows; i++) {
         for (int j=0; j<columns; j++){
@@ -18,9 +14,6 @@ Ultimate_Board::Ultimate_Board() : Board<char>(9,9){
     }
 }
 
-/**
- * @brief Update the main board that has sub boards
- */
 void Ultimate_Board::update_final_board() {
     char sym1='X', sym2='O';
 
@@ -65,9 +58,6 @@ void Ultimate_Board::update_final_board() {
     }
 }
 
-/**
- * @brief Updates the board by adding a move.
- */
 bool Ultimate_Board::update_board(Move<char>* move) {
     int x = move->get_x();
     int y = move->get_y();
@@ -104,10 +94,6 @@ bool Ultimate_Board::update_board(Move<char>* move) {
     return true;
 }
 
-/**
- * @brief Check if player wins
- * Win Condition: Connect 3 in the MAIN board (3 sub boards)
- */
 bool Ultimate_Board::is_win(Player<char>* player) {
     for (int i = 0; i < 3; ++i) {
         if ((final_board[i][0] == player->get_symbol() && final_board[i][1] == player->get_symbol() && final_board[i][2] == player->get_symbol()) ||
@@ -122,9 +108,6 @@ bool Ultimate_Board::is_win(Player<char>* player) {
     return false;
 }
 
-/**
- * @brief Check if it is draw
- */
 bool Ultimate_Board::is_draw(Player<char>* player) {
     for (int i = 0; i < 9; ++i) {
         for (int j = 0; j < 9; ++j) {
@@ -136,16 +119,10 @@ bool Ultimate_Board::is_draw(Player<char>* player) {
     return !is_win(player);
 }
 
-/**
- * @brief Check if game is over
- */
 bool Ultimate_Board::game_is_over(Player<char>* player) {
     return (is_win(player) || is_draw(player));
 }
 
-/**
- * @brief Check if player loose
- */
 bool Ultimate_Board::is_lose(Player<char>* player) {
     return false;
 }

@@ -1,10 +1,6 @@
 #include "FourInARow_Board.h"
 #include <iostream>
 
-/**
- * @brief Constructor for the FourInARow_Board.
- * Initialize the (6x7) board.
- */
 FourInARow_Board::FourInARow_Board() : Board<char>(6, 7) {
     // Initialize board with spaces
     for (int i = 0; i < rows; i++) {
@@ -14,10 +10,6 @@ FourInARow_Board::FourInARow_Board() : Board<char>(6, 7) {
     }
 }
 
-/**
- * @brief Updates the board by adding a move.
- * The move is valid if the cell is in board bounders and the cell is empty.
- */
 bool FourInARow_Board::update_board(Move<char>* move) {
     int r = move->get_x();
     int c = move->get_y();
@@ -34,10 +26,6 @@ bool FourInARow_Board::update_board(Move<char>* move) {
     return true;
 }
 
-/**
- * @brief Check if player wins
- * Win Condition: Connect 4
- */
 bool FourInARow_Board::is_win(Player<char>* player) {
     char sym = player->get_symbol();
 
@@ -80,24 +68,15 @@ bool FourInARow_Board::is_win(Player<char>* player) {
     return false;
 }
 
-/**
- * @brief Check if it is draw
- */
 bool FourInARow_Board::is_draw(Player<char>* player) {
     // Draw if board is full (42 moves) and no winner
     return (n_moves == 42 && !is_win(player));
 }
 
-/**
- * @brief Check is game is over
- */
 bool FourInARow_Board::game_is_over(Player<char>* player) {
     return is_win(player) || is_draw(player);
 }
 
-/**
- * @brief Check is player loose
- */
 bool FourInARow_Board::is_lose(Player<char>* player) {
     return false;
 }
