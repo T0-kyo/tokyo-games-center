@@ -195,6 +195,8 @@ namespace Tokyo {
                 if(_currentPlayer == _Player1.get()) _p2 = true;
                 else _p1 = true;
             }
+
+            _currentPlayer = _Player1.get();
             _gameOverClock.restart();
         }
     }
