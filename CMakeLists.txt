@@ -7,10 +7,10 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 # FIX: Add the ROOT directory to the include path.
 # This allows includes like "BoardGameFramework/File.h" to work.
-include_directories(
-    "${PROJECT_SOURCE_DIR}"
-    "C:/SFML-3.0/include"
-)
+include_directories("${PROJECT_SOURCE_DIR}")
+
+set(SFML_STATIC_LIBRARIES TRUE)
+find_package(SFML 3 COMPONENTS Graphics Window System Audio REQUIRED)
 
 add_executable(Game
     main.cpp
@@ -54,9 +54,4 @@ add_executable(Game
 )
 
 #link-SFML
-target_link_libraries(Game
-    "C:/SFML-3.0/lib/libsfml-graphics.a"
-    "C:/SFML-3.0/lib/libsfml-window.a"
-    "C:/SFML-3.0/lib/libsfml-system.a"
-    "C:/SFML-3.0/lib/libsfml-audio.a"
-)
+target_link_libraries(Game PRIVATE SFML::Graphics SFML::Window SFML::System SFML::Audio)

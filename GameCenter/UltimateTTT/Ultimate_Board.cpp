@@ -14,6 +14,10 @@ Ultimate_Board::Ultimate_Board() : Board<char>(9,9){
     }
 }
 
+char Ultimate_Board::get_final_board_cell(int i, int j){
+    return final_board[i][j];
+}
+
 void Ultimate_Board::update_final_board() {
     char sym1='X', sym2='O';
 
