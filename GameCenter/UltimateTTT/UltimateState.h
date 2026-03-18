@@ -35,6 +35,15 @@ namespace Tokyo {
         std::unique_ptr<sf::Sprite> _background;
         std::unique_ptr<sf::Sprite> _pauseButton;
         std::unique_ptr<sf::Sprite> _grid;
+        std::unique_ptr<sf::Sprite> _subgrid1;
+        std::unique_ptr<sf::Sprite> _subgrid2;
+        std::unique_ptr<sf::Sprite> _subgrid3;
+        std::unique_ptr<sf::Sprite> _subgrid4;
+        std::unique_ptr<sf::Sprite> _subgrid5;
+        std::unique_ptr<sf::Sprite> _subgrid6;
+        std::unique_ptr<sf::Sprite> _subgrid7;
+        std::unique_ptr<sf::Sprite> _subgrid8;
+        std::unique_ptr<sf::Sprite> _subgrid9;
         std::unique_ptr<sf::Sprite> _x;
         std::unique_ptr<sf::Sprite> _o;
         std::unique_ptr<sf::Sprite> _X;
@@ -51,6 +60,16 @@ namespace Tokyo {
         bool _p2 = false;
         bool _draw = false;
 
+        bool _board1 = false;
+        bool _board2 = false;
+        bool _board3 = false;
+        bool _board4 = false;
+        bool _board5 = false;
+        bool _board6 = false;
+        bool _board7 = false;
+        bool _board8 = false;
+        bool _board9 = false;
+
         Player<char>* _currentPlayer;
         PlayerType _playerType;
         
@@ -58,6 +77,14 @@ namespace Tokyo {
         int _col;
         float CellWidth=0;
         float CellHeight=0;
-        sf::Vector2f gridPos;
+        sf::Vector2f gridPos1;
+        sf::Vector2f gridPos2;
+        sf::Vector2f gridPos3;
+        sf::Vector2f gridPos4;
+        sf::Vector2f gridPos5;
+        sf::Vector2f gridPos6;
+        sf::Vector2f gridPos7;
+        sf::Vector2f gridPos8;
+        sf::Vector2f gridPos9;
     };
 }

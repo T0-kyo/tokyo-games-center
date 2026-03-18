@@ -6,7 +6,7 @@ namespace Tokyo {
     GameOverState::GameOverState(GameDataRef data, GameID gameID, Winner winner) : _data(data), _gameID(gameID), _winner(winner) {}
 
     void GameOverState::Init(){
-        this->_data->assets.LoadTexture("Game Over bg", "../Assets/Textures/GameOver Background.png");
+        this->_data->assets.LoadTexture("Game Over bg", "../Assets/Textures/GameOver_Background.png");
         this->_data->assets.LoadTexture("Play Again", "../Assets/Textures/PlayAgain Button.png");
         this->_data->assets.LoadTexture("Go Home", "../Assets/Textures/Home Button.png");
         this->_data->assets.LoadTexture("Medal", "../Assets/Textures/Medal.png");
