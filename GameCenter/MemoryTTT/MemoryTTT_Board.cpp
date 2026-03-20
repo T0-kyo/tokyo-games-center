@@ -67,6 +67,10 @@ bool MemoryTTT_Board::is_win(Player<char>* player) {
     return false;
 }
 
+char MemoryTTT_Board::get_real_cell(int i, int j){
+    return real_board[i][j];
+}
+
 bool MemoryTTT_Board::is_draw(Player<char>* player) {
     return (n_moves == 9 && !is_win(player));
 }
