@@ -5,7 +5,7 @@ PyramidTTT_Board::PyramidTTT_Board() : Board<char>(3, 5) {
     // Initialize all cells to space
     for (int i = 0; i < rows; i++) {
         for (int j = 0; j < columns; j++) {
-            board[i][j] = ' '; 
+            board[i][j] = ' ';
         }
     }
     board[0][0]='#'; board[0][1]='#'; board[0][3]='#'; board[0][4]='#';
