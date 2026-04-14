@@ -19,7 +19,6 @@
 
 #define SPLASH_BACKGROUND_FILEPATH "../Assets/Textures/Tokyo.jpg"
 
-#define MAIN_MENU_BACKGROUND_FILEPATH "../Assets/Textures/MMBackground.jpg"
 #define MAIN_MENU_TITLE_FILEPATH "../Assets/Fonts/Frijole-Regular.ttf"
 #define GAME_BACKGROUND "../Assets/Textures/Game Background.jpg"
 #define PAUSE_BUTTON "../Assets/Textures/Pause Button.png"
