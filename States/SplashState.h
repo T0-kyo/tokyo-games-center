@@ -28,5 +28,7 @@ namespace Tokyo {
         FadeState _phase = FadeState::FadeIn;
         float StartDelay = SPLASH_STATE_DELAY;
         float elapsed = 0.f;
+
+        std::unique_ptr<sf::Sound> _intro;
     };
 }
