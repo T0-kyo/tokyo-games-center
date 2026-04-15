@@ -1,59 +1,237 @@
-Tokyo Games Center 🚀
-A high-performance, modular game suite built from the ground up using C++ and SFML. This project serves as a comprehensive exploration of Object-Oriented Programming (OOP), custom engine architecture, and real-time state management.
+🎮 Tokyo Games Center 🚀
 
-Project Overview
-Tokyo Games Center is more than just a collection of games; it is a custom-built game engine designed for extensibility and performance. Developed to strengthen core C++ skills, the project implements a robust architecture including:
+A high-performance, modular game suite built from the ground up using C++ and SFML.
+This project serves as a deep exploration of Object-Oriented Programming (OOP), custom engine architecture, and real-time state management.
 
-Custom State Machine: Handles complex transitions, including a specialized Input Shield to prevent accidental clicks during state swaps.
+---
 
-Asset Management System: A centralized hub for textures, fonts, and audio buffers to optimize memory usage and avoid redundant disk I/O.
+📌 Project Overview
 
-Template-Based Gameplay: Uses C++ templates for Boards and Players, allowing for dozens of Tic-Tac-Toe variants and board games to run on a unified logic core.
+Tokyo Games Center is more than just a collection of games — it is a custom-built mini game engine designed for scalability, performance, and clean architecture.
 
-Features
-Diverse Game Library: Includes 12+ game modes ranging from classic 4x4 Tic-Tac-Toe to specialized variants like Numerical TTT, Pyramid, and Ultimate Tic-Tac-Toe.
+The project focuses on building everything from scratch, including:
 
-Futuristic Aesthetic: Immerses players in a Space-Futuristic theme with deep purples and sky-themed backgrounds.
+- A full state-driven system
+- Custom game management architecture
+- Reusable and extensible game logic
 
-Built-in Guide: Every game mode includes a dedicated rulebook accessible via the UI for seamless learning.
+---
 
-Optimized Performance: Runs at a locked 60 FPS with a fixed time-step loop for consistent gameplay across different hardware.
+🚀 Features
 
-System Architecture
-The project follows a Manager-Pattern architecture, ensuring that game data is decoupled from the rendering and input logic.
+🎲 Diverse Game Library
 
-GameManager: Coordinates the main loop and shared GameData.
+- Includes 13+ Tic Tac Toe variants
+- Ranging from:
+  - Classic boards (3x3, 4x4, etc.)
+  - Numerical Tic Tac Toe
+  - Pyramid-style boards
+  - Advanced variations (e.g. Ultimate Tic Tac Toe)
 
-InputManager: Standardizes mouse and keyboard interaction across all states.
+---
 
-StateMachine: Manages the life cycle of game states (Init, Update, Draw, Pause, Resume).
+🧠 AI Opponent
 
-Installation and Running
-For Linux (Native)
-Ensure you have the SFML development libraries installed (sudo apt install libsfml-dev).
+- Currently uses a random-based AI
+- Planned upgrade to easy–medium intelligent AI
 
-Clone the repository:
+---
+
+🧩 Flexible Board System
+
+- Multiple board sizes and layouts
+- Each game can define its own structure while sharing core logic
+
+---
+
+📖 Built-in Rule System
+
+- Every game includes a dedicated rulebook
+- Explains:
+  - Controls (mouse / keyboard)
+  - Game rules
+  - Win / lose / draw conditions
+
+---
+
+🎨 Custom UI & Assets
+
+- All assets are designed manually from scratch
+- No external asset packs used
+
+---
+
+🔊 Audio & Visual Feedback
+
+- Button click sounds
+- Intro audio
+- Subtle UI animations for enhanced experience
+
+---
+
+⚡ Optimized Performance
+
+- Runs at a stable 60 FPS
+- Uses a fixed time-step game loop for consistency across devices
+
+---
+
+🧱 System Architecture
+
+The project follows a Manager-Pattern + State Machine architecture, effectively acting as a mini game engine.
+
+🧠 Core Systems
+
+- State Machine
+  - Handles all game states:
+    
+    - Splash Screen
+    - Main Menu
+    - Game Selection
+    - Gameplay
+    - Pause
+    - Game Over
+  
+  - Includes an Input Shield system to prevent accidental input during transitions
+
+---
+
+- Game Managers
+  
+  - Coordinates core systems and shared data
+  - Acts as the backbone of the engine
+
+- Input Manager
+  
+  - Standardizes mouse and keyboard handling across all states
+
+- Asset Manager
+  
+  - Centralized system for:
+    - Textures
+    - Fonts
+    - Audio
+  - Prevents redundant loading and improves performance
+
+---
+
+🎮 Game Center Module
+
+- Contains all game implementations
+- Each game:
+  - Has its own logic and UI
+  - Runs as an independent state
+- Built using a template-based system:
+  - Reusable Board and Player logic
+  - Allows easy creation of new game variants
+
+---
+
+🎮 Gameplay
+
+🖱️ Navigation
+
+- Fully controlled using the mouse
+
+🎯 Controls
+
+- Mouse: Primary gameplay interaction
+- Keyboard: Used in specific modes (e.g. numerical input)
+
+«Each game explains its controls داخل الـ Rulebook الخاص به»
+
+---
+
+🏁 Game Flow
+
+1. Launch → Splash Screen
+2. Navigate to Game Center
+3. Select a game
+4. Choose mode:
+   - Player vs Player
+   - Player vs AI
+5. Play the game
+6. Game Over screen:
+   - Replay
+   - Return to Main Menu
+
+---
+
+⚙️ Tech Stack
+
+- Language: C++
+- Graphics Library: SFML (Version 3)
+- Architecture: Custom State-Based Game Engine
+
+---
+
+🛠️ Installation & Running
+
+🔹 Linux (Native)
+
+Requirements:
+
+- SFML 3
+- C++ Compiler (g++)
+- Make
+
+Steps:
+
 git clone https://github.com/yourusername/tokyo-games-center.git
 cd tokyo-games-center
-
-Build and Run:
 make && ./Game
 
-For Windows
-The project includes the necessary audio .dll files. Run the provided executable to start the Tokyo Games Center immediately without terminal configuration.
+---
 
-Controls
-Menu Navigation: Mouse-controlled buttons.
+🔹 Windows
 
-Gameplay:
+- Prebuilt executable available
+- Includes required ".dll" files
+- No setup needed — just run and play
 
-Mouse: Primary interaction for placing pieces.
+---
 
-Keyboard: Numerical input for specific modes like Numerical TTT.
+📸 Screenshots
 
-The Team
-Lead Developer: Alhussain Haitham — Architecture, Game Loop, and Logic Implementation.
+«Screenshots will be added here»
 
-Assets and UI Design: Ahmed Youssef.
+---
 
-Technical Support: Ali Mohamed and Ahmed Youssef.
+⭐ Highlights
+
+- 🧠 Built a mini game engine from scratch
+- 🧩 Highly modular and extensible architecture
+- 🎮 Supports multiple game variants on shared logic
+- 🎨 All assets designed manually
+- ⚡ Focus on performance and clean design
+
+---
+
+🔮 Future Improvements
+
+- Smarter AI (Minimax / heuristic-based)
+- Difficulty selection
+- More game modes
+- Expanded animations and polish
+- Cross-platform builds
+
+---
+
+👨‍💻 Team
+
+- Lead Developer: Alhussain Haitham
+  
+  - Architecture, Engine Design, Game Logic
+
+- Assets & UI Design: Ahmed Youssef
+
+- Technical Support:
+  
+  - Ali Mohamed
+  - Ahmed Youssef
+
+---
+
+📄 License
+
+This project is developed for educational purposes (NEA).
