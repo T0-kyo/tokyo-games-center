@@ -79,43 +79,43 @@ namespace Tokyo {
         this->_title->setPosition({ SCREEN_WIDTH /2 - textRect.size.x * 0.5f , SCREEN_HEIGHT * 0.075f});
 
         this->_SUS_Button->setColor( sf::Color(225, 165, 35) );
-        this->_SUS_Button->setPosition({157, 250});
+        this->_SUS_Button->setPosition({157 + 50, 250}); //! Non professional way of centering the icons
         
         this->_5x5TTT_Button->setColor(sf::Color(255, 255, 255));
-        this->_5x5TTT_Button->setPosition({489, 250});
+        this->_5x5TTT_Button->setPosition({489 + 50, 250});
 
         this->_WordTTT_Button->setColor( sf::Color(225, 165, 35) );
-        this->_WordTTT_Button->setPosition({821, 250});
+        this->_WordTTT_Button->setPosition({821 + 50, 250});
 
         this->_UltimateTTT_Button->setColor( sf::Color(225, 165, 35) );
-        this->_UltimateTTT_Button->setPosition({1153, 250});
+        this->_UltimateTTT_Button->setPosition({1153 + 50, 250});
 
         //this->_NumericalTTT_Button->setColor(sf::Color(255, 255, 255));
-        this->_NumericalTTT_Button->setPosition({102, 450});
+        this->_NumericalTTT_Button->setPosition({102 + 50, 450});
 
         this->_PyramidTTT_Button->setColor( sf::Color(225, 165, 35) );
-        this->_PyramidTTT_Button->setPosition({379, 450});
+        this->_PyramidTTT_Button->setPosition({379 + 50, 450});
 
         this->_ObstaclesTTT_Button->setColor( sf::Color(225, 165, 35) );
-        this->_ObstaclesTTT_Button->setPosition({656, 450});
+        this->_ObstaclesTTT_Button->setPosition({656 + 50, 450});
 
         this->_MisereTTT_Button->setColor( sf::Color(225, 165, 35) );
-        this->_MisereTTT_Button->setPosition({933, 450});
+        this->_MisereTTT_Button->setPosition({933 + 50, 450});
 
         this->_MemoryTTT_Button->setColor( sf::Color(225, 165, 35) );
-        this->_MemoryTTT_Button->setPosition({1210, 450});
+        this->_MemoryTTT_Button->setPosition({1210 + 50, 450});
 
         this->_InfinityTTT_Button->setColor( sf::Color(225, 165, 35) );
-        this->_InfinityTTT_Button->setPosition({157, 650});
+        this->_InfinityTTT_Button->setPosition({157 + 50, 650});
 
         this->_FourInARow_Button->setColor( sf::Color(225, 165, 35) );
-        this->_FourInARow_Button->setPosition({489, 650});
+        this->_FourInARow_Button->setPosition({489 + 50, 650});
 
         this->_DiamondTTT_Button->setColor( sf::Color(225, 165, 35) );
-        this->_DiamondTTT_Button->setPosition({821, 650});
+        this->_DiamondTTT_Button->setPosition({821 + 50, 650});
 
         this->_4x4TTT_Button->setColor( sf::Color(225, 165, 35) );
-        this->_4x4TTT_Button->setPosition({1153, 650});
+        this->_4x4TTT_Button->setPosition({1153 + 50, 650}); //!
     }
 
     void MainMenuState::HandleInput() {
