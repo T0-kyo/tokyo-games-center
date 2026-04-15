@@ -14,6 +14,7 @@ The project focuses on building everything from scratch, including:
 - A full state-driven system
 - Custom game management architecture
 - Reusable and extensible game logic
+- Unique Custom Sprites
 
 ---
 
@@ -21,11 +22,11 @@ The project focuses on building everything from scratch, including:
 
 🎲 Diverse Game Library
 
-- Includes 13+ Tic Tac Toe variants
+- Includes 12+ Tic Tac Toe variants
 - Ranging from:
   - Classic boards (3x3, 4x4, etc.)
-  - Numerical Tic Tac Toe
-  - Pyramid-style boards
+  - Connect 4
+  - Unique-style boards
   - Advanced variations (e.g. Ultimate Tic Tac Toe)
 
 ---
@@ -87,19 +88,19 @@ The project follows a Manager-Pattern + State Machine architecture, effectively 
     
     - Splash Screen
     - Main Menu
-    - Game Selection
-    - Gameplay
     - Pause
     - Game Over
+    - etc..
   
   - Includes an Input Shield system to prevent accidental input during transitions
 
 ---
 
-- Game Managers
+- Game Manager
   
   - Coordinates core systems and shared data
   - Acts as the backbone of the engine
+  - Contains Game Loop
 
 - Input Manager
   
@@ -138,7 +139,6 @@ The project follows a Manager-Pattern + State Machine architecture, effectively 
 - Mouse: Primary gameplay interaction
 - Keyboard: Used in specific modes (e.g. numerical input)
 
-«Each game explains its controls داخل الـ Rulebook الخاص به»
 
 ---
 
@@ -149,7 +149,7 @@ The project follows a Manager-Pattern + State Machine architecture, effectively 
 3. Select a game
 4. Choose mode:
    - Player vs Player
-   - Player vs AI
+   - Player vs Computer
 5. Play the game
 6. Game Over screen:
    - Replay
@@ -167,27 +167,7 @@ The project follows a Manager-Pattern + State Machine architecture, effectively 
 
 🛠️ Installation & Running
 
-🔹 Linux (Native)
-
-Requirements:
-
-- SFML 3
-- C++ Compiler (g++)
-- Make
-
-Steps:
-
-git clone https://github.com/yourusername/tokyo-games-center.git
-cd tokyo-games-center
-make && ./Game
-
----
-
-🔹 Windows
-
-- Prebuilt executable available
-- Includes required ".dll" files
-- No setup needed — just run and play
+  Will be made a downloadable file.
 
 ---
 
@@ -205,23 +185,14 @@ make && ./Game
 - 🎨 All assets designed manually
 - ⚡ Focus on performance and clean design
 
----
-
-🔮 Future Improvements
-
-- Smarter AI (Minimax / heuristic-based)
-- Difficulty selection
-- More game modes
-- Expanded animations and polish
-- Cross-platform builds
 
 ---
 
 👨‍💻 Team
 
-- Lead Developer: Alhussain Haitham
+- Lead Developer: Alhussain Haitham (T0-kyo)
   
-  - Architecture, Engine Design, Game Logic
+  - Architecture, Engine Design, Game Logic, States Implementation
 
 - Assets & UI Design: Ahmed Youssef
 
@@ -234,4 +205,6 @@ make && ./Game
 
 📄 License
 
-This project is developed for educational purposes (NEA).
+This project originated as a college assignment and was significantly expanded into a personal project, focusing on custom engine architecture and game development.
+
+All rights reserved.
