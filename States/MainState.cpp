@@ -46,6 +46,7 @@ namespace Tokyo {
             this->_background->move({ 0, -distance });
 
             if (this->_background->getPosition().y + this->_background->getGlobalBounds().size.y < 0) {
+                this->_data->_delay.restart();
                 this->_data->machine.AddState(StateRef(new MainMenuState(this->_data)), true);
             }
         }

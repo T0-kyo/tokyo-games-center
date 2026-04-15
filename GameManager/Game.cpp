@@ -17,7 +17,18 @@ namespace Tokyo {
         while (this->_data->window.isOpen()) {
             float frameTime = this->_clock.restart().asSeconds();
             this->_data->machine.ProcessStateChanges();
-            this->_data->machine.GetActiveState()->HandleInput();
+
+            if(this->_data->_delay.getElapsedTime().asSeconds() >= INPUT_DELAY){
+                this->_data->machine.GetActiveState()->HandleInput();
+            }
+            else {
+                while ( auto event = this->_data->window.pollEvent() ) {
+                    if ( event->is<sf::Event::Closed>() ) {
+                        this->_data->window.close();
+                    }
+                }   
+            }
+
             this->_data->machine.GetActiveState()->Update( frameTime );
             this->_data->machine.GetActiveState()->Draw( frameTime );
         }

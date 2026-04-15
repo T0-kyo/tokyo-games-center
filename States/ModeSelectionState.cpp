@@ -45,6 +45,7 @@ namespace Tokyo {
             }
 
             if ( this->_data->input.isTextClicked( *this->_choice1, sf::Mouse::Button::Left, this->_data->window ) ) {
+                this->_data->_delay.restart();
                 switch (this->_gameID) {
                     case GameID::Word:
                         this->_data->machine.AddState(StateRef(new WordState(this->_data, PlayerType::HUMAN)), true);
@@ -91,6 +92,7 @@ namespace Tokyo {
             }
 
             if ( this->_data->input.isTextClicked( *this->_choice2, sf::Mouse::Button::Left, this->_data->window ) ) {
+                this->_data->_delay.restart();
                 switch (this->_gameID) {
                     case GameID::Word:
                         this->_data->machine.AddState(StateRef(new WordState(this->_data, PlayerType::COMPUTER)), true);

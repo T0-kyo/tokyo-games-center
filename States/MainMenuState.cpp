@@ -125,54 +125,67 @@ namespace Tokyo {
             }
 
             if ( this->_data->input.isSpriteClicekd( *this->_WordTTT_Button, sf::Mouse::Button::Left, this->_data->window ) ) {
+                this->_data->_delay.restart();
                 this->_data->machine.AddState(StateRef(new ModeSelectionState(this->_data, GameID::Word)), false);
             }
 
             if ( this->_data->input.isSpriteClicekd( *this->_UltimateTTT_Button, sf::Mouse::Button::Left, this->_data->window ) ) {
+                this->_data->_delay.restart();
                 this->_data->machine.AddState(StateRef(new ModeSelectionState(this->_data, GameID::Ultimate)), false);
             }
 
             if ( this->_data->input.isSpriteClicekd( *this->_SUS_Button, sf::Mouse::Button::Left, this->_data->window ) ) {
+                this->_data->_delay.restart();
                 this->_data->machine.AddState(StateRef(new ModeSelectionState(this->_data, GameID::Sus)), false);
             }
 
             if ( this->_data->input.isSpriteClicekd( *this->_PyramidTTT_Button, sf::Mouse::Button::Left, this->_data->window ) ) {
+                this->_data->_delay.restart();
                 this->_data->machine.AddState(StateRef(new ModeSelectionState(this->_data, GameID::Pyramid)), false);
             }
 
             if ( this->_data->input.isSpriteClicekd( *this->_ObstaclesTTT_Button, sf::Mouse::Button::Left, this->_data->window ) ) {
+                this->_data->_delay.restart();
                 this->_data->machine.AddState(StateRef(new ModeSelectionState(this->_data, GameID::Obstacles)), false);
             }
 
             if ( this->_data->input.isSpriteClicekd( *this->_NumericalTTT_Button, sf::Mouse::Button::Left, this->_data->window ) ) {
+                this->_data->_delay.restart();
                 this->_data->machine.AddState(StateRef(new ModeSelectionState(this->_data, GameID::Numerical)), false);
             }
 
             if ( this->_data->input.isSpriteClicekd( *this->_MisereTTT_Button, sf::Mouse::Button::Left, this->_data->window ) ) {
+                this->_data->_delay.restart();
                 this->_data->machine.AddState(StateRef(new ModeSelectionState(this->_data, GameID::Misere)), false);
             }
 
             if ( this->_data->input.isSpriteClicekd( *this->_MemoryTTT_Button, sf::Mouse::Button::Left, this->_data->window ) ) {
+                this->_data->_delay.restart();
                 this->_data->machine.AddState(StateRef(new ModeSelectionState(this->_data, GameID::Memory)), false);
             }
 
             if ( this->_data->input.isSpriteClicekd( *this->_InfinityTTT_Button, sf::Mouse::Button::Left, this->_data->window ) ) {
+                this->_data->_delay.restart();
                 this->_data->machine.AddState(StateRef(new ModeSelectionState(this->_data, GameID::Infinity)), false);
             }
 
             if ( this->_data->input.isSpriteClicekd( *this->_FourInARow_Button, sf::Mouse::Button::Left, this->_data->window ) ) {
+                this->_data->_delay.restart();
                 this->_data->machine.AddState(StateRef(new ModeSelectionState(this->_data, GameID::FourInARow)), false);
             }
 
             if ( this->_data->input.isSpriteClicekd( *this->_DiamondTTT_Button, sf::Mouse::Button::Left, this->_data->window ) ) {
+                this->_data->_delay.restart();
                 this->_data->machine.AddState(StateRef(new ModeSelectionState(this->_data, GameID::Diamond)), false);
             }
 
             if ( this->_data->input.isSpriteClicekd( *this->_5x5TTT_Button, sf::Mouse::Button::Left, this->_data->window ) ) {
+                this->_data->_delay.restart();
                 this->_data->machine.AddState(StateRef(new ModeSelectionState(this->_data, GameID::_5x5)), false);
             }
 
             if ( this->_data->input.isSpriteClicekd( *this->_4x4TTT_Button, sf::Mouse::Button::Left, this->_data->window ) ) {
+                this->_data->_delay.restart();
                 this->_data->machine.AddState(StateRef(new ModeSelectionState(this->_data, GameID::_4x4)), false);
             }
         }

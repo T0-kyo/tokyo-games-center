@@ -73,8 +73,10 @@ namespace Tokyo {
             _alpha = 0.f;
             
             this->_background->setColor(
-        sf::Color(255, 255, 255,static_cast<std::uint8_t>(_alpha)));
+            sf::Color(255, 255, 255,static_cast<std::uint8_t>(_alpha)));
             
+            this->_data->_delay.restart();
+            this->_intro->stop();
             this->_data->machine.AddState( StateRef( new MainState( this->_data ) ), true );
         }
     }
