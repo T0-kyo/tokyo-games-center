@@ -13,6 +13,12 @@ namespace Tokyo {
         this->_background = std::make_unique<sf::Sprite> ( texture );
         this->_background->setPosition( { SCREEN_WIDTH*0.5f - texture.getSize().x*0.5f, SCREEN_HEIGHT*0.5f - texture.getSize().y*0.5f } );
         this->_background->setColor( sf::Color( 255, 255, 255, 0 ) );
+
+        this->_data->assets.LoadSound("intro", "../Assets/Audio/AUD-20260214-WA0014.wav");
+        auto& buffer = this->_data->assets.GetSound("intro");
+        this->_intro = std::make_unique<sf::Sound>(buffer);
+        sf::sleep(sf::milliseconds(1000));
+        this->_intro->play();
     }
 
     void SplashState::HandleInput() {
@@ -67,8 +73,10 @@ namespace Tokyo {
             _alpha = 0.f;
             
             this->_background->setColor(
-        sf::Color(255, 255, 255,static_cast<std::uint8_t>(_alpha)));
+            sf::Color(255, 255, 255,static_cast<std::uint8_t>(_alpha)));
             
+            this->_data->_delay.restart();
+            this->_intro->stop();
             this->_data->machine.AddState( StateRef( new MainState( this->_data ) ), true );
         }
     }

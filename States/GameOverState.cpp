@@ -48,9 +48,11 @@ namespace Tokyo {
                 this->_data->window.close();
             }
             if(_data->input.isSpriteClicekd(*this->_home, sf::Mouse::Button::Left, this->_data->window)){
+                this->_data->_delay.restart();
                 this->_data->machine.RemoveState(1);
             }
             if(_data->input.isSpriteClicekd(*this->_playAgain, sf::Mouse::Button::Left, _data->window)){
+                this->_data->_delay.restart();
                 switch(_gameID){
                     case GameID::Word://1
                         this->_data->machine.AddState( StateRef (new ModeSelectionState(_data, _gameID)), true);
