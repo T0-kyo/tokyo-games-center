@@ -14,7 +14,7 @@ At its core, it includes a custom engine built from scratch, designed around a s
 
 Features
 
-- 13+ Tic Tac Toe variants with different rules and board layouts
+- 12+ Tic Tac Toe variants with different rules and board layouts
 - Custom-built state-driven game engine
 - Stack-based state machine for managing application flow
 - Template-based design for reusable board and player logic
@@ -32,7 +32,7 @@ The system is based on:
 - Manager pattern (GameManager, InputManager, AssetManager)
 - Separation between game logic and UI
 
-For more details, see the documentation in the "docs/" directory.
+For more details, see the documentation in the "Documentation/" directory.
 
 ---
 
@@ -46,7 +46,7 @@ Requirements:
 - C++ compiler (g++)
 - Make
 
-git clone https://github.com/yourusername/tokyo-games-center.git
+git clone https://github.com/T0-kyo/tokyo-games-center.git
 cd tokyo-games-center
 make && ./Game
 
