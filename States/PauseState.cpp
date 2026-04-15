@@ -39,11 +39,11 @@ namespace Tokyo{
             if(event->is<sf::Event::Closed>()){
                 this->_data->window.close();
             }
-            if(this->_data->input.isSpriteClicekd(*this->_resume, sf::Mouse::Button::Left, this->_data->window)){
+            if(this->_data->input.isSpriteClicked(*this->_resume, sf::Mouse::Button::Left, this->_data->window)){
                 this->_data->_delay.restart();
                 this->_data->machine.RemoveState(1);
             }
-            if(this->_data->input.isSpriteClicekd(*this->_home, sf::Mouse::Button::Left, this->_data->window)){
+            if(this->_data->input.isSpriteClicked(*this->_home, sf::Mouse::Button::Left, this->_data->window)){
                 this->_data->_delay.restart();
                 this->_data->machine.AddState(StateRef (new HomeState(this->_data)), false);
             }
