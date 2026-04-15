@@ -11,7 +11,7 @@ namespace Tokyo{
         ~InputManager() {};
 
         // Checks if the sprite is clicked by passing the sprite I wanna check and the mouse click that was clicked and the window that  these events and these items are on.
-        bool isSpriteClicekd ( sf::Sprite object, sf::Mouse::Button button, sf::RenderWindow& window );
+        bool isSpriteClicked ( sf::Sprite object, sf::Mouse::Button button, sf::RenderWindow& window );
         // Checks if the mouse is hovering over the sprite by passing the sprite I wanna check and the window that  these events and these items are on.
         bool hoverSprite ( sf::Sprite object, sf::RenderWindow& window );
         // Checks if the text is clicked by passing the text I wanna check and the mouse click that was clicked and the window that  these events and these items are on.

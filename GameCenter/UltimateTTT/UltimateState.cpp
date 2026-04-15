@@ -117,78 +117,78 @@ namespace Tokyo {
                 this->_data->window.close();
             }
 
-            if(this->_data->input.isSpriteClicekd(*this->_pauseButton, sf::Mouse::Button::Left, this->_data->window)){
+            if(this->_data->input.isSpriteClicked(*this->_pauseButton, sf::Mouse::Button::Left, this->_data->window)){
                 this->_data->machine.AddState(StateRef (new PauseState(this->_data)), false);
             }
 
             if(_playerType != PlayerType::COMPUTER || _currentPlayer == _Player1.get()){
-                if(this->_data->input.isSpriteClicekd( *this->_subgrid1, sf::Mouse::Button::Left, this->_data->window ) ||
-                this->_data->input.isSpriteClicekd( *this->_subgrid2, sf::Mouse::Button::Left, this->_data->window ) ||
-                this->_data->input.isSpriteClicekd( *this->_subgrid3, sf::Mouse::Button::Left, this->_data->window ) ||
-                this->_data->input.isSpriteClicekd( *this->_subgrid4, sf::Mouse::Button::Left, this->_data->window ) ||
-                this->_data->input.isSpriteClicekd( *this->_subgrid5, sf::Mouse::Button::Left, this->_data->window ) ||
-                this->_data->input.isSpriteClicekd( *this->_subgrid6, sf::Mouse::Button::Left, this->_data->window ) ||
-                this->_data->input.isSpriteClicekd( *this->_subgrid7, sf::Mouse::Button::Left, this->_data->window ) ||
-                this->_data->input.isSpriteClicekd( *this->_subgrid8, sf::Mouse::Button::Left, this->_data->window ) ||
-                this->_data->input.isSpriteClicekd( *this->_subgrid9, sf::Mouse::Button::Left, this->_data->window )
+                if(this->_data->input.isSpriteClicked( *this->_subgrid1, sf::Mouse::Button::Left, this->_data->window ) ||
+                this->_data->input.isSpriteClicked( *this->_subgrid2, sf::Mouse::Button::Left, this->_data->window ) ||
+                this->_data->input.isSpriteClicked( *this->_subgrid3, sf::Mouse::Button::Left, this->_data->window ) ||
+                this->_data->input.isSpriteClicked( *this->_subgrid4, sf::Mouse::Button::Left, this->_data->window ) ||
+                this->_data->input.isSpriteClicked( *this->_subgrid5, sf::Mouse::Button::Left, this->_data->window ) ||
+                this->_data->input.isSpriteClicked( *this->_subgrid6, sf::Mouse::Button::Left, this->_data->window ) ||
+                this->_data->input.isSpriteClicked( *this->_subgrid7, sf::Mouse::Button::Left, this->_data->window ) ||
+                this->_data->input.isSpriteClicked( *this->_subgrid8, sf::Mouse::Button::Left, this->_data->window ) ||
+                this->_data->input.isSpriteClicked( *this->_subgrid9, sf::Mouse::Button::Left, this->_data->window )
                 ){
-                    if(this->_data->input.isSpriteClicekd( *this->_subgrid1, sf::Mouse::Button::Left, this->_data->window )){
+                    if(this->_data->input.isSpriteClicked( *this->_subgrid1, sf::Mouse::Button::Left, this->_data->window )){
                         sf::Vector2i mousePos = this->_data->input.getMousePosition(this->_data->window);
                         float localX = mousePos.x - gridPos1.x;
                         float localY = mousePos.y - gridPos1.y;
                         this->_col = localX / CellWidth;
                         this->_row = localY / CellHeight;
                     }
-                    if(this->_data->input.isSpriteClicekd( *this->_subgrid2, sf::Mouse::Button::Left, this->_data->window )){
+                    if(this->_data->input.isSpriteClicked( *this->_subgrid2, sf::Mouse::Button::Left, this->_data->window )){
                         sf::Vector2i mousePos = this->_data->input.getMousePosition(this->_data->window);
                         float localX = mousePos.x - gridPos2.x;
                         float localY = mousePos.y - gridPos2.y;
                         this->_col = 3+(localX / CellWidth);
                         this->_row = localY / CellHeight;
                     }
-                    if(this->_data->input.isSpriteClicekd( *this->_subgrid3, sf::Mouse::Button::Left, this->_data->window )){
+                    if(this->_data->input.isSpriteClicked( *this->_subgrid3, sf::Mouse::Button::Left, this->_data->window )){
                         sf::Vector2i mousePos = this->_data->input.getMousePosition(this->_data->window);
                         float localX = mousePos.x - gridPos3.x;
                         float localY = mousePos.y - gridPos3.y;
                         this->_col = 6+(localX / CellWidth);
                         this->_row = localY / CellHeight;
                     }
-                    if(this->_data->input.isSpriteClicekd( *this->_subgrid4, sf::Mouse::Button::Left, this->_data->window )){
+                    if(this->_data->input.isSpriteClicked( *this->_subgrid4, sf::Mouse::Button::Left, this->_data->window )){
                         sf::Vector2i mousePos = this->_data->input.getMousePosition(this->_data->window);
                         float localX = mousePos.x - gridPos4.x;
                         float localY = mousePos.y - gridPos4.y;
                         this->_col = localX / CellWidth;
                         this->_row = 3+(localY / CellHeight);
                     }
-                    if(this->_data->input.isSpriteClicekd( *this->_subgrid5, sf::Mouse::Button::Left, this->_data->window )){
+                    if(this->_data->input.isSpriteClicked( *this->_subgrid5, sf::Mouse::Button::Left, this->_data->window )){
                         sf::Vector2i mousePos = this->_data->input.getMousePosition(this->_data->window);
                         float localX = mousePos.x - gridPos5.x;
                         float localY = mousePos.y - gridPos5.y;
                         this->_col = 3+(localX / CellWidth);
                         this->_row = 3+(localY / CellHeight);
                     }
-                    if(this->_data->input.isSpriteClicekd( *this->_subgrid6, sf::Mouse::Button::Left, this->_data->window )){
+                    if(this->_data->input.isSpriteClicked( *this->_subgrid6, sf::Mouse::Button::Left, this->_data->window )){
                         sf::Vector2i mousePos = this->_data->input.getMousePosition(this->_data->window);
                         float localX = mousePos.x - gridPos6.x;
                         float localY = mousePos.y - gridPos6.y;
                         this->_col = 6+(localX / CellWidth);
                         this->_row = 3+(localY / CellHeight);
                     }
-                    if(this->_data->input.isSpriteClicekd( *this->_subgrid7, sf::Mouse::Button::Left, this->_data->window )){
+                    if(this->_data->input.isSpriteClicked( *this->_subgrid7, sf::Mouse::Button::Left, this->_data->window )){
                         sf::Vector2i mousePos = this->_data->input.getMousePosition(this->_data->window);
                         float localX = mousePos.x - gridPos7.x;
                         float localY = mousePos.y - gridPos7.y;
                         this->_col = localX / CellWidth;
                         this->_row = 6+(localY / CellHeight);
                     }
-                    if(this->_data->input.isSpriteClicekd( *this->_subgrid8, sf::Mouse::Button::Left, this->_data->window )){
+                    if(this->_data->input.isSpriteClicked( *this->_subgrid8, sf::Mouse::Button::Left, this->_data->window )){
                         sf::Vector2i mousePos = this->_data->input.getMousePosition(this->_data->window);
                         float localX = mousePos.x - gridPos8.x;
                         float localY = mousePos.y - gridPos8.y;
                         this->_col = 3+(localX / CellWidth);
                         this->_row = 6+(localY / CellHeight);
                     }
-                    if(this->_data->input.isSpriteClicekd( *this->_subgrid9, sf::Mouse::Button::Left, this->_data->window )){
+                    if(this->_data->input.isSpriteClicked( *this->_subgrid9, sf::Mouse::Button::Left, this->_data->window )){
                         sf::Vector2i mousePos = this->_data->input.getMousePosition(this->_data->window);
                         float localX = mousePos.x - gridPos9.x;
                         float localY = mousePos.y - gridPos9.y;

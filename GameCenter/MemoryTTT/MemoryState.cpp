@@ -75,7 +75,7 @@ namespace Tokyo {
 
     void MemoryState::HandleInput() {
 
-         if(_gameOverClock.getElapsedTime().asSeconds() >= GAMEOVER_DELAY){
+        if(_gameOverClock.getElapsedTime().asSeconds() >= GAMEOVER_DELAY){
             if(_p1) this->_data->machine.AddState(StateRef (new GameOverState(this->_data, GameID::Memory, Winner::p1)), true);
             else if(_p2) this->_data->machine.AddState(StateRef (new GameOverState(this->_data, GameID::Memory, Winner::p2)), true);
             else if(_draw) this->_data->machine.AddState(StateRef (new GameOverState(this->_data, GameID::Memory, Winner::draw)), true);
@@ -86,12 +86,12 @@ namespace Tokyo {
                 this->_data->window.close();
             }
 
-            if(this->_data->input.isSpriteClicekd(*this->_pauseButton, sf::Mouse::Button::Left, this->_data->window)){
+            if(this->_data->input.isSpriteClicked(*this->_pauseButton, sf::Mouse::Button::Left, this->_data->window)){
                 this->_data->machine.AddState(StateRef (new PauseState(this->_data)), false);
             }
 
             if(_playerType != PlayerType::COMPUTER || _currentPlayer == _Player1.get()){
-                if(this->_data->input.isSpriteClicekd( *this->_grid, sf::Mouse::Button::Left, this->_data->window )){
+                if(this->_data->input.isSpriteClicked( *this->_grid, sf::Mouse::Button::Left, this->_data->window )){
                     sf::Vector2i mousePos = this->_data->input.getMousePosition(this->_data->window);
                     float localX = mousePos.x - gridPos.x;
                     float localY = mousePos.y - gridPos.y;

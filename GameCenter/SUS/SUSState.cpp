@@ -87,12 +87,12 @@ namespace Tokyo {
                 this->_data->window.close();
             }
 
-            if(_data->input.isSpriteClicekd(*_pauseButton, sf::Mouse::Button::Left, _data->window)){
+            if(_data->input.isSpriteClicked(*_pauseButton, sf::Mouse::Button::Left, _data->window)){
                 this->_data->machine.AddState(StateRef (new PauseState(this->_data)), false);
             }
             
             if(_playerType != PlayerType::COMPUTER || _currentPlayer == _Player1.get()){
-                if(this->_data->input.isSpriteClicekd( *this->_grid, sf::Mouse::Button::Left, this->_data->window )){
+                if(this->_data->input.isSpriteClicked( *this->_grid, sf::Mouse::Button::Left, this->_data->window )){
                     sf::Vector2i mousePos = this->_data->input.getMousePosition(this->_data->window);
                     float localX = mousePos.x - gridPos.x;
                     float localY = mousePos.y - gridPos.y;

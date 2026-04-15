@@ -47,11 +47,11 @@ namespace Tokyo {
             if(event->is<sf::Event::Closed>()){
                 this->_data->window.close();
             }
-            if(_data->input.isSpriteClicekd(*this->_home, sf::Mouse::Button::Left, this->_data->window)){
+            if(_data->input.isSpriteClicked(*this->_home, sf::Mouse::Button::Left, this->_data->window)){
                 this->_data->_delay.restart();
                 this->_data->machine.RemoveState(1);
             }
-            if(_data->input.isSpriteClicekd(*this->_playAgain, sf::Mouse::Button::Left, _data->window)){
+            if(_data->input.isSpriteClicked(*this->_playAgain, sf::Mouse::Button::Left, _data->window)){
                 this->_data->_delay.restart();
                 switch(_gameID){
                     case GameID::Word://1
