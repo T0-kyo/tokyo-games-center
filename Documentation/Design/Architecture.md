@@ -1,207 +1,94 @@
-🧠 Architecture & Design
+Architecture & Design
 
-📌 Overview
+Overview
 
-Tokyo Games Center was originally developed as part of a college Object-Oriented Programming assignment and later expanded into a full personal project.
-
-The main goal of the project was to apply OOP principles in a practical environment while building a scalable and interactive system. Over time, the project evolved into a custom mini game engine capable of handling multiple games through a unified architecture.
+Tokyo Games Center was initially developed as a college assignment focused on Object-Oriented Programming and later expanded into a personal project. The system evolved into a modular, state-driven architecture that functions as a lightweight game engine capable of supporting multiple game variants.
 
 ---
 
-🔄 State Machine Design
+State Machine
 
-The core of the system is built around a state-based architecture, which is the standard approach when working with SFML applications.
+The application is built around a stack-based state machine. Each screen or mode is represented as an independent state (e.g., main menu, gameplay, pause, game over).
 
-Each part of the application is represented as a separate state, such as:
-
-- Splash Screen
-- Main Menu
-- Game Selection
-- Gameplay
-- Pause
-- Game Over
-
-These states are managed using a stack-based State Machine, where:
+States are managed using push and pop operations:
 
 - New states are pushed onto the stack
-- Old states are popped when no longer needed
-- Replacing a state is done by popping then pushing a new one
+- Inactive states are removed by popping
+- State replacement is handled through pop-then-push
 
-💡 Why State Machine?
-
-Without this system:
-
-- Input handling would become extremely complex
-- Multiple screens would overlap in a single loop
-- Code would become tightly coupled and difficult to maintain
-
-By isolating each screen into its own state, the system becomes:
-
-- Easier to manage
-- More modular
-- Easier to extend
+This design isolates logic per state, simplifies input handling, and improves maintainability.
 
 ---
 
-🛡️ Input Shield
+Input Handling
 
-During development, an issue was encountered where mouse clicks were registered multiple times due to how fast input is processed.
+An Input Manager centralizes all input processing to ensure consistent behavior across the application.
 
-This caused unintended behavior when switching between states (e.g., accidental double clicks).
-
-To solve this, an Input Shield mechanism was introduced:
-
-- A short delay (~0.2 seconds) is applied during state transitions
-- Input is temporarily blocked during this period
-
-This ensures:
-
-- No accidental interactions
-- Stable and predictable state transitions
+To address unintended multiple input triggers during transitions, an Input Shield mechanism is used. A short delay is applied when switching states, temporarily disabling input to prevent duplicate or accidental mouse clicks.
 
 ---
 
-🗂️ Manager-Based Architecture
+Manager System
 
-The system uses a manager pattern to separate responsibilities and reduce coupling.
+The system uses a manager-based structure to separate responsibilities:
 
-🎮 Game Manager
+- GameManager: Controls the main loop, including state processing, input handling, updates, and rendering.
+- InputManager: Standardizes mouse and keyboard input across all states.
+- AssetManager: Loads and stores textures, fonts, and audio in memory using maps for efficient reuse.
 
-- Acts as the core engine
-- Controls the main game loop:
-  - Processing state changes
-  - Handling input
-  - Updating logic
-  - Rendering
+The Asset Manager avoids repeated disk access by caching resources, improving performance and stability.
 
 ---
 
-🎹 Input Manager
+Game System Design
 
-- Centralizes all input handling
-- Ensures consistent behavior across all states and games
-- Prevents duplication of input logic
+Each game consists of:
 
----
+- A logic layer containing the core rules and mechanics
+- A state layer responsible for rendering and user interaction
 
-📦 Asset Manager
-
-- Handles loading and storing:
-  - Textures
-  - Fonts
-  - Audio
-
-💡 Why Asset Manager?
-
-Loading assets directly from disk during runtime would:
-
-- Be extremely inefficient
-- Cause performance issues (especially if done repeatedly per frame)
-
-Instead:
-
-- Assets are loaded once and stored in memory (using maps)
-- They are accessed directly when needed
-
-This significantly improves performance and avoids unnecessary disk operations.
+This separation allows the logic to remain independent of the UI, making the system easier to extend and maintain.
 
 ---
 
-🎮 Game System Design
+Template-Based Structure
 
-All games are organized within the Game Center module.
+Core components such as boards and players are implemented using base classes and extended by individual games.
 
-Each game consists of two main parts:
-
-- Game Logic → Pure logic (independent of UI)
-- Game State → Handles rendering and user interaction
-
-This separation allows:
-
-- Logic to be reused or tested independently
-- UI to act as a layer on top of the logic
+Each game inherits from these base structures and overrides behavior to match its specific rules. This approach ensures consistency while allowing flexibility across different game variants.
 
 ---
 
-🧩 Template-Based Design
+Performance
 
-To support multiple game variations, the project uses a template-based approach for core components such as:
-
-- Boards
-- Players
-
-Each game:
-
-- Inherits from base classes
-- Overrides behavior to match its specific rules
-
-💡 Benefit
-
-This ensures:
-
-- All games follow a consistent structure
-- Code reuse across different game modes
-- Easy creation of new variations without rewriting core logic
+The application uses a fixed time-step loop to maintain consistent behavior across different hardware. This ensures stable gameplay and uniform performance regardless of system differences.
 
 ---
 
-⚡ Performance Considerations
+Scalability
 
-The game uses a fixed time-step loop to ensure:
+The architecture is designed to support easy extension.
 
-- Consistent gameplay speed across different machines
-- Stable behavior regardless of hardware performance
-
-This decision was especially important since the project was developed across multiple devices.
-
----
-
-🔮 Scalability
-
-The system is designed to be easily extensible.
-
-➕ Adding a New Game
-
-To introduce a new game:
+To add a new game:
 
 1. Implement the game logic
-2. Create a new state that inherits from the base State class
-3. Override required methods (Input, Update, Draw)
-4. Register the game in:
-   - Main Menu
-   - Mode Selection
-   - Game Over flow
+2. Create a new state derived from the base state class and connect it to the logic
+3. Integrate it into the MainMenu, ModeSelection state and the GameOver state
 
-No modifications are required in the core engine.
+This process does not require modification of the core engine.
 
 ---
 
-⚔️ Challenges & Lessons Learned
+Challenges
 
-🧠 Engine Design
+Designing the manager system and overall architecture from scratch was the primary challenge, requiring careful planning of responsibilities and interactions between components.
 
-The most challenging part was designing the manager system and overall engine architecture, as it required understanding how game engines are structured from scratch.
+Handling game states as independent units while maintaining clean input and rendering logic also required careful structuring.
 
----
-
-🎮 State Integration
-
-Treating each game as a state while maintaining clean input and rendering logic required careful design.
+Additionally, implementing complex variants such as Ultimate Tic Tac Toe introduced challenges in managing more advanced State UI and mulitple small boards at once.
 
 ---
 
-♟️ Complex Game Logic
+Conclusion
 
-Implementing advanced variants such as Ultimate Tic Tac Toe introduced additional complexity in managing nested boards and rules.
-
----
-
-📌 Conclusion
-
-This project demonstrates the practical application of:
-
-- Object-Oriented Programming
-- System design and architecture
-- Real-time application development
-
-It evolved from a simple assignment into a fully structured, extensible mini game engine, capable of supporting multiple games under a unified system.
+The project demonstrates the application of Object-Oriented Programming and system design principles in a real-time environment. It provides a scalable foundation for extending the game center with additional variants while maintaining a clean and organized structure.
