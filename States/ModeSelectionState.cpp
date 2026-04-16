@@ -37,7 +37,7 @@ namespace Tokyo {
         this->_background->setPosition({SCREEN_WIDTH / 2 - texture1.getSize().x * 0.5f, SCREEN_HEIGHT / 2 - texture1.getSize().y * 0.5f});
         this->_background->setColor( sf::Color( 255, 255, 255, 100 ) );
 
-        this->_backButton->setPosition({back.getSize().x * 0.3f, back.getSize().y * 0.3f});
+        this->_backButton->setPosition({back.getSize().x * 0.3f, back.getSize().y * 0.6f});
         this->_backButton->setColor( sf::Color( 255, 255, 255, 150 ) );
 
         this->_choice1->setPosition({SCREEN_WIDTH / 2 - textRect1.size.x * 0.5f, SCREEN_HEIGHT * 0.5f - textRect2.size.y * 1.3f});
