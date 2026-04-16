@@ -28,8 +28,14 @@ namespace Tokyo {
         this->_gameover = std::make_unique<sf::Sound>( buffer );
 
 
-        if(_winner == Winner::p1) this->_announce = make_unique<sf::Text>( font, "Winner: Player1", MAIN_MENU_TITLE_SIZE / 1.5 );
-        else if(_winner == Winner::p2) this->_announce = make_unique<sf::Text>( font, "Winner: Player2", MAIN_MENU_TITLE_SIZE / 1.5 );
+        if(_winner == Winner::p1) {
+            this->_announce = make_unique<sf::Text>( font, "Winner: Player1", MAIN_MENU_TITLE_SIZE / 1.5 );
+            this->_data->_score1++;
+        }
+        else if(_winner == Winner::p2) {
+            this->_announce = make_unique<sf::Text>( font, "Winner: Player2", MAIN_MENU_TITLE_SIZE / 1.5 );
+            this->_data->_score2++;
+        }
         else if(_winner == Winner::draw) this->_announce = make_unique<sf::Text>( font, "Draw!", MAIN_MENU_TITLE_SIZE / 1.5 );
         sf::FloatRect rect = _announce->getGlobalBounds();
 

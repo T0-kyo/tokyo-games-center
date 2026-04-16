@@ -55,9 +55,13 @@ namespace Tokyo {
         this->_WordTTT_Button = std::make_unique<sf::Sprite> (word);
         this->_InfinityTTT_Button = std::make_unique<sf::Sprite> (infinity);
         
-        auto& texture2 = this->_data->assets.GetFont( "Main Font" );
-        this->_title = std::make_unique<sf::Text> ( texture2, "Game Center", MAIN_MENU_TITLE_SIZE );
+        auto& font = this->_data->assets.GetFont( "Main Font" );
+        this->_title = std::make_unique<sf::Text> ( font, "Game Center", MAIN_MENU_TITLE_SIZE );
         sf::FloatRect textRect = this->_title->getLocalBounds();
+        this->_score1 = std::make_unique<sf::Text>(font, std::to_string(this->_data->_score1), MAIN_MENU_TITLE_SIZE / 2);
+        sf::FloatRect rect1 = this->_score1->getLocalBounds();
+        this->_score2 = std::make_unique<sf::Text>(font, std::to_string(this->_data->_score2), MAIN_MENU_TITLE_SIZE / 2);
+        sf::FloatRect rect2 = this->_score2->getLocalBounds();
 
         this->_WordTTT_Button = std::make_unique<sf::Sprite> ( word );
         this->_UltimateTTT_Button = std::make_unique<sf::Sprite> ( ultimate );
@@ -77,9 +81,13 @@ namespace Tokyo {
         this->_background->setColor( sf::Color( 255, 255, 255, 180 ) );
         this->_title->setFillColor( sf::Color(225, 165, 35) );
         this->_title->setPosition({ SCREEN_WIDTH /2 - textRect.size.x * 0.5f , SCREEN_HEIGHT * 0.075f});
+        this->_score1->setFillColor( sf::Color(225, 165, 35) );
+        this->_score1->setPosition({SCREEN_WIDTH / 2 - rect1.size.x * 5, SCREEN_HEIGHT - rect1.size.y * 1.5f});
+        this->_score2->setFillColor( sf::Color(225, 165, 35) );
+        this->_score2->setPosition({SCREEN_WIDTH / 2 + rect2.size.x * 5, SCREEN_HEIGHT - rect2.size.y * 1.5f});
 
         this->_SUS_Button->setColor( sf::Color(225, 165, 35) );
-        this->_SUS_Button->setPosition({157 + 50, 250}); //! Non professional way of centering the icons
+        this->_SUS_Button->setPosition({157 + 50, 250}); //TODO Non professional way of centering the icons
         
         this->_5x5TTT_Button->setColor(sf::Color(255, 255, 255));
         this->_5x5TTT_Button->setPosition({489 + 50, 250});
@@ -115,7 +123,7 @@ namespace Tokyo {
         this->_DiamondTTT_Button->setPosition({821 + 50, 650});
 
         this->_4x4TTT_Button->setColor( sf::Color(225, 165, 35) );
-        this->_4x4TTT_Button->setPosition({1153 + 50, 650}); //!
+        this->_4x4TTT_Button->setPosition({1153 + 50, 650}); //TODO
     }
 
     void MainMenuState::HandleInput() {
@@ -289,6 +297,8 @@ namespace Tokyo {
 
         this->_data->window.draw( *this->_background );
         this->_data->window.draw( *this->_title );
+        this->_data->window.draw( *this->_score1 );
+        this->_data->window.draw( *this->_score2 );
         this->_data->window.draw( *this->_WordTTT_Button );
         this->_data->window.draw( *this->_UltimateTTT_Button );
         this->_data->window.draw( *this->_SUS_Button );
