@@ -58,12 +58,21 @@ A prebuilt executable is provided with the required dependencies.
 
 Documentation
 
-Additional documentation, including architecture details, diagrams, and screenshots, is available in the "docs/" directory.
+Additional documentation, including architecture details, diagrams, and screenshots, is available in the "Documentation/" directory.
+
+---
+
+The Team
+Lead Developer: Alhussain Haitham(T0-kyo) — Architecture, Game Loop, Logic and States Implementation.
+
+Assets and UI Design: Ahmed Youssef.
+
+Technical Support: Ali Mohamed and Ahmed Youssef.
 
 ---
 
 License
 
-This project originated as a college assignment and was later expanded into a personal project.
+This project originated as a college assignment and was later expanded into a professional personal project.
 
 All rights reserved.
