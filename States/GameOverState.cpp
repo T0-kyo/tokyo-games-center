@@ -10,17 +10,23 @@ namespace Tokyo {
         this->_data->assets.LoadTexture("Play Again", "../Assets/Textures/PlayAgain Button.png");
         this->_data->assets.LoadTexture("Go Home", "../Assets/Textures/Home Button.png");
         this->_data->assets.LoadTexture("Medal", "../Assets/Textures/Medal.png");
+        this->_data->assets.LoadSound("gameover", "../Assets/Audio/mixkit-arcade-retro-game-over-213.wav");
+
 
         auto& bg = _data->assets.GetTexture("Game Over bg");
         auto& play = _data->assets.GetTexture("Play Again");
         auto& home = _data->assets.GetTexture("Go Home");
         auto& medal = _data->assets.GetTexture("Medal");
         auto& font = _data->assets.GetFont("Main Font");
+        auto& buffer = this->_data->assets.GetSound("gameover");
+
 
         this->_background = make_unique<sf::Sprite>( bg );
         this->_playAgain = make_unique<sf::Sprite>( play );
         this->_home = make_unique<sf::Sprite>( home );
         this->_medal = make_unique<sf::Sprite>( medal );
+        this->_gameover = std::make_unique<sf::Sound>( buffer );
+
 
         if(_winner == Winner::p1) this->_announce = make_unique<sf::Text>( font, "Winner: Player1", MAIN_MENU_TITLE_SIZE / 1.5 );
         else if(_winner == Winner::p2) this->_announce = make_unique<sf::Text>( font, "Winner: Player2", MAIN_MENU_TITLE_SIZE / 1.5 );
@@ -40,6 +46,8 @@ namespace Tokyo {
 
         this->_announce->setPosition({SCREEN_WIDTH/2 - rect.size.x * 0.5f, rect.size.y * 0.7f});
         this->_announce->setFillColor(sf::Color(130, 51, 142));
+
+        this->_gameover->play();
     }
 
     void GameOverState::HandleInput(){
