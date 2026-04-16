@@ -20,6 +20,9 @@ namespace Tokyo {
         sf::RenderWindow window;
 
         sf::Clock _delay;   // Clock to delay input when switching States
+
+        int _score1;
+        int _score2;
     };
 
     // smart pointer that will be passed to states so they can access the data in the game and use it to manage the game,

@@ -45,7 +45,7 @@ namespace Tokyo{
             }
             if(this->_data->input.isTextClicked(*this->_no, sf::Mouse::Button::Left, this->_data->window)){
                 this->_data->_delay.restart();
-                this->_data->machine.RemoveState(1);
+                this->_data->machine.RemoveState(2);
             }
         }
     }

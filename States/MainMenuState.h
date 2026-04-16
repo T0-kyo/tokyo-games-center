@@ -23,8 +23,6 @@ namespace Tokyo {
         GameDataRef _data;
 
         std::unique_ptr<sf::Sprite> _background;
-        std::unique_ptr<sf::Text> _title;
-
         std::unique_ptr<sf::Sprite> _4x4TTT_Button;
         std::unique_ptr<sf::Sprite> _5x5TTT_Button;
         std::unique_ptr<sf::Sprite> _DiamondTTT_Button;
@@ -38,5 +36,9 @@ namespace Tokyo {
         std::unique_ptr<sf::Sprite> _SUS_Button;
         std::unique_ptr<sf::Sprite> _UltimateTTT_Button;
         std::unique_ptr<sf::Sprite> _WordTTT_Button;
+
+        std::unique_ptr<sf::Text> _title;
+        std::unique_ptr<sf::Text> _score1;
+        std::unique_ptr<sf::Text> _score2;
     };
 }
