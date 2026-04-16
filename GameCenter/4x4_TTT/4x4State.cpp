@@ -204,7 +204,7 @@ namespace Tokyo {
 
                                 _cellChosen = false;
                                 _currentPlayer = _Player1.get();
-
+                                _wait.restart();
                                 _gameOverClock.restart();
                             }
                         }
@@ -242,14 +242,14 @@ namespace Tokyo {
 
                                 _cellChosen = false;
                                 _currentPlayer = _Player1.get();
-
+                                _wait.restart();
                                 _gameOverClock.restart();
                             }
                         }
                     }
                 }
                 
-                if(this->_data->input.isSpriteClicked( *this->_grid, sf::Mouse::Button::Left, this->_data->window )){
+                if(this->_wait.getElapsedTime().asSeconds() > 0.12f && this->_data->input.isSpriteClicked( *this->_grid, sf::Mouse::Button::Left, this->_data->window )){
                     sf::Vector2i mousePos = this->_data->input.getMousePosition(this->_data->window);
                     float localX = mousePos.x - gridPos.x;
                     float localY = mousePos.y - gridPos.y;

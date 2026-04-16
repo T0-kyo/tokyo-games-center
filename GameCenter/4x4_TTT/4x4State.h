@@ -30,6 +30,7 @@ namespace Tokyo {
         std::shared_ptr<Player<char>> _Player2;
         std::shared_ptr<TTT4x4_Board> _4x4Board;
         sf::Clock _clock;
+        sf::Clock _wait;
         sf::Clock _gameOverClock;
 
         std::unique_ptr<sf::Sprite> _background;

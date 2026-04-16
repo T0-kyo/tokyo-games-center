@@ -91,38 +91,40 @@ namespace Tokyo {
                 this->_data->window.close();
             }
 
-            if(this->_data->input.isSpriteClicked(*this->_pauseButton, sf::Mouse::Button::Left, this->_data->window)){
-                this->_data->machine.AddState(StateRef (new PauseState(this->_data)), false);
-            }
+            if(!_p1 && !_p2 && !_draw){
+                if(this->_data->input.isSpriteClicked(*this->_pauseButton, sf::Mouse::Button::Left, this->_data->window)){
+                    this->_data->machine.AddState(StateRef (new PauseState(this->_data)), false);
+                }
 
-            if(_playerType != PlayerType::COMPUTER || _currentPlayer == _Player1.get()){
-                if(this->_data->input.isSpriteClicked( *this->_grid, sf::Mouse::Button::Left, this->_data->window )){
-                    sf::Vector2i mousePos = this->_data->input.getMousePosition(this->_data->window);
-                    float localX = mousePos.x - gridPos.x;
-                    float localY = mousePos.y - gridPos.y;
-                    this->_col = localX / CellWidth;
-                    this->_row = localY / CellHeight;
-                    if (_5x5Board->get_cell(_row, _col) == ' '){
-                        Move move(_row, _col, _currentPlayer->get_symbol());
-                        this->_5x5Board->update_board(&move);
+                if(_playerType != PlayerType::COMPUTER || _currentPlayer == _Player1.get()){
+                    if(this->_data->input.isSpriteClicked( *this->_grid, sf::Mouse::Button::Left, this->_data->window )){
+                        sf::Vector2i mousePos = this->_data->input.getMousePosition(this->_data->window);
+                        float localX = mousePos.x - gridPos.x;
+                        float localY = mousePos.y - gridPos.y;
+                        this->_col = localX / CellWidth;
+                        this->_row = localY / CellHeight;
+                        if (_5x5Board->get_cell(_row, _col) == ' '){
+                            Move move(_row, _col, _currentPlayer->get_symbol());
+                            this->_5x5Board->update_board(&move);
 
-                        if(_5x5Board->is_win(_currentPlayer)){
-                            if(_currentPlayer == _Player1.get()) _p1 = true;
-                            else _p2 = true;
+                            if(_5x5Board->is_win(_currentPlayer)){
+                                if(_currentPlayer == _Player1.get()) _p1 = true;
+                                else _p2 = true;
+                            }
+                            else if(_5x5Board->is_draw(_currentPlayer)){
+                                _draw = true;
+                            }
+
+                            else if(_5x5Board->is_lose(_currentPlayer)){
+                                if(_currentPlayer == _Player1.get()) _p2 = true;
+                                else _p1 = true;
+                            }
+
+                            if(_playerType == PlayerType::HUMAN && !_5x5Board->game_is_over(_currentPlayer)) _currentPlayer = (_currentPlayer == _Player1.get()) ? _Player2.get() : _Player1.get();
+                            else if(!_5x5Board->game_is_over(_currentPlayer)) _currentPlayer = _Player2.get();
+                            _clock.restart();
+                            _gameOverClock.restart();
                         }
-                        else if(_5x5Board->is_draw(_currentPlayer)){
-                            _draw = true;
-                        }
-
-                        else if(_5x5Board->is_lose(_currentPlayer)){
-                            if(_currentPlayer == _Player1.get()) _p2 = true;
-                            else _p1 = true;
-                        }
-
-                        if(_playerType == PlayerType::HUMAN && !_5x5Board->game_is_over(_currentPlayer)) _currentPlayer = (_currentPlayer == _Player1.get()) ? _Player2.get() : _Player1.get();
-                        else if(!_5x5Board->game_is_over(_currentPlayer)) _currentPlayer = _Player2.get();
-                        _clock.restart();
-                        _gameOverClock.restart();
                     }
                 }
             }
