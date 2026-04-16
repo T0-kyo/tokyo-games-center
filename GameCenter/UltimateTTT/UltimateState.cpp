@@ -117,118 +117,120 @@ namespace Tokyo {
                 this->_data->window.close();
             }
 
-            if(this->_data->input.isSpriteClicked(*this->_pauseButton, sf::Mouse::Button::Left, this->_data->window)){
-                this->_data->machine.AddState(StateRef (new PauseState(this->_data)), false);
-            }
+            if(!_p1 && !_p2 && !_draw){ 
+                if(this->_data->input.isSpriteClicked(*this->_pauseButton, sf::Mouse::Button::Left, this->_data->window)){
+                    this->_data->machine.AddState(StateRef (new PauseState(this->_data)), false);
+                }
 
-            if(_playerType != PlayerType::COMPUTER || _currentPlayer == _Player1.get()){
-                if(this->_data->input.isSpriteClicked( *this->_subgrid1, sf::Mouse::Button::Left, this->_data->window ) ||
-                this->_data->input.isSpriteClicked( *this->_subgrid2, sf::Mouse::Button::Left, this->_data->window ) ||
-                this->_data->input.isSpriteClicked( *this->_subgrid3, sf::Mouse::Button::Left, this->_data->window ) ||
-                this->_data->input.isSpriteClicked( *this->_subgrid4, sf::Mouse::Button::Left, this->_data->window ) ||
-                this->_data->input.isSpriteClicked( *this->_subgrid5, sf::Mouse::Button::Left, this->_data->window ) ||
-                this->_data->input.isSpriteClicked( *this->_subgrid6, sf::Mouse::Button::Left, this->_data->window ) ||
-                this->_data->input.isSpriteClicked( *this->_subgrid7, sf::Mouse::Button::Left, this->_data->window ) ||
-                this->_data->input.isSpriteClicked( *this->_subgrid8, sf::Mouse::Button::Left, this->_data->window ) ||
-                this->_data->input.isSpriteClicked( *this->_subgrid9, sf::Mouse::Button::Left, this->_data->window )
-                ){
-                    if(this->_data->input.isSpriteClicked( *this->_subgrid1, sf::Mouse::Button::Left, this->_data->window )){
-                        sf::Vector2i mousePos = this->_data->input.getMousePosition(this->_data->window);
-                        float localX = mousePos.x - gridPos1.x;
-                        float localY = mousePos.y - gridPos1.y;
-                        this->_col = localX / CellWidth;
-                        this->_row = localY / CellHeight;
-                    }
-                    if(this->_data->input.isSpriteClicked( *this->_subgrid2, sf::Mouse::Button::Left, this->_data->window )){
-                        sf::Vector2i mousePos = this->_data->input.getMousePosition(this->_data->window);
-                        float localX = mousePos.x - gridPos2.x;
-                        float localY = mousePos.y - gridPos2.y;
-                        this->_col = 3+(localX / CellWidth);
-                        this->_row = localY / CellHeight;
-                    }
-                    if(this->_data->input.isSpriteClicked( *this->_subgrid3, sf::Mouse::Button::Left, this->_data->window )){
-                        sf::Vector2i mousePos = this->_data->input.getMousePosition(this->_data->window);
-                        float localX = mousePos.x - gridPos3.x;
-                        float localY = mousePos.y - gridPos3.y;
-                        this->_col = 6+(localX / CellWidth);
-                        this->_row = localY / CellHeight;
-                    }
-                    if(this->_data->input.isSpriteClicked( *this->_subgrid4, sf::Mouse::Button::Left, this->_data->window )){
-                        sf::Vector2i mousePos = this->_data->input.getMousePosition(this->_data->window);
-                        float localX = mousePos.x - gridPos4.x;
-                        float localY = mousePos.y - gridPos4.y;
-                        this->_col = localX / CellWidth;
-                        this->_row = 3+(localY / CellHeight);
-                    }
-                    if(this->_data->input.isSpriteClicked( *this->_subgrid5, sf::Mouse::Button::Left, this->_data->window )){
-                        sf::Vector2i mousePos = this->_data->input.getMousePosition(this->_data->window);
-                        float localX = mousePos.x - gridPos5.x;
-                        float localY = mousePos.y - gridPos5.y;
-                        this->_col = 3+(localX / CellWidth);
-                        this->_row = 3+(localY / CellHeight);
-                    }
-                    if(this->_data->input.isSpriteClicked( *this->_subgrid6, sf::Mouse::Button::Left, this->_data->window )){
-                        sf::Vector2i mousePos = this->_data->input.getMousePosition(this->_data->window);
-                        float localX = mousePos.x - gridPos6.x;
-                        float localY = mousePos.y - gridPos6.y;
-                        this->_col = 6+(localX / CellWidth);
-                        this->_row = 3+(localY / CellHeight);
-                    }
-                    if(this->_data->input.isSpriteClicked( *this->_subgrid7, sf::Mouse::Button::Left, this->_data->window )){
-                        sf::Vector2i mousePos = this->_data->input.getMousePosition(this->_data->window);
-                        float localX = mousePos.x - gridPos7.x;
-                        float localY = mousePos.y - gridPos7.y;
-                        this->_col = localX / CellWidth;
-                        this->_row = 6+(localY / CellHeight);
-                    }
-                    if(this->_data->input.isSpriteClicked( *this->_subgrid8, sf::Mouse::Button::Left, this->_data->window )){
-                        sf::Vector2i mousePos = this->_data->input.getMousePosition(this->_data->window);
-                        float localX = mousePos.x - gridPos8.x;
-                        float localY = mousePos.y - gridPos8.y;
-                        this->_col = 3+(localX / CellWidth);
-                        this->_row = 6+(localY / CellHeight);
-                    }
-                    if(this->_data->input.isSpriteClicked( *this->_subgrid9, sf::Mouse::Button::Left, this->_data->window )){
-                        sf::Vector2i mousePos = this->_data->input.getMousePosition(this->_data->window);
-                        float localX = mousePos.x - gridPos9.x;
-                        float localY = mousePos.y - gridPos9.y;
-                        this->_col = 6+(localX / CellWidth);
-                        this->_row = 6+(localY / CellHeight);
-                    }
+                if(_playerType != PlayerType::COMPUTER || _currentPlayer == _Player1.get()){
+                    if(this->_data->input.isSpriteClicked( *this->_subgrid1, sf::Mouse::Button::Left, this->_data->window ) ||
+                    this->_data->input.isSpriteClicked( *this->_subgrid2, sf::Mouse::Button::Left, this->_data->window ) ||
+                    this->_data->input.isSpriteClicked( *this->_subgrid3, sf::Mouse::Button::Left, this->_data->window ) ||
+                    this->_data->input.isSpriteClicked( *this->_subgrid4, sf::Mouse::Button::Left, this->_data->window ) ||
+                    this->_data->input.isSpriteClicked( *this->_subgrid5, sf::Mouse::Button::Left, this->_data->window ) ||
+                    this->_data->input.isSpriteClicked( *this->_subgrid6, sf::Mouse::Button::Left, this->_data->window ) ||
+                    this->_data->input.isSpriteClicked( *this->_subgrid7, sf::Mouse::Button::Left, this->_data->window ) ||
+                    this->_data->input.isSpriteClicked( *this->_subgrid8, sf::Mouse::Button::Left, this->_data->window ) ||
+                    this->_data->input.isSpriteClicked( *this->_subgrid9, sf::Mouse::Button::Left, this->_data->window )
+                    ){  
+                        if(this->_data->input.isSpriteClicked( *this->_subgrid1, sf::Mouse::Button::Left, this->_data->window )){
+                            sf::Vector2i mousePos = this->_data->input.getMousePosition(this->_data->window);
+                            float localX = mousePos.x - gridPos1.x;
+                            float localY = mousePos.y - gridPos1.y;
+                            this->_col = localX / CellWidth;
+                            this->_row = localY / CellHeight;
+                        }
+                        if(this->_data->input.isSpriteClicked( *this->_subgrid2, sf::Mouse::Button::Left, this->_data->window )){
+                            sf::Vector2i mousePos = this->_data->input.getMousePosition(this->_data->window);
+                            float localX = mousePos.x - gridPos2.x;
+                            float localY = mousePos.y - gridPos2.y;
+                            this->_col = 3+(localX / CellWidth);
+                            this->_row = localY / CellHeight;
+                        }
+                        if(this->_data->input.isSpriteClicked( *this->_subgrid3, sf::Mouse::Button::Left, this->_data->window )){
+                            sf::Vector2i mousePos = this->_data->input.getMousePosition(this->_data->window);
+                            float localX = mousePos.x - gridPos3.x;
+                            float localY = mousePos.y - gridPos3.y;
+                            this->_col = 6+(localX / CellWidth);
+                            this->_row = localY / CellHeight;
+                        }
+                        if(this->_data->input.isSpriteClicked( *this->_subgrid4, sf::Mouse::Button::Left, this->_data->window )){
+                            sf::Vector2i mousePos = this->_data->input.getMousePosition(this->_data->window);
+                            float localX = mousePos.x - gridPos4.x;
+                            float localY = mousePos.y - gridPos4.y;
+                            this->_col = localX / CellWidth;
+                            this->_row = 3+(localY / CellHeight);
+                        }
+                        if(this->_data->input.isSpriteClicked( *this->_subgrid5, sf::Mouse::Button::Left, this->_data->window )){
+                            sf::Vector2i mousePos = this->_data->input.getMousePosition(this->_data->window);
+                            float localX = mousePos.x - gridPos5.x;
+                            float localY = mousePos.y - gridPos5.y;
+                            this->_col = 3+(localX / CellWidth);
+                            this->_row = 3+(localY / CellHeight);
+                        }
+                        if(this->_data->input.isSpriteClicked( *this->_subgrid6, sf::Mouse::Button::Left, this->_data->window )){
+                            sf::Vector2i mousePos = this->_data->input.getMousePosition(this->_data->window);
+                            float localX = mousePos.x - gridPos6.x;
+                            float localY = mousePos.y - gridPos6.y;
+                            this->_col = 6+(localX / CellWidth);
+                            this->_row = 3+(localY / CellHeight);
+                        }
+                        if(this->_data->input.isSpriteClicked( *this->_subgrid7, sf::Mouse::Button::Left, this->_data->window )){
+                            sf::Vector2i mousePos = this->_data->input.getMousePosition(this->_data->window);
+                            float localX = mousePos.x - gridPos7.x;
+                            float localY = mousePos.y - gridPos7.y;
+                            this->_col = localX / CellWidth;
+                            this->_row = 6+(localY / CellHeight);
+                        }
+                        if(this->_data->input.isSpriteClicked( *this->_subgrid8, sf::Mouse::Button::Left, this->_data->window )){
+                            sf::Vector2i mousePos = this->_data->input.getMousePosition(this->_data->window);
+                            float localX = mousePos.x - gridPos8.x;
+                            float localY = mousePos.y - gridPos8.y;
+                            this->_col = 3+(localX / CellWidth);
+                            this->_row = 6+(localY / CellHeight);
+                        }
+                        if(this->_data->input.isSpriteClicked( *this->_subgrid9, sf::Mouse::Button::Left, this->_data->window )){
+                            sf::Vector2i mousePos = this->_data->input.getMousePosition(this->_data->window);
+                            float localX = mousePos.x - gridPos9.x;
+                            float localY = mousePos.y - gridPos9.y;
+                            this->_col = 6+(localX / CellWidth);
+                            this->_row = 6+(localY / CellHeight);
+                        }
                     
-                    if (_UltimateBoard->get_cell(_row, _col) == ' '){
-                        Move move(_row, _col, _currentPlayer->get_symbol());
-                        this->_UltimateBoard->update_board(&move);
+                        if (_UltimateBoard->get_cell(_row, _col) == ' '){
+                            Move move(_row, _col, _currentPlayer->get_symbol());
+                            this->_UltimateBoard->update_board(&move);
 
-                        if(_UltimateBoard->is_win(_currentPlayer)){
-                            if(_currentPlayer == _Player1.get()) _p1 = true;
-                            else _p2 = true;
-                        }
+                            if(_UltimateBoard->is_win(_currentPlayer)){
+                                if(_currentPlayer == _Player1.get()) _p1 = true;
+                                else _p2 = true;
+                            }
 
-                        if(_UltimateBoard->is_draw(_currentPlayer)){
-                            _draw = true;
-                        }
+                            if(_UltimateBoard->is_draw(_currentPlayer)){
+                                _draw = true;
+                            }
 
-                        for(int i=0; i<3; ++i){
-                            for(int j=0; j<3; ++j){
-                                if(this->_UltimateBoard->get_final_board_cell(i, j) != ' '){
-                                    if(i==0 && j==0) _board1 = true;
-                                    else if(i==0 && j==1) _board2 = true;
-                                    else if(i==0 && j==2) _board3 = true;
-                                    else if(i==1 && j==0) _board4 = true;
-                                    else if(i==1 && j==1) _board5 = true;
-                                    else if(i==1 && j==2) _board6 = true;
-                                    else if(i==2 && j==0) _board7 = true;
-                                    else if(i==2 && j==1) _board8 = true;
-                                    else if(i==2 && j==2) _board9 = true;
+                            for(int i=0; i<3; ++i){
+                                for(int j=0; j<3; ++j){
+                                    if(this->_UltimateBoard->get_final_board_cell(i, j) != ' '){
+                                        if(i==0 && j==0) _board1 = true;
+                                        else if(i==0 && j==1) _board2 = true;
+                                        else if(i==0 && j==2) _board3 = true;
+                                        else if(i==1 && j==0) _board4 = true;
+                                        else if(i==1 && j==1) _board5 = true;
+                                        else if(i==1 && j==2) _board6 = true;
+                                        else if(i==2 && j==0) _board7 = true;
+                                        else if(i==2 && j==1) _board8 = true;
+                                        else if(i==2 && j==2) _board9 = true;
+                                    }
                                 }
                             }
-                        }
 
-                        if(_playerType == PlayerType::HUMAN && !_UltimateBoard->game_is_over(_currentPlayer)) _currentPlayer = (_currentPlayer == _Player1.get()) ? _Player2.get() : _Player1.get();
-                        else if(!_UltimateBoard->game_is_over(_currentPlayer)) _currentPlayer = _Player2.get();
-                        _clock.restart();
-                        _gameOverClock.restart();
+                            if(_playerType == PlayerType::HUMAN && !_UltimateBoard->game_is_over(_currentPlayer)) _currentPlayer = (_currentPlayer == _Player1.get()) ? _Player2.get() : _Player1.get();
+                            else if(!_UltimateBoard->game_is_over(_currentPlayer)) _currentPlayer = _Player2.get();
+                            _clock.restart();
+                            _gameOverClock.restart();
+                        }
                     }
                 }
             }
