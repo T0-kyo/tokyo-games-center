@@ -1,24 +1,14 @@
 Tokyo Games Center
 
-"C++" (https://img.shields.io/badge/C++-17-blue)
-"SFML" (https://img.shields.io/badge/SFML-3-green)
-"Status" (https://img.shields.io/badge/Status-Completed-brightgreen)
-
 A modular desktop game suite built using C++ and SFML, featuring multiple Tic Tac Toe variants powered by a custom-built mini game engine.
 
 ---
 
 Overview
 
-Tokyo Games Center started as a college assignment and evolved into a scalable personal project.
+Tokyo Games Center is a personal project that evolved from a college assignment into a scalable system.
 
-At its core, the project includes a custom engine built from scratch, designed around a state machine and manager-based architecture to support multiple games within a unified framework.
-
----
-
-Preview
-
-<!-- Replace with your GIF or video -->"Preview" (Documentation/images/preview.gif)
+At its core, it includes a custom engine built from scratch, designed around a state machine and manager-based architecture to support multiple games within a unified framework.
 
 ---
 
@@ -35,7 +25,7 @@ Features
 
 Architecture
 
-The system is built on:
+The system is based on:
 
 - Custom mini game engine
 - Stack-based state machine
@@ -46,11 +36,11 @@ For more details, see the documentation in the "Documentation/" directory.
 
 ---
 
-Installation
+Build and Run
 
 Linux
 
-Requirements
+Requirements:
 
 - SFML 3
 - C++ compiler (g++)
@@ -60,36 +50,29 @@ git clone https://github.com/T0-kyo/tokyo-games-center.git
 cd tokyo-games-center
 make && ./Game
 
----
-
 Windows
 
 A prebuilt executable is provided with the required dependencies.
-Download, extract, and run the executable.
 
 ---
 
 Documentation
 
-Detailed documentation, including architecture, diagrams, and screenshots, is available in the "Documentation/" directory.
+Additional documentation, including architecture details, diagrams, and screenshots, is available in the "Documentation/" directory.
 
 ---
 
-Team
+The Team
+Lead Developer: Alhussain Haitham(T0-kyo) — Architecture, Game Loop, Logic and States Implementation.
 
-- Alhussain Haitham (T0-kyo)
-  Architecture, Game Engine, Game Loop, Logic and State Implementation
+Assets and UI Design: Ahmed Youssef.
 
-- Ahmed Youssef
-  Assets and UI Design
-
-- Ali Mohamed
-  Technical Support
+Technical Support: Ali Mohamed and Ahmed Youssef.
 
 ---
 
 License
 
-This project originated as a college assignment and was later expanded into a personal project.
+This project originated as a college assignment and was later expanded into a professional personal project.
 
 All rights reserved.
