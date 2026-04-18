@@ -23,7 +23,7 @@ namespace Tokyo {
         GameDataRef _data;
 
         std::unique_ptr<sf::Sprite> _background;
-        std::unique_ptr<sf::Text> _title;
+        std::unique_ptr<sf::Sprite> _logo;
 
         std::unique_ptr<sf::Sprite> _4x4TTT_Button;
         std::unique_ptr<sf::Sprite> _5x5TTT_Button;

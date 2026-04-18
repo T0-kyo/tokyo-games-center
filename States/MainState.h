@@ -25,5 +25,6 @@ namespace Tokyo {
 
         std::unique_ptr<sf::Sprite> _background;
         std::unique_ptr<sf::Text> _startButton;
+        std::unique_ptr<sf::Sprite> _clearBg;
     };
 }

@@ -12,10 +12,14 @@ namespace Tokyo {
 
         this->_data->assets.LoadTexture( "Main Background", MAIN_BACKGROUND );
         this->_data->assets.LoadFont( "Main Font", MAIN_FONT );
+        this->_data->assets.LoadTexture( "ClearBg", "../Assets/Textures/MainBackground_dash.png" );
         
 
         auto& texture1 = this->_data->assets.GetTexture( "Main Background" );
+        auto& clearBg = this->_data->assets.GetTexture( "ClearBg" );
+
         this->_background = std::make_unique<sf::Sprite> ( texture1 );
+        this->_clearBg = std::make_unique<sf::Sprite> ( clearBg );
 
         
         auto& texture2 = this->_data->assets.GetFont( "Main Font" );
@@ -60,8 +64,9 @@ namespace Tokyo {
     }
         
     void MainState::Draw ( float dt ) {
-        this->_data->window.clear(sf::Color(87, 68, 119) );
+        this->_data->window.clear();
 
+        this->_data->window.draw( *this->_clearBg );
         this->_data->window.draw( *this->_background );
         this->_data->window.draw( *this->_startButton );
 
