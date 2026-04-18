@@ -121,7 +121,7 @@ namespace Tokyo {
         if(this->_data->input.hoverSprite(*_pauseButton, _data->window)){
             _pauseButton->setColor(sf::Color(255, 255, 255, 255));
         }
-        else _pauseButton->setColor(sf::Color(255, 255, 255, 100));
+        else _pauseButton->setColor(sf::Color(255, 255, 255, 180));
 
         if(_currentPlayer == _Player1.get()){
             _player1Turn->setFillColor(sf::Color(240, 240, 220, 255));

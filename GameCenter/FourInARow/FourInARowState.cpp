@@ -72,7 +72,26 @@ namespace Tokyo {
         }
     }
         
-    void FourInARowState::Update ( float dt ) {}
+    void FourInARowState::Update ( float dt ) {
+        if(this->_data->input.hoverSprite(*_pauseButton, _data->window)){
+            _pauseButton->setColor(sf::Color(255, 255, 255, 255));
+        }
+        else _pauseButton->setColor(sf::Color(255, 255, 255, 180));
+
+        if(_currentPlayer == _Player1.get()){
+            _player1Turn->setFillColor(sf::Color(240, 240, 220, 255));
+            _player2Turn->setFillColor(sf::Color(240, 240, 220, 0));
+        }
+        else if(_currentPlayer == _Player2.get()){
+            _player2Turn->setFillColor(sf::Color(240, 240, 220, 255));
+            _player1Turn->setFillColor(sf::Color(240, 240, 220, 0));
+        }
+
+        if(_p1 || _p2 || _draw){
+            _player1Turn->setFillColor(sf::Color(240, 240, 220, 0));
+            _player2Turn->setFillColor(sf::Color(240, 240, 220, 0));
+        }
+    }
         
     void FourInARowState::Draw ( float dt ) {
         this->_data->window.clear( sf::Color::Black );

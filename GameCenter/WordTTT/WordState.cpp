@@ -148,7 +148,7 @@ namespace Tokyo {
             this->_pauseButton->setColor(sf::Color(255, 255, 255, 255));
         }
         else{
-            this->_pauseButton->setColor(sf::Color(255, 255, 255, 100));
+            this->_pauseButton->setColor(sf::Color(255, 255, 255, 180));
         }
 
         if(_currentPlayer == _Player1.get()){

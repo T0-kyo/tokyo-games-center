@@ -6,7 +6,7 @@ namespace Tokyo{
     PauseState::PauseState( GameDataRef data ) : _data( data ){}
 
     void PauseState::Init(){
-        this->_data->assets.LoadTexture( "PauseBG", "../Assets/Textures/MainBackground.jpg" );
+        this->_data->assets.LoadTexture( "PauseBG", "../Assets/Textures/MainBackground.png" );
         this->_data->assets.LoadTexture( "Resume", "../Assets/Textures/Resume Button.png" );
         this->_data->assets.LoadTexture( "Home", "../Assets/Textures/Home Button.png" );
         this->_data->assets.LoadTexture( "Book", "../Assets/Textures/book.png" );
