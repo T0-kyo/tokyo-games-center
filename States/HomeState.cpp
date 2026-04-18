@@ -5,7 +5,7 @@ namespace Tokyo{
     HomeState::HomeState( GameDataRef data ) : _data( data ){}
 
     void HomeState::Init(){
-        this->_data->assets.LoadTexture( "HomeBG", "../Assets/Textures/Game Background.jpg" );
+        this->_data->assets.LoadTexture( "HomeBG", "../Assets/Textures/MainBackground.png" );
 
         auto& bg = this->_data->assets.GetTexture("HomeBG");
         auto& text = this->_data->assets.GetFont( "Main Font" );
