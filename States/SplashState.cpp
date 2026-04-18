@@ -14,7 +14,7 @@ namespace Tokyo {
         this->_background->setPosition( { SCREEN_WIDTH*0.5f - texture.getSize().x*0.5f, SCREEN_HEIGHT*0.5f - texture.getSize().y*0.5f } );
         this->_background->setColor( sf::Color( 255, 255, 255, 0 ) );
 
-        this->_data->assets.LoadSound("intro", "../Assets/Audio/mixkit-epic-orchestra-transition-2290.wav");
+        this->_data->assets.LoadSound("intro", "../Assets/Audio/intro-sound.wav");
         auto& buffer = this->_data->assets.GetSound("intro");
         this->_intro = std::make_unique<sf::Sound>(buffer);
         sf::sleep(sf::seconds(SPLASH_STATE_DELAY));
