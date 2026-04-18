@@ -13,7 +13,8 @@ namespace Tokyo {
         auto& texture1 = this->_data->assets.GetTexture( "Main Background" );
         this->_background = std::make_unique<sf::Sprite> ( texture1 );
 
-        this->_data->assets.LoadTexture("numerical", "../Assets/Textures/numerical-ttt.png");
+        this->_data->assets.LoadTexture("logo", "../Assets/Textures/logo-test.png");
+        this->_data->assets.LoadTexture("numerical", "../Assets/Textures/numerical.png");
         this->_data->assets.LoadTexture("4x4", "../Assets/Textures/4x4.png");
         this->_data->assets.LoadTexture("5x5", "../Assets/Textures/5x5.png");
         this->_data->assets.LoadTexture("obstacles", "../Assets/Textures/obstacles.png");
@@ -27,6 +28,7 @@ namespace Tokyo {
         this->_data->assets.LoadTexture("sus", "../Assets/Textures/sus.png");
         this->_data->assets.LoadTexture("word", "../Assets/Textures/word.png");
         
+        auto& logo = this->_data->assets.GetTexture( "logo" );
         auto& numerical = this->_data->assets.GetTexture( "numerical" );
         auto& fourxfour = this->_data->assets.GetTexture( "4x4" );
         auto& fivexfive = this->_data->assets.GetTexture( "5x5" );
@@ -40,25 +42,9 @@ namespace Tokyo {
         auto& ultimate = this->_data->assets.GetTexture( "ultimate" );
         auto& word = this->_data->assets.GetTexture( "word" );
         auto& infinity = this->_data->assets.GetTexture( "infinity" );
-        
-        this->_4x4TTT_Button = std::make_unique<sf::Sprite> ( fourxfour );
-        this->_5x5TTT_Button = std::make_unique<sf::Sprite> ( fivexfive );
-        this->_NumericalTTT_Button = std::make_unique<sf::Sprite> ( numerical );
-        this->_PyramidTTT_Button = std::make_unique<sf::Sprite> ( pyramid );
-        this->_ObstaclesTTT_Button = std::make_unique<sf::Sprite> ( obstacles );
-        this->_FourInARow_Button = std::make_unique<sf::Sprite> ( connect4 );
-        this->_DiamondTTT_Button = std::make_unique<sf::Sprite> (diamond);
-        this->_MemoryTTT_Button = std::make_unique<sf::Sprite> (memory);
-        this->_MisereTTT_Button = std::make_unique<sf::Sprite> (misere);
-        this->_SUS_Button = std::make_unique<sf::Sprite> (sus);
-        this->_UltimateTTT_Button = std::make_unique<sf::Sprite> (ultimate);
-        this->_WordTTT_Button = std::make_unique<sf::Sprite> (word);
-        this->_InfinityTTT_Button = std::make_unique<sf::Sprite> (infinity);
-        
-        auto& font = this->_data->assets.GetFont( "Main Font" );
-        this->_title = std::make_unique<sf::Text> ( font, "Game Center", MAIN_MENU_TITLE_SIZE );
-        sf::FloatRect textRect = this->_title->getLocalBounds();
-        
+
+        this->_logo = std::make_unique<sf::Sprite> ( logo );
+
         this->_WordTTT_Button = std::make_unique<sf::Sprite> ( word );
         this->_UltimateTTT_Button = std::make_unique<sf::Sprite> ( ultimate );
         this->_SUS_Button = std::make_unique<sf::Sprite> ( sus );
@@ -74,48 +60,23 @@ namespace Tokyo {
         this->_4x4TTT_Button = std::make_unique<sf::Sprite> ( fourxfour );
 
         this->_background->setPosition({SCREEN_WIDTH / 2 - texture1.getSize().x * 0.5f, SCREEN_HEIGHT / 2 - texture1.getSize().y * 0.5f});
-        this->_background->setColor( sf::Color( 255, 255, 255, 180 ) );
-        this->_title->setFillColor( sf::Color(225, 165, 35) );
-        this->_title->setPosition({ SCREEN_WIDTH /2 - textRect.size.x * 0.5f , SCREEN_HEIGHT * 0.075f});
+        this->_background->setColor( sf::Color( 255, 255, 255, 200 ) );
+        this->_logo->setPosition({SCREEN_WIDTH / 2.0f - logo.getSize().x / 2.0f, SCREEN_HEIGHT * 0.03f});
 
-        this->_SUS_Button->setColor( sf::Color(225, 165, 35) );
-        this->_SUS_Button->setPosition({157 + 50, 250}); //TODO Non professional way of centering the icons
-        
-        this->_5x5TTT_Button->setColor(sf::Color(255, 255, 255));
-        this->_5x5TTT_Button->setPosition({489 + 50, 250});
+        this->_SUS_Button->setPosition({304, 240}); //TODO Non professional way of centering the icons
+        this->_5x5TTT_Button->setPosition({564, 240});
+        this->_WordTTT_Button->setPosition({824, 240});
+        this->_UltimateTTT_Button->setPosition({1084, 240}); //* line 1
+        this->_NumericalTTT_Button->setPosition({214, 470});
+        this->_PyramidTTT_Button->setPosition({454, 470});
+        this->_ObstaclesTTT_Button->setPosition({694, 470});
+        this->_MisereTTT_Button->setPosition({934, 470});
+        this->_MemoryTTT_Button->setPosition({1174, 470}); //* line 2
+        this->_InfinityTTT_Button->setPosition({304, 700});
+        this->_FourInARow_Button->setPosition({564, 700});
+        this->_DiamondTTT_Button->setPosition({824, 700});
+        this->_4x4TTT_Button->setPosition({1084, 700}); //TODO
 
-        this->_WordTTT_Button->setColor( sf::Color(225, 165, 35) );
-        this->_WordTTT_Button->setPosition({821 + 50, 250});
-
-        this->_UltimateTTT_Button->setColor( sf::Color(225, 165, 35) );
-        this->_UltimateTTT_Button->setPosition({1153 + 50, 250});
-
-        //this->_NumericalTTT_Button->setColor(sf::Color(255, 255, 255));
-        this->_NumericalTTT_Button->setPosition({102 + 50, 450});
-
-        this->_PyramidTTT_Button->setColor( sf::Color(225, 165, 35) );
-        this->_PyramidTTT_Button->setPosition({379 + 50, 450});
-
-        this->_ObstaclesTTT_Button->setColor( sf::Color(225, 165, 35) );
-        this->_ObstaclesTTT_Button->setPosition({656 + 50, 450});
-
-        this->_MisereTTT_Button->setColor( sf::Color(225, 165, 35) );
-        this->_MisereTTT_Button->setPosition({933 + 50, 450});
-
-        this->_MemoryTTT_Button->setColor( sf::Color(225, 165, 35) );
-        this->_MemoryTTT_Button->setPosition({1210 + 50, 450});
-
-        this->_InfinityTTT_Button->setColor( sf::Color(225, 165, 35) );
-        this->_InfinityTTT_Button->setPosition({157 + 50, 650});
-
-        this->_FourInARow_Button->setColor( sf::Color(225, 165, 35) );
-        this->_FourInARow_Button->setPosition({489 + 50, 650});
-
-        this->_DiamondTTT_Button->setColor( sf::Color(225, 165, 35) );
-        this->_DiamondTTT_Button->setPosition({821 + 50, 650});
-
-        this->_4x4TTT_Button->setColor( sf::Color(225, 165, 35) );
-        this->_4x4TTT_Button->setPosition({1153 + 50, 650}); //TODO
     }
 
     void MainMenuState::HandleInput() {
@@ -288,7 +249,7 @@ namespace Tokyo {
         this->_data->window.clear();
 
         this->_data->window.draw( *this->_background );
-        this->_data->window.draw( *this->_title );
+        this->_data->window.draw( *this->_logo );
         this->_data->window.draw( *this->_WordTTT_Button );
         this->_data->window.draw( *this->_UltimateTTT_Button );
         this->_data->window.draw( *this->_SUS_Button );
