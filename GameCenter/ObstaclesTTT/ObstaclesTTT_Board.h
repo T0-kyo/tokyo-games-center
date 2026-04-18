@@ -11,6 +11,7 @@ class ObstaclesTTT_Board : public Board<char> {
 private:
     bool check_line(char a, char b, char c, char d);
     void add_obstacles();
+    vector<pair<int, int>> empty;
 
 public:
     ObstaclesTTT_Board();

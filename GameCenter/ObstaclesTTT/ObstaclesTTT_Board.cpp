@@ -12,27 +12,34 @@ ObstaclesTTT_Board::ObstaclesTTT_Board() : Board<char>(6, 6) {
     }
 }
 
+
 bool ObstaclesTTT_Board::check_line(char a, char b, char c, char d) {
-    return (a != ' ' && a != '#' && a == b && a == c && a == d);
+    return (a != ' ' && a != '#' && a != '*' && a == b && a == c && a == d);
 }
 
+
 void ObstaclesTTT_Board::add_obstacles() {
-    int obstacles_added = 0;
-    int attempts = 0;
-    
-    // Try to add 2 obstacles. 
-    // We limit attempts to avoid infinite loops if the board is nearly full.
-    while (obstacles_added < 2 && attempts < 50) {
-        int r = rand() % rows;
-        int c = rand() % columns;
-        
-        if (board[r][c] == ' ') {
-            board[r][c] = '#'; // '#' represents an obstacle
-            obstacles_added++;
+    empty.clear();
+    for (int i = 0; i < rows; ++i){
+        for (int j = 0; j < columns; ++j){
+            if(board[i][j] == ' ') empty.push_back({i, j});
         }
-        attempts++;
     }
+
+    int c1 = rand() % empty.size();
+    board[empty[c1].first][empty[c1].second] = '#';
+
+    empty.clear();
+    for (int i = 0; i < rows; ++i){
+        for (int j = 0; j < columns; ++j){
+            if(board[i][j] == ' ') empty.push_back({i, j});
+        }
+    }
+    
+    int c2 = rand() % empty.size();
+    board[empty[c2].first][empty[c2].second] = '*';
 }
+
 
 bool ObstaclesTTT_Board::update_board(Move<char>* move) {
     int r = move->get_x();
@@ -55,6 +62,7 @@ bool ObstaclesTTT_Board::update_board(Move<char>* move) {
 
     return true;
 }
+
 
 bool ObstaclesTTT_Board::is_win(Player<char>* player) {
     // Check Rows (need 4 in a row, so col index goes up to columns - 4)
@@ -88,14 +96,20 @@ bool ObstaclesTTT_Board::is_win(Player<char>* player) {
     return false;
 }
 
+
 bool ObstaclesTTT_Board::is_draw(Player<char>* player) {
-    // Draw if board is full (36 moves) or no moves possible and no winner
-    return (n_moves == 18 && !is_win(player));
+    if (is_win(player)) return false;
+    for (int i = 0; i < rows; i++)
+        for (int j = 0; j < columns; j++)
+            if (board[i][j] == ' ') return false;
+    return true;
 }
+
 
 bool ObstaclesTTT_Board::game_is_over(Player<char>* player) {
     return is_win(player) || is_draw(player);
 }
+
 
 bool ObstaclesTTT_Board::is_lose(Player<char>* player) {
     return false;

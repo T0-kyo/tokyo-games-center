@@ -38,5 +38,7 @@ namespace Tokyo {
         std::unique_ptr<sf::Sprite> _SUS_Button;
         std::unique_ptr<sf::Sprite> _UltimateTTT_Button;
         std::unique_ptr<sf::Sprite> _WordTTT_Button;
+
+        std::unique_ptr<sf::Text> _title;
     };
 }

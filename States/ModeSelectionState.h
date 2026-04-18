@@ -26,5 +26,6 @@ namespace Tokyo {
         std::unique_ptr<sf::Sprite> _background;
         std::unique_ptr<sf::Text> _choice1;
         std::unique_ptr<sf::Text> _choice2;
+        std::unique_ptr<sf::Sprite> _backButton;
     };
 }

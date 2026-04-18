@@ -44,6 +44,7 @@ namespace Tokyo {
         auto& infinity = this->_data->assets.GetTexture( "infinity" );
 
         this->_logo = std::make_unique<sf::Sprite> ( logo );
+
         this->_WordTTT_Button = std::make_unique<sf::Sprite> ( word );
         this->_UltimateTTT_Button = std::make_unique<sf::Sprite> ( ultimate );
         this->_SUS_Button = std::make_unique<sf::Sprite> ( sus );
@@ -75,6 +76,7 @@ namespace Tokyo {
         this->_FourInARow_Button->setPosition({564, 700});
         this->_DiamondTTT_Button->setPosition({824, 700});
         this->_4x4TTT_Button->setPosition({1084, 700}); //TODO
+
     }
 
     void MainMenuState::HandleInput() {
