@@ -17,7 +17,7 @@
 
 ![Linux](https://img.shields.io/badge/Linux-FCC624?style=for-the-badge&logo=linux&logoColor=black)
 ![Windows](https://img.shields.io/badge/Windows-0078D4?style=for-the-badge&logo=windows&logoColor=white)
-![Status](https://img.shields.io/badge/Status-Complete-brightgreen?style=for-the-badge)
+![Status](https://img.shields.io/badge/Status-InProgress-brightgreen?style=for-the-badge)
 
 </div>
 
@@ -56,17 +56,19 @@ For full details, see the `Documentation/` directory which includes UML class di
 
 ### Linux
 
-**Requirements:** SFML 3 · g++ · Make
+**Requirements:** SFML 3 (MUST BE VERSION 3.0) · g++ · Make
 
 ```bash
 git clone https://github.com/T0-kyo/tokyo-games-center.git
 cd tokyo-games-center
+mkdir build && cd build
+cmake -S .. -B . -G "Unix Makefiles"
 make && ./Game
 ```
 
 ### Windows
 
-A prebuilt executable is included with all required dependencies.
+A prebuilt executable will be included with all required dependencies.
 
 ---
 
