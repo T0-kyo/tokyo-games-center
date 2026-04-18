@@ -101,7 +101,7 @@ Documentation/
 
 This project originated as a college assignment and was later expanded into a personal project.
 
-**All rights reserved.**
+**MIT License.**
 
 ---
 
