@@ -95,7 +95,7 @@ namespace Tokyo {
                         float localY = mousePos.y - gridPos.y;
                         this->_col = (localX - 180)/ CellWidth;
                         this->_row = (localY - 80)/ CellHeight;
-                        if (_PyramidBoard->get_cell(_row, _col) == ' '){
+                        if (_row < 3 && _col < 5 && localX > 180 && localY > 80 && _PyramidBoard->get_cell(_row, _col) == ' '){
                             Move move(_row, _col, _currentPlayer->get_symbol());
                             this->_PyramidBoard->update_board(&move);
 
