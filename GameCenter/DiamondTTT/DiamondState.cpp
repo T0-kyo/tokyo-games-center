@@ -6,11 +6,11 @@ namespace Tokyo {
     DiamondState::DiamondState ( GameDataRef data, PlayerType playerType ) : _data( data ), _playerType( playerType ) {}
 
     void DiamondState::Init() {
-        this->_DiamondBoard = std::make_shared<DiamondTTT_Board>();
+        this->_diamondBoard = std::make_shared<DiamondTTT_Board>();
         this->_Player1 = std::make_shared<Player<char>>('X', PlayerType::HUMAN);
         this->_Player2 = std::make_shared<Player<char>>('O', _playerType);
-        this->_Player1->set_board_ptr(_DiamondBoard.get());
-        this->_Player2->set_board_ptr(_DiamondBoard.get());
+        this->_Player1->set_board_ptr(_diamondBoard.get());
+        this->_Player2->set_board_ptr(_diamondBoard.get());
         this->_currentPlayer = _Player1.get();
 
         this->_data->assets.LoadTexture("Game bg", GAME_BACKGROUND);
@@ -94,20 +94,20 @@ namespace Tokyo {
                         float localY = mousePos.y - gridPos.y;
                         this->_col = (localX - 70)/ CellWidth;
                         this->_row = (localY - 65)/ CellHeight;
-                        if (_row < 7 && _col < 7 && localX > 70 && localY > 65 && _DiamondBoard->get_cell(_row, _col) == ' '){
+                        if (_row < 7 && _col < 7 && localX > 70 && localY > 65 && _diamondBoard->get_cell(_row, _col) == ' '){
                             Move move(_row, _col, _currentPlayer->get_symbol());
-                            this->_DiamondBoard->update_board(&move);
+                            this->_diamondBoard->update_board(&move);
 
-                            if(_DiamondBoard->is_win(_currentPlayer)){
+                            if(_diamondBoard->is_win(_currentPlayer)){
                                 if(_currentPlayer == _Player1.get()) _p1 = true;
                                 else _p2 = true;
                             }
-                            else if(_DiamondBoard->is_draw(_currentPlayer)){
+                            else if(_diamondBoard->is_draw(_currentPlayer)){
                                 _draw = true;
                             }
 
-                            if(_playerType == PlayerType::HUMAN && !_DiamondBoard->game_is_over(_currentPlayer)) _currentPlayer = (_currentPlayer == _Player1.get()) ? _Player2.get() : _Player1.get();
-                            else if(!_DiamondBoard->game_is_over(_currentPlayer)) _currentPlayer = _Player2.get();
+                            if(_playerType == PlayerType::HUMAN && !_diamondBoard->game_is_over(_currentPlayer)) _currentPlayer = (_currentPlayer == _Player1.get()) ? _Player2.get() : _Player1.get();
+                            else if(!_diamondBoard->game_is_over(_currentPlayer)) _currentPlayer = _Player2.get();
                             _clock.restart();
                             _gameOverClock.restart();          
                         }
@@ -137,24 +137,24 @@ namespace Tokyo {
             _player2Turn->setFillColor(sf::Color(240, 240, 220, 0));
         }
 
-        if (_playerType == PlayerType::COMPUTER && !_DiamondBoard->game_is_over(_currentPlayer) && _currentPlayer == _Player2.get() && _clock.getElapsedTime().asSeconds() >= 1){
+        if (_playerType == PlayerType::COMPUTER && !_diamondBoard->game_is_over(_currentPlayer) && _currentPlayer == _Player2.get() && _clock.getElapsedTime().asSeconds() >= 1){
             int x, y;
             do {
                 x = rand() % 7;
                 y = rand() % 7;
-            } while (this->_DiamondBoard->get_board_matrix()[x][y] != ' ');
+            } while (this->_diamondBoard->get_board_matrix()[x][y] != ' ');
 
             Move move(x, y, _currentPlayer->get_symbol());
-            this->_DiamondBoard->update_board(&move);
+            this->_diamondBoard->update_board(&move);
 
-            if(_DiamondBoard->is_win(_currentPlayer)){ 
+            if(_diamondBoard->is_win(_currentPlayer)){ 
                 _p2 = true;
             }
-            else if(_DiamondBoard->is_draw(_currentPlayer)){
+            else if(_diamondBoard->is_draw(_currentPlayer)){
                 _draw = true;
             }
 
-            if(!_DiamondBoard->game_is_over(_currentPlayer)) this->_currentPlayer = _Player1.get();
+            if(!_diamondBoard->game_is_over(_currentPlayer)) this->_currentPlayer = _Player1.get();
         }        
     }
 
@@ -172,11 +172,11 @@ namespace Tokyo {
         if(_p1){ 
             for(int i=0; i<7; ++i){
                 for(int j=0; j<7; ++j){
-                    if(this->_DiamondBoard->get_cell(i,j)=='X'){
+                    if(this->_diamondBoard->get_cell(i,j)=='X'){
                         this->_Xwin->setPosition({j*CellWidth+gridPos.x + 81, i*CellHeight+gridPos.y + 77});
                         this->_data->window.draw( *this->_Xwin );
                     }
-                    else if(this->_DiamondBoard->get_cell(i,j)=='O'){
+                    else if(this->_diamondBoard->get_cell(i,j)=='O'){
                         this->_o->setPosition({j*CellWidth+gridPos.x + 81, i*CellHeight+gridPos.y + 77});
                         this->_data->window.draw( *this->_o );
                     }
@@ -187,11 +187,11 @@ namespace Tokyo {
         else if(_p2){
             for(int i=0; i<7; ++i){
                 for(int j=0; j<7; ++j){
-                    if(this->_DiamondBoard->get_cell(i,j)=='O'){
+                    if(this->_diamondBoard->get_cell(i,j)=='O'){
                         this->_Owin->setPosition({j*CellWidth+gridPos.x + 81, i*CellHeight+gridPos.y + 77});
                         this->_data->window.draw( *this->_Owin );
                     }
-                    else if(this->_DiamondBoard->get_cell(i,j)=='X'){
+                    else if(this->_diamondBoard->get_cell(i,j)=='X'){
                         this->_x->setPosition({j*CellWidth+gridPos.x + 81, i*CellHeight+gridPos.y + 77});
                         this->_data->window.draw( *this->_x );
                     }
@@ -202,11 +202,11 @@ namespace Tokyo {
         else{
             for(int i=0; i<7; ++i){
                 for(int j=0; j<7; ++j){
-                    if(this->_DiamondBoard->get_cell(i,j)=='O'){
+                    if(this->_diamondBoard->get_cell(i,j)=='O'){
                         this->_o->setPosition({j*CellWidth+gridPos.x + 81, i*CellHeight+gridPos.y + 77});
                         this->_data->window.draw( *this->_o );
                     }
-                    else if(this->_DiamondBoard->get_cell(i,j)=='X'){
+                    else if(this->_diamondBoard->get_cell(i,j)=='X'){
                         this->_x->setPosition({j*CellWidth+gridPos.x + 81, i*CellHeight+gridPos.y + 77});
                         this->_data->window.draw( *this->_x );
                     }

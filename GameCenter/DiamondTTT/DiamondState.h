@@ -28,7 +28,7 @@ namespace Tokyo {
 
         std::shared_ptr<Player<char>> _Player1;
         std::shared_ptr<Player<char>> _Player2;
-        std::shared_ptr<DiamondTTT_Board> _DiamondBoard;
+        std::shared_ptr<DiamondTTT_Board> _diamondBoard;
         sf::Clock _clock;
         sf::Clock _gameOverClock;
 

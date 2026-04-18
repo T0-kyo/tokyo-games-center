@@ -6,11 +6,11 @@ namespace Tokyo {
     PyramidState::PyramidState ( GameDataRef data , PlayerType playerType ) : _data( data ), _playerType( playerType ) {}
 
     void PyramidState::Init() {
-        this->_PyramidBoard = std::make_shared<PyramidTTT_Board>();
+        this->_pyramidBoard = std::make_shared<PyramidTTT_Board>();
         this->_Player1 = std::make_shared<Player<char>>('X', PlayerType::HUMAN);
         this->_Player2 = std::make_shared<Player<char>>('O', _playerType);
-        this->_Player1->set_board_ptr(_PyramidBoard.get());
-        this->_Player2->set_board_ptr(_PyramidBoard.get());
+        this->_Player1->set_board_ptr(_pyramidBoard.get());
+        this->_Player2->set_board_ptr(_pyramidBoard.get());
         this->_currentPlayer = _Player1.get();
 
         this->_data->assets.LoadTexture("Game bg", GAME_BACKGROUND);
@@ -95,20 +95,20 @@ namespace Tokyo {
                         float localY = mousePos.y - gridPos.y;
                         this->_col = (localX - 180)/ CellWidth;
                         this->_row = (localY - 80)/ CellHeight;
-                        if (_row < 3 && _col < 5 && localX > 180 && localY > 80 && _PyramidBoard->get_cell(_row, _col) == ' '){
+                        if (_row < 3 && _col < 5 && localX > 180 && localY > 80 && _pyramidBoard->get_cell(_row, _col) == ' '){
                             Move move(_row, _col, _currentPlayer->get_symbol());
-                            this->_PyramidBoard->update_board(&move);
+                            this->_pyramidBoard->update_board(&move);
 
-                            if(_PyramidBoard->is_win(_currentPlayer)){
+                            if(_pyramidBoard->is_win(_currentPlayer)){
                                 if(_currentPlayer == _Player1.get()) _p1 = true;
                                 else _p2 = true;
                             }
-                            else if(_PyramidBoard->is_draw(_currentPlayer)){
+                            else if(_pyramidBoard->is_draw(_currentPlayer)){
                                 _draw = true;
                             }
 
-                            if(_playerType == PlayerType::HUMAN && !_PyramidBoard->game_is_over(_currentPlayer)) _currentPlayer = (_currentPlayer == _Player1.get()) ? _Player2.get() : _Player1.get();
-                            else if(!_PyramidBoard->game_is_over(_currentPlayer)) _currentPlayer = _Player2.get();
+                            if(_playerType == PlayerType::HUMAN && !_pyramidBoard->game_is_over(_currentPlayer)) _currentPlayer = (_currentPlayer == _Player1.get()) ? _Player2.get() : _Player1.get();
+                            else if(!_pyramidBoard->game_is_over(_currentPlayer)) _currentPlayer = _Player2.get();
                             _clock.restart();
                             _gameOverClock.restart();          
                         }
@@ -138,24 +138,24 @@ namespace Tokyo {
             _player2Turn->setFillColor(sf::Color(240, 240, 220, 0));
         }
 
-        if (_playerType == PlayerType::COMPUTER && !_PyramidBoard->game_is_over(_currentPlayer) && _currentPlayer == _Player2.get() && _clock.getElapsedTime().asSeconds() >= 1){
+        if (_playerType == PlayerType::COMPUTER && !_pyramidBoard->game_is_over(_currentPlayer) && _currentPlayer == _Player2.get() && _clock.getElapsedTime().asSeconds() >= 1){
             int x, y;
             do {
                 x = rand() % 3;
                 y = rand() % 5;
-            } while (this->_PyramidBoard->get_board_matrix()[x][y] != ' ');
+            } while (this->_pyramidBoard->get_board_matrix()[x][y] != ' ');
 
             Move move(x, y, _currentPlayer->get_symbol());
-            this->_PyramidBoard->update_board(&move);
+            this->_pyramidBoard->update_board(&move);
 
-            if(_PyramidBoard->is_win(_currentPlayer)){ 
+            if(_pyramidBoard->is_win(_currentPlayer)){ 
                 _p2 = true;
             }
-            else if(_PyramidBoard->is_draw(_currentPlayer)){
+            else if(_pyramidBoard->is_draw(_currentPlayer)){
                 _draw = true;
             }
 
-            if(!_PyramidBoard->game_is_over(_currentPlayer)) this->_currentPlayer = _Player1.get();
+            if(!_pyramidBoard->game_is_over(_currentPlayer)) this->_currentPlayer = _Player1.get();
         }
     }
 
@@ -173,11 +173,11 @@ namespace Tokyo {
         if(_p1){ 
             for(int i=0; i<3; ++i){
                 for(int j=0; j<5; ++j){
-                    if(this->_PyramidBoard->get_cell(i,j)=='X'){
+                    if(this->_pyramidBoard->get_cell(i,j)=='X'){
                         this->_Xwin->setPosition({j*CellWidth+gridPos.x + 181.0f, i*CellHeight+gridPos.y + 72.0f});
                         this->_data->window.draw( *this->_Xwin );
                     }
-                    else if(this->_PyramidBoard->get_cell(i,j)=='O'){
+                    else if(this->_pyramidBoard->get_cell(i,j)=='O'){
                         this->_o->setPosition({j*CellWidth+gridPos.x + 181.0f, i*CellHeight+gridPos.y + 72.0f});
                         this->_data->window.draw( *this->_o );
                     }
@@ -188,11 +188,11 @@ namespace Tokyo {
         else if(_p2){
             for(int i=0; i<3; ++i){
                 for(int j=0; j<5; ++j){
-                    if(this->_PyramidBoard->get_cell(i,j)=='O'){
+                    if(this->_pyramidBoard->get_cell(i,j)=='O'){
                         this->_Owin->setPosition({j*CellWidth+gridPos.x + 181.0f, i*CellHeight+gridPos.y + 72.0f});
                         this->_data->window.draw( *this->_Owin );
                     }
-                    else if(this->_PyramidBoard->get_cell(i,j)=='X'){
+                    else if(this->_pyramidBoard->get_cell(i,j)=='X'){
                         this->_x->setPosition({j*CellWidth+gridPos.x + 181.0f, i*CellHeight+gridPos.y + 72.0f});
                         this->_data->window.draw( *this->_x );
                     }
@@ -203,11 +203,11 @@ namespace Tokyo {
         else{
             for(int i=0; i<3; ++i){
                 for(int j=0; j<5; ++j){
-                    if(this->_PyramidBoard->get_cell(i,j)=='O'){
+                    if(this->_pyramidBoard->get_cell(i,j)=='O'){
                         this->_o->setPosition({j*CellWidth+gridPos.x + 181.0f, i*CellHeight+gridPos.y + 72.0f});
                         this->_data->window.draw( *this->_o );
                     }
-                    else if(this->_PyramidBoard->get_cell(i,j)=='X'){
+                    else if(this->_pyramidBoard->get_cell(i,j)=='X'){
                         this->_x->setPosition({j*CellWidth+gridPos.x + 181.0f, i*CellHeight+gridPos.y + 72.0f});
                         this->_data->window.draw( *this->_x );
                     }
