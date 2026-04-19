@@ -170,48 +170,30 @@ namespace Tokyo {
         this->_data->window.draw( *this->_player1Turn );
         this->_data->window.draw( *this->_player2Turn );
 
-        if(_p1){ 
             for(int i=0; i<3; ++i){
                 for(int j=0; j<5; ++j){
-                    if(this->_pyramidBoard->get_cell(i,j)=='X'){
-                        this->_Xwin->setPosition({j*CellWidth+gridPos.x + 181.0f, i*CellHeight+gridPos.y + 72.0f});
-                        this->_data->window.draw( *this->_Xwin );
-                    }
-                    else if(this->_pyramidBoard->get_cell(i,j)=='O'){
+                    if(this->_pyramidBoard->get_cell(i,j)=='O'){
                         this->_o->setPosition({j*CellWidth+gridPos.x + 181.0f, i*CellHeight+gridPos.y + 72.0f});
                         this->_data->window.draw( *this->_o );
                     }
+                    else if(this->_pyramidBoard->get_cell(i,j)=='X'){
+                        this->_x->setPosition({j*CellWidth+gridPos.x + 181.0f, i*CellHeight+gridPos.y + 72.0f});
+                        this->_data->window.draw( *this->_x );
+                    }
                 }
+            }
+
+        if(_p1){ 
+            for(int i = 0; i < _pyramidBoard->winner.size(); ++i){
+                this->_Xwin->setPosition({_pyramidBoard->winner[i].second * CellWidth+gridPos.x + 181.0f, _pyramidBoard->winner[i].first * CellHeight+gridPos.y + 72.0f});
+                this->_data->window.draw( *this->_Xwin );
             }
         }
 
         else if(_p2){
-            for(int i=0; i<3; ++i){
-                for(int j=0; j<5; ++j){
-                    if(this->_pyramidBoard->get_cell(i,j)=='O'){
-                        this->_Owin->setPosition({j*CellWidth+gridPos.x + 181.0f, i*CellHeight+gridPos.y + 72.0f});
-                        this->_data->window.draw( *this->_Owin );
-                    }
-                    else if(this->_pyramidBoard->get_cell(i,j)=='X'){
-                        this->_x->setPosition({j*CellWidth+gridPos.x + 181.0f, i*CellHeight+gridPos.y + 72.0f});
-                        this->_data->window.draw( *this->_x );
-                    }
-                }
-            }
-        }
-
-        else{
-            for(int i=0; i<3; ++i){
-                for(int j=0; j<5; ++j){
-                    if(this->_pyramidBoard->get_cell(i,j)=='O'){
-                        this->_o->setPosition({j*CellWidth+gridPos.x + 181.0f, i*CellHeight+gridPos.y + 72.0f});
-                        this->_data->window.draw( *this->_o );
-                    }
-                    else if(this->_pyramidBoard->get_cell(i,j)=='X'){
-                        this->_x->setPosition({j*CellWidth+gridPos.x + 181.0f, i*CellHeight+gridPos.y + 72.0f});
-                        this->_data->window.draw( *this->_x );
-                    }
-                }
+            for(int i = 0; i < _pyramidBoard->winner.size(); ++i){
+                this->_Owin->setPosition({_pyramidBoard->winner[i].second * CellWidth+gridPos.x + 181.0f, _pyramidBoard->winner[i].first * CellHeight+gridPos.y + 72.0f});
+                this->_data->window.draw( *this->_Owin );
             }
         }
 

@@ -47,23 +47,60 @@ bool PyramidTTT_Board::is_win(Player<char>* player) {
     
     // Possible Horizontal Wins:
     // Row 1: (1,1)-(1,2)-(1,3)
-    if (board[1][1] != ' ' && board[1][1] == board[1][2] && board[1][2] == board[1][3]) return true;
+    if (board[1][1] != ' ' && board[1][1] == board[1][2] && board[1][2] == board[1][3]) {
+        winner.push_back({1, 1});
+        winner.push_back({1, 2}); 
+        winner.push_back({1, 3});
+        return true;
+    }
     
     // Row 2: (2,0)-(2,1)-(2,2) OR (2,1)-(2,2)-(2,3) OR (2,2)-(2,3)-(2,4)
-    if (board[2][0] != ' ' && board[2][0] == board[2][1] && board[2][1] == board[2][2]) return true;
-    if (board[2][1] != ' ' && board[2][1] == board[2][2] && board[2][2] == board[2][3]) return true;
-    if (board[2][2] != ' ' && board[2][2] == board[2][3] && board[2][3] == board[2][4]) return true;
+    if (board[2][0] != ' ' && board[2][0] == board[2][1] && board[2][1] == board[2][2]){
+        winner.push_back({2, 0});
+        winner.push_back({2, 1}); 
+        winner.push_back({2, 2});
+        return true;
+    }
+
+    if (board[2][1] != ' ' && board[2][1] == board[2][2] && board[2][2] == board[2][3]){
+        winner.push_back({2, 1});
+        winner.push_back({2, 2}); 
+        winner.push_back({2, 3});
+        return true;
+    }
+
+    if (board[2][2] != ' ' && board[2][2] == board[2][3] && board[2][3] == board[2][4]){
+        winner.push_back({2, 2});
+        winner.push_back({2, 3}); 
+        winner.push_back({2, 4});
+        return true;
+    }
 
     // Possible Vertical Wins:
     // Only the center column can form a line of 3: (0,2)-(1,2)-(2,2)
-    if (board[0][2] != ' ' && board[0][2] == board[1][2] && board[1][2] == board[2][2]) return true;
+    if (board[0][2] != ' ' && board[0][2] == board[1][2] && board[1][2] == board[2][2]){
+        winner.push_back({0, 2});
+        winner.push_back({1, 2}); 
+        winner.push_back({2, 2});
+        return true;
+    }
 
     // Possible Diagonal Wins:
     // Left Diagonal: (0,2)-(1,1)-(2,0)
-    if (board[0][2] != ' ' && board[0][2] == board[1][1] && board[1][1] == board[2][0]) return true;
+    if (board[0][2] != ' ' && board[0][2] == board[1][1] && board[1][1] == board[2][0]){
+        winner.push_back({0, 2});
+        winner.push_back({1, 1}); 
+        winner.push_back({2, 0});
+        return true;
+    }
     
     // Right Diagonal: (0,2)-(1,3)-(2,4)
-    if (board[0][2] != ' ' && board[0][2] == board[1][3] && board[1][3] == board[2][4]) return true;
+    if (board[0][2] != ' ' && board[0][2] == board[1][3] && board[1][3] == board[2][4]){
+        winner.push_back({0, 2});
+        winner.push_back({1, 3}); 
+        winner.push_back({2, 4});
+        return true;
+    }
 
     return false;
 }
