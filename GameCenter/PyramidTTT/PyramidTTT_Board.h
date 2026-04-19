@@ -18,6 +18,7 @@ public:
     bool game_is_over(Player<char>* player) override;
     bool is_lose(Player<char>* player) override;
     bool is_valid_pyramid_cell(int r, int c);
+    vector<pair<int, int>> winner;
 };
 
 #endif // PYRAMIDTTT_BOARD_H

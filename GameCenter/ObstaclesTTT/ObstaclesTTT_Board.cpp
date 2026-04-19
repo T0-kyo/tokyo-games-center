@@ -68,28 +68,52 @@ bool ObstaclesTTT_Board::is_win(Player<char>* player) {
     // Check Rows (need 4 in a row, so col index goes up to columns - 4)
     for (int i = 0; i < rows; i++) {
         for (int j = 0; j <= columns - 4; j++) {
-            if (check_line(board[i][j], board[i][j+1], board[i][j+2], board[i][j+3])) return true;
+            if (check_line(board[i][j], board[i][j+1], board[i][j+2], board[i][j+3])){
+                winner.push_back({i, j});
+                winner.push_back({i, j+1});
+                winner.push_back({i, j+2});
+                winner.push_back({i, j+3});
+                return true;
+            }
         }
     }
 
     // Check Columns
     for (int i = 0; i <= rows - 4; i++) {
         for (int j = 0; j < columns; j++) {
-            if (check_line(board[i][j], board[i+1][j], board[i+2][j], board[i+3][j])) return true;
+            if (check_line(board[i][j], board[i+1][j], board[i+2][j], board[i+3][j])){
+                winner.push_back({i, j});
+                winner.push_back({i+1, j});
+                winner.push_back({i+2, j});
+                winner.push_back({i+3, j});                
+                return true;
+            }
         }
     }
 
     // Check Main Diagonals
     for (int i = 0; i <= rows - 4; i++) {
         for (int j = 0; j <= columns - 4; j++) {
-            if (check_line(board[i][j], board[i+1][j+1], board[i+2][j+2], board[i+3][j+3])) return true;
+            if (check_line(board[i][j], board[i+1][j+1], board[i+2][j+2], board[i+3][j+3])){
+                winner.push_back({i, j});
+                winner.push_back({i+1, j+1});
+                winner.push_back({i+2, j+2});
+                winner.push_back({i+3, j+3});
+                return true;
+            }
         }
     }
 
     // Check Anti-Diagonals
     for (int i = 0; i <= rows - 4; i++) {
         for (int j = 3; j < columns; j++) {
-            if (check_line(board[i][j], board[i+1][j-1], board[i+2][j-2], board[i+3][j-3])) return true;
+            if (check_line(board[i][j], board[i+1][j-1], board[i+2][j-2], board[i+3][j-3])){
+                winner.push_back({i, j});
+                winner.push_back({i+1, j-1});
+                winner.push_back({i+2, j-2});
+                winner.push_back({i+3, j-3});   
+                return true;
+            }
         }
     }
 

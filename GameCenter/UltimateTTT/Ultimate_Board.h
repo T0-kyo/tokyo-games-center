@@ -23,6 +23,7 @@ public:
     bool is_lose(Player<char>* player) override;
     void update_final_board();
     char get_final_board_cell(int i, int j);
+    vector<pair<int, int>> winner;
 };
 
 #endif // Ultimate_BOARD_H

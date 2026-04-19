@@ -198,48 +198,29 @@ namespace Tokyo {
         this->_data->window.draw( *this->_player1Turn );
         this->_data->window.draw( *this->_player2Turn );
 
-        if(_p1){ 
-            for(int i=0; i<5; ++i){
-                for(int j=0; j<5; ++j){
-                    if(this->_5x5Board->get_cell(i,j)=='X'){
-                        this->_xWin->setPosition({15+j*CellWidth+gridPos.x, 15+i*CellHeight+gridPos.y});
-                        this->_data->window.draw( *this->_xWin );
-                    }
-                    else if(this->_5x5Board->get_cell(i,j)=='O'){
-                        this->_o->setPosition({15+j*CellWidth+gridPos.x, 15+i*CellHeight+gridPos.y});
-                        this->_data->window.draw( *this->_o );
-                    }
+        for(int i=0; i<5; ++i){
+            for(int j=0; j<5; ++j){
+                if(this->_5x5Board->get_cell(i,j)=='X'){
+                    this->_x->setPosition({15+j*CellWidth+gridPos.x, 15+i*CellHeight+gridPos.y});
+                    this->_data->window.draw( *this->_x );
+                }
+                else if(this->_5x5Board->get_cell(i,j)=='O'){
+                    this->_o->setPosition({15+j*CellWidth+gridPos.x, 15+i*CellHeight+gridPos.y});
+                    this->_data->window.draw( *this->_o );
                 }
             }
         }
 
+        if(_p1){
+            for (int i = 0; i < _5x5Board->winnerX.size(); ++i){
+                this->_xWin->setPosition({15 + _5x5Board->winnerX[i].second * CellWidth+gridPos.x, 15 + _5x5Board->winnerX[i].first * CellHeight+gridPos.y});
+                this->_data->window.draw( *this->_xWin );
+            }
+        }
         else if(_p2){
-            for(int i=0; i<5; ++i){
-                for(int j=0; j<5; ++j){
-                    if(this->_5x5Board->get_cell(i,j)=='O'){
-                        this->_oWin->setPosition({15+j*CellWidth+gridPos.x, 15+i*CellHeight+gridPos.y});
-                        this->_data->window.draw( *this->_oWin );
-                    }
-                    else if(this->_5x5Board->get_cell(i,j)=='X'){
-                        this->_x->setPosition({15+j*CellWidth+gridPos.x, 15+i*CellHeight+gridPos.y});
-                        this->_data->window.draw( *this->_x );
-                    }
-                }
-            }
-        }
-
-        else{
-            for(int i=0; i<5; ++i){
-                for(int j=0; j<5; ++j){
-                    if(this->_5x5Board->get_cell(i,j)=='X'){
-                        this->_x->setPosition({15+j*CellWidth+gridPos.x, 15+i*CellHeight+gridPos.y});
-                        this->_data->window.draw( *this->_x );
-                    }
-                    else if(this->_5x5Board->get_cell(i,j)=='O'){
-                        this->_o->setPosition({15+j*CellWidth+gridPos.x, 15+i*CellHeight+gridPos.y});
-                        this->_data->window.draw( *this->_o );
-                    }
-                }
+            for (int i = 0; i < _5x5Board->winnerX.size(); ++i){
+                this->_oWin->setPosition({15 + _5x5Board->winnerO[i].second * CellWidth+gridPos.x, 15 + _5x5Board->winnerO[i].first * CellHeight+gridPos.y});
+                this->_data->window.draw( *this->_oWin );
             }
         }
 

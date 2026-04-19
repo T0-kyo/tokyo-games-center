@@ -100,13 +100,29 @@ bool Ultimate_Board::update_board(Move<char>* move) {
 
 bool Ultimate_Board::is_win(Player<char>* player) {
     for (int i = 0; i < 3; ++i) {
-        if ((final_board[i][0] == player->get_symbol() && final_board[i][1] == player->get_symbol() && final_board[i][2] == player->get_symbol()) ||
-            (final_board[0][i] == player->get_symbol() && final_board[1][i] == player->get_symbol() && final_board[2][i] == player->get_symbol())) {
+        if (final_board[i][0] == player->get_symbol() && final_board[i][1] == player->get_symbol() && final_board[i][2] == player->get_symbol()){
+            winner.push_back({i, 0});
+            winner.push_back({i, 1});
+            winner.push_back({i, 2});
+            return true;
+        }
+        if(final_board[0][i] == player->get_symbol() && final_board[1][i] == player->get_symbol() && final_board[2][i] == player->get_symbol()){
+            winner.push_back({0, i});
+            winner.push_back({1, i});
+            winner.push_back({2, i});
             return true;
         }
     }
-    if ((final_board[0][0] == player->get_symbol() && final_board[1][1] == player->get_symbol() && final_board[2][2] == player->get_symbol()) ||
-        (final_board[0][2] == player->get_symbol() && final_board[1][1] == player->get_symbol() && final_board[2][0] == player->get_symbol())) {
+    if (final_board[0][0] == player->get_symbol() && final_board[1][1] == player->get_symbol() && final_board[2][2] == player->get_symbol()){
+        winner.push_back({0, 0});
+        winner.push_back({1, 1});
+        winner.push_back({2, 2});    
+        return true;
+    }
+    if(final_board[0][2] == player->get_symbol() && final_board[1][1] == player->get_symbol() && final_board[2][0] == player->get_symbol()){
+        winner.push_back({0, 2});
+        winner.push_back({1, 1});
+        winner.push_back({2, 0});    
         return true;
     }
     return false;

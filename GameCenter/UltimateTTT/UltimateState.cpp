@@ -323,21 +323,13 @@ namespace Tokyo {
                     switch(k){
                         case 1:
                             if(_board1){
-                                if(_UltimateBoard->get_final_board_cell(0, 0) == 'X' && !_p1) {
+                                if(_UltimateBoard->get_final_board_cell(0, 0) == 'X') {
                                     this->_X->setPosition({gridPos1.x, gridPos1.y}); 
                                     this->_data->window.draw( *this->_X );
                                 }
-                                else if(_UltimateBoard->get_final_board_cell(0, 0) == 'X' && _p1){
-                                    this->_Xwin->setPosition({gridPos1.x, gridPos1.y}); 
-                                    this->_data->window.draw( *this->_Xwin );
-                                }
-                                else if(_UltimateBoard->get_final_board_cell(0, 0) == 'O' && !_p2) {
+                                else if(_UltimateBoard->get_final_board_cell(0, 0) == 'O') {
                                     this->_O->setPosition({gridPos1.x, gridPos1.y}); 
                                     this->_data->window.draw( *this->_O );
-                                }
-                                else if(_UltimateBoard->get_final_board_cell(0, 0) == 'O' && _p2){
-                                    this->_Owin->setPosition({gridPos1.x, gridPos1.y}); 
-                                    this->_data->window.draw( *this->_Owin );
                                 }
                             }
                             else {
@@ -353,21 +345,13 @@ namespace Tokyo {
                             break;
                         case 2:
                             if(_board2){
-                                if(_UltimateBoard->get_final_board_cell(0, 1) == 'X' && !_p1) {
+                                if(_UltimateBoard->get_final_board_cell(0, 1) == 'X') {
                                     this->_X->setPosition({gridPos2.x, gridPos2.y}); 
                                     this->_data->window.draw( *this->_X );
                                 }
-                                else if(_UltimateBoard->get_final_board_cell(0, 1) == 'X' && _p1){
-                                    this->_Xwin->setPosition({gridPos2.x, gridPos2.y}); 
-                                    this->_data->window.draw( *this->_Xwin );
-                                }
-                                else if(_UltimateBoard->get_final_board_cell(0, 1) == 'O' && !_p2) {
+                                else if(_UltimateBoard->get_final_board_cell(0, 1) == 'O') {
                                     this->_O->setPosition({gridPos2.x, gridPos2.y}); 
                                     this->_data->window.draw( *this->_O );
-                                }
-                                else if(_UltimateBoard->get_final_board_cell(0, 1) == 'O' && _p2){
-                                    this->_Owin->setPosition({gridPos2.x, gridPos2.y}); 
-                                    this->_data->window.draw( *this->_Owin );
                                 }
                             }
                             else {
@@ -383,21 +367,13 @@ namespace Tokyo {
                             break;
                         case 3:
                             if(_board3){
-                                if(_UltimateBoard->get_final_board_cell(0, 2) == 'X' && !_p1) {
+                                if(_UltimateBoard->get_final_board_cell(0, 2) == 'X') {
                                     this->_X->setPosition({gridPos3.x, gridPos3.y}); 
                                     this->_data->window.draw( *this->_X );
                                 }
-                                else if(_UltimateBoard->get_final_board_cell(0, 2) == 'X' && _p1){
-                                    this->_Xwin->setPosition({gridPos3.x, gridPos3.y}); 
-                                    this->_data->window.draw( *this->_Xwin );
-                                }
-                                else if(_UltimateBoard->get_final_board_cell(0, 2) == 'O' && !_p2) {
+                                else if(_UltimateBoard->get_final_board_cell(0, 2) == 'O') {
                                     this->_O->setPosition({gridPos3.x, gridPos3.y}); 
                                     this->_data->window.draw( *this->_O );
-                                }
-                                else if(_UltimateBoard->get_final_board_cell(0, 2) == 'O' && _p2){
-                                    this->_Owin->setPosition({gridPos3.x, gridPos3.y}); 
-                                    this->_data->window.draw( *this->_Owin );
                                 }
                             }
                             else {
@@ -413,21 +389,13 @@ namespace Tokyo {
                             break;
                         case 4:
                             if(_board4){
-                                if(_UltimateBoard->get_final_board_cell(1, 0) == 'X' && !_p1) {
+                                if(_UltimateBoard->get_final_board_cell(1, 0) == 'X') {
                                     this->_X->setPosition({gridPos4.x, gridPos4.y}); 
                                     this->_data->window.draw( *this->_X );
                                 }
-                                else if(_UltimateBoard->get_final_board_cell(1, 0) == 'X' && _p1){
-                                    this->_Xwin->setPosition({gridPos4.x, gridPos4.y}); 
-                                    this->_data->window.draw( *this->_Xwin );
-                                }
-                                else if(_UltimateBoard->get_final_board_cell(1, 0) == 'O' && !_p2) {
+                                else if(_UltimateBoard->get_final_board_cell(1, 0) == 'O') {
                                     this->_O->setPosition({gridPos4.x, gridPos4.y}); 
                                     this->_data->window.draw( *this->_O );
-                                }
-                                else if(_UltimateBoard->get_final_board_cell(1, 0) == 'O' && _p2){
-                                    this->_Owin->setPosition({gridPos4.x, gridPos4.y}); 
-                                    this->_data->window.draw( *this->_Owin );
                                 }
                             }
                             else {
@@ -443,21 +411,13 @@ namespace Tokyo {
                             break;
                         case 5:
                             if(_board5){
-                                if(_UltimateBoard->get_final_board_cell(1, 1) == 'X' && !_p1) {
+                                if(_UltimateBoard->get_final_board_cell(1, 1) == 'X') {
                                     this->_X->setPosition({gridPos5.x, gridPos5.y}); 
                                     this->_data->window.draw( *this->_X );
                                 }
-                                else if(_UltimateBoard->get_final_board_cell(1, 1) == 'X' && _p1){
-                                    this->_Xwin->setPosition({gridPos5.x, gridPos5.y}); 
-                                    this->_data->window.draw( *this->_Xwin );
-                                }
-                                else if(_UltimateBoard->get_final_board_cell(1, 1) == 'O' && !_p2) {
+                                else if(_UltimateBoard->get_final_board_cell(1, 1) == 'O') {
                                     this->_O->setPosition({gridPos5.x, gridPos5.y}); 
                                     this->_data->window.draw( *this->_O );
-                                }
-                                else if(_UltimateBoard->get_final_board_cell(1, 1) == 'O' && _p2){
-                                    this->_Owin->setPosition({gridPos5.x, gridPos5.y}); 
-                                    this->_data->window.draw( *this->_Owin );
                                 }
                             }
                             else {
@@ -473,21 +433,13 @@ namespace Tokyo {
                             break;
                         case 6:
                             if(_board6){
-                                if(_UltimateBoard->get_final_board_cell(1, 2) == 'X' && !_p1) {
+                                if(_UltimateBoard->get_final_board_cell(1, 2) == 'X') {
                                     this->_X->setPosition({gridPos6.x, gridPos6.y}); 
                                     this->_data->window.draw( *this->_X );
                                 }
-                                else if(_UltimateBoard->get_final_board_cell(1, 2) == 'X' && _p1){
-                                    this->_Xwin->setPosition({gridPos6.x, gridPos6.y}); 
-                                    this->_data->window.draw( *this->_Xwin );
-                                }
-                                else if(_UltimateBoard->get_final_board_cell(1, 2) == 'O' && !_p2) {
+                                else if(_UltimateBoard->get_final_board_cell(1, 2) == 'O') {
                                     this->_O->setPosition({gridPos6.x, gridPos6.y}); 
                                     this->_data->window.draw( *this->_O );
-                                }
-                                else if(_UltimateBoard->get_final_board_cell(1, 2) == 'O' && _p2){
-                                    this->_Owin->setPosition({gridPos6.x, gridPos6.y}); 
-                                    this->_data->window.draw( *this->_Owin );
                                 }
                             }
                             else {
@@ -503,21 +455,13 @@ namespace Tokyo {
                             break;
                         case 7:
                             if(_board7){
-                                if(_UltimateBoard->get_final_board_cell(2, 0) == 'X' && !_p1) {
+                                if(_UltimateBoard->get_final_board_cell(2, 0) == 'X') {
                                     this->_X->setPosition({gridPos7.x, gridPos7.y}); 
                                     this->_data->window.draw( *this->_X );
                                 }
-                                else if(_UltimateBoard->get_final_board_cell(2, 0) == 'X' && _p1){
-                                    this->_Xwin->setPosition({gridPos7.x, gridPos7.y}); 
-                                    this->_data->window.draw( *this->_Xwin );
-                                }
-                                else if(_UltimateBoard->get_final_board_cell(2, 0) == 'O' && !_p2) {
+                                else if(_UltimateBoard->get_final_board_cell(2, 0) == 'O') {
                                     this->_O->setPosition({gridPos7.x, gridPos7.y}); 
                                     this->_data->window.draw( *this->_O );
-                                }
-                                else if(_UltimateBoard->get_final_board_cell(2, 0) == 'O' && _p2){
-                                    this->_Owin->setPosition({gridPos7.x, gridPos7.y}); 
-                                    this->_data->window.draw( *this->_Owin );
                                 }
                             }
                             else {
@@ -533,21 +477,13 @@ namespace Tokyo {
                             break;
                         case 8:
                             if(_board8){
-                                if(_UltimateBoard->get_final_board_cell(2, 1) == 'X' && !_p1) {
+                                if(_UltimateBoard->get_final_board_cell(2, 1) == 'X') {
                                     this->_X->setPosition({gridPos8.x, gridPos8.y}); 
                                     this->_data->window.draw( *this->_X );
                                 }
-                                else if(_UltimateBoard->get_final_board_cell(2, 1) == 'X' && _p1){
-                                    this->_Xwin->setPosition({gridPos8.x, gridPos8.y}); 
-                                    this->_data->window.draw( *this->_Xwin );
-                                }
-                                else if(_UltimateBoard->get_final_board_cell(2, 1) == 'O' && !_p2) {
+                                else if(_UltimateBoard->get_final_board_cell(2, 1) == 'O') {
                                     this->_O->setPosition({gridPos8.x, gridPos8.y}); 
                                     this->_data->window.draw( *this->_O );
-                                }
-                                else if(_UltimateBoard->get_final_board_cell(2, 1) == 'O' && _p2){
-                                    this->_Owin->setPosition({gridPos8.x, gridPos8.y}); 
-                                    this->_data->window.draw( *this->_Owin );
                                 }
                             }
                             else {
@@ -563,21 +499,13 @@ namespace Tokyo {
                             break;
                         case 9:
                             if(_board9){
-                                if(_UltimateBoard->get_final_board_cell(2, 2) == 'X' && !_p1) {
+                                if(_UltimateBoard->get_final_board_cell(2, 2) == 'X') {
                                     this->_X->setPosition({gridPos9.x, gridPos9.y}); 
                                     this->_data->window.draw( *this->_X );
                                 }
-                                else if(_UltimateBoard->get_final_board_cell(2, 2) == 'X' && _p1){
-                                    this->_Xwin->setPosition({gridPos9.x, gridPos9.y}); 
-                                    this->_data->window.draw( *this->_Xwin );
-                                }
-                                else if(_UltimateBoard->get_final_board_cell(2, 2) == 'O' && !_p2) {
+                                else if(_UltimateBoard->get_final_board_cell(2, 2) == 'O') {
                                     this->_O->setPosition({gridPos9.x, gridPos9.y}); 
                                     this->_data->window.draw( *this->_O );
-                                }
-                                else if(_UltimateBoard->get_final_board_cell(2, 2) == 'O' && _p2){
-                                    this->_Owin->setPosition({gridPos9.x, gridPos9.y}); 
-                                    this->_data->window.draw( *this->_Owin );
                                 }
                             }
                             else {
@@ -594,6 +522,85 @@ namespace Tokyo {
                         default:
                             break;
                     }
+                }
+            }
+        }
+
+        for (int i = 0; i < _UltimateBoard->winner.size(); ++i){
+            if(_p1){
+                if(_UltimateBoard->winner[i].first == 0 && _UltimateBoard->winner[i].second == 0){
+                    this->_Xwin->setPosition({gridPos1.x, gridPos1.y}); 
+                    this->_data->window.draw( *this->_Xwin );
+                }
+                if(_UltimateBoard->winner[i].first == 0 && _UltimateBoard->winner[i].second == 1){
+                    this->_Xwin->setPosition({gridPos2.x, gridPos2.y}); 
+                    this->_data->window.draw( *this->_Xwin );
+                }
+                if(_UltimateBoard->winner[i].first == 0 && _UltimateBoard->winner[i].second == 3){
+                    this->_Xwin->setPosition({gridPos3.x, gridPos3.y}); 
+                    this->_data->window.draw( *this->_Xwin );
+                }
+                if(_UltimateBoard->winner[i].first == 1 && _UltimateBoard->winner[i].second == 0){
+                    this->_Xwin->setPosition({gridPos4.x, gridPos4.y}); 
+                    this->_data->window.draw( *this->_Xwin );
+                }
+                if(_UltimateBoard->winner[i].first == 1 && _UltimateBoard->winner[i].second == 1){
+                    this->_Xwin->setPosition({gridPos5.x, gridPos5.y}); 
+                    this->_data->window.draw( *this->_Xwin );
+                }
+                if(_UltimateBoard->winner[i].first == 1 && _UltimateBoard->winner[i].second == 3){
+                    this->_Xwin->setPosition({gridPos6.x, gridPos6.y}); 
+                    this->_data->window.draw( *this->_Xwin );
+                }
+                if(_UltimateBoard->winner[i].first == 2 && _UltimateBoard->winner[i].second == 0){
+                    this->_Xwin->setPosition({gridPos7.x, gridPos7.y}); 
+                    this->_data->window.draw( *this->_Xwin );
+                }
+                if(_UltimateBoard->winner[i].first == 2 && _UltimateBoard->winner[i].second == 1){
+                    this->_Xwin->setPosition({gridPos8.x, gridPos8.y}); 
+                    this->_data->window.draw( *this->_Xwin );
+                }
+                if(_UltimateBoard->winner[i].first == 2 && _UltimateBoard->winner[i].second == 2){
+                    this->_Xwin->setPosition({gridPos9.x, gridPos9.y}); 
+                    this->_data->window.draw( *this->_Xwin );
+                }
+            }
+            else if(_p2){
+                if(_UltimateBoard->winner[i].first == 0 && _UltimateBoard->winner[i].second == 0){
+                    this->_Owin->setPosition({gridPos1.x, gridPos1.y}); 
+                    this->_data->window.draw( *this->_Owin );
+                }
+                if(_UltimateBoard->winner[i].first == 0 && _UltimateBoard->winner[i].second == 1){
+                    this->_Owin->setPosition({gridPos2.x, gridPos2.y}); 
+                    this->_data->window.draw( *this->_Owin );
+                }
+                if(_UltimateBoard->winner[i].first == 0 && _UltimateBoard->winner[i].second == 3){
+                    this->_Owin->setPosition({gridPos3.x, gridPos3.y}); 
+                    this->_data->window.draw( *this->_Owin );
+                }
+                if(_UltimateBoard->winner[i].first == 1 && _UltimateBoard->winner[i].second == 0){
+                    this->_Owin->setPosition({gridPos4.x, gridPos4.y}); 
+                    this->_data->window.draw( *this->_Owin );
+                }
+                if(_UltimateBoard->winner[i].first == 1 && _UltimateBoard->winner[i].second == 1){
+                    this->_Owin->setPosition({gridPos5.x, gridPos5.y}); 
+                    this->_data->window.draw( *this->_Owin );
+                }
+                if(_UltimateBoard->winner[i].first == 1 && _UltimateBoard->winner[i].second == 3){
+                    this->_Owin->setPosition({gridPos6.x, gridPos6.y}); 
+                    this->_data->window.draw( *this->_Owin );
+                }
+                if(_UltimateBoard->winner[i].first == 2 && _UltimateBoard->winner[i].second == 0){
+                    this->_Owin->setPosition({gridPos7.x, gridPos7.y}); 
+                    this->_data->window.draw( *this->_Owin );
+                }
+                if(_UltimateBoard->winner[i].first == 2 && _UltimateBoard->winner[i].second == 1){
+                    this->_Owin->setPosition({gridPos8.x, gridPos8.y}); 
+                    this->_data->window.draw( *this->_Owin );
+                }
+                if(_UltimateBoard->winner[i].first == 2 && _UltimateBoard->winner[i].second == 2){
+                    this->_Owin->setPosition({gridPos9.x, gridPos9.y}); 
+                    this->_data->window.draw( *this->_Owin );
                 }
             }
         }

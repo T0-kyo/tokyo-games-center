@@ -45,6 +45,9 @@ bool MemoryTTT_Board::is_win(Player<char>* player) {
     // Check Rows on the HIDDEN board
     for (int i = 0; i < rows; i++) {
         if (real_board[i][0] == sym && real_board[i][1] == sym && real_board[i][2] == sym) {
+            winner.push_back({i, 0});
+            winner.push_back({i, 1});
+            winner.push_back({i, 2});
             return true;
         }
     }
@@ -52,15 +55,24 @@ bool MemoryTTT_Board::is_win(Player<char>* player) {
     // Check Columns on the HIDDEN board
     for (int i = 0; i < columns; i++) {
         if (real_board[0][i] == sym && real_board[1][i] == sym && real_board[2][i] == sym) {
+            winner.push_back({0, i});
+            winner.push_back({1, i});
+            winner.push_back({2, i});
             return true;
         }
     }
 
     // Check Diagonals on the HIDDEN board
     if (real_board[0][0] == sym && real_board[1][1] == sym && real_board[2][2] == sym) {
+        winner.push_back({0, 0});
+        winner.push_back({1, 1});
+        winner.push_back({2, 2});
         return true;
     }
     if (real_board[0][2] == sym && real_board[1][1] == sym && real_board[2][0] == sym) {
+        winner.push_back({0, 2});
+        winner.push_back({1, 1});
+        winner.push_back({2, 0});
         return true;
     }
 

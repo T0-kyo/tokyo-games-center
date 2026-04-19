@@ -25,6 +25,8 @@ public:
     bool is_lose(Player<char>* player) override;
     int get_p1_score() { return p1_score; }
     int get_p2_score() { return p2_score; }
+    vector<pair<int, int>> winnerX;
+    vector<pair<int, int>> winnerO;
 };
 
 #endif // TTT5x5_BOARD_H
