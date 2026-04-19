@@ -89,7 +89,7 @@ namespace Tokyo {
             }
 
             if(_data->input.isSpriteClicked(*_pauseButton, sf::Mouse::Button::Left, _data->window)){
-                this->_data->machine.AddState(StateRef (new PauseState(this->_data)), false);
+                this->_data->machine.AddState(StateRef (new PauseState(this->_data, GameID::_4x4)), false);
             }
 
             if(_currentPlayer == _Player1.get()){

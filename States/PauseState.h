@@ -11,7 +11,7 @@ namespace Tokyo{
 
     class PauseState : public State {
         public:
-        PauseState( GameDataRef data );
+        PauseState( GameDataRef data, GameID gameId);
         ~PauseState();
 
         void Init();
@@ -21,9 +21,14 @@ namespace Tokyo{
 
         private:
         GameDataRef _data;
+        GameID _gameId;
+
         std::unique_ptr<sf::Sprite> _background;
         std::unique_ptr<sf::Sprite> _resume;
         std::unique_ptr<sf::Sprite> _home;
         std::unique_ptr<sf::Sprite> _book;
+        std::unique_ptr<sf::Sprite> _rules;
+
+        bool isRules = false;
     };
 }
