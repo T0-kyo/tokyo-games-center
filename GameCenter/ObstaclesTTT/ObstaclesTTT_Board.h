@@ -22,6 +22,7 @@ public:
     virtual bool is_draw(Player<char>* player) override;
     virtual bool game_is_over(Player<char>* player) override;
     virtual bool is_lose(Player<char>* player) override;
+    vector<pair<int, int>> winner;
 };
 
 #endif // OBSTACLES_TTT_BOARD_H
