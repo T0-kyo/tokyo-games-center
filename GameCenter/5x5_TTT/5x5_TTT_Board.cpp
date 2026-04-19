@@ -34,7 +34,17 @@ void TTT5x5_Board::add_point(Player<char>* player){
     for (int r=0; r<5; r++){
         for (int c=0; c<3; c++){
             if (board[r][c] == sym && board[r][c+1] == sym && board[r][c+2] == sym){
-                    points++;
+                if(sym == 'X'){
+                    winnerX.push_back({r, c});
+                    winnerX.push_back({r, c+1});
+                    winnerX.push_back({r, c+2});
+                }
+                else {
+                    winnerO.push_back({r, c});
+                    winnerO.push_back({r, c+1});
+                    winnerO.push_back({r, c+2});
+                }
+                points++;
             }
         }
     }
@@ -43,6 +53,16 @@ void TTT5x5_Board::add_point(Player<char>* player){
     for (int c=0; c<5; c++){
         for (int r=0; r<3; r++){
             if (board[r][c] == sym && board[r+1][c] == sym && board[r+2][c] == sym){
+                if(sym == 'X'){
+                    winnerX.push_back({r, c});
+                    winnerX.push_back({r+1, c});
+                    winnerX.push_back({r+2, c});
+                }
+                else {
+                    winnerO.push_back({r, c});
+                    winnerO.push_back({r+1, c});
+                    winnerO.push_back({r+2, c});
+                }
                 points++;
             }
         }
@@ -52,11 +72,31 @@ void TTT5x5_Board::add_point(Player<char>* player){
     for (int r=0; r<3; r++){
         for (int c=0; c<3; c++){
             if (board[r][c] == sym && board[r+1][c+1] == sym && board[r+2][c+2] == sym){
+                if(sym == 'X'){
+                    winnerX.push_back({r, c});
+                    winnerX.push_back({r+1, c+1});
+                    winnerX.push_back({r+2, c+2});
+                }
+                else {
+                    winnerO.push_back({r, c});
+                    winnerO.push_back({r+1, c+1});
+                    winnerO.push_back({r+2, c+2});
+                }
                 points++;
             }
         }
         for (int c=4; c>1; c--){
             if(board[r][c] == sym && board[r+1][c-1] == sym && board[r+2][c-2] == sym){
+                if(sym == 'X'){
+                    winnerX.push_back({r, c});
+                    winnerX.push_back({r+1, c-1});
+                    winnerX.push_back({r+2, c-2});
+                }
+                else {
+                    winnerO.push_back({r, c});
+                    winnerO.push_back({r+1, c-1});
+                    winnerO.push_back({r+2, c-2});
+                }
                 points++;
             }
         }
