@@ -19,6 +19,7 @@ public:
     bool game_is_over(Player<char>* player) override;
     bool is_lose(Player<char>* player) override;
     char get_real_cell(int i, int j);
+    vector<pair<int, int>> winner;
 };
 
 #endif

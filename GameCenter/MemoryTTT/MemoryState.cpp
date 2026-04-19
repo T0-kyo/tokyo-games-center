@@ -173,54 +173,7 @@ namespace Tokyo {
         this->_data->window.draw( *this->_player1Turn );
         this->_data->window.draw( *this->_player2Turn );
 
-
-
-        if(_p1){ 
-            for(int i=0; i<3; ++i){
-                for(int j=0; j<3; ++j){
-                    if(this->_MemoryBoard->get_real_cell(i,j)=='X'){
-                        this->_Xwin->setPosition({(j*5)+j*CellWidth+gridPos.x, (i*3)+i*CellHeight+gridPos.y});
-                        this->_data->window.draw( *this->_Xwin );
-                    }
-                    else if(this->_MemoryBoard->get_real_cell(i,j)=='O'){
-                        this->_o->setPosition({(j*5)+j*CellWidth+gridPos.x, (i*3)+i*CellHeight+gridPos.y});
-                        this->_data->window.draw( *this->_o );
-                    }
-                }
-            }
-        }
-
-        else if(_p2){
-            for(int i=0; i<3; ++i){
-                for(int j=0; j<3; ++j){
-                    if(this->_MemoryBoard->get_real_cell(i,j)=='O'){
-                        this->_Owin->setPosition({(j*5)+j*CellWidth+gridPos.x, (i*3)+i*CellHeight+gridPos.y});
-                        this->_data->window.draw( *this->_Owin );
-                    }
-                    else if(this->_MemoryBoard->get_real_cell(i,j)=='X'){
-                        this->_x->setPosition({(j*5)+j*CellWidth+gridPos.x, (i*3)+i*CellHeight+gridPos.y});
-                        this->_data->window.draw( *this->_x );
-                    }
-                }
-            }
-        }
-
-        else if(_draw){
-            for(int i=0; i<3; ++i){
-                for(int j=0; j<3; ++j){
-                    if(this->_MemoryBoard->get_real_cell(i,j)=='O'){
-                        this->_o->setPosition({(j*5)+j*CellWidth+gridPos.x, (i*3)+i*CellHeight+gridPos.y});
-                        this->_data->window.draw( *this->_o );
-                    }
-                    else if(this->_MemoryBoard->get_real_cell(i,j)=='X'){
-                        this->_x->setPosition({(j*5)+j*CellWidth+gridPos.x, (i*3)+i*CellHeight+gridPos.y});
-                        this->_data->window.draw( *this->_x );
-                    }
-                }
-            }
-        }
-
-        else{
+        if(!_MemoryBoard->game_is_over(_currentPlayer)){
             for(int i=0; i<3; ++i){
                 for(int j=0; j<3; ++j){
                     if(this->_MemoryBoard->get_cell(i,j)=='#'){
@@ -230,6 +183,32 @@ namespace Tokyo {
                 }
             }
         }
+        else {
+            for(int i=0; i<3; ++i){
+                for(int j=0; j<3; ++j){
+                    if(this->_MemoryBoard->get_real_cell(i,j)=='O'){
+                        this->_o->setPosition({(j*5)+j*CellWidth+gridPos.x, (i*3)+i*CellHeight+gridPos.y});
+                        this->_data->window.draw( *this->_o );
+                    }
+                    else if(this->_MemoryBoard->get_real_cell(i,j)=='X'){
+                        this->_x->setPosition({(j*5)+j*CellWidth+gridPos.x, (i*3)+i*CellHeight+gridPos.y});
+                        this->_data->window.draw( *this->_x );
+                    }
+                }
+            }
+
+            for (int i = 0; i < _MemoryBoard->winner.size(); ++i){
+                if(_p1){
+                    this->_Xwin->setPosition({(_MemoryBoard->winner[i].second * 5) + _MemoryBoard->winner[i].second * CellWidth+gridPos.x, (_MemoryBoard->winner[i].first * 3) + _MemoryBoard->winner[i].first * CellHeight+gridPos.y});
+                    this->_data->window.draw( *this->_Xwin );
+                }
+                else if(_p2){
+                    this->_Owin->setPosition({(_MemoryBoard->winner[i].second * 5) + _MemoryBoard->winner[i].second * CellWidth+gridPos.x, (_MemoryBoard->winner[i].first * 3) + _MemoryBoard->winner[i].first * CellHeight+gridPos.y});
+                    this->_data->window.draw( *this->_Owin );
+                }
+            }
+        }
+
         this->_data->window.display();
     }
 
