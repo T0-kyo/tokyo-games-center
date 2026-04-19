@@ -330,48 +330,29 @@ namespace Tokyo {
             this->_data->window.draw( *this->_currentCell );
         }
 
-        if(_p1){ 
-            for(int i=0; i<4; ++i){
-                for(int j=0; j<4; ++j){
-                    if(this->_4x4Board->get_cell(i,j)=='X'){
-                        this->_xwin->setPosition({(j*3)+j*CellWidth+gridPos.x, (i*3)+i*CellHeight+gridPos.y});
-                        this->_data->window.draw( *this->_xwin );
-                    }
-                    else if(this->_4x4Board->get_cell(i,j)=='O'){
-                        this->_o->setPosition({(j*3)+j*CellWidth+gridPos.x, (i*3)+i*CellHeight+gridPos.y});
-                        this->_data->window.draw( *this->_o );
-                    }
+        for(int i=0; i<4; ++i){
+            for(int j=0; j<4; ++j){
+                if(this->_4x4Board->get_cell(i,j)=='X'){
+                    this->_x->setPosition({(j*3)+j*CellWidth+gridPos.x, (i*3)+i*CellHeight+gridPos.y});
+                    this->_data->window.draw( *this->_x );
+                }
+                else if(this->_4x4Board->get_cell(i,j)=='O'){
+                    this->_o->setPosition({(j*3)+j*CellWidth+gridPos.x, (i*3)+i*CellHeight+gridPos.y});
+                    this->_data->window.draw( *this->_o );
                 }
             }
         }
 
-        else if(_p2){
-            for(int i=0; i<4; ++i){
-                for(int j=0; j<4; ++j){
-                    if(this->_4x4Board->get_cell(i,j)=='O'){
-                        this->_owin->setPosition({(j*3)+j*CellWidth+gridPos.x, (i*3)+i*CellHeight+gridPos.y});
-                        this->_data->window.draw( *this->_owin );
-                    }
-                    else if(this->_4x4Board->get_cell(i,j)=='X'){
-                        this->_x->setPosition({(j*3)+j*CellWidth+gridPos.x, (i*3)+i*CellHeight+gridPos.y});
-                        this->_data->window.draw( *this->_x );
-                    }
-                }
+        if(_p1){
+            for (int i = 0; i < _4x4Board->winner.size(); ++i){
+                this->_xwin->setPosition({(_4x4Board->winner[i].second * 3) + _4x4Board->winner[i].second * CellWidth+gridPos.x, (_4x4Board->winner[i].first * 3) + _4x4Board->winner[i].first * CellHeight+gridPos.y});
+                this->_data->window.draw( *this->_xwin );
             }
         }
-
-        else{
-            for(int i=0; i<4; ++i){
-                for(int j=0; j<4; ++j){
-                    if(this->_4x4Board->get_cell(i,j)=='X'){
-                        this->_x->setPosition({(j*3)+j*CellWidth+gridPos.x, (i*3)+i*CellHeight+gridPos.y});
-                        this->_data->window.draw( *this->_x );
-                    }
-                    else if(this->_4x4Board->get_cell(i,j)=='O'){
-                        this->_o->setPosition({(j*3)+j*CellWidth+gridPos.x, (i*3)+i*CellHeight+gridPos.y});
-                        this->_data->window.draw( *this->_o );
-                    }
-                }
+        if(_p2){
+            for (int i = 0; i < _4x4Board->winner.size(); ++i){
+                this->_owin->setPosition({(_4x4Board->winner[i].second * 3) + _4x4Board->winner[i].second * CellWidth+gridPos.x, (_4x4Board->winner[i].first * 3) + _4x4Board->winner[i].first * CellHeight+gridPos.y});
+                this->_data->window.draw( *this->_owin );
             }
         }
 

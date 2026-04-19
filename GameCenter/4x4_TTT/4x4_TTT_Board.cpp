@@ -74,13 +74,31 @@ bool TTT4x4_Board::is_win(Player<char>* player) {
     char sym = player->get_symbol();
     // Check rows
     for (int r=0; r<4; r++){
-        if ((board[r][0] == sym && board[r][1] == sym && board[r][2] == sym) || (board[r][1] == sym && board[r][2] == sym && board[r][3] == sym)){
+        if (board[r][0] == sym && board[r][1] == sym && board[r][2] == sym){
+            winner.push_back({r, 0});
+            winner.push_back({r, 1});
+            winner.push_back({r, 2});
+            return true;
+        }
+        if(board[r][1] == sym && board[r][2] == sym && board[r][3] == sym){
+            winner.push_back({r, 1});
+            winner.push_back({r, 2});
+            winner.push_back({r, 3});
             return true;
         }
     }
     // Check columns
     for (int c=0; c<4; c++){
-        if ((board[0][c] == sym && board[1][c] == sym && board[2][c] == sym) || (board[1][c] == sym && board[2][c] == sym && board[3][c] == sym)){
+        if (board[0][c] == sym && board[1][c] == sym && board[2][c] == sym){
+            winner.push_back({0, c});
+            winner.push_back({1, c});
+            winner.push_back({2, c});
+            return true;
+        }
+        if(board[1][c] == sym && board[2][c] == sym && board[3][c] == sym){
+            winner.push_back({1, c});
+            winner.push_back({2, c});
+            winner.push_back({3, c});
             return true;
         }
     }
@@ -88,11 +106,17 @@ bool TTT4x4_Board::is_win(Player<char>* player) {
     for (int r=0; r<2; r++){
         for (int c=0; c<2; c++){
             if (board[r][c] == sym && board[r+1][c+1] == sym && board[r+2][c+2] == sym){
+                winner.push_back({r, c});
+                winner.push_back({r+1, c+1});
+                winner.push_back({r+2, c+2});
                 return true;
             }
         }
         for (int c=3; c>1; c--){
             if(board[r][c] == sym && board[r+1][c-1] == sym && board[r+2][c-2] == sym){
+                winner.push_back({r, c});
+                winner.push_back({r+1, c-1});
+                winner.push_back({r+2, c-2});
                 return true;
             }
         }
