@@ -536,7 +536,7 @@ namespace Tokyo {
                     this->_Xwin->setPosition({gridPos2.x, gridPos2.y}); 
                     this->_data->window.draw( *this->_Xwin );
                 }
-                if(_UltimateBoard->winner[i].first == 0 && _UltimateBoard->winner[i].second == 3){
+                if(_UltimateBoard->winner[i].first == 0 && _UltimateBoard->winner[i].second == 2){
                     this->_Xwin->setPosition({gridPos3.x, gridPos3.y}); 
                     this->_data->window.draw( *this->_Xwin );
                 }
@@ -548,7 +548,7 @@ namespace Tokyo {
                     this->_Xwin->setPosition({gridPos5.x, gridPos5.y}); 
                     this->_data->window.draw( *this->_Xwin );
                 }
-                if(_UltimateBoard->winner[i].first == 1 && _UltimateBoard->winner[i].second == 3){
+                if(_UltimateBoard->winner[i].first == 1 && _UltimateBoard->winner[i].second == 2){
                     this->_Xwin->setPosition({gridPos6.x, gridPos6.y}); 
                     this->_data->window.draw( *this->_Xwin );
                 }
@@ -574,7 +574,7 @@ namespace Tokyo {
                     this->_Owin->setPosition({gridPos2.x, gridPos2.y}); 
                     this->_data->window.draw( *this->_Owin );
                 }
-                if(_UltimateBoard->winner[i].first == 0 && _UltimateBoard->winner[i].second == 3){
+                if(_UltimateBoard->winner[i].first == 0 && _UltimateBoard->winner[i].second == 2){
                     this->_Owin->setPosition({gridPos3.x, gridPos3.y}); 
                     this->_data->window.draw( *this->_Owin );
                 }
@@ -586,7 +586,7 @@ namespace Tokyo {
                     this->_Owin->setPosition({gridPos5.x, gridPos5.y}); 
                     this->_data->window.draw( *this->_Owin );
                 }
-                if(_UltimateBoard->winner[i].first == 1 && _UltimateBoard->winner[i].second == 3){
+                if(_UltimateBoard->winner[i].first == 1 && _UltimateBoard->winner[i].second == 2){
                     this->_Owin->setPosition({gridPos6.x, gridPos6.y}); 
                     this->_data->window.draw( *this->_Owin );
                 }

@@ -24,13 +24,13 @@ namespace Tokyo{
         this->_quest = std::make_unique<sf::Text> ( text, "ARE YOU SURE TO LEAVE THE GAME?", MAIN_MENU_TITLE_SIZE / 2.2 );
         sf::FloatRect textRect3 = this->_quest->getLocalBounds();
 
-        this->_quest->setFillColor( sf::Color(225, 165, 35) );
+        this->_quest->setFillColor( sf::Color(225, 0, 255) );
         this->_quest->setPosition({SCREEN_WIDTH / 2 - textRect3.size.x*0.5f, textRect3.size.y*3.5f});
 
-        this->_yes->setFillColor( sf::Color(225, 165, 35) );
+        this->_yes->setFillColor( sf::Color(225, 0, 255) );
         this->_yes->setPosition({SCREEN_WIDTH / 2 + 250, SCREEN_HEIGHT / 2 - textRect1.size.y*0.5f});
 
-        this->_no->setFillColor( sf::Color(225, 165, 35) );
+        this->_no->setFillColor( sf::Color(225, 0, 255) );
         this->_no->setPosition({SCREEN_WIDTH / 2 - 350, SCREEN_HEIGHT / 2 - textRect2.size.y*0.5f});
     }
 
@@ -52,14 +52,14 @@ namespace Tokyo{
 
     void HomeState::Update(float dt){
         if(this->_data->input.hoverText(*this->_yes, this->_data->window)){
-            this->_yes->setFillColor(sf::Color(255, 255, 255));
+            this->_yes->setFillColor(sf::Color(0, 255, 255));
         }
-        else this->_yes->setFillColor(sf::Color(225, 165, 35));
+        else this->_yes->setFillColor(sf::Color(225, 0, 255));
 
         if(this->_data->input.hoverText(*this->_no, this->_data->window)){
-            this->_no->setFillColor(sf::Color(255, 255, 255, 255));
+            this->_no->setFillColor(sf::Color(0, 255, 255));
         }
-        else this->_no->setFillColor(sf::Color(225, 165, 35));
+        else this->_no->setFillColor(sf::Color(225, 0, 255));
     }
 
     void HomeState::Draw(float dt){
