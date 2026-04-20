@@ -11,39 +11,39 @@ namespace Tokyo{
         this->_data->assets.LoadTexture( "Home", "../Assets/Textures/Home Button.png" );
         this->_data->assets.LoadTexture( "Book", "../Assets/Textures/book.png" );
 
-        this->_data->assets.LoadTexture( "rsus" , "../Assets/Textures/sus-rules.png");
-        this->_data->assets.LoadTexture( "r4x4" , "../Assets/Textures/sus-rules.png");
-        this->_data->assets.LoadTexture( "r5x5" , "../Assets/Textures/sus-rules.png");
-        this->_data->assets.LoadTexture( "rdiamond" , "../Assets/Textures/sus-rules.png");
-        this->_data->assets.LoadTexture( "rconnect4" , "../Assets/Textures/sus-rules.png");
-        this->_data->assets.LoadTexture( "rinfinity" , "../Assets/Textures/sus-rules.png");
+        this->_data->assets.LoadTexture( "sus-rules" , "../Assets/Textures/sus-rules.png");
+        this->_data->assets.LoadTexture( "4x4-rules" , "../Assets/Textures/4x4-rules.png");
+        this->_data->assets.LoadTexture( "5x5-rules" , "../Assets/Textures/5x5-rules.png");
+        this->_data->assets.LoadTexture( "diamond-rules" , "../Assets/Textures/diamond-rules.png");
+        this->_data->assets.LoadTexture( "connect4-rules" , "../Assets/Textures/connect4-rules.png");
+        this->_data->assets.LoadTexture( "infinity-rules" , "../Assets/Textures/infinity-rules.png");
         this->_data->assets.LoadTexture( "rmemory" , "../Assets/Textures/sus-rules.png");
         this->_data->assets.LoadTexture( "rmisere" , "../Assets/Textures/misere-rules.png");
         this->_data->assets.LoadTexture( "rnumerical" , "../Assets/Textures/sus-rules.png");
         this->_data->assets.LoadTexture( "robstacles" , "../Assets/Textures/sus-rules.png");
         this->_data->assets.LoadTexture( "rpyramid" , "../Assets/Textures/sus-rules.png");
-        this->_data->assets.LoadTexture( "rultimate" , "../Assets/Textures/sus-rules.png");
-        this->_data->assets.LoadTexture( "rword" , "../Assets/Textures/word-rules.png");
+        this->_data->assets.LoadTexture( "ultimate-rules" , "../Assets/Textures/ultimate-rules.png");
+        this->_data->assets.LoadTexture( "word-rules" , "../Assets/Textures/word-rules.png");
 
         switch(_gameId){
                     case GameID::Word://1
-                        {auto& rulePage = this->_data->assets.GetTexture("rword");
+                        {auto& rulePage = this->_data->assets.GetTexture("word-rules");
                         this->_rules = std::make_unique<sf::Sprite>( rulePage );
                         break;}
                     case GameID::_4x4://2
-                        {auto& rulePage = this->_data->assets.GetTexture("r4x4");
+                        {auto& rulePage = this->_data->assets.GetTexture("4x4-rules");
                         this->_rules = std::make_unique<sf::Sprite>( rulePage );
                         break;}
                     case GameID::Infinity://3
-                        {auto& rulePage = this->_data->assets.GetTexture("rinfinity");
+                        {auto& rulePage = this->_data->assets.GetTexture("infinity-rules");
                         this->_rules = std::make_unique<sf::Sprite>( rulePage );
                         break;}
                     case GameID::Sus://4
-                        {auto& rulePage = this->_data->assets.GetTexture("rsus");
+                        {auto& rulePage = this->_data->assets.GetTexture("sus-rules");
                         this->_rules = std::make_unique<sf::Sprite>( rulePage );
                         break;}
                     case GameID::_5x5://5
-                        {auto& rulePage = this->_data->assets.GetTexture("r5x5");
+                        {auto& rulePage = this->_data->assets.GetTexture("5x5-rules");
                         this->_rules = std::make_unique<sf::Sprite>( rulePage );
                         break;}
                     case GameID::Misere://6
@@ -51,7 +51,7 @@ namespace Tokyo{
                         this->_rules = std::make_unique<sf::Sprite>( rulePage );
                         break;}
                     case GameID::Ultimate://7
-                        {auto& rulePage = this->_data->assets.GetTexture("rultimate");
+                        {auto& rulePage = this->_data->assets.GetTexture("ultimate-rules");
                         this->_rules = std::make_unique<sf::Sprite>( rulePage );
                         break;}
                     case GameID::Pyramid://8
@@ -59,7 +59,7 @@ namespace Tokyo{
                         this->_rules = std::make_unique<sf::Sprite>( rulePage );
                         break;}
                     case GameID::FourInARow://9
-                        {auto& rulePage = this->_data->assets.GetTexture("rconnect4");
+                        {auto& rulePage = this->_data->assets.GetTexture("connect4-rules");
                         this->_rules = std::make_unique<sf::Sprite>( rulePage );
                         break;}
                     case GameID::Memory://10
@@ -75,7 +75,7 @@ namespace Tokyo{
                         this->_rules = std::make_unique<sf::Sprite>( rulePage );
                         break;}
                     case GameID::Diamond://13
-                        {auto& rulePage = this->_data->assets.GetTexture("rdiamond");
+                        {auto& rulePage = this->_data->assets.GetTexture("diamond-rules");
                         this->_rules = std::make_unique<sf::Sprite>( rulePage );
                         break;}
                     default:
