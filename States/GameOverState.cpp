@@ -10,7 +10,7 @@ namespace Tokyo {
         this->_data->assets.LoadTexture("Play Again", "../Assets/Textures/PlayAgain Button.png");
         this->_data->assets.LoadTexture("Go Home", "../Assets/Textures/Home Button.png");
         this->_data->assets.LoadTexture("Medal", "../Assets/Textures/Medal.png");
-        this->_data->assets.LoadSound("gameover", "../Assets/Audio/intro-sound.wav");
+        this->_data->assets.LoadSound("gameover", "../Assets/Audio/gameOver-sound.wav");
 
 
         auto& bg = _data->assets.GetTexture("Game Over bg");
