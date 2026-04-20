@@ -29,9 +29,9 @@ namespace Tokyo {
         this->_backButton = std::make_unique<sf::Sprite> ( back );
 
         auto& texture2 = this->_data->assets.GetFont( "Main Font" );
-        this->_choice1 = std::make_unique<sf::Text> ( texture2, "Player vs Player", MAIN_MENU_TITLE_SIZE/2 );
+        this->_choice1 = std::make_unique<sf::Text> ( texture2, "Player vs Player", MAIN_MENU_TITLE_SIZE/1.5f );
         sf::FloatRect textRect1 = this->_choice1->getLocalBounds();
-        this->_choice2 = std::make_unique<sf::Text> ( texture2, "Player vs Computer", MAIN_MENU_TITLE_SIZE/2 );
+        this->_choice2 = std::make_unique<sf::Text> ( texture2, "Player vs Computer", MAIN_MENU_TITLE_SIZE/1.5f );
         sf::FloatRect textRect2 = this->_choice2->getLocalBounds();
 
         this->_background->setPosition({SCREEN_WIDTH / 2 - texture1.getSize().x * 0.5f, SCREEN_HEIGHT / 2 - texture1.getSize().y * 0.5f});
@@ -40,10 +40,10 @@ namespace Tokyo {
         this->_backButton->setPosition({back.getSize().x * 0.3f, back.getSize().y * 0.6f});
         this->_backButton->setColor( sf::Color( 255, 255, 255, 150 ) );
 
-        this->_choice1->setPosition({SCREEN_WIDTH / 2 - textRect1.size.x * 0.5f, SCREEN_HEIGHT * 0.5f - textRect2.size.y * 1.3f});
-        this->_choice1->setFillColor( sf::Color(225, 165, 35) );
-        this->_choice2->setPosition({SCREEN_WIDTH / 2 - textRect2.size.x * 0.5f, SCREEN_HEIGHT * 0.5f + textRect2.size.y * 0.9f});
-        this->_choice2->setFillColor( sf::Color(225, 165, 35) );
+        this->_choice1->setPosition({SCREEN_WIDTH / 2 - textRect1.size.x * 0.5f, SCREEN_HEIGHT * 0.5f - textRect2.size.y * 2});
+        this->_choice1->setFillColor( sf::Color(225, 0, 255) );
+        this->_choice2->setPosition({SCREEN_WIDTH / 2 - textRect2.size.x * 0.5f, SCREEN_HEIGHT * 0.5f + textRect2.size.y * 1.1f});
+        this->_choice2->setFillColor( sf::Color(225, 0, 255) );
     }
 
     void ModeSelectionState::HandleInput() {
@@ -160,15 +160,15 @@ namespace Tokyo {
         else this->_backButton->setColor(sf::Color(255, 255, 255, 150));
 
         if ( this->_data->input.hoverText( *this->_choice1, this->_data->window ) ) {
-            this->_choice1->setFillColor( sf::Color(255, 255, 255) );
+            this->_choice1->setFillColor( sf::Color(0, 255, 255) );
         } else {
-            this->_choice1->setFillColor( sf::Color(225, 165, 35) );
+            this->_choice1->setFillColor( sf::Color(225, 0, 255) );
         }
 
         if ( this->_data->input.hoverText( *this->_choice2, this->_data->window ) ) {
-            this->_choice2->setFillColor( sf::Color(255, 255, 255) );
+            this->_choice2->setFillColor( sf::Color(0, 255, 255) );
         } else {
-            this->_choice2->setFillColor( sf::Color(225, 165, 35) );
+            this->_choice2->setFillColor( sf::Color(225, 0, 255) );
         }
     }
 
