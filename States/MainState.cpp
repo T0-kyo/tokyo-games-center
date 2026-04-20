@@ -49,7 +49,7 @@ namespace Tokyo {
         
     void MainState::Update ( float dt ) {
         if (_isStartClicked) {
-            float distance = (SCREEN_HEIGHT / 0.3f) * dt; 
+            float distance = (SCREEN_HEIGHT / 0.6f) * dt; 
             this->_background->move({ 0, -distance });
 
             if (this->_background->getPosition().y + this->_background->getGlobalBounds().size.y < 0) {

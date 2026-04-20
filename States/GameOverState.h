@@ -32,5 +32,6 @@ namespace Tokyo {
         std::unique_ptr<sf::Text> _announce;
 
         std::unique_ptr<sf::Sound> _gameover;
+        std::unique_ptr<sf::Sound> _draw;
     };
 }
