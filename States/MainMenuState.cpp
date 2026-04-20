@@ -63,17 +63,17 @@ namespace Tokyo {
         this->_background->setColor( sf::Color( 255, 255, 255, 200 ) );
         this->_logo->setPosition({SCREEN_WIDTH / 2.0f - logo.getSize().x / 2.0f, SCREEN_HEIGHT * 0.03f});
 
-        this->_SUS_Button->setPosition({304, 240}); //TODO Non professional way of centering the icons
+        this->_NumericalTTT_Button->setPosition({304, 240}); //TODO Non professional way of centering the icons
         this->_5x5TTT_Button->setPosition({564, 240});
         this->_WordTTT_Button->setPosition({824, 240});
         this->_UltimateTTT_Button->setPosition({1084, 240}); //* line 1
-        this->_NumericalTTT_Button->setPosition({214, 470});
+        this->_FourInARow_Button->setPosition({214, 470});
         this->_PyramidTTT_Button->setPosition({454, 470});
         this->_ObstaclesTTT_Button->setPosition({694, 470});
         this->_MisereTTT_Button->setPosition({934, 470});
         this->_MemoryTTT_Button->setPosition({1174, 470}); //* line 2
         this->_InfinityTTT_Button->setPosition({304, 700});
-        this->_FourInARow_Button->setPosition({564, 700});
+        this->_SUS_Button->setPosition({564, 700});
         this->_DiamondTTT_Button->setPosition({824, 700});
         this->_4x4TTT_Button->setPosition({1084, 700}); //TODO
 
