@@ -13,13 +13,15 @@ namespace Tokyo {
         this->_data->assets.LoadTexture( "Main Background", MAIN_BACKGROUND );
         this->_data->assets.LoadFont( "Main Font", MAIN_FONT );
         this->_data->assets.LoadTexture( "ClearBg", "../Assets/Textures/MainBackground_dash.png" );
-        
+        this->_data->assets.LoadSound("start", "../Assets/Audio/start-sound.wav");
 
         auto& texture1 = this->_data->assets.GetTexture( "Main Background" );
         auto& clearBg = this->_data->assets.GetTexture( "ClearBg" );
+        auto& buffer = this->_data->assets.GetSound("start");
 
         this->_background = std::make_unique<sf::Sprite> ( texture1 );
         this->_clearBg = std::make_unique<sf::Sprite> ( clearBg );
+        this->_start = std::make_unique<sf::Sound>( buffer );
 
         
         auto& texture2 = this->_data->assets.GetFont( "Main Font" );
@@ -40,13 +42,14 @@ namespace Tokyo {
 
             if ( this->_data->input.isTextClicked( *this->_startButton, sf::Mouse::Button::Left, this->_data->window ) ) {
                 this->_isStartClicked = true;
+                _start->play();
             }
         }
     }
         
     void MainState::Update ( float dt ) {
         if (_isStartClicked) {
-            float distance = (SCREEN_HEIGHT / 0.3f) * dt; 
+            float distance = (SCREEN_HEIGHT / 0.6f) * dt; 
             this->_background->move({ 0, -distance });
 
             if (this->_background->getPosition().y + this->_background->getGlobalBounds().size.y < 0) {
