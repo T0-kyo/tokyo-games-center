@@ -218,7 +218,7 @@ namespace Tokyo {
             }
         }
         else if(_p2){
-            for (int i = 0; i < _5x5Board->winnerX.size(); ++i){
+            for (int i = 0; i < _5x5Board->winnerO.size(); ++i){
                 this->_oWin->setPosition({15 + _5x5Board->winnerO[i].second * CellWidth+gridPos.x, 15 + _5x5Board->winnerO[i].first * CellHeight+gridPos.y});
                 this->_data->window.draw( *this->_oWin );
             }
