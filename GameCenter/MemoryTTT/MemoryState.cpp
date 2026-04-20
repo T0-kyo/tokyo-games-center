@@ -88,7 +88,7 @@ namespace Tokyo {
 
             if(!_p1 && !_p2 && !_draw){
                 if(this->_data->input.isSpriteClicked(*this->_pauseButton, sf::Mouse::Button::Left, this->_data->window)){
-                    this->_data->machine.AddState(StateRef (new PauseState(this->_data)), false);
+                    this->_data->machine.AddState(StateRef (new PauseState(this->_data, GameID::Memory)), false);
                 }
 
                 if(_playerType != PlayerType::COMPUTER || _currentPlayer == _Player1.get()){
