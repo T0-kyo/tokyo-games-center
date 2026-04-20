@@ -13,7 +13,7 @@ namespace Tokyo {
         auto& texture1 = this->_data->assets.GetTexture( "Main Background" );
         this->_background = std::make_unique<sf::Sprite> ( texture1 );
 
-        this->_data->assets.LoadTexture("logo", "../Assets/Textures/logo-test.png");
+        this->_data->assets.LoadTexture("logo", "../Assets/Textures/logo-test1.png");
         this->_data->assets.LoadTexture("numerical", "../Assets/Textures/numerical.png");
         this->_data->assets.LoadTexture("4x4", "../Assets/Textures/4x4.png");
         this->_data->assets.LoadTexture("5x5", "../Assets/Textures/5x5.png");
