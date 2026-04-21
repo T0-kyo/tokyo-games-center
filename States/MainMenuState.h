@@ -25,6 +25,8 @@ namespace Tokyo {
         std::unique_ptr<sf::Sprite> _background;
         std::unique_ptr<sf::Sprite> _logo;
 
+        std::unique_ptr<sf::Sound> _choose;
+
         std::unique_ptr<sf::Sprite> _4x4TTT_Button;
         std::unique_ptr<sf::Sprite> _5x5TTT_Button;
         std::unique_ptr<sf::Sprite> _DiamondTTT_Button;

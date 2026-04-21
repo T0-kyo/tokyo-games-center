@@ -27,6 +27,7 @@ namespace Tokyo {
         this->_data->assets.LoadTexture("infinity", "../Assets/Textures/infinity.png");
         this->_data->assets.LoadTexture("sus", "../Assets/Textures/sus.png");
         this->_data->assets.LoadTexture("word", "../Assets/Textures/word.png");
+        this->_data->assets.LoadSound("choice", "../Assets/Audio/action-sound.wav");
         
         auto& logo = this->_data->assets.GetTexture( "logo" );
         auto& numerical = this->_data->assets.GetTexture( "numerical" );
@@ -42,9 +43,9 @@ namespace Tokyo {
         auto& ultimate = this->_data->assets.GetTexture( "ultimate" );
         auto& word = this->_data->assets.GetTexture( "word" );
         auto& infinity = this->_data->assets.GetTexture( "infinity" );
+        auto& choose = this->_data->assets.GetSound( "choice" );
 
         this->_logo = std::make_unique<sf::Sprite> ( logo );
-
         this->_WordTTT_Button = std::make_unique<sf::Sprite> ( word );
         this->_UltimateTTT_Button = std::make_unique<sf::Sprite> ( ultimate );
         this->_SUS_Button = std::make_unique<sf::Sprite> ( sus );
@@ -58,6 +59,7 @@ namespace Tokyo {
         this->_DiamondTTT_Button = std::make_unique<sf::Sprite> ( diamond );
         this->_5x5TTT_Button = std::make_unique<sf::Sprite> ( fivexfive );
         this->_4x4TTT_Button = std::make_unique<sf::Sprite> ( fourxfour );
+        this->_choose = std::make_unique<sf::Sound> ( choose );
 
         this->_background->setPosition({SCREEN_WIDTH / 2 - texture1.getSize().x * 0.5f, SCREEN_HEIGHT / 2 - texture1.getSize().y * 0.5f});
         this->_background->setColor( sf::Color( 255, 255, 255, 200 ) );
@@ -87,66 +89,79 @@ namespace Tokyo {
 
             if ( this->_data->input.isSpriteClicked( *this->_WordTTT_Button, sf::Mouse::Button::Left, this->_data->window ) ) {
                 this->_data->_delay.restart();
+                this->_choose->play();
                 this->_data->machine.AddState(StateRef(new ModeSelectionState(this->_data, GameID::Word)), false);
             }
 
             if ( this->_data->input.isSpriteClicked( *this->_UltimateTTT_Button, sf::Mouse::Button::Left, this->_data->window ) ) {
                 this->_data->_delay.restart();
+                this->_choose->play();
                 this->_data->machine.AddState(StateRef(new ModeSelectionState(this->_data, GameID::Ultimate)), false);
             }
 
             if ( this->_data->input.isSpriteClicked( *this->_SUS_Button, sf::Mouse::Button::Left, this->_data->window ) ) {
                 this->_data->_delay.restart();
+                this->_choose->play();
                 this->_data->machine.AddState(StateRef(new ModeSelectionState(this->_data, GameID::Sus)), false);
             }
 
             if ( this->_data->input.isSpriteClicked( *this->_PyramidTTT_Button, sf::Mouse::Button::Left, this->_data->window ) ) {
                 this->_data->_delay.restart();
+                this->_choose->play();
                 this->_data->machine.AddState(StateRef(new ModeSelectionState(this->_data, GameID::Pyramid)), false);
             }
 
             if ( this->_data->input.isSpriteClicked( *this->_ObstaclesTTT_Button, sf::Mouse::Button::Left, this->_data->window ) ) {
                 this->_data->_delay.restart();
+                this->_choose->play();
                 this->_data->machine.AddState(StateRef(new ModeSelectionState(this->_data, GameID::Obstacles)), false);
             }
 
             if ( this->_data->input.isSpriteClicked( *this->_NumericalTTT_Button, sf::Mouse::Button::Left, this->_data->window ) ) {
                 this->_data->_delay.restart();
+                this->_choose->play();
                 this->_data->machine.AddState(StateRef(new ModeSelectionState(this->_data, GameID::Numerical)), false);
             }
 
             if ( this->_data->input.isSpriteClicked( *this->_MisereTTT_Button, sf::Mouse::Button::Left, this->_data->window ) ) {
                 this->_data->_delay.restart();
+                this->_choose->play();
                 this->_data->machine.AddState(StateRef(new ModeSelectionState(this->_data, GameID::Misere)), false);
             }
 
             if ( this->_data->input.isSpriteClicked( *this->_MemoryTTT_Button, sf::Mouse::Button::Left, this->_data->window ) ) {
                 this->_data->_delay.restart();
+                this->_choose->play();
                 this->_data->machine.AddState(StateRef(new ModeSelectionState(this->_data, GameID::Memory)), false);
             }
 
             if ( this->_data->input.isSpriteClicked( *this->_InfinityTTT_Button, sf::Mouse::Button::Left, this->_data->window ) ) {
                 this->_data->_delay.restart();
+                this->_choose->play();
                 this->_data->machine.AddState(StateRef(new ModeSelectionState(this->_data, GameID::Infinity)), false);
             }
 
             if ( this->_data->input.isSpriteClicked( *this->_FourInARow_Button, sf::Mouse::Button::Left, this->_data->window ) ) {
                 this->_data->_delay.restart();
+                this->_choose->play();
                 this->_data->machine.AddState(StateRef(new ModeSelectionState(this->_data, GameID::FourInARow)), false);
             }
 
             if ( this->_data->input.isSpriteClicked( *this->_DiamondTTT_Button, sf::Mouse::Button::Left, this->_data->window ) ) {
                 this->_data->_delay.restart();
+                this->_choose->play();
                 this->_data->machine.AddState(StateRef(new ModeSelectionState(this->_data, GameID::Diamond)), false);
             }
 
             if ( this->_data->input.isSpriteClicked( *this->_5x5TTT_Button, sf::Mouse::Button::Left, this->_data->window ) ) {
                 this->_data->_delay.restart();
+                this->_choose->play();
                 this->_data->machine.AddState(StateRef(new ModeSelectionState(this->_data, GameID::_5x5)), false);
             }
 
             if ( this->_data->input.isSpriteClicked( *this->_4x4TTT_Button, sf::Mouse::Button::Left, this->_data->window ) ) {
                 this->_data->_delay.restart();
+                this->_choose->play();
                 this->_data->machine.AddState(StateRef(new ModeSelectionState(this->_data, GameID::_4x4)), false);
             }
         }

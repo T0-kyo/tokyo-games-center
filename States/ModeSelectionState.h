@@ -11,7 +11,6 @@ namespace Tokyo {
 
     class ModeSelectionState : public State {
         public:
-
         ModeSelectionState ( GameDataRef data, GameID gameID );
 
         void Init();
@@ -20,9 +19,11 @@ namespace Tokyo {
         void Draw( float dt );
 
         private:
-
         GameID _gameID;
         GameDataRef _data;
+
+        std::unique_ptr<sf::Sound> _choose;
+
         std::unique_ptr<sf::Sprite> _background;
         std::unique_ptr<sf::Text> _choice1;
         std::unique_ptr<sf::Text> _choice2;

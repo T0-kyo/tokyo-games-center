@@ -22,6 +22,9 @@ namespace Tokyo {
         this->_data->assets.LoadTexture("O sprite", "../Assets/Textures/_4O.png");
         this->_data->assets.LoadTexture("O win", "../Assets/Textures/RED 4O.png");
         this->_data->assets.LoadTexture("X win", "../Assets/Textures/BLUE 4X.png");
+        this->_data->assets.LoadSound("move", "../Assets/Audio/move-sound.wav");
+        this->_data->assets.LoadSound("option", "../Assets/Audio/action-sound.wav");
+        this->_data->assets.LoadSound("wrong", "../Assets/Audio/wrong-move.wav");
 
         auto& bg = this->_data->assets.GetTexture( "Game Background" );
         auto& pause = this->_data->assets.GetTexture( "Pause Button" );
@@ -31,7 +34,10 @@ namespace Tokyo {
         auto& O = this->_data->assets.GetTexture( "O sprite" );
         auto& Xwin = this->_data->assets.GetTexture( "X win" );
         auto& Owin = this->_data->assets.GetTexture( "O win" );
-        auto& font = this->_data->assets.GetFont("Main Font");
+        auto& font = this->_data->assets.GetFont( "Main Font" );
+        auto& move = this->_data->assets.GetSound( "move" );
+        auto& option = this->_data->assets.GetSound( "option" );
+        auto& wrong = this->_data->assets.GetSound( "wrong" );
 
         this->_background = make_unique<sf::Sprite>( bg );
         this->_pauseButton = make_unique<sf::Sprite>( pause );
@@ -41,6 +47,9 @@ namespace Tokyo {
         this->_o = make_unique<sf::Sprite>( O );
         this->_xwin = make_unique<sf::Sprite>( Xwin );
         this->_owin = make_unique<sf::Sprite>( Owin );
+        this->_move = make_unique<sf::Sound>( move );
+        this->_option = make_unique<sf::Sound>( option );
+        this->_wrong = make_unique<sf::Sound>( wrong );
 
         this->_background->setPosition({SCREEN_WIDTH/2 - bg.getSize().x * 0.5f, SCREEN_HEIGHT/2 - bg.getSize().y * 0.5f});
         this->_background->setColor(sf::Color(255, 255, 255, 100));
@@ -89,6 +98,7 @@ namespace Tokyo {
             }
 
             if(_data->input.isSpriteClicked(*_pauseButton, sf::Mouse::Button::Left, _data->window)){
+                this->_option->play();
                 this->_data->machine.AddState(StateRef (new PauseState(this->_data, GameID::_4x4)), false);
             }
 
@@ -113,6 +123,7 @@ namespace Tokyo {
                         if(dir=='U' || dir=='D' || dir=='L' || dir=='R'){
                             Move move(_row, _col, dir);
                             if(this->_4x4Board->update_board(&move)){
+                                this->_move->play();
 
                                 if(_4x4Board->is_win(_currentPlayer)) _p1 = true;
 
@@ -123,6 +134,7 @@ namespace Tokyo {
                                 _clock.restart();
                                 _gameOverClock.restart();
                             }
+                            else this->_wrong->play();
                         }
                     }
                     if(this->_data->input.isSpriteClicked( *this->_grid, sf::Mouse::Button::Left, this->_data->window)){
@@ -150,16 +162,18 @@ namespace Tokyo {
                         if(dir=='U' || dir=='D' || dir=='L' || dir=='R'){
                             Move move(_row, _col, dir);
                             if(this->_4x4Board->update_board(&move)){
+                                this->_move->play();
 
                                 if(_4x4Board->is_win(_currentPlayer)) _p1 = true;
 
                                 else if(_4x4Board->is_draw(_currentPlayer)) _draw = true;
 
-                                _cellChosen = false;
                                 _currentPlayer = _Player2.get();
                                 _clock.restart();
                                 _gameOverClock.restart();
                             }
+                            else this->_wrong->play();
+                            _cellChosen = false;
                         }
                     }
                 }
@@ -197,6 +211,7 @@ namespace Tokyo {
                         if(dir=='U' || dir=='D' || dir=='L' || dir=='R'){
                             Move move(_row, _col, dir);
                             if(this->_4x4Board->update_board(&move)){
+                                this->_move->play();
 
                                 if(_4x4Board->is_win(_currentPlayer)) _p2 = true;
 
@@ -207,6 +222,7 @@ namespace Tokyo {
                                 _wait.restart();
                                 _gameOverClock.restart();
                             }
+                            else this->_wrong->play();
                         }
                     }
 
@@ -235,16 +251,18 @@ namespace Tokyo {
                         if(dir=='U' || dir=='D' || dir=='L' || dir=='R'){
                             Move move(_row, _col, dir);
                             if(this->_4x4Board->update_board(&move)){
+                                this->_move->play();
 
                                 if(_4x4Board->is_win(_currentPlayer)) _p2 = true;
 
                                 else if(_4x4Board->is_draw(_currentPlayer)) _draw = true;
 
-                                _cellChosen = false;
                                 _currentPlayer = _Player1.get();
                                 _wait.restart();
                                 _gameOverClock.restart();
                             }
+                            else this->_wrong->play();
+                            _cellChosen = false;
                         }
                     }
                 }
@@ -298,6 +316,7 @@ namespace Tokyo {
             Move move(x, y, sym);
         
             if(this->_4x4Board->update_board(&move)){
+                this->_move->play();
 
                 if(_4x4Board->is_win(_currentPlayer)){ 
                     _p2 = true;

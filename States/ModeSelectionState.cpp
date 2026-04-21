@@ -21,20 +21,23 @@ namespace Tokyo {
 
     void ModeSelectionState::Init() {
         this->_data->assets.LoadTexture("backButton", "../Assets/Textures/back-button.png");
+        this->_data->assets.LoadSound("choose", "../Assets/Audio/action-sound.wav");
 
-        auto& texture1 = this->_data->assets.GetTexture( "Main Background" );
-        this->_background = std::make_unique<sf::Sprite> ( texture1 );
-
+        auto& bg = this->_data->assets.GetTexture( "Main Background" );
         auto& back = this->_data->assets.GetTexture("backButton");
-        this->_backButton = std::make_unique<sf::Sprite> ( back );
+        auto& font = this->_data->assets.GetFont( "Main Font" );
+        auto& choose = this->_data->assets.GetSound( "choose" );
 
-        auto& texture2 = this->_data->assets.GetFont( "Main Font" );
-        this->_choice1 = std::make_unique<sf::Text> ( texture2, "Player vs Player", MAIN_MENU_TITLE_SIZE/1.5f );
+        this->_background = std::make_unique<sf::Sprite> ( bg );
+        this->_backButton = std::make_unique<sf::Sprite> ( back );
+        this->_choose = std::make_unique<sf::Sound> ( choose );
+        this->_choice1 = std::make_unique<sf::Text> ( font, "Player vs Player", MAIN_MENU_TITLE_SIZE/1.5f );
+        this->_choice2 = std::make_unique<sf::Text> ( font, "Player vs Computer", MAIN_MENU_TITLE_SIZE/1.5f );
+
         sf::FloatRect textRect1 = this->_choice1->getLocalBounds();
-        this->_choice2 = std::make_unique<sf::Text> ( texture2, "Player vs Computer", MAIN_MENU_TITLE_SIZE/1.5f );
         sf::FloatRect textRect2 = this->_choice2->getLocalBounds();
 
-        this->_background->setPosition({SCREEN_WIDTH / 2 - texture1.getSize().x * 0.5f, SCREEN_HEIGHT / 2 - texture1.getSize().y * 0.5f});
+        this->_background->setPosition({SCREEN_WIDTH / 2 - bg.getSize().x * 0.5f, SCREEN_HEIGHT / 2 - bg.getSize().y * 0.5f});
         this->_background->setColor( sf::Color( 255, 255, 255, 100 ) );
 
         this->_backButton->setPosition({back.getSize().x * 0.3f, back.getSize().y * 0.6f});
@@ -53,11 +56,13 @@ namespace Tokyo {
             }
 
             if(this->_data->input.isSpriteClicked(*this->_backButton, sf::Mouse::Button::Left, this->_data->window)){
+                this->_choose->play();
                 this->_data->machine.RemoveState(1);
             }
 
             if ( this->_data->input.isTextClicked( *this->_choice1, sf::Mouse::Button::Left, this->_data->window ) ) {
                 this->_data->_delay.restart();
+                this->_choose->play();
                 switch (this->_gameID) {
                     case GameID::Word:
                         this->_data->machine.AddState(StateRef(new WordState(this->_data, PlayerType::HUMAN)), true);
@@ -105,6 +110,7 @@ namespace Tokyo {
 
             if ( this->_data->input.isTextClicked( *this->_choice2, sf::Mouse::Button::Left, this->_data->window ) ) {
                 this->_data->_delay.restart();
+                this->_choose->play();
                 switch (this->_gameID) {
                     case GameID::Word:
                         this->_data->machine.AddState(StateRef(new WordState(this->_data, PlayerType::COMPUTER)), true);
