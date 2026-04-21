@@ -22,6 +22,9 @@ namespace Tokyo {
         this->_data->assets.LoadTexture("O win", "../Assets/Textures/RED 5O.png");
         this->_data->assets.LoadTexture("Obs1", "../Assets/Textures/ghost-obstacle.png");
         this->_data->assets.LoadTexture("Obs2", "../Assets/Textures/spider-obstacle.png");
+        this->_data->assets.LoadSound("move", "../Assets/Audio/move-sound.wav");
+        this->_data->assets.LoadSound("option", "../Assets/Audio/action-sound.wav");
+        this->_data->assets.LoadSound("wrong", "../Assets/Audio/wrong-move.wav");
 
         auto& bg = this->_data->assets.GetTexture("Game bg");
         auto& pause = this->_data->assets.GetTexture("Pause Button");
@@ -32,7 +35,10 @@ namespace Tokyo {
         auto& Owin = this->_data->assets.GetTexture("O win");
         auto& obs1 = this->_data->assets.GetTexture("Obs1");
         auto& obs2 = this->_data->assets.GetTexture("Obs2");
-        auto& font = this->_data->assets.GetFont("Main Font");       
+        auto& font = this->_data->assets.GetFont("Main Font");
+        auto& move = this->_data->assets.GetSound( "move" );
+        auto& option = this->_data->assets.GetSound( "option" );
+        auto& wrong = this->_data->assets.GetSound( "wrong" );
         
         this->_background = std::make_unique<sf::Sprite>(bg);
         this->_pauseButton= std::make_unique<sf::Sprite>(pause);
@@ -43,6 +49,9 @@ namespace Tokyo {
         this->_Owin = std::make_unique<sf::Sprite>(Owin);
         this->_obs1 = std::make_unique<sf::Sprite>(obs1);
         this->_obs2 = std::make_unique<sf::Sprite>(obs2);
+        this->_move = make_unique<sf::Sound>( move );
+        this->_option = make_unique<sf::Sound>( option );
+        this->_wrong = make_unique<sf::Sound>( wrong );
 
         this->_background->setPosition({SCREEN_WIDTH/2 - bg.getSize().x*0.5f, SCREEN_HEIGHT/2 - bg.getSize().y*0.5f});
         this->_background->setColor(sf::Color(255, 255, 255, 100));
@@ -90,6 +99,7 @@ namespace Tokyo {
 
             if(!_p1 && !_p2 && !_draw){
                 if(this->_data->input.isSpriteClicked(*this->_pauseButton, sf::Mouse::Button::Left, this->_data->window)){
+                    this->_option->play();
                     this->_data->machine.AddState(StateRef (new PauseState(this->_data, GameID::Obstacles)), false);
                 }
 
@@ -103,6 +113,7 @@ namespace Tokyo {
                         if (_obstaclesBoard->get_cell(_row, _col) == ' '){
                             Move move(_row, _col, _currentPlayer->get_symbol());
                             this->_obstaclesBoard->update_board(&move);
+                            this->_move->play();
 
                             if(_obstaclesBoard->is_win(_currentPlayer)){
                                 if(_currentPlayer == _Player1.get()) _p1 = true;
@@ -117,6 +128,7 @@ namespace Tokyo {
                             _clock.restart();
                             _gameOverClock.restart();          
                         }
+                        else this->_wrong->play();
                     }
                 }
             }
@@ -152,6 +164,7 @@ namespace Tokyo {
 
             Move move(x, y, _currentPlayer->get_symbol());
             this->_obstaclesBoard->update_board(&move);
+            this->_move->play();
 
             if(_obstaclesBoard->is_win(_currentPlayer)){ 
                 _p2 = true;

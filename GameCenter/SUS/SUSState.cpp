@@ -18,6 +18,9 @@ namespace Tokyo {
         this->_data->assets.LoadTexture("3x3 Grid", "../Assets/Textures/Grid.png");
         this->_data->assets.LoadTexture("S sprite", "../Assets/Textures/SS.png");
         this->_data->assets.LoadTexture("U sprite", "../Assets/Textures/UU.png");
+        this->_data->assets.LoadSound("move", "../Assets/Audio/move-sound.wav");
+        this->_data->assets.LoadSound("option", "../Assets/Audio/action-sound.wav");
+        this->_data->assets.LoadSound("wrong", "../Assets/Audio/wrong-move.wav");
 
         auto& bg = this->_data->assets.GetTexture("Game Background");
         auto& pause = this->_data->assets.GetTexture( "Pause Button" );
@@ -25,12 +28,18 @@ namespace Tokyo {
         auto& s = this->_data->assets.GetTexture( "S sprite" );
         auto& u = this->_data->assets.GetTexture( "U sprite" );
         auto& font = this->_data->assets.GetFont("Main Font");
+        auto& move = this->_data->assets.GetSound( "move" );
+        auto& option = this->_data->assets.GetSound( "option" );
+        auto& wrong = this->_data->assets.GetSound( "wrong" );
 
         this->_background = make_unique<sf::Sprite>( bg );
         this->_pauseButton = make_unique<sf::Sprite>( pause );
         this->_grid = make_unique<sf::Sprite>( grid );
         this->_s = make_unique<sf::Sprite>( s );
         this->_u = make_unique<sf::Sprite>( u );
+        this->_move = make_unique<sf::Sound>( move );
+        this->_option = make_unique<sf::Sound>( option );
+        this->_wrong = make_unique<sf::Sound>( wrong );
 
         this->_background->setPosition({SCREEN_WIDTH/2 - bg.getSize().x * 0.5f, SCREEN_HEIGHT/2 - bg.getSize().y * 0.5f});
         this->_background->setColor(sf::Color(255, 255, 255, 100));
@@ -89,6 +98,7 @@ namespace Tokyo {
 
             if(!_p1 && !_p2 && !_draw){ 
                 if(_data->input.isSpriteClicked(*_pauseButton, sf::Mouse::Button::Left, _data->window)){
+                    this->_option->play();
                     this->_data->machine.AddState(StateRef (new PauseState(this->_data, GameID::Sus)), false);
                 }
             
@@ -102,15 +112,18 @@ namespace Tokyo {
                         if(_susBoard->get_cell(_row, _col) == ' '){
                             Move move(_row, _col, this->_currentPlayer->get_symbol());
                             this->_susBoard->update_board(&move);
+                            this->_move->play();
+
                             if(_susBoard->is_win(_currentPlayer)) _p1 = true;
                             else if(_susBoard->is_lose(_currentPlayer)) _p2 = true;
                             else if(_susBoard->is_draw(_currentPlayer)) _draw = true;
                             if(_playerType == PlayerType::HUMAN) _currentPlayer = (_currentPlayer == _Player1.get()) ? _Player2.get() : _Player1.get();
                             else _currentPlayer = _Player2.get();
+
                             _clock.restart();
                             _gameOverClock.restart();
                         }
-                    
+                    else this->_wrong->play();
                     }
                 }
             }
@@ -152,6 +165,8 @@ namespace Tokyo {
             Move move(x, y, _currentPlayer->get_symbol());
 
             if(this->_susBoard->update_board(&move)){
+                this->_move->play();
+                
                 if(_susBoard->is_win(_currentPlayer)){ 
                     if(_currentPlayer == _Player2.get()) _p2 = true;
                     else _p1 = true;

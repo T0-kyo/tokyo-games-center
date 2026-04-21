@@ -1,6 +1,5 @@
 #include "4x4State.h"
 
-
 namespace Tokyo {
 
     State4x4::State4x4 ( GameDataRef data, PlayerType playerType ) : _data( data ), _playerType(playerType) {}
