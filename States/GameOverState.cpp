@@ -12,23 +12,25 @@ namespace Tokyo {
         this->_data->assets.LoadTexture("Medal", "../Assets/Textures/Medal.png");
         this->_data->assets.LoadSound("gameover", "../Assets/Audio/gameOver-sound.wav");
         this->_data->assets.LoadSound("draw", "../Assets/Audio/draw-sound.wav");
-
+        this->_data->assets.LoadSound("option3", "../Assets/Audio/action-sound.wav");
 
         auto& bg = _data->assets.GetTexture("Game Over bg");
         auto& play = _data->assets.GetTexture("Play Again");
         auto& home = _data->assets.GetTexture("Go Home");
         auto& medal = _data->assets.GetTexture("Medal");
         auto& font = _data->assets.GetFont("Main Font");
-        auto& buffer = this->_data->assets.GetSound("gameover");
-        auto& buffer2 = this->_data->assets.GetSound("draw");
+        auto& gameOver = this->_data->assets.GetSound("gameover");
+        auto& draw = this->_data->assets.GetSound("draw");
+        auto& option = this->_data->assets.GetSound("option3");
 
 
         this->_background = make_unique<sf::Sprite>( bg );
         this->_playAgain = make_unique<sf::Sprite>( play );
         this->_home = make_unique<sf::Sprite>( home );
         this->_medal = make_unique<sf::Sprite>( medal );
-        this->_gameover = std::make_unique<sf::Sound>( buffer );
-        this->_draw = std::make_unique<sf::Sound>( buffer2 );
+        this->_gameover = std::make_unique<sf::Sound>( gameOver );
+        this->_draw = std::make_unique<sf::Sound>( draw );
+        this->_option = std::make_unique<sf::Sound>( option );
 
 
         if(_winner == Winner::p1) this->_announce = make_unique<sf::Text>( font, "Winner: Player1", MAIN_MENU_TITLE_SIZE / 1.5 );
@@ -60,10 +62,12 @@ namespace Tokyo {
                 this->_data->window.close();
             }
             if(_data->input.isSpriteClicked(*this->_home, sf::Mouse::Button::Left, this->_data->window)){
+                this->_option->play();
                 this->_data->_delay.restart();
                 this->_data->machine.RemoveState(1);
             }
             if(_data->input.isSpriteClicked(*this->_playAgain, sf::Mouse::Button::Left, _data->window)){
+                this->_option->play();
                 this->_data->_delay.restart();
                 switch(_gameID){
                     case GameID::Word://1

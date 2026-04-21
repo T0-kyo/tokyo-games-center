@@ -1,6 +1,5 @@
 #include "NumericalState.h"
 
-
 namespace Tokyo {
 
     NumericalState::NumericalState ( GameDataRef data, PlayerType playerType ) : _data( data ), _playerType( playerType ) {}
@@ -19,6 +18,9 @@ namespace Tokyo {
         this->_data->assets.LoadTexture("Pause Button", PAUSE_BUTTON);
         this->_data->assets.LoadTexture("Grid", GRID);
         this->_data->assets.LoadTexture("cell", CELL);
+        this->_data->assets.LoadSound("move", "../Assets/Audio/move-sound.wav");
+        this->_data->assets.LoadSound("option", "../Assets/Audio/action-sound.wav");
+        this->_data->assets.LoadSound("wrong", "../Assets/Audio/wrong-move.wav");
 
         for (int n=1; n<=9; ++n){
             std::string key = to_string(n);
@@ -32,6 +34,9 @@ namespace Tokyo {
         auto& background = this->_data->assets.GetTexture("Game Background");
         auto& font = this->_data->assets.GetFont("Main Font");
         auto& let = this->_data->assets.GetTexture("1");
+        auto& move = this->_data->assets.GetSound( "move" );
+        auto& option = this->_data->assets.GetSound( "option" );
+        auto& wrong = this->_data->assets.GetSound( "wrong" );
         
         this->_background = std::make_unique<sf::Sprite> ( background );
         this->_grid = std::make_unique<sf::Sprite> ( grid );
@@ -82,10 +87,15 @@ namespace Tokyo {
             else if(_p2) this->_data->machine.AddState(StateRef (new GameOverState(this->_data, GameID::Numerical, Winner::p2)), true);
             else if(_draw) this->_data->machine.AddState(StateRef (new GameOverState(this->_data, GameID::Numerical, Winner::draw)), true);
         }
-        
+
         while ( auto event = this->_data->window.pollEvent() ) {
             if ( event->is<sf::Event::Closed>() ) {
                 this->_data->window.close();
+            }
+
+            if(this->_data->input.isSpriteClicked( *this->_pauseButton, sf::Mouse::Button::Left, this->_data->window )){
+                this->_option->play();
+                this->_data->machine.AddState(StateRef (new PauseState(this->_data, GameID::Numerical)), false);
             }
 
             if(_playerType != PlayerType::COMPUTER || _currentPlayer == _Player1.get()){
@@ -107,6 +117,7 @@ namespace Tokyo {
                         if(num >= '0' && num <= '9'){
                             Move move(_row, _col, num-'0');
                             if(this->_NumericalBoard->update_board(&move)){
+                                this->_move->play();
 
                                 _isUsed[num-'0'] = true;
 
@@ -130,13 +141,10 @@ namespace Tokyo {
                                 _clock.restart();
                                 _gameOverClock.restart();
                             }
+                            else this->_wrong->play();
                         }
                     }
                 }
-            }
-
-            if(this->_data->input.isSpriteClicked( *this->_pauseButton, sf::Mouse::Button::Left, this->_data->window )){
-                this->_data->machine.AddState(StateRef (new PauseState(this->_data, GameID::Numerical)), false);
             }
         }
     }
@@ -172,8 +180,9 @@ namespace Tokyo {
 
             Move move(x, y, num);
             this->_NumericalBoard->update_board(&move);
+            this->_move->play();
 
-             _isUsed[num] = true;
+            _isUsed[num] = true;
 
             if(_NumericalBoard->is_win(_currentPlayer)){ 
                 _p2 = true;

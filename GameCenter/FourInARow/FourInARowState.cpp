@@ -1,6 +1,5 @@
 #include "FourInARowState.h"
 
-
 namespace Tokyo {
 
     FourInARowState::FourInARowState ( GameDataRef data, PlayerType playerType ) : _data( data ) {}
@@ -18,6 +17,9 @@ namespace Tokyo {
         this->_data->assets.LoadTexture("Connect4 Grid", "../Assets/Textures/connect4-grid.png");
         this->_data->assets.LoadTexture("x", "../Assets/Textures/_5X.png");
         this->_data->assets.LoadTexture("o", "../Assets/Textures/_5O.png");
+        this->_data->assets.LoadSound("move", "../Assets/Audio/move-sound.wav");
+        this->_data->assets.LoadSound("option", "../Assets/Audio/action-sound.wav");
+        this->_data->assets.LoadSound("wrong", "../Assets/Audio/wrong-move.wav");
 
         auto& bg = this->_data->assets.GetTexture( "Background" );
         auto& pause = this->_data->assets.GetTexture( "Pause Button" );
@@ -25,12 +27,18 @@ namespace Tokyo {
         auto& X = this->_data->assets.GetTexture( "x" );
         auto& O = this->_data->assets.GetTexture( "o" );
         auto& font = this->_data->assets.GetFont("Main Font");
+        auto& move = this->_data->assets.GetSound( "move" );
+        auto& option = this->_data->assets.GetSound( "option" );
+        auto& wrong = this->_data->assets.GetSound( "wrong" );
 
         this->_background = make_unique<sf::Sprite>( bg );
         this->_pauseButton = make_unique<sf::Sprite>( pause );
         this->_grid = make_unique<sf::Sprite>( grid );
         this->_x = make_unique<sf::Sprite>( X );
         this->_o = make_unique<sf::Sprite>( O );
+        this->_move = make_unique<sf::Sound>( move );
+        this->_option = make_unique<sf::Sound>( option );
+        this->_wrong = make_unique<sf::Sound>( wrong );
 
         this->_background->setPosition({SCREEN_WIDTH/2 - bg.getSize().x * 0.5f, SCREEN_HEIGHT/2 - bg.getSize().y * 0.5f});
         this->_background->setColor(sf::Color(255, 255, 255, 100));
@@ -95,6 +103,15 @@ namespace Tokyo {
         
     void FourInARowState::Draw ( float dt ) {
         this->_data->window.clear( sf::Color::Black );
+
+        this->_data->window.draw( *this->_background );
+        this->_data->window.draw( *this->_grid );
+        this->_data->window.draw( *this->_pauseButton );
+        this->_data->window.draw( *this->_player1 );
+        this->_data->window.draw( *this->_player2 );
+        this->_data->window.draw( *this->_player1Turn );
+        this->_data->window.draw( *this->_player2Turn );
+
         this->_data->window.display();
     }
 

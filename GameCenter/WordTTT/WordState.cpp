@@ -18,6 +18,9 @@ namespace Tokyo {
         this->_data->assets.LoadTexture("Pause Button", PAUSE_BUTTON);
         this->_data->assets.LoadTexture("Grid", GRID);
         this->_data->assets.LoadTexture("cell", CELL);
+        this->_data->assets.LoadSound("move", "../Assets/Audio/move-sound.wav");
+        this->_data->assets.LoadSound("option", "../Assets/Audio/action-sound.wav");
+        this->_data->assets.LoadSound("wrong", "../Assets/Audio/wrong-move.wav");
 
         for (char c='A'; c<='Z'; ++c){
             std::string key(1, c);
@@ -31,12 +34,18 @@ namespace Tokyo {
         auto& background = this->_data->assets.GetTexture("Game Background");
         auto& font = this->_data->assets.GetFont("Main Font");
         auto& let = this->_data->assets.GetTexture("A");
+        auto& move = this->_data->assets.GetSound( "move" );
+        auto& option = this->_data->assets.GetSound( "option" );
+        auto& wrong = this->_data->assets.GetSound( "wrong" );
         
         this->_background = std::make_unique<sf::Sprite> ( background );
         this->_grid = std::make_unique<sf::Sprite> ( grid );
         this->_pauseButton = std::make_unique<sf::Sprite> ( pause );
         this->_letter = std::make_unique<sf::Sprite>( let );
         this->_currentCell = std::make_unique<sf::Sprite>( cell );
+        this->_move = make_unique<sf::Sound>( move );
+        this->_option = make_unique<sf::Sound>( option );
+        this->_wrong = make_unique<sf::Sound>( wrong );
 
         this->_background->setPosition({SCREEN_WIDTH * 0.5f - background.getSize().x * 0.5f, SCREEN_HEIGHT * 0.5f - background.getSize().y * 0.5f});
         this->_background->setColor( sf::Color( 255, 255, 255, 100 ) );
@@ -92,6 +101,11 @@ namespace Tokyo {
                 this->_data->window.close();
             }
 
+            if(this->_data->input.isSpriteClicked( *this->_pauseButton, sf::Mouse::Button::Left, this->_data->window )){
+                this->_option->play();
+                this->_data->machine.AddState(StateRef (new PauseState(this->_data, GameID::Word)), false);
+            }
+
             if(_playerType != PlayerType::COMPUTER || _currentPlayer == _Player1.get()){
                 if(this->_data->input.isSpriteClicked( *this->_grid, sf::Mouse::Button::Left, this->_data->window )){
                     sf::Vector2i mousePos = this->_data->input.getMousePosition(this->_data->window);
@@ -112,6 +126,7 @@ namespace Tokyo {
                         if(letter >= 'A' && letter <= 'Z'){
                             Move move(_row, _col, letter);
                             this->_WordBoard->update_board(&move);
+                            this->_move->play();
 
                             if(_WordBoard->is_win(_currentPlayer)){
                                 if(_currentPlayer == _Player1.get()) _p1 = true;
@@ -133,12 +148,9 @@ namespace Tokyo {
                             _clock.restart();
                             _gameOverClock.restart();
                         }
+                        else this->_wrong->play();
                     }
                 }
-            }
-
-            if(this->_data->input.isSpriteClicked( *this->_pauseButton, sf::Mouse::Button::Left, this->_data->window )){
-                this->_data->machine.AddState(StateRef (new PauseState(this->_data, GameID::Word)), false);
             }
         }
     }
@@ -181,6 +193,7 @@ namespace Tokyo {
             Move move(x, y, sym);
         
             this->_WordBoard->update_board(&move);
+            this->_move->play();
 
             if(_WordBoard->is_win(_currentPlayer)){ 
                 if(_currentPlayer == _Player2.get()) _p2 = true;

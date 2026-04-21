@@ -7,7 +7,6 @@
 #include "../DEFENITIONS.h"
 #include <memory>
 
-
 namespace Tokyo {
     class GameOverState : public State {
         public:
@@ -33,5 +32,6 @@ namespace Tokyo {
 
         std::unique_ptr<sf::Sound> _gameover;
         std::unique_ptr<sf::Sound> _draw;
+        std::unique_ptr<sf::Sound> _option;
     };
 }

@@ -29,6 +29,9 @@ namespace Tokyo{
         std::unique_ptr<sf::Sprite> _book;
         std::unique_ptr<sf::Sprite> _rules;
 
+        std::unique_ptr<sf::Sound> _bookSound;
+        std::unique_ptr<sf::Sound> _option;
+
         bool isRules = false;
     };
 }

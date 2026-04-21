@@ -26,6 +26,10 @@ namespace Tokyo {
         private:
         GameDataRef _data;
 
+        std::unique_ptr<sf::Sound> _move;
+        std::unique_ptr<sf::Sound> _option;
+        std::unique_ptr<sf::Sound> _wrong;
+
         std::shared_ptr<Player<char>> _Player1;
         std::shared_ptr<Player<char>> _Player2;
         std::shared_ptr<Ultimate_Board> _UltimateBoard;

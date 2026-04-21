@@ -10,7 +10,6 @@ namespace Tokyo{
         this->_data->assets.LoadTexture( "Resume", "../Assets/Textures/Resume Button.png" );
         this->_data->assets.LoadTexture( "Home", "../Assets/Textures/Home Button.png" );
         this->_data->assets.LoadTexture( "Book", "../Assets/Textures/book.png" );
-
         this->_data->assets.LoadTexture( "sus-rules" , "../Assets/Textures/sus-rules.png");
         this->_data->assets.LoadTexture( "4x4-rules" , "../Assets/Textures/4x4-rules.png");
         this->_data->assets.LoadTexture( "5x5-rules" , "../Assets/Textures/5x5-rules.png");
@@ -24,6 +23,8 @@ namespace Tokyo{
         this->_data->assets.LoadTexture( "pyramid-rules" , "../Assets/Textures/pyramid-rules.png");
         this->_data->assets.LoadTexture( "ultimate-rules" , "../Assets/Textures/ultimate-rules.png");
         this->_data->assets.LoadTexture( "word-rules" , "../Assets/Textures/word-rules.png");
+        this->_data->assets.LoadSound( "book-sound", "../Assets/Audio/ruleBook-sound.wav" );
+        this->_data->assets.LoadSound( "option1", "../Assets/Audio/action-sound.wav" );
 
         switch(_gameId){
                     case GameID::Word://1
@@ -86,11 +87,15 @@ namespace Tokyo{
         auto& res = this->_data->assets.GetTexture("Resume");
         auto& hm = this->_data->assets.GetTexture("Home");
         auto& bk = this->_data->assets.GetTexture("Book");
+        auto& bookSound = this->_data->assets.GetSound("book-sound");
+        auto& option = this->_data->assets.GetSound("option1");
 
         this->_background = std::make_unique<sf::Sprite>(bg);
         this->_resume = std::make_unique<sf::Sprite>(res);
         this->_home = std::make_unique<sf::Sprite>(hm);
         this->_book = std::make_unique<sf::Sprite>(bk);
+        this->_bookSound = std::make_unique<sf::Sound>(bookSound);
+        this->_option = std::make_unique<sf::Sound>(option);
 
         this->_background->setPosition({SCREEN_WIDTH / 2 - bg.getSize().x*0.5f, SCREEN_HEIGHT / 2 - bg.getSize().y*0.5f});
         this->_background->setColor(sf::Color(255, 255, 255, 70));
@@ -115,15 +120,18 @@ namespace Tokyo{
             }
             if(!isRules){
                 if(this->_data->input.isSpriteClicked(*this->_resume, sf::Mouse::Button::Left, this->_data->window)){
+                    this->_option->play();
                     this->_data->_delay.restart();
                     this->_data->machine.RemoveState(1);
                 }
                 if(this->_data->input.isSpriteClicked(*this->_home, sf::Mouse::Button::Left, this->_data->window)){
+                    this->_option->play();
                     this->_data->_delay.restart();
                     this->_data->machine.AddState(StateRef (new HomeState(this->_data)), false);
                 }
             }
             if(this->_data->input.isSpriteClicked(*this->_book, sf::Mouse::Button::Left, this->_data->window)){
+                this->_bookSound->play();
                 isRules = 1 - isRules;
             }
         }
