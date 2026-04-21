@@ -14,7 +14,6 @@
 #include "../GameCenter/5x5_TTT/5x5State.h"
 #include "../GameManager/GamePlay.h"
 
-
 namespace Tokyo {
 
     ModeSelectionState::ModeSelectionState ( GameDataRef data, GameID gameID ) : _data( data ), _gameID( gameID ) {}

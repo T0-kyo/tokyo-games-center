@@ -21,9 +21,12 @@ namespace Tokyo{
 
         private:
         GameDataRef _data;
+
         std::unique_ptr<sf::Sprite> _background;
         std::unique_ptr<sf::Text> _yes;
         std::unique_ptr<sf::Text> _no;
         std::unique_ptr<sf::Text> _quest;
+
+        std::unique_ptr<sf::Sound> _option;
     };
 }

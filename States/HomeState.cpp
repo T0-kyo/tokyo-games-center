@@ -6,11 +6,14 @@ namespace Tokyo{
 
     void HomeState::Init(){
         this->_data->assets.LoadTexture( "HomeBG", "../Assets/Textures/MainBackground.png" );
+        this->_data->assets.LoadSound( "option2", "../Assets/Audio/action-sound.wav" );
 
-        auto& bg = this->_data->assets.GetTexture("HomeBG");
+        auto& bg = this->_data->assets.GetTexture( "HomeBG" );
         auto& text = this->_data->assets.GetFont( "Main Font" );
+        auto& option = this->_data->assets.GetSound( "option2" );
 
-        this->_background = std::make_unique<sf::Sprite>(bg);
+        this->_background = std::make_unique<sf::Sprite>( bg );
+        this->_option = std::make_unique<sf::Sound>( option );
 
         this->_background->setPosition({SCREEN_WIDTH / 2 - bg.getSize().x*0.5f, SCREEN_HEIGHT / 2 - bg.getSize().y*0.5f});
         this->_background->setColor(sf::Color(255, 255, 255, 70));
@@ -40,10 +43,12 @@ namespace Tokyo{
                 this->_data->window.close();
             }
             if(this->_data->input.isTextClicked(*this->_yes, sf::Mouse::Button::Left, this->_data->window)){
+                this->_option->play();
                 this->_data->_delay.restart();
                 this->_data->machine.RemoveState(3);
             }
             if(this->_data->input.isTextClicked(*this->_no, sf::Mouse::Button::Left, this->_data->window)){
+                this->_option->play();
                 this->_data->_delay.restart();
                 this->_data->machine.RemoveState(2);
             }
