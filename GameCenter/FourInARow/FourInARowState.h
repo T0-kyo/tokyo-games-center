@@ -11,7 +11,6 @@
 #include GAMEOVER_STATE
 #include PAUSE_STATE
 
-
 namespace Tokyo {
 
     class FourInARowState : public State {

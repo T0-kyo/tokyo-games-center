@@ -73,9 +73,20 @@ namespace Tokyo {
     }
 
     void FourInARowState::HandleInput() {
+        if(_gameOverClock.getElapsedTime().asSeconds() >= GAMEOVER_DELAY){
+            if(_p1) this->_data->machine.AddState(StateRef (new GameOverState(this->_data, GameID::FourInARow, Winner::p1)), true);
+            else if(_p2) this->_data->machine.AddState(StateRef (new GameOverState(this->_data, GameID::FourInARow, Winner::p2)), true);
+            else if(_draw) this->_data->machine.AddState(StateRef (new GameOverState(this->_data, GameID::FourInARow, Winner::draw)), true);
+        }
+
         while ( auto event = this->_data->window.pollEvent() ) {
             if ( event->is<sf::Event::Closed>() ) {
                 this->_data->window.close();
+            }
+            
+            if(_data->input.isSpriteClicked(*_pauseButton, sf::Mouse::Button::Left, _data->window)){
+                this->_option->play();
+                this->_data->machine.AddState(StateRef (new PauseState(this->_data, GameID::_4x4)), false);
             }
         }
     }
