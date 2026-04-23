@@ -43,6 +43,9 @@ namespace Tokyo {
         this->_pauseButton = std::make_unique<sf::Sprite> ( pause );
         this->_num = std::make_unique<sf::Sprite>( let );
         this->_currentCell = std::make_unique<sf::Sprite>( cell );
+        this->_move = std::make_unique<sf::Sound>( move );
+        this->_option = std::make_unique<sf::Sound>( option );
+        this->_wrong = std::make_unique<sf::Sound>( wrong );
 
         this->_background->setPosition({SCREEN_WIDTH * 0.5f - background.getSize().x * 0.5f, SCREEN_HEIGHT * 0.5f - background.getSize().y * 0.5f});
         this->_background->setColor( sf::Color( 255, 255, 255, 100 ) );

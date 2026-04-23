@@ -80,7 +80,6 @@ namespace Tokyo {
     }
 
     void PyramidState::HandleInput() {
-
         if(_gameOverClock.getElapsedTime().asSeconds() >= GAMEOVER_DELAY){
             if(_p1) this->_data->machine.AddState(StateRef (new GameOverState(this->_data, GameID::Pyramid, Winner::p1)), true);
             else if(_p2) this->_data->machine.AddState(StateRef (new GameOverState(this->_data, GameID::Pyramid, Winner::p2)), true);

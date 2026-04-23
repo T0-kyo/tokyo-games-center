@@ -11,7 +11,6 @@
 #include GAMEOVER_STATE
 #include PAUSE_STATE
 
-
 namespace Tokyo {
 
     class FourInARowState : public State {
@@ -39,8 +38,9 @@ namespace Tokyo {
         std::unique_ptr<sf::Sprite> _background;
         std::unique_ptr<sf::Sprite> _pauseButton;
         std::unique_ptr<sf::Sprite> _grid;
-        std::unique_ptr<sf::Sprite> _x;
-        std::unique_ptr<sf::Sprite> _o;
+        std::unique_ptr<sf::Sprite> _currentColumn;
+        std::unique_ptr<sf::Sprite> _blue;
+        std::unique_ptr<sf::Sprite> _red;
 
         std::unique_ptr<sf::Text> _player1;
         std::unique_ptr<sf::Text> _player2;
@@ -59,5 +59,7 @@ namespace Tokyo {
         float CellWidth=0;
         float CellHeight=0;
         sf::Vector2f gridPos;
+
+        int getLowestEmptyRow(int col);
     };
 }
