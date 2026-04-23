@@ -126,7 +126,7 @@ namespace Tokyo {
                             _clock.restart();
                             _gameOverClock.restart();
                         }
-                        this->_wrong->play();
+                        else this->_wrong->play();
                     }
                 }
             }
