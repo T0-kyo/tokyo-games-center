@@ -2,7 +2,15 @@
 
 namespace Tokyo {
 
-    FourInARowState::FourInARowState ( GameDataRef data, PlayerType playerType ) : _data( data ) {}
+    FourInARowState::FourInARowState ( GameDataRef data, PlayerType playerType ) : _data( data ), _playerType( playerType ) {}
+
+    int FourInARowState::getLowestEmptyRow(int col) {
+        for (int row = 5; row >= 0; --row) {   // scan bottom-up
+            if (_fourinarowBoard->get_cell(row, col) == ' ')
+                return row;
+        }
+        return -1;  // column full
+        }
 
     void FourInARowState::Init() {
         this->_fourinarowBoard = std::make_shared<FourInARow_Board>();
@@ -15,8 +23,9 @@ namespace Tokyo {
         this->_data->assets.LoadTexture("Background", GAME_BACKGROUND);
         this->_data->assets.LoadTexture("Pause Button", PAUSE_BUTTON);
         this->_data->assets.LoadTexture("Connect4 Grid", "../Assets/Textures/connect4-grid.png");
-        this->_data->assets.LoadTexture("x", "../Assets/Textures/_5X.png");
-        this->_data->assets.LoadTexture("o", "../Assets/Textures/_5O.png");
+        this->_data->assets.LoadTexture("column", "../Assets/Textures/cell-c4.png");
+        this->_data->assets.LoadTexture("blue", "../Assets/Textures/connect4-blue-icon.png");
+        this->_data->assets.LoadTexture("red", "../Assets/Textures/connect4-red-icon.png");
         this->_data->assets.LoadSound("move", "../Assets/Audio/move-sound.wav");
         this->_data->assets.LoadSound("option", "../Assets/Audio/action-sound.wav");
         this->_data->assets.LoadSound("wrong", "../Assets/Audio/wrong-move.wav");
@@ -24,8 +33,9 @@ namespace Tokyo {
         auto& bg = this->_data->assets.GetTexture( "Background" );
         auto& pause = this->_data->assets.GetTexture( "Pause Button" );
         auto& grid = this->_data->assets.GetTexture( "Connect4 Grid" );
-        auto& X = this->_data->assets.GetTexture( "x" );
-        auto& O = this->_data->assets.GetTexture( "o" );
+        auto& column = this->_data->assets.GetTexture( "column" );
+        auto& blue = this->_data->assets.GetTexture( "blue" );
+        auto& red = this->_data->assets.GetTexture( "red" );
         auto& font = this->_data->assets.GetFont("Main Font");
         auto& move = this->_data->assets.GetSound( "move" );
         auto& option = this->_data->assets.GetSound( "option" );
@@ -34,8 +44,9 @@ namespace Tokyo {
         this->_background = make_unique<sf::Sprite>( bg );
         this->_pauseButton = make_unique<sf::Sprite>( pause );
         this->_grid = make_unique<sf::Sprite>( grid );
-        this->_x = make_unique<sf::Sprite>( X );
-        this->_o = make_unique<sf::Sprite>( O );
+        this->_currentColumn = make_unique<sf::Sprite>( column);
+        this->_blue = make_unique<sf::Sprite>( blue );
+        this->_red = make_unique<sf::Sprite>( red );
         this->_move = make_unique<sf::Sound>( move );
         this->_option = make_unique<sf::Sound>( option );
         this->_wrong = make_unique<sf::Sound>( wrong );
@@ -68,8 +79,8 @@ namespace Tokyo {
 
         auto gridSize = this->_grid->getTexture().getSize();
         this->gridPos = this->_grid->getPosition();
-        this->CellWidth = gridSize.x / 5.0f;
-        this->CellHeight = gridSize.y / 5.0f;
+        this->CellWidth = gridSize.x / 7.0f;
+        this->CellHeight = gridSize.y / 6.0f;
     }
 
     void FourInARowState::HandleInput() {
@@ -88,14 +99,58 @@ namespace Tokyo {
                 this->_option->play();
                 this->_data->machine.AddState(StateRef (new PauseState(this->_data, GameID::_4x4)), false);
             }
+
+            if(!_p1 && !_p2 && !_draw){
+                if(this->_data->input.isSpriteClicked(*this->_pauseButton, sf::Mouse::Button::Left, this->_data->window)){
+                    this->_option->play();
+                    this->_data->machine.AddState(StateRef (new PauseState(this->_data, GameID::Infinity)), false);
+                }
+
+                if(_playerType != PlayerType::COMPUTER || _currentPlayer == _Player1.get()){
+                    if(this->_data->input.isSpriteClicked(*this->_grid, sf::Mouse::Button::Left, this->_data->window)){
+                    sf::Vector2i mousePos = this->_data->input.getMousePosition(this->_data->window);
+                    float localX = mousePos.x - gridPos.x;
+                    this->_col = static_cast<int>(localX / CellWidth);
+                    this->_row = getLowestEmptyRow(this->_col);
+
+                    if(this->_row != -1 && _clock.getElapsedTime().asMilliseconds() >= 150){
+                        Move move(this->_row, this->_col, _currentPlayer->get_symbol());
+                        this->_fourinarowBoard->update_board(&move);
+                        this->_move->play();
+
+                        if(_fourinarowBoard->is_win(_currentPlayer)){
+                                if(_currentPlayer == _Player1.get()) _p1 = true;
+                                else _p2 = true;
+                        }
+                        else if(_fourinarowBoard->is_draw(_currentPlayer)){
+                            _draw = true;
+                        }
+                        if(_playerType == PlayerType::HUMAN && !_fourinarowBoard->game_is_over(_currentPlayer)) _currentPlayer = (_currentPlayer == _Player1.get()) ? _Player2.get() : _Player1.get();
+                            else if(!_fourinarowBoard->game_is_over(_currentPlayer)) _currentPlayer = _Player2.get();
+                            _clock.restart();
+                            _gameOverClock.restart();
+                    }
+                    else if(this->_row == -1) this->_wrong->play();
+                    }
+                }
+            }
         }
     }
-        
+
     void FourInARowState::Update ( float dt ) {
         if(this->_data->input.hoverSprite(*_pauseButton, _data->window)){
             _pauseButton->setColor(sf::Color(255, 255, 255, 255));
         }
         else _pauseButton->setColor(sf::Color(255, 255, 255, 180));
+
+        if(this->_data->input.hoverSprite(*_grid, _data->window)){
+            sf::Vector2i mousePos = this->_data->input.getMousePosition(this->_data->window);
+            float localX = mousePos.x - gridPos.x;
+            int col = localX / CellWidth;
+            this->_currentColumn->setPosition({gridPos.x + CellWidth * col, gridPos.y});
+            this->_currentColumn->setColor(sf::Color(135, 135, 135, 100));
+        }
+        else this->_currentColumn->setColor(sf::Color(135, 135, 135, 0));
 
         if(_currentPlayer == _Player1.get()){
             _player1Turn->setFillColor(sf::Color(240, 240, 220, 255));
@@ -110,20 +165,57 @@ namespace Tokyo {
             _player1Turn->setFillColor(sf::Color(240, 240, 220, 0));
             _player2Turn->setFillColor(sf::Color(240, 240, 220, 0));
         }
-    }
+
+        if (_playerType == PlayerType::COMPUTER && !_fourinarowBoard->game_is_over(_currentPlayer) && _currentPlayer == _Player2.get() && _clock.getElapsedTime().asSeconds() >= 1) {
+            int col, row;
+            do {
+                col = rand() % 7;
+                row = getLowestEmptyRow(col);
+            } while (row == -1);
         
+            Move move(row, col, _currentPlayer->get_symbol());
+            this->_fourinarowBoard->update_board(&move);
+            this->_move->play();
+            
+            if(_fourinarowBoard->is_win(_currentPlayer)){ 
+                _p2 = true;
+            }
+            else if(_fourinarowBoard->is_draw(_currentPlayer)){
+                _draw = true;
+            }
+
+            if(!_fourinarowBoard->game_is_over(_currentPlayer)) this->_currentPlayer = _Player1.get();
+
+            _clock.restart();
+            _gameOverClock.restart();
+        }
+    }
+
     void FourInARowState::Draw ( float dt ) {
         this->_data->window.clear( sf::Color::Black );
 
         this->_data->window.draw( *this->_background );
         this->_data->window.draw( *this->_grid );
+        this->_data->window.draw( *this->_currentColumn );
         this->_data->window.draw( *this->_pauseButton );
         this->_data->window.draw( *this->_player1 );
         this->_data->window.draw( *this->_player2 );
         this->_data->window.draw( *this->_player1Turn );
         this->_data->window.draw( *this->_player2Turn );
 
+        for(int i = 0; i < 6; ++i){
+            for(int j = 0; j < 7; ++j){
+                if(this->_fourinarowBoard->get_cell(i,j) == 'X'){
+                    this->_blue->setPosition({gridPos.x + j * CellWidth, gridPos.y + i * CellHeight});
+                    this->_data->window.draw(*this->_blue);
+                }
+                else if(this->_fourinarowBoard->get_cell(i,j) == 'O'){
+                    this->_red->setPosition({gridPos.x + j * CellWidth, gridPos.y + i * CellHeight});
+                    this->_data->window.draw(*this->_red);
+                }
+            }
+        }
+
         this->_data->window.display();
     }
-
 }
