@@ -3,7 +3,7 @@
 
 
 namespace Tokyo {
-    GameOverState::GameOverState(GameDataRef data, GameID gameID, Winner winner) : _data(data), _gameID(gameID), _winner(winner) {}
+    GameOverState::GameOverState(GameDataRef data, GameID gameID, Winner winner, bool isMute) : _data(data), _gameID(gameID), _winner(winner), _isMute( isMute ) {}
 
     void GameOverState::Init(){
         this->_data->assets.LoadTexture("Game Over bg", "../Assets/Textures/GameOver_Background.png");
@@ -52,8 +52,8 @@ namespace Tokyo {
         this->_announce->setPosition({SCREEN_WIDTH/2 - rect.size.x * 0.5f, rect.size.y * 0.7f});
         this->_announce->setFillColor(sf::Color(130, 51, 142));
 
-        if(_winner == Winner::draw) _draw->play();
-        else this->_gameover->play();
+        if(_winner == Winner::draw && !_isMute) _draw->play();
+        else if(!_isMute) this->_gameover->play();
     }
 
     void GameOverState::HandleInput(){
@@ -62,40 +62,40 @@ namespace Tokyo {
                 this->_data->window.close();
             }
             if(_data->input.isSpriteClicked(*this->_home, sf::Mouse::Button::Left, this->_data->window)){
-                this->_option->play();
+                if(!_isMute) this->_option->play();
                 this->_data->_delay.restart();
                 this->_data->machine.RemoveState(1);
             }
             if(_data->input.isSpriteClicked(*this->_playAgain, sf::Mouse::Button::Left, _data->window)){
-                this->_option->play();
+                if(!_isMute) this->_option->play();
                 this->_data->_delay.restart();
                 switch(_gameID){
                     case GameID::Word://1
-                        this->_data->machine.AddState( StateRef (new ModeSelectionState(_data, _gameID)), true);
+                        this->_data->machine.AddState( StateRef (new ModeSelectionState(_data,  _gameID, _isMute)), true);
                     case GameID::_4x4://2
-                        this->_data->machine.AddState( StateRef (new ModeSelectionState(_data, _gameID)), true);
+                        this->_data->machine.AddState( StateRef (new ModeSelectionState(_data, _gameID, _isMute)), true);
                     case GameID::Infinity://3
-                        this->_data->machine.AddState( StateRef (new ModeSelectionState(_data, _gameID)), true);
+                        this->_data->machine.AddState( StateRef (new ModeSelectionState(_data, _gameID, _isMute)), true);
                     case GameID::Sus://4
-                        this->_data->machine.AddState( StateRef (new ModeSelectionState(_data, _gameID)), true);
+                        this->_data->machine.AddState( StateRef (new ModeSelectionState(_data, _gameID, _isMute)), true);
                     case GameID::_5x5://5
-                        this->_data->machine.AddState( StateRef (new ModeSelectionState(_data, _gameID)), true);
+                        this->_data->machine.AddState( StateRef (new ModeSelectionState(_data, _gameID, _isMute)), true);
                     case GameID::Misere://6
-                        this->_data->machine.AddState( StateRef (new ModeSelectionState(_data, _gameID)), true);
+                        this->_data->machine.AddState( StateRef (new ModeSelectionState(_data, _gameID, _isMute)), true);
                     case GameID::Ultimate://7
-                        this->_data->machine.AddState( StateRef (new ModeSelectionState(_data, _gameID)), true);
+                        this->_data->machine.AddState( StateRef (new ModeSelectionState(_data, _gameID, _isMute)), true);
                     case GameID::Pyramid://8
-                        this->_data->machine.AddState( StateRef (new ModeSelectionState(_data, _gameID)), true);
+                        this->_data->machine.AddState( StateRef (new ModeSelectionState(_data, _gameID, _isMute)), true);
                     case GameID::FourInARow://9
-                        this->_data->machine.AddState( StateRef (new ModeSelectionState(_data, _gameID)), true);
+                        this->_data->machine.AddState( StateRef (new ModeSelectionState(_data, _gameID, _isMute)), true);
                     case GameID::Memory://10
-                        this->_data->machine.AddState( StateRef (new ModeSelectionState(_data, _gameID)), true);
+                        this->_data->machine.AddState( StateRef (new ModeSelectionState(_data, _gameID, _isMute)), true);
                     case GameID::Obstacles://11
-                        this->_data->machine.AddState( StateRef (new ModeSelectionState(_data, _gameID)), true);
+                        this->_data->machine.AddState( StateRef (new ModeSelectionState(_data, _gameID, _isMute)), true);
                     case GameID::Numerical://12
-                        this->_data->machine.AddState( StateRef (new ModeSelectionState(_data, _gameID)), true);
+                        this->_data->machine.AddState( StateRef (new ModeSelectionState(_data, _gameID, _isMute)), true);
                     case GameID::Diamond://13
-                        this->_data->machine.AddState( StateRef (new ModeSelectionState(_data, _gameID)), true);
+                        this->_data->machine.AddState( StateRef (new ModeSelectionState(_data, _gameID, _isMute)), true);
                     default:
                         break;
                 }

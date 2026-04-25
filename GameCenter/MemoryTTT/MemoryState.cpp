@@ -3,7 +3,7 @@
 
 namespace Tokyo {
 
-    MemoryState::MemoryState ( GameDataRef data, PlayerType playerType ) : _data( data ), _playerType( playerType ) {}
+    MemoryState::MemoryState ( GameDataRef data, PlayerType playerType, bool isMute ) : _data( data ), _playerType( playerType ), _isMute( isMute ) {}
 
     void MemoryState::Init() {
         this->_MemoryBoard = std::make_shared<MemoryTTT_Board>();
@@ -85,9 +85,9 @@ namespace Tokyo {
     void MemoryState::HandleInput() {
 
         if(_gameOverClock.getElapsedTime().asSeconds() >= GAMEOVER_DELAY){
-            if(_p1) this->_data->machine.AddState(StateRef (new GameOverState(this->_data, GameID::Memory, Winner::p1)), true);
-            else if(_p2) this->_data->machine.AddState(StateRef (new GameOverState(this->_data, GameID::Memory, Winner::p2)), true);
-            else if(_draw) this->_data->machine.AddState(StateRef (new GameOverState(this->_data, GameID::Memory, Winner::draw)), true);
+            if(_p1) this->_data->machine.AddState(StateRef (new GameOverState(this->_data, GameID::Memory, Winner::p1, _isMute)), true);
+            else if(_p2) this->_data->machine.AddState(StateRef (new GameOverState(this->_data, GameID::Memory, Winner::p2, _isMute)), true);
+            else if(_draw) this->_data->machine.AddState(StateRef (new GameOverState(this->_data, GameID::Memory, Winner::draw, _isMute)), true);
         }
 
         while ( auto event = this->_data->window.pollEvent() ) {
@@ -97,8 +97,8 @@ namespace Tokyo {
 
             if(!_p1 && !_p2 && !_draw){
                 if(this->_data->input.isSpriteClicked(*this->_pauseButton, sf::Mouse::Button::Left, this->_data->window)){
-                    this->_option->play();
-                    this->_data->machine.AddState(StateRef (new PauseState(this->_data, GameID::Memory)), false);
+                    if(!_isMute) this->_option->play();
+                    this->_data->machine.AddState(StateRef (new PauseState(this->_data, GameID::Memory, _isMute)), false);
                 }
 
                 if(_playerType != PlayerType::COMPUTER || _currentPlayer == _Player1.get()){
@@ -111,7 +111,7 @@ namespace Tokyo {
                         if (_MemoryBoard->get_cell(_row, _col) == ' '){
                             Move move(_row, _col, _currentPlayer->get_symbol());
                             this->_MemoryBoard->update_board(&move);
-                            this->_move->play();
+                            if(!_isMute) this->_move->play();
 
                             if(_MemoryBoard->is_win(_currentPlayer)){
                                 if(_currentPlayer == _Player1.get()) _p1 = true;
@@ -126,7 +126,7 @@ namespace Tokyo {
                             _clock.restart();
                             _gameOverClock.restart();
                         }
-                        else this->_wrong->play();
+                        else if(!_isMute) this->_wrong->play();
                     }
                 }
             }
@@ -162,7 +162,7 @@ namespace Tokyo {
 
             Move move(x, y, _currentPlayer->get_symbol());
             this->_MemoryBoard->update_board(&move);
-            this->_move->play();
+            if(!_isMute) this->_move->play();
 
             if(_MemoryBoard->is_win(_currentPlayer)){ 
                 _p2 = true;

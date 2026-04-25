@@ -24,6 +24,8 @@ namespace Tokyo {
 
         std::unique_ptr<sf::Sprite> _background;
         std::unique_ptr<sf::Sprite> _logo;
+        std::unique_ptr<sf::Sprite> _soundOn;
+        std::unique_ptr<sf::Sprite> _soundOff;
 
         std::unique_ptr<sf::Sound> _choose;
 
@@ -42,5 +44,7 @@ namespace Tokyo {
         std::unique_ptr<sf::Sprite> _WordTTT_Button;
 
         std::unique_ptr<sf::Text> _title;
+
+        bool _isMute = false;
     };
 }

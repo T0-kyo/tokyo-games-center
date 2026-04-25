@@ -3,7 +3,7 @@
 
 namespace Tokyo {
 
-    SUSState::SUSState ( GameDataRef data , PlayerType playerType ) : _data( data ) , _playerType( playerType ) {}
+    SUSState::SUSState ( GameDataRef data , PlayerType playerType, bool isMute ) : _data( data ) , _playerType( playerType ), _isMute( isMute ) {}
 
     void SUSState::Init() {
         this->_susBoard = std::make_shared<SUS_Board>();
@@ -86,9 +86,9 @@ namespace Tokyo {
 
     void SUSState::HandleInput() {
         if(_gameOverClock.getElapsedTime().asSeconds() >= GAMEOVER_DELAY){
-            if(_p1) this->_data->machine.AddState(StateRef (new GameOverState(this->_data, GameID::Sus, Winner::p1)), true);
-            else if(_p2) this->_data->machine.AddState(StateRef (new GameOverState(this->_data, GameID::Sus, Winner::p2)), true);
-            else if(_draw) this->_data->machine.AddState(StateRef (new GameOverState(this->_data, GameID::Sus, Winner::draw)), true);
+            if(_p1) this->_data->machine.AddState(StateRef (new GameOverState(this->_data, GameID::Sus, Winner::p1, _isMute)), true);
+            else if(_p2) this->_data->machine.AddState(StateRef (new GameOverState(this->_data, GameID::Sus, Winner::p2, _isMute)), true);
+            else if(_draw) this->_data->machine.AddState(StateRef (new GameOverState(this->_data, GameID::Sus, Winner::draw, _isMute)), true);
         }
         
         while ( auto event = this->_data->window.pollEvent() ) {
@@ -98,8 +98,8 @@ namespace Tokyo {
 
             if(!_p1 && !_p2 && !_draw){ 
                 if(_data->input.isSpriteClicked(*_pauseButton, sf::Mouse::Button::Left, _data->window)){
-                    this->_option->play();
-                    this->_data->machine.AddState(StateRef (new PauseState(this->_data, GameID::Sus)), false);
+                    if(!_isMute) this->_option->play();
+                    this->_data->machine.AddState(StateRef (new PauseState(this->_data, GameID::Sus, _isMute)), false);
                 }
             
                 if(_playerType != PlayerType::COMPUTER || _currentPlayer == _Player1.get()){
@@ -112,7 +112,7 @@ namespace Tokyo {
                         if(_susBoard->get_cell(_row, _col) == ' '){
                             Move move(_row, _col, this->_currentPlayer->get_symbol());
                             this->_susBoard->update_board(&move);
-                            this->_move->play();
+                            if(!_isMute) this->_move->play();
 
                             if(_susBoard->is_win(_currentPlayer)) _p1 = true;
                             else if(_susBoard->is_lose(_currentPlayer)) _p2 = true;
@@ -123,7 +123,7 @@ namespace Tokyo {
                             _clock.restart();
                             _gameOverClock.restart();
                         }
-                    else this->_wrong->play();
+                    else if(!_isMute) this->_wrong->play();
                     }
                 }
             }
@@ -165,7 +165,7 @@ namespace Tokyo {
             Move move(x, y, _currentPlayer->get_symbol());
 
             if(this->_susBoard->update_board(&move)){
-                this->_move->play();
+                if(!_isMute) this->_move->play();
                 
                 if(_susBoard->is_win(_currentPlayer)){ 
                     if(_currentPlayer == _Player2.get()) _p2 = true;

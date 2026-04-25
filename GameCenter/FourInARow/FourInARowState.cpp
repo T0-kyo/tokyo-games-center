@@ -2,7 +2,7 @@
 
 namespace Tokyo {
 
-    FourInARowState::FourInARowState ( GameDataRef data, PlayerType playerType ) : _data( data ), _playerType( playerType ) {}
+    FourInARowState::FourInARowState ( GameDataRef data, PlayerType playerType, bool isMute ) : _data( data ), _playerType( playerType ), _isMute( isMute ) {}
 
     int FourInARowState::getLowestEmptyRow(int col) {
         for (int row = 5; row >= 0; --row) {   // scan bottom-up
@@ -85,25 +85,20 @@ namespace Tokyo {
 
     void FourInARowState::HandleInput() {
         if(_gameOverClock.getElapsedTime().asSeconds() >= GAMEOVER_DELAY){
-            if(_p1) this->_data->machine.AddState(StateRef (new GameOverState(this->_data, GameID::FourInARow, Winner::p1)), true);
-            else if(_p2) this->_data->machine.AddState(StateRef (new GameOverState(this->_data, GameID::FourInARow, Winner::p2)), true);
-            else if(_draw) this->_data->machine.AddState(StateRef (new GameOverState(this->_data, GameID::FourInARow, Winner::draw)), true);
+            if(_p1) this->_data->machine.AddState(StateRef (new GameOverState(this->_data, GameID::FourInARow, Winner::p1, _isMute)), true);
+            else if(_p2) this->_data->machine.AddState(StateRef (new GameOverState(this->_data, GameID::FourInARow, Winner::p2, _isMute)), true);
+            else if(_draw) this->_data->machine.AddState(StateRef (new GameOverState(this->_data, GameID::FourInARow, Winner::draw, _isMute)), true);
         }
 
         while ( auto event = this->_data->window.pollEvent() ) {
             if ( event->is<sf::Event::Closed>() ) {
                 this->_data->window.close();
             }
-            
-            if(_data->input.isSpriteClicked(*_pauseButton, sf::Mouse::Button::Left, _data->window)){
-                this->_option->play();
-                this->_data->machine.AddState(StateRef (new PauseState(this->_data, GameID::_4x4)), false);
-            }
 
             if(!_p1 && !_p2 && !_draw){
                 if(this->_data->input.isSpriteClicked(*this->_pauseButton, sf::Mouse::Button::Left, this->_data->window)){
-                    this->_option->play();
-                    this->_data->machine.AddState(StateRef (new PauseState(this->_data, GameID::Infinity)), false);
+                    if(!_isMute) this->_option->play();
+                    this->_data->machine.AddState(StateRef (new PauseState(this->_data, GameID::FourInARow, _isMute)), false);
                 }
 
                 if(_playerType != PlayerType::COMPUTER || _currentPlayer == _Player1.get()){
@@ -116,7 +111,7 @@ namespace Tokyo {
                     if(this->_row != -1 && _clock.getElapsedTime().asMilliseconds() >= 150){
                         Move move(this->_row, this->_col, _currentPlayer->get_symbol());
                         this->_fourinarowBoard->update_board(&move);
-                        this->_move->play();
+                        if(!_isMute) this->_move->play();
 
                         if(_fourinarowBoard->is_win(_currentPlayer)){
                                 if(_currentPlayer == _Player1.get()) _p1 = true;
@@ -130,7 +125,7 @@ namespace Tokyo {
                             _clock.restart();
                             _gameOverClock.restart();
                     }
-                    else if(this->_row == -1) this->_wrong->play();
+                    else if(this->_row == -1 && !_isMute) this->_wrong->play();
                     }
                 }
             }
@@ -175,7 +170,7 @@ namespace Tokyo {
         
             Move move(row, col, _currentPlayer->get_symbol());
             this->_fourinarowBoard->update_board(&move);
-            this->_move->play();
+            if(!_isMute) this->_move->play();
             
             if(_fourinarowBoard->is_win(_currentPlayer)){ 
                 _p2 = true;

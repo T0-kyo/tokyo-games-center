@@ -11,7 +11,7 @@ namespace Tokyo{
 
     class HomeState : public State {
         public:
-        HomeState( GameDataRef data );
+        HomeState( GameDataRef data, bool isMute );
         ~HomeState();
 
         void Init();
@@ -21,6 +21,7 @@ namespace Tokyo{
 
         private:
         GameDataRef _data;
+        bool _isMute = false;
 
         std::unique_ptr<sf::Sprite> _background;
         std::unique_ptr<sf::Text> _yes;

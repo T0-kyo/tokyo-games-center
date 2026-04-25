@@ -11,7 +11,7 @@ namespace Tokyo {
     class GameOverState : public State {
         public:
 
-        GameOverState(GameDataRef data, GameID gameID, Winner winner);
+        GameOverState(GameDataRef data, GameID gameID, Winner winner, bool isMute);
 
         void Init();
         void HandleInput();
@@ -23,6 +23,7 @@ namespace Tokyo {
 
         GameID _gameID;
         Winner _winner;
+        bool _isMute = false;
 
         std::unique_ptr<sf::Sprite> _background;
         std::unique_ptr<sf::Sprite> _playAgain;
