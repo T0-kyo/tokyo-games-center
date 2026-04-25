@@ -13,6 +13,11 @@
 *.ilk
 *.dll
 
+# AppImage stuff
+*.AppDir/
+appimagetool-x86_64.AppImage
+Tokyo_Games_Center-x86_64.AppImage
+
 # Ignore the .vs folder which contains temporary solution data
 .vs/
 .vscode/
