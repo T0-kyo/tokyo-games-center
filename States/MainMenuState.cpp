@@ -176,7 +176,7 @@ namespace Tokyo {
             }
 
             if( this->_data->input.isSpriteClicked( *this->_soundOn, sf::Mouse::Button::Left, this->_data->window ) ) {
-                if(!_isMute) this->_choose->play();
+                if(_isMute) this->_choose->play();
                 this->_isMute = 1 - _isMute;
             }
         }
