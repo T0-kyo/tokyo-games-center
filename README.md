@@ -69,6 +69,7 @@ mkdir build && cd build
 cmake -S .. -B . -G "Unix Makefiles"
 make && ./Game
 ```
+(or chckout the latest Release to start playing)
 
 ### Windows
 
