@@ -31,6 +31,7 @@
 ## ◈ Overview
 
 Tokyo Games Center is a desktop game suite featuring 13 Tic Tac Toe variants — each with its own rules, board layout, and logic. The project was built entirely from scratch in C++ using SFML for rendering, including a custom game engine, a stack-based state machine, and a full set of hand-crafted sprites and UI assets. It started as a college assignment and grew into something bigger.
+(checkout the Release section)
 
 ---
 
