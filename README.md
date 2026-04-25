@@ -101,7 +101,7 @@ Documentation/
 
 | Role | Name |
 |------|------|
-| 🏗️ **Lead Developer** — Architecture, Engine, Logic & States | Alhussain Haitham · [`T0-kyo`](https://github.com/T0-kyo) |
+| 🏗️ **Lead Developer** — Architecture, Engine, Logic & States | Al-Hussain Haitham · [`T0-kyo`](https://github.com/T0-kyo) |
 | 🎨 **Assets & UI Design** | Ahmed Youssef |
 | 🔧 **Technical Support** | Ali Mohamed & Ahmed Youssef |
 
