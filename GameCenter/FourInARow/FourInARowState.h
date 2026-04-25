@@ -15,7 +15,7 @@ namespace Tokyo {
 
     class FourInARowState : public State {
     public:
-        FourInARowState(GameDataRef data , PlayerType playerType);
+        FourInARowState(GameDataRef data , PlayerType playerType, bool isMute);
 
         void Init();
         void HandleInput();
@@ -24,6 +24,7 @@ namespace Tokyo {
 
         private:
         GameDataRef _data;
+        bool _isMute = false;
 
         std::unique_ptr<sf::Sound> _move;
         std::unique_ptr<sf::Sound> _option;

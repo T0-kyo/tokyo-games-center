@@ -11,7 +11,7 @@ namespace Tokyo {
 
     class ModeSelectionState : public State {
         public:
-        ModeSelectionState ( GameDataRef data, GameID gameID );
+        ModeSelectionState ( GameDataRef data, GameID gameID, bool isMute );
 
         void Init();
         void HandleInput();
@@ -21,6 +21,7 @@ namespace Tokyo {
         private:
         GameID _gameID;
         GameDataRef _data;
+        bool _isMute = false;
 
         std::unique_ptr<sf::Sound> _choose;
 

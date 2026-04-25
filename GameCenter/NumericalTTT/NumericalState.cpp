@@ -2,7 +2,7 @@
 
 namespace Tokyo {
 
-    NumericalState::NumericalState ( GameDataRef data, PlayerType playerType ) : _data( data ), _playerType( playerType ) {}
+    NumericalState::NumericalState ( GameDataRef data, PlayerType playerType, bool isMute ) : _data( data ), _playerType( playerType ), _isMute( isMute) {}
 
     void NumericalState::Init() {
         this->_NumericalBoard = std::make_shared<NumericalTTT_Board>();
@@ -97,7 +97,7 @@ namespace Tokyo {
             }
 
             if(this->_data->input.isSpriteClicked( *this->_pauseButton, sf::Mouse::Button::Left, this->_data->window )){
-                this->_option->play();
+                if(!_isMute) this->_option->play();
                 this->_data->machine.AddState(StateRef (new PauseState(this->_data, GameID::Numerical)), false);
             }
 
@@ -120,7 +120,7 @@ namespace Tokyo {
                         if(num >= '0' && num <= '9'){
                             Move move(_row, _col, num-'0');
                             if(this->_NumericalBoard->update_board(&move)){
-                                this->_move->play();
+                                if(!_isMute) this->_move->play();
 
                                 _isUsed[num-'0'] = true;
 
@@ -144,7 +144,7 @@ namespace Tokyo {
                                 _clock.restart();
                                 _gameOverClock.restart();
                             }
-                            else this->_wrong->play();
+                            else if(!_isMute) this->_wrong->play();
                         }
                     }
                 }
@@ -183,7 +183,7 @@ namespace Tokyo {
 
             Move move(x, y, num);
             this->_NumericalBoard->update_board(&move);
-            this->_move->play();
+            if(!_isMute) this->_move->play();
 
             _isUsed[num] = true;
 

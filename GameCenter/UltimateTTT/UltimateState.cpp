@@ -3,7 +3,7 @@
 
 namespace Tokyo {
 
-    UltimateState::UltimateState ( GameDataRef data , PlayerType playerType ) : _data( data ), _playerType( playerType ) {}
+    UltimateState::UltimateState ( GameDataRef data , PlayerType playerType, bool isMute ) : _data( data ), _playerType( playerType ), _isMute( isMute ) {}
 
     void UltimateState::Init() {
         this->_UltimateBoard = std::make_shared<Ultimate_Board>();
@@ -128,7 +128,7 @@ namespace Tokyo {
 
             if(!_p1 && !_p2 && !_draw){ 
                 if(this->_data->input.isSpriteClicked(*this->_pauseButton, sf::Mouse::Button::Left, this->_data->window)){
-                    this->_option->play();
+                    if(!_isMute) this->_option->play();
                     this->_data->machine.AddState(StateRef (new PauseState(this->_data, GameID::Ultimate)), false);
                 }
 
@@ -210,7 +210,7 @@ namespace Tokyo {
                         if (_UltimateBoard->get_cell(_row, _col) == ' '){
                             Move move(_row, _col, _currentPlayer->get_symbol());
                             this->_UltimateBoard->update_board(&move);
-                            this->_move->play();
+                            if(!_isMute) this->_move->play();
 
                             if(_UltimateBoard->is_win(_currentPlayer)){
                                 if(_currentPlayer == _Player1.get()) _p1 = true;
@@ -242,7 +242,7 @@ namespace Tokyo {
                             _clock.restart();
                             _gameOverClock.restart();
                         }
-                        else this->_wrong->play();
+                        else if(!_isMute) this->_wrong->play();
                     }
                 }
             }
@@ -278,7 +278,7 @@ namespace Tokyo {
 
             Move move(x, y, _currentPlayer->get_symbol());
             this->_UltimateBoard->update_board(&move);
-            this->_move->play();
+            if(!_isMute) this->_move->play();
 
             if(_UltimateBoard->is_win(_currentPlayer)){ 
                 _p2 = true;

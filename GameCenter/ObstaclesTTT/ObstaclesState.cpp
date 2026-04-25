@@ -3,7 +3,7 @@
 
 namespace Tokyo {
 
-    ObstaclesState::ObstaclesState ( GameDataRef data , PlayerType playerType ) : _data( data ), _playerType( playerType ) {}
+    ObstaclesState::ObstaclesState ( GameDataRef data , PlayerType playerType, bool isMute ) : _data( data ), _playerType( playerType ), _isMute( isMute ) {}
 
     void ObstaclesState::Init() {
         this->_obstaclesBoard = std::make_shared<ObstaclesTTT_Board>();
@@ -99,7 +99,7 @@ namespace Tokyo {
 
             if(!_p1 && !_p2 && !_draw){
                 if(this->_data->input.isSpriteClicked(*this->_pauseButton, sf::Mouse::Button::Left, this->_data->window)){
-                    this->_option->play();
+                    if(!_isMute) this->_option->play();
                     this->_data->machine.AddState(StateRef (new PauseState(this->_data, GameID::Obstacles)), false);
                 }
 
@@ -113,7 +113,7 @@ namespace Tokyo {
                         if (_obstaclesBoard->get_cell(_row, _col) == ' '){
                             Move move(_row, _col, _currentPlayer->get_symbol());
                             this->_obstaclesBoard->update_board(&move);
-                            this->_move->play();
+                            if(!_isMute) this->_move->play();
 
                             if(_obstaclesBoard->is_win(_currentPlayer)){
                                 if(_currentPlayer == _Player1.get()) _p1 = true;
@@ -128,7 +128,7 @@ namespace Tokyo {
                             _clock.restart();
                             _gameOverClock.restart();          
                         }
-                        else this->_wrong->play();
+                        else if(!_isMute) this->_wrong->play();
                     }
                 }
             }
@@ -164,7 +164,7 @@ namespace Tokyo {
 
             Move move(x, y, _currentPlayer->get_symbol());
             this->_obstaclesBoard->update_board(&move);
-            this->_move->play();
+            if(!_isMute) this->_move->play();
 
             if(_obstaclesBoard->is_win(_currentPlayer)){ 
                 _p2 = true;

@@ -16,7 +16,7 @@ namespace Tokyo {
 
     class State4x4 : public State {
     public:
-        State4x4(GameDataRef data , PlayerType playerType);
+        State4x4(GameDataRef data , PlayerType playerType, bool isMute);
 
         void Init();
         void HandleInput();
@@ -25,6 +25,7 @@ namespace Tokyo {
 
         private:
         GameDataRef _data;
+        bool _isMute = false;
 
         std::unique_ptr<sf::Sound> _move;
         std::unique_ptr<sf::Sound> _option;

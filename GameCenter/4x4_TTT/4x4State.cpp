@@ -2,7 +2,7 @@
 
 namespace Tokyo {
 
-    State4x4::State4x4 ( GameDataRef data, PlayerType playerType ) : _data( data ), _playerType(playerType) {}
+    State4x4::State4x4 ( GameDataRef data, PlayerType playerType, bool isMute ) : _data( data ), _playerType(playerType), _isMute( isMute ) {}
 
     void State4x4::Init() {
 
@@ -97,7 +97,7 @@ namespace Tokyo {
             }
 
             if(_data->input.isSpriteClicked(*_pauseButton, sf::Mouse::Button::Left, _data->window)){
-                this->_option->play();
+                if(!_isMute) this->_option->play();
                 this->_data->machine.AddState(StateRef (new PauseState(this->_data, GameID::_4x4)), false);
             }
 
@@ -122,7 +122,7 @@ namespace Tokyo {
                         if(dir=='U' || dir=='D' || dir=='L' || dir=='R'){
                             Move move(_row, _col, dir);
                             if(this->_4x4Board->update_board(&move)){
-                                this->_move->play();
+                                if(!_isMute) this->_move->play();
 
                                 if(_4x4Board->is_win(_currentPlayer)) _p1 = true;
 
@@ -133,7 +133,7 @@ namespace Tokyo {
                                 _clock.restart();
                                 _gameOverClock.restart();
                             }
-                            else this->_wrong->play();
+                            else if(!_isMute) this->_wrong->play();
                         }
                     }
                     if(this->_data->input.isSpriteClicked( *this->_grid, sf::Mouse::Button::Left, this->_data->window)){
@@ -161,7 +161,7 @@ namespace Tokyo {
                         if(dir=='U' || dir=='D' || dir=='L' || dir=='R'){
                             Move move(_row, _col, dir);
                             if(this->_4x4Board->update_board(&move)){
-                                this->_move->play();
+                                if(!_isMute) this->_move->play();
 
                                 if(_4x4Board->is_win(_currentPlayer)) _p1 = true;
 
@@ -171,7 +171,7 @@ namespace Tokyo {
                                 _clock.restart();
                                 _gameOverClock.restart();
                             }
-                            else this->_wrong->play();
+                            else if(!_isMute) this->_wrong->play();
                             _cellChosen = false;
                         }
                     }
@@ -210,7 +210,7 @@ namespace Tokyo {
                         if(dir=='U' || dir=='D' || dir=='L' || dir=='R'){
                             Move move(_row, _col, dir);
                             if(this->_4x4Board->update_board(&move)){
-                                this->_move->play();
+                                if(!_isMute) this->_move->play();
 
                                 if(_4x4Board->is_win(_currentPlayer)) _p2 = true;
 
@@ -221,7 +221,7 @@ namespace Tokyo {
                                 _wait.restart();
                                 _gameOverClock.restart();
                             }
-                            else this->_wrong->play();
+                            else if(!_isMute) this->_wrong->play();
                         }
                     }
 
@@ -250,7 +250,7 @@ namespace Tokyo {
                         if(dir=='U' || dir=='D' || dir=='L' || dir=='R'){
                             Move move(_row, _col, dir);
                             if(this->_4x4Board->update_board(&move)){
-                                this->_move->play();
+                                if(!_isMute) this->_move->play();
 
                                 if(_4x4Board->is_win(_currentPlayer)) _p2 = true;
 
@@ -260,7 +260,7 @@ namespace Tokyo {
                                 _wait.restart();
                                 _gameOverClock.restart();
                             }
-                            else this->_wrong->play();
+                            else if(!_isMute) this->_wrong->play();
                             _cellChosen = false;
                         }
                     }
@@ -315,7 +315,7 @@ namespace Tokyo {
             Move move(x, y, sym);
         
             if(this->_4x4Board->update_board(&move)){
-                this->_move->play();
+                if(!_isMute) this->_move->play();
 
                 if(_4x4Board->is_win(_currentPlayer)){ 
                     _p2 = true;

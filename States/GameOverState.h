@@ -23,6 +23,7 @@ namespace Tokyo {
 
         GameID _gameID;
         Winner _winner;
+        bool _isMute = false;
 
         std::unique_ptr<sf::Sprite> _background;
         std::unique_ptr<sf::Sprite> _playAgain;

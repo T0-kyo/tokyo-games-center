@@ -16,7 +16,7 @@
 
 namespace Tokyo {
 
-    ModeSelectionState::ModeSelectionState ( GameDataRef data, GameID gameID ) : _data( data ), _gameID( gameID ) {}
+    ModeSelectionState::ModeSelectionState ( GameDataRef data, GameID gameID, bool isMute ) : _data( data ), _gameID( gameID ), _isMute( isMute ) {}
 
     void ModeSelectionState::Init() {
         this->_data->assets.LoadTexture("backButton", "../Assets/Textures/back-button.png");
@@ -55,52 +55,52 @@ namespace Tokyo {
             }
 
             if(this->_data->input.isSpriteClicked(*this->_backButton, sf::Mouse::Button::Left, this->_data->window)){
-                this->_choose->play();
+                if(!_isMute) this->_choose->play();
                 this->_data->machine.RemoveState(1);
             }
 
             if ( this->_data->input.isTextClicked( *this->_choice1, sf::Mouse::Button::Left, this->_data->window ) ) {
                 this->_data->_delay.restart();
-                this->_choose->play();
+                if(!_isMute) this->_choose->play();
                 switch (this->_gameID) {
                     case GameID::Word:
-                        this->_data->machine.AddState(StateRef(new WordState(this->_data, PlayerType::HUMAN)), true);
+                        this->_data->machine.AddState(StateRef(new WordState(this->_data, PlayerType::HUMAN, _isMute)), true);
                         break;
                     case GameID::Ultimate:
-                        this->_data->machine.AddState(StateRef(new UltimateState(this->_data, PlayerType::HUMAN)), true);
+                        this->_data->machine.AddState(StateRef(new UltimateState(this->_data, PlayerType::HUMAN, _isMute)), true);
                         break;
                     case GameID::Sus:
-                        this->_data->machine.AddState(StateRef(new SUSState(this->_data, PlayerType::HUMAN)), true);
+                        this->_data->machine.AddState(StateRef(new SUSState(this->_data, PlayerType::HUMAN, _isMute)), true);
                         break;
                     case GameID::Pyramid:
-                        this->_data->machine.AddState(StateRef(new PyramidState(this->_data, PlayerType::HUMAN)), true);
+                        this->_data->machine.AddState(StateRef(new PyramidState(this->_data, PlayerType::HUMAN, _isMute)), true);
                         break;
                     case GameID::Obstacles:
-                        this->_data->machine.AddState(StateRef(new ObstaclesState(this->_data, PlayerType::HUMAN)), true);
+                        this->_data->machine.AddState(StateRef(new ObstaclesState(this->_data, PlayerType::HUMAN, _isMute)), true);
                         break;
                     case GameID::Numerical:
-                        this->_data->machine.AddState(StateRef(new NumericalState(this->_data, PlayerType::HUMAN)), true);
+                        this->_data->machine.AddState(StateRef(new NumericalState(this->_data, PlayerType::HUMAN, _isMute)), true);
                         break;
                     case GameID::Misere:
-                        this->_data->machine.AddState(StateRef(new MisereState(this->_data, PlayerType::HUMAN)), true);
+                        this->_data->machine.AddState(StateRef(new MisereState(this->_data, PlayerType::HUMAN, _isMute)), true);
                         break;
                     case GameID::Memory:
-                        this->_data->machine.AddState(StateRef(new MemoryState(this->_data, PlayerType::HUMAN)), true);
+                        this->_data->machine.AddState(StateRef(new MemoryState(this->_data, PlayerType::HUMAN, _isMute)), true);
                         break;
                     case GameID::Infinity:
-                        this->_data->machine.AddState(StateRef(new InfinityState(this->_data, PlayerType::HUMAN)), true);
+                        this->_data->machine.AddState(StateRef(new InfinityState(this->_data, PlayerType::HUMAN, _isMute)), true);
                         break;
                     case GameID::Diamond:
-                        this->_data->machine.AddState(StateRef(new DiamondState(this->_data, PlayerType::HUMAN)), true);
+                        this->_data->machine.AddState(StateRef(new DiamondState(this->_data, PlayerType::HUMAN, _isMute)), true);
                         break;
                     case GameID::FourInARow:
-                        this->_data->machine.AddState(StateRef(new FourInARowState(this->_data, PlayerType::HUMAN)), true);
+                        this->_data->machine.AddState(StateRef(new FourInARowState(this->_data, PlayerType::HUMAN, _isMute)), true);
                         break;
                     case GameID::_4x4:
-                        this->_data->machine.AddState(StateRef(new State4x4(this->_data, PlayerType::HUMAN)), true);
+                        this->_data->machine.AddState(StateRef(new State4x4(this->_data, PlayerType::HUMAN, _isMute)), true);
                         break;
                     case GameID::_5x5:
-                        this->_data->machine.AddState(StateRef(new State5x5(this->_data, PlayerType::HUMAN)), true);
+                        this->_data->machine.AddState(StateRef(new State5x5(this->_data, PlayerType::HUMAN, _isMute)), true);
                         break;
                     default:
                         break;
@@ -109,46 +109,46 @@ namespace Tokyo {
 
             if ( this->_data->input.isTextClicked( *this->_choice2, sf::Mouse::Button::Left, this->_data->window ) ) {
                 this->_data->_delay.restart();
-                this->_choose->play();
+                if(!_isMute) this->_choose->play();
                 switch (this->_gameID) {
                     case GameID::Word:
-                        this->_data->machine.AddState(StateRef(new WordState(this->_data, PlayerType::COMPUTER)), true);
+                        this->_data->machine.AddState(StateRef(new WordState(this->_data, PlayerType::COMPUTER, _isMute)), true);
                         break;
                     case GameID::Ultimate:
-                        this->_data->machine.AddState(StateRef(new UltimateState(this->_data, PlayerType::COMPUTER)), true);
+                        this->_data->machine.AddState(StateRef(new UltimateState(this->_data, PlayerType::COMPUTER, _isMute)), true);
                         break;
                     case GameID::Sus:
-                        this->_data->machine.AddState(StateRef(new SUSState(this->_data, PlayerType::COMPUTER)), true);
+                        this->_data->machine.AddState(StateRef(new SUSState(this->_data, PlayerType::COMPUTER, _isMute)), true);
                         break;
                     case GameID::Pyramid:
-                        this->_data->machine.AddState(StateRef(new PyramidState(this->_data, PlayerType::COMPUTER)), true);
+                        this->_data->machine.AddState(StateRef(new PyramidState(this->_data, PlayerType::COMPUTER, _isMute)), true);
                         break;
                     case GameID::Obstacles:
-                        this->_data->machine.AddState(StateRef(new ObstaclesState(this->_data, PlayerType::COMPUTER)), true);
+                        this->_data->machine.AddState(StateRef(new ObstaclesState(this->_data, PlayerType::COMPUTER, _isMute)), true);
                         break;
                     case GameID::Numerical:
-                        this->_data->machine.AddState(StateRef(new NumericalState(this->_data, PlayerType::COMPUTER)), true);
+                        this->_data->machine.AddState(StateRef(new NumericalState(this->_data, PlayerType::COMPUTER, _isMute)), true);
                         break;
                     case GameID::Misere:
-                        this->_data->machine.AddState(StateRef(new MisereState(this->_data, PlayerType::COMPUTER)), true);
+                        this->_data->machine.AddState(StateRef(new MisereState(this->_data, PlayerType::COMPUTER, _isMute)), true);
                         break;
                     case GameID::Memory:
-                        this->_data->machine.AddState(StateRef(new MemoryState(this->_data, PlayerType::COMPUTER)), true);
+                        this->_data->machine.AddState(StateRef(new MemoryState(this->_data, PlayerType::COMPUTER, _isMute)), true);
                         break;
                     case GameID::Infinity:
-                        this->_data->machine.AddState(StateRef(new InfinityState(this->_data, PlayerType::COMPUTER)), true);
+                        this->_data->machine.AddState(StateRef(new InfinityState(this->_data, PlayerType::COMPUTER, _isMute)), true);
                         break;
                     case GameID::Diamond:
-                        this->_data->machine.AddState(StateRef(new DiamondState(this->_data, PlayerType::COMPUTER)), true);
+                        this->_data->machine.AddState(StateRef(new DiamondState(this->_data, PlayerType::COMPUTER, _isMute)), true);
                         break;
                     case GameID::FourInARow:
-                        this->_data->machine.AddState(StateRef(new FourInARowState(this->_data, PlayerType::COMPUTER)), true);
+                        this->_data->machine.AddState(StateRef(new FourInARowState(this->_data, PlayerType::COMPUTER, _isMute)), true);
                         break;
                     case GameID::_4x4:
-                        this->_data->machine.AddState(StateRef(new State4x4(this->_data, PlayerType::COMPUTER)), true);
+                        this->_data->machine.AddState(StateRef(new State4x4(this->_data, PlayerType::COMPUTER, _isMute)), true);
                         break;
                     case GameID::_5x5:
-                        this->_data->machine.AddState(StateRef(new State5x5(this->_data, PlayerType::COMPUTER)), true);
+                        this->_data->machine.AddState(StateRef(new State5x5(this->_data, PlayerType::COMPUTER, _isMute)), true);
                         break;
                     default:
                         break;
