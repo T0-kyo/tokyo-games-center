@@ -3,7 +3,6 @@
 #include "MainMenuState.h"
 #include "ModeSelectionState.h"
 
-
 namespace Tokyo {
 
     MainMenuState::MainMenuState ( GameDataRef data ) : _data( data ) {}
