@@ -23,6 +23,8 @@
 
 <!--- Add gameplay GIF or video here --->
 
+<video controls src="gameCenterRecord.mkv" title="GameCenterRecord"></video>
+
 ---
 
 ## ◈ Overview
