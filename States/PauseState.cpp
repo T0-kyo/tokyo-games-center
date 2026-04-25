@@ -3,7 +3,7 @@
 
 namespace Tokyo{
 
-    PauseState::PauseState( GameDataRef data, GameID gameId ) : _data( data ), _gameId( gameId ){}
+    PauseState::PauseState( GameDataRef data, GameID gameId, bool isMute ) : _data( data ), _gameId( gameId ), _isMute( isMute ) {}
 
     void PauseState::Init(){
         this->_data->assets.LoadTexture( "PauseBG", "../Assets/Textures/MainBackground.png" );
@@ -120,18 +120,18 @@ namespace Tokyo{
             }
             if(!isRules){
                 if(this->_data->input.isSpriteClicked(*this->_resume, sf::Mouse::Button::Left, this->_data->window)){
-                    this->_option->play();
+                    if(!_isMute) this->_option->play();
                     this->_data->_delay.restart();
                     this->_data->machine.RemoveState(1);
                 }
                 if(this->_data->input.isSpriteClicked(*this->_home, sf::Mouse::Button::Left, this->_data->window)){
-                    this->_option->play();
+                    if(!_isMute) this->_option->play();
                     this->_data->_delay.restart();
-                    this->_data->machine.AddState(StateRef (new HomeState(this->_data)), false);
+                    this->_data->machine.AddState(StateRef (new HomeState(this->_data, _isMute)), false);
                 }
             }
             if(this->_data->input.isSpriteClicked(*this->_book, sf::Mouse::Button::Left, this->_data->window)){
-                this->_bookSound->play();
+                if(!_isMute) this->_bookSound->play();
                 isRules = 1 - isRules;
             }
         }

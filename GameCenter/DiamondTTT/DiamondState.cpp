@@ -81,9 +81,9 @@ namespace Tokyo {
 
     void DiamondState::HandleInput() {
         if(_gameOverClock.getElapsedTime().asSeconds() >= GAMEOVER_DELAY){
-            if(_p1) this->_data->machine.AddState(StateRef (new GameOverState(this->_data, GameID::Diamond, Winner::p1)), true);
-            else if(_p2) this->_data->machine.AddState(StateRef (new GameOverState(this->_data, GameID::Diamond, Winner::p2)), true);
-            else if(_draw) this->_data->machine.AddState(StateRef (new GameOverState(this->_data, GameID::Diamond, Winner::draw)), true);
+            if(_p1) this->_data->machine.AddState(StateRef (new GameOverState(this->_data, GameID::Diamond, Winner::p1, _isMute)), true);
+            else if(_p2) this->_data->machine.AddState(StateRef (new GameOverState(this->_data, GameID::Diamond, Winner::p2, _isMute)), true);
+            else if(_draw) this->_data->machine.AddState(StateRef (new GameOverState(this->_data, GameID::Diamond, Winner::draw, _isMute)), true);
         }
 
         while ( auto event = this->_data->window.pollEvent() ) {
@@ -94,7 +94,7 @@ namespace Tokyo {
             if(!_p1 && !_p2 && !_draw){
                 if(this->_data->input.isSpriteClicked(*this->_pauseButton, sf::Mouse::Button::Left, this->_data->window)){
                     if(!_isMute) this->_option->play();
-                    this->_data->machine.AddState(StateRef (new PauseState(this->_data, GameID::Diamond)), false);
+                    this->_data->machine.AddState(StateRef (new PauseState(this->_data, GameID::Diamond, _isMute)), false);
                 }
 
                 if(_playerType != PlayerType::COMPUTER || _currentPlayer == _Player1.get()){

@@ -11,7 +11,7 @@ namespace Tokyo {
     class GameOverState : public State {
         public:
 
-        GameOverState(GameDataRef data, GameID gameID, Winner winner);
+        GameOverState(GameDataRef data, GameID gameID, Winner winner, bool isMute);
 
         void Init();
         void HandleInput();

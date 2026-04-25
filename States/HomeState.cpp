@@ -2,7 +2,7 @@
 
 namespace Tokyo{
 
-    HomeState::HomeState( GameDataRef data ) : _data( data ){}
+    HomeState::HomeState( GameDataRef data, bool isMute ) : _data( data ), _isMute( isMute ) {}
 
     void HomeState::Init(){
         this->_data->assets.LoadTexture( "HomeBG", "../Assets/Textures/MainBackground.png" );
@@ -43,12 +43,12 @@ namespace Tokyo{
                 this->_data->window.close();
             }
             if(this->_data->input.isTextClicked(*this->_yes, sf::Mouse::Button::Left, this->_data->window)){
-                this->_option->play();
+                if(!_isMute) this->_option->play();
                 this->_data->_delay.restart();
                 this->_data->machine.RemoveState(3);
             }
             if(this->_data->input.isTextClicked(*this->_no, sf::Mouse::Button::Left, this->_data->window)){
-                this->_option->play();
+                if(!_isMute) this->_option->play();
                 this->_data->_delay.restart();
                 this->_data->machine.RemoveState(2);
             }
