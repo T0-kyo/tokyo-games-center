@@ -17,14 +17,15 @@
 
 ![Linux](https://img.shields.io/badge/Linux-FCC624?style=for-the-badge&logo=linux&logoColor=black)
 ![Windows](https://img.shields.io/badge/Windows-0078D4?style=for-the-badge&logo=windows&logoColor=white)
-![Status](https://img.shields.io/badge/Status-InProgress-brightgreen?style=for-the-badge)
+![Status](https://img.shields.io/badge/Status-Complete-brightgreen?style=for-the-badge)
 
 </div>
 
-<!--- Add gameplay GIF or video here --->
+<div align="center">
 
-<video controls src="gameCenterRecord.mkv" title="GameCenterRecord"></video>
+[![Tokyo Games Center — Gameplay Demo](https://img.youtube.com/vi/Ir6dkl1ylP8/maxresdefault.jpg)](https://www.youtube.com/watch?v=Ir6dkl1ylP8)
 
+</div>
 ---
 
 ## ◈ Overview
@@ -70,7 +71,15 @@ make && ./Game
 
 ### Windows
 
-A prebuilt executable will be included with all required dependencies.
+A prebuilt executable is provided for convenience. No installation required.
+
+Download Tokyo_Games_Center_Windows.zip from the latest Release.
+
+Extract the contents to a folder of your choice.
+
+Run the game via bin/Game.exe.
+
+Note: Do not move the .exe out of the bin folder, as it requires the .dll files and the Assets folder (located one level up) to function correctly.
 
 ---
 
