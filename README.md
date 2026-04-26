@@ -17,7 +17,7 @@
 
 ![Linux](https://img.shields.io/badge/Linux-FCC624?style=for-the-badge&logo=linux&logoColor=black)
 ![Windows](https://img.shields.io/badge/Windows-0078D4?style=for-the-badge&logo=windows&logoColor=white)
-![Release](https://img.shields.io/badge/Release-v1.0.0-brightgreen?style=for-the-badge)
+![Release](https://img.shields.io/badge/Release-v1.0.1-brightgreen?style=for-the-badge)
 
 </div>
 
