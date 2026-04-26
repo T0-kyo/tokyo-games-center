@@ -23,6 +23,7 @@ namespace Tokyo{
         GameDataRef _data;
         GameID _gameId;
         bool _isMute = false;
+        sf::Clock _clock;
 
         std::unique_ptr<sf::Sprite> _background;
         std::unique_ptr<sf::Sprite> _resume;

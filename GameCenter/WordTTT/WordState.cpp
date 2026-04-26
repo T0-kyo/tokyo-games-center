@@ -116,7 +116,10 @@ namespace Tokyo {
                     if (_WordBoard->get_cell(_row, _col) == ' '){
                         _cellChosen = true;
                     }
-                    else _cellChosen = false;
+                    else {
+                        _cellChosen = false;
+                        if (!_isMute) this->_wrong->play();
+                    }
                 }
 
                 if(_cellChosen){

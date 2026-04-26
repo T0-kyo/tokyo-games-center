@@ -111,7 +111,10 @@ namespace Tokyo {
                     if (_NumericalBoard->get_cell(_row, _col) == 0){
                         _cellChosen = true;
                     }
-                    else _cellChosen = false;
+                    else {
+                        _cellChosen = false;
+                        if (!_isMute) this->_wrong->play();
+                    }
                 }
 
                 if(_cellChosen){

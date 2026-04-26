@@ -104,7 +104,7 @@ namespace Tokyo {
                         float localY = mousePos.y - gridPos.y;
                         this->_col = (localX - 180)/ CellWidth;
                         this->_row = (localY - 80)/ CellHeight;
-                        if (_row < 3 && _col < 5 && localX > 180 && localY > 80 && _pyramidBoard->get_cell(_row, _col) == ' '){
+                        if (_row < 3 && _col < 5 && localX > 180 && localY > 80 && _pyramidBoard->get_cell(_row, _col) == ' ' && _clock.getElapsedTime().asMilliseconds() >= 150){
                             Move move(_row, _col, _currentPlayer->get_symbol());
                             this->_pyramidBoard->update_board(&move);
                             if(!_isMute) this->_move->play();
@@ -122,7 +122,7 @@ namespace Tokyo {
                             _clock.restart();
                             _gameOverClock.restart();          
                         }
-                        else if(!_isMute) this->_wrong->play();
+                        else if((_pyramidBoard->get_cell(_row, _col) == 'X' || _pyramidBoard->get_cell(_row, _col) == 'O') && !_isMute && _clock.getElapsedTime().asMilliseconds() >= 150) this->_wrong->play();
                     }
                 }
             }

@@ -29,6 +29,8 @@ namespace Tokyo {
 
         std::unique_ptr<sf::Sound> _choose;
 
+        sf::Clock _clock;
+
         std::unique_ptr<sf::Sprite> _4x4TTT_Button;
         std::unique_ptr<sf::Sprite> _5x5TTT_Button;
         std::unique_ptr<sf::Sprite> _DiamondTTT_Button;

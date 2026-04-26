@@ -130,9 +130,10 @@ namespace Tokyo{
                     this->_data->machine.AddState(StateRef (new HomeState(this->_data, _isMute)), false);
                 }
             }
-            if(this->_data->input.isSpriteClicked(*this->_book, sf::Mouse::Button::Left, this->_data->window)){
+            if(this->_data->input.isSpriteClicked(*this->_book, sf::Mouse::Button::Left, this->_data->window) && _clock.getElapsedTime().asMilliseconds() >= 150){
                 if(!_isMute) this->_bookSound->play();
                 isRules = 1 - isRules;
+                this->_clock.restart();
             }
         }
     }
