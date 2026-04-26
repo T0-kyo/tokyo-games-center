@@ -122,7 +122,7 @@ namespace Tokyo {
                             _clock.restart();
                             _gameOverClock.restart();
                         }
-                        else if((_diamondBoard->get_cell(_row, _col) == 'X' || _diamondBoard->get_cell(_row, _col) == 'O') && !_isMute &&  _clock.getElapsedTime().asMilliseconds() >= 150) this->_wrong->play();
+                        else if(_row < 7 && _col < 7 && (_diamondBoard->get_cell(_row, _col) == 'X' || _diamondBoard->get_cell(_row, _col) == 'O') && !_isMute &&  _clock.getElapsedTime().asMilliseconds() >= 150) this->_wrong->play();
                     }
                 }
             }
