@@ -75,7 +75,7 @@ make && ./Game
 
 A prebuilt executable is provided for convenience. No installation required.
 
-Download Tokyo_Games_Center_Windows.zip from the latest Release.
+Download TokyoGames.zip from the latest Release.
 
 Extract the contents to a folder of your choice.
 
