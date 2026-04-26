@@ -104,7 +104,7 @@ namespace Tokyo {
                         float localY = mousePos.y - gridPos.y;
                         this->_col = (localX - 70)/ CellWidth;
                         this->_row = (localY - 65)/ CellHeight;
-                        if (_row < 7 && _col < 7 && localX > 70 && localY > 65 && _diamondBoard->get_cell(_row, _col) == ' '){
+                        if (_row < 7 && _col < 7 && localX > 70 && localY > 65 && _diamondBoard->get_cell(_row, _col) == ' ' &&  _clock.getElapsedTime().asMilliseconds() >= 150){
                             Move move(_row, _col, _currentPlayer->get_symbol());
                             this->_diamondBoard->update_board(&move);
                             if(!_isMute) this->_move->play();
@@ -122,7 +122,7 @@ namespace Tokyo {
                             _clock.restart();
                             _gameOverClock.restart();
                         }
-                        else if(_row < 7 && _col < 7 && !(_diamondBoard->get_cell(_row, _col) == ' ') && !_isMute) this->_wrong->play();
+                        else if(_row < 7 && _col < 7 && (_diamondBoard->get_cell(_row, _col) == 'X' || _diamondBoard->get_cell(_row, _col) == 'O') && !_isMute &&  _clock.getElapsedTime().asMilliseconds() >= 150) this->_wrong->play();
                     }
                 }
             }

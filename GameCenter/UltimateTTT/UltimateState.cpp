@@ -17,8 +17,8 @@ namespace Tokyo {
         this->_data->assets.LoadTexture("Pause Button", PAUSE_BUTTON);
         this->_data->assets.LoadTexture("grid", "../Assets/Textures/9x9 grid.png");
         this->_data->assets.LoadTexture("subgrid", "../Assets/Textures/subGrid.png");
-        this->_data->assets.LoadTexture("x", "../Assets/Textures/_ultx.png");
-        this->_data->assets.LoadTexture("o", "../Assets/Textures/_ulto.png");
+        this->_data->assets.LoadTexture("x", "../Assets/Textures/_ult-x.png");
+        this->_data->assets.LoadTexture("o", "../Assets/Textures/_ult-o.png");
         this->_data->assets.LoadTexture("X", "../Assets/Textures/_ultX.png");
         this->_data->assets.LoadTexture("O", "../Assets/Textures/_ultO.png");
         this->_data->assets.LoadTexture("X win", "../Assets/Textures/BLUE ultX.png");
@@ -207,7 +207,7 @@ namespace Tokyo {
                             this->_row = 6+(localY / CellHeight);
                         }
                     
-                        if (_UltimateBoard->get_cell(_row, _col) == ' '){
+                        if (_UltimateBoard->get_cell(_row, _col) == ' ' &&  _clock.getElapsedTime().asMilliseconds() >= 150){
                             Move move(_row, _col, _currentPlayer->get_symbol());
                             this->_UltimateBoard->update_board(&move);
                             if(!_isMute) this->_move->play();
@@ -242,7 +242,7 @@ namespace Tokyo {
                             _clock.restart();
                             _gameOverClock.restart();
                         }
-                        else if(!_isMute) this->_wrong->play();
+                        else if(_UltimateBoard->get_cell(_row, _col) != ' ' && !_isMute &&  _clock.getElapsedTime().asMilliseconds() >= 150) this->_wrong->play();
                     }
                 }
             }

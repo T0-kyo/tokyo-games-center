@@ -174,9 +174,10 @@ namespace Tokyo {
                 this->_data->machine.AddState(StateRef(new ModeSelectionState(this->_data, GameID::_4x4, _isMute)), false);
             }
 
-            if( this->_data->input.isSpriteClicked( *this->_soundOn, sf::Mouse::Button::Left, this->_data->window ) ) {
+            if( this->_data->input.isSpriteClicked( *this->_soundOn, sf::Mouse::Button::Left, this->_data->window ) && _clock.getElapsedTime().asMilliseconds() >= 150) {
                 if(_isMute) this->_choose->play();
                 this->_isMute = 1 - _isMute;
+                _clock.restart();
             }
         }
     }
